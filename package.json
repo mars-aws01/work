@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HstarComponents/ngx-smartadmin.git"
+    "url": "git+https://trgit2/newkit/kubi-ui.git"
   },
   "keywords": [
     "Angular",
@@ -31,9 +31,9 @@
   "author": "Jay.M.Hu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/HstarComponents/ngx-smartadmin/issues"
+    "url": "https://trgit2/newkit/kubi-ui/issues"
   },
-  "homepage": "https://github.com/HstarComponents/ngx-smartadmin#readme",
+  "homepage": "https://trgit2/newkit/kubi-ui#readme",
   "dependencies": {},
   "peerDependencies": {
     "@angular/core": "^4.4.3",
