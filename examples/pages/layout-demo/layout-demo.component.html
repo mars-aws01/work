@@ -1,0 +1,209 @@
+<div class="page-layout-demo">
+  <nk-collapse-box header="基本布局">
+    <nk-row>
+      <nk-col [span]="24">
+        <div class="grid-content bg-purple-dark"></div>
+      </nk-col>
+    </nk-row>
+    <nk-row>
+      <nk-col [span]="12">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="12">
+        <div class="grid-content bg-purple-light"></div>
+      </nk-col>
+    </nk-row>
+    <nk-row>
+      <nk-col [span]="8">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="8">
+        <div class="grid-content bg-purple-light"></div>
+      </nk-col>
+      <nk-col [span]="8">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+    </nk-row>
+    <nk-row>
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple-light"></div>
+      </nk-col>
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple-light"></div>
+      </nk-col>
+    </nk-row>
+    <nk-row>
+      <nk-col [span]="4">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="4">
+        <div class="grid-content bg-purple-light"></div>
+      </nk-col>
+      <nk-col [span]="4">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="4">
+        <div class="grid-content bg-purple-light"></div>
+      </nk-col>
+      <nk-col [span]="4">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="4">
+        <div class="grid-content bg-purple-light"></div>
+      </nk-col>
+    </nk-row>
+  </nk-collapse-box>
+  <nk-collapse-box header="分栏间隔">
+    <nk-row [gutter]="20">
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+    </nk-row>
+  </nk-collapse-box>
+  <nk-collapse-box header="混合布局">
+    <nk-row [gutter]="20">
+      <nk-col [span]="16">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="8">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+    </nk-row>
+    <nk-row [gutter]="20">
+      <nk-col [span]="8">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="8">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="4">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="4">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+    </nk-row>
+    <nk-row [gutter]="20">
+      <nk-col [span]="4">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="16">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="4">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+    </nk-row>
+  </nk-collapse-box>
+  <nk-collapse-box header="分栏偏移">
+    <nk-row [gutter]="20">
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="6" :offset="6">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+    </nk-row>
+    <nk-row [gutter]="20">
+      <nk-col [span]="6" :offset="6">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="6" :offset="6">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+    </nk-row>
+    <nk-row [gutter]="20">
+      <nk-col [span]="12" :offset="6">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+    </nk-row>
+  </nk-collapse-box>
+  <nk-collapse-box header="对齐方式">
+    <nk-row type="flex" class="row-bg">
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple-light"></div>
+      </nk-col>
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+    </nk-row>
+    <nk-row type="flex" class="row-bg" justify="center">
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple-light"></div>
+      </nk-col>
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+    </nk-row>
+    <nk-row type="flex" class="row-bg" justify="end">
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple-light"></div>
+      </nk-col>
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+    </nk-row>
+    <nk-row type="flex" class="row-bg" justify="space-between">
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple-light"></div>
+      </nk-col>
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+    </nk-row>
+    <nk-row type="flex" class="row-bg" justify="space-around">
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple-light"></div>
+      </nk-col>
+      <nk-col [span]="6">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+    </nk-row>
+  </nk-collapse-box>
+  <nk-collapse-box header="响应式布局">
+    <nk-row [gutter]="10">
+      <nk-col :xs="8" [sm]="6" [md]="4" [lg]="3">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col :xs="4" [sm]="6" [md]="8" [lg]="9">
+        <div class="grid-content bg-purple-light"></div>
+      </nk-col>
+      <nk-col :xs="4" [sm]="6" [md]="8" [lg]="9">
+        <div class="grid-content bg-purple"></div>
+      </nk-col>
+      <nk-col :xs="8" [sm]="6" [md]="4" [lg]="3">
+        <div class="grid-content bg-purple-light"></div>
+      </nk-col>
+    </nk-row>
+  </nk-collapse-box>
+</div>

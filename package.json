@@ -1,0 +1,74 @@
+{
+  "name": "@newkit/kubi-ui",
+  "version": "0.0.1",
+  "description": "The compact ui component lib for newegg central2.",
+  "main": "lib/kubi-ui.js",
+  "types": "types",
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --config build/webpack.dev.conf.js",
+    "cleanlib": "node build/cleanlib.js",
+    "ngc": "ngc -p tsconfig-aot.json",
+    "ngc:demo": "ngc -p tsconfig-demo-aot.json",
+    "webpack:aot": "webpack --config build/webpack.aot.conf.js",
+    "lib": "npm run cleanlib && webpack --config build/webpack.lib.conf.js",
+    "build": "webpack --config build/webpack.prod.conf.js",
+    "build:aot": "ngc -p tsconfig-demo-aot.json && webpack --config build/webpack.aot.conf.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HstarComponents/ngx-smartadmin.git"
+  },
+  "keywords": [
+    "Angular",
+    "Compact",
+    "Components"
+  ],
+  "author": "Jay.M.Hu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HstarComponents/ngx-smartadmin/issues"
+  },
+  "homepage": "https://github.com/HstarComponents/ngx-smartadmin#readme",
+  "dependencies": {},
+  "peerDependencies": {
+    "@angular/core": "^4.4.3",
+    "@angular/common": "^4.4.3",
+    "@angular/forms": "^4.4.3",
+    "@angular/animations": "^4.4.3"
+  },
+  "devDependencies": {
+    "@angular/animations": "^4.4.3",
+    "@angular/common": "^4.4.3",
+    "@angular/compiler": "^4.4.3",
+    "@angular/compiler-cli": "^4.4.3",
+    "@angular/core": "^4.4.3",
+    "@angular/forms": "^4.4.3",
+    "@angular/http": "^4.4.3",
+    "@angular/platform-browser": "^4.4.3",
+    "@angular/platform-browser-dynamic": "^4.4.3",
+    "@angular/router": "^4.4.3",
+    "@types/node": "^8.0.28",
+    "angular2-template-loader": "^0.6.2",
+    "awesome-typescript-loader": "^3.2.3",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^2.30.1",
+    "jest": "^21.1.0",
+    "raw-loader": "^0.5.1",
+    "reflect-metadata": "^0.1.10",
+    "rxjs": "^5.4.3",
+    "shelljs": "^0.7.8",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "typescript": "^2.5.2",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.8.2",
+    "webpack-merge": "^4.1.0",
+    "zone.js": "^0.8.17"
+  }
+}

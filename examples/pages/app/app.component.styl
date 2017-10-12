@@ -1,0 +1,62 @@
+.left-panel {
+  position: fixed;
+  top: 50px;
+  bottom: 0;
+  left: 0;
+  width: 220px;
+  border-right: 1px solid #ccc;
+}
+
+.page-content {
+  position: fixed;
+  top: 50px;
+  right: 0;
+  bottom: 0;
+  left: 220px;
+  padding: 10px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.menu-sidebar {
+  padding-left: 0;
+  font-size: 12px;
+
+  ul {
+    padding-left: 0;
+  }
+
+  li {
+    font-size: 0;
+  }
+
+  a {
+    height: 30px;
+    display: flex;
+    font-size: 12px;
+    line-height: 30px;
+
+    &.level1 {
+      padding-left: 16px;
+    }
+
+    &.level2 {
+      padding-left: 40px;
+    }
+
+    >span {
+      flex: 1;
+      white-space: nowrap;
+      word-break: break-all;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    >i, >b {
+      flex: 0;
+      min-width: 20px;
+      text-align: center;
+      line-height: 30px;
+    }
+  }
+}
