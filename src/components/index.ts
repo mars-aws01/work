@@ -3,6 +3,7 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
 import { ColComponent } from './col/col.component';
 import { CollapseBoxComponent } from './collapse-box/collapse-box.component';
 import { RadioComponent } from './radio/radio.component';
+import { RadioGroupComponent } from './radio-group/radio-group.component';
 import { RowComponent } from './row/row.component';
 
 export const ALL_COMPONENTS = [
@@ -16,5 +17,5 @@ export const ALL_COMPONENTS = [
 
   // Form元素
   CheckboxComponent,
-  RadioComponent
+  RadioComponent, RadioGroupComponent
 ];

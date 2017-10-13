@@ -1,1 +1,17 @@
-<div class="radio-group-demo"> Hello RadioGroupDemoComponent! </div>
+<div class="page-radio-group-demo">
+  <nk-row>
+    <nk-col [span]="8">
+      <nk-radio-group [(ngModel)]="sex">
+        <nk-radio *ngFor="let item of sexList" [value]="item">{{item}}</nk-radio>
+      </nk-radio-group>
+    </nk-col>
+    <nk-col [span]="8">
+      <span class="nk-text">当前选中值：{{sex}}</span>
+    </nk-col>
+    <nk-col [span]="8">
+      <nk-radio-group [(ngModel)]="sex" disabled>
+        <nk-radio *ngFor="let item of sexList" [value]="item">{{item}}</nk-radio>
+      </nk-radio-group>
+    </nk-col>
+  </nk-row>
+</div>

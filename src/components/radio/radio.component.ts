@@ -1,7 +1,9 @@
 import './radio.component.styl';
 
-import { Component, Input, OnInit, forwardRef } from '@angular/core';
+import { Component, Host, Input, OnInit, Optional, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+import { RadioGroupComponent } from '../radio-group/radio-group.component';
 
 export const RADIO_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -27,11 +29,19 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
 
   @Input() value: any = true;
 
+  constructor( @Optional() @Host() private radioGroup: RadioGroupComponent) {
+
+  }
+
   ngOnInit() { }
 
   public handleCheckedChange(v: boolean) {
     this.onChange(this.value);
     this.innerValue = this.value;
+    // 如果有radio-group，则需要反向设置value
+    if (this.radioGroup) {
+      this.radioGroup.setRadioGroupValue(this.value);
+    }
   }
 
   writeValue(obj: any): void {

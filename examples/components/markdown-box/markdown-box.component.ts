@@ -40,7 +40,6 @@ export class MarkdownBoxComponent implements OnInit, AfterViewInit, OnChanges {
     }
     marked.setOptions({
       highlight(code: string, lang: string) {
-        console.log(code, lang);
         return window['hljs'].highlight(lang, code).value;
       }
     });

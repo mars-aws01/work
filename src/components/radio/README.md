@@ -1,4 +1,4 @@
-# nk-checkbox
+# nk-radio
 
 **Input**
 
@@ -6,7 +6,7 @@
 | --- | --- | --- | --- | --- |
 | value | 设置当前Radio的value | any | - |
 | disabled | 设置是否为禁用状态 | boolean | false |
-| ngModel | 指定当前是否选中 | boolean | false |
+| ngModel | 指定当前选中的值 | any | - |
  
 **Slots（ng-content占位符）**
 

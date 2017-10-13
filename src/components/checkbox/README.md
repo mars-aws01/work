@@ -5,7 +5,7 @@
 | 属性 | 说明 |  类型 | 默认值 |
 | --- | --- | --- | --- | --- |
 | disabled | 设置是否为禁用状态 | boolean | false |
-| ngModel | 指定当前是否选中 | boolean | false |
+| ngModel | 指定当前是否选中 | boolean | - |
  
 **Slots（ng-content占位符）**
 

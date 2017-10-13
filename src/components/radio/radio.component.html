@@ -1,6 +1,6 @@
 <label class="nk-radio" [ngClass]="{'nk-radio-checked': innerChecked, 'nk-radio-disabled': disabled}">
   <span class="nk-radio-inner">
-    <input type="radio" [ngModel]="innerChecked" [disabled]="disabled" (ngModelChange)="handleCheckedChange($event)">
+    <input type="radio" [ngModel]="innerChecked" [disabled]="disabled" (click)="handleCheckedChange($event)">
   </span>
   <span>
     <ng-content></ng-content>
