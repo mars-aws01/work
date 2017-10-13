@@ -1,10 +1,16 @@
 import {
   ButtonDemoComponent,
   CheckboxDemoComponent,
+  CheckboxGroupDemoComponent,
+  CollapseBoxDemoComponent,
   DemoContainerComponent,
   HomeComponent,
+  InputDemoComponent,
   LayoutDemoComponent,
-  NotfoundComponent
+  NotfoundComponent,
+  RadioDemoComponent,
+  RadioGroupDemoComponent,
+  SwitchDemoComponent
 } from './pages';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -16,8 +22,14 @@ const demoRoutes: Routes = [
   { path: 'col', component: LayoutDemoComponent },
   // UI Elements
   { path: 'button', component: ButtonDemoComponent },
+  { path: 'collapse-box', component: CollapseBoxDemoComponent },
   // Form Elements
-  { path: 'checkbox', component: CheckboxDemoComponent }
+  { path: 'checkbox', component: CheckboxDemoComponent },
+  { path: 'checkbox-group', component: CheckboxGroupDemoComponent },
+  { path: 'input', component: InputDemoComponent },
+  { path: 'radio', component: RadioDemoComponent },
+  { path: 'radio-group', component: RadioGroupDemoComponent },
+  { path: 'switch', component: SwitchDemoComponent }
 ];
 
 const routes: Routes = [
