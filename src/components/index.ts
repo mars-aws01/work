@@ -1,5 +1,6 @@
 import { ButtonComponent } from './button/button.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
+import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
 import { ColComponent } from './col/col.component';
 import { CollapseBoxComponent } from './collapse-box/collapse-box.component';
 import { RadioComponent } from './radio/radio.component';
@@ -16,6 +17,6 @@ export const ALL_COMPONENTS = [
   CollapseBoxComponent,
 
   // Form元素
-  CheckboxComponent,
+  CheckboxComponent, CheckboxGroupComponent,
   RadioComponent, RadioGroupComponent
 ];

@@ -1,6 +1,6 @@
 import './radio.component.styl';
 
-import { Component, Host, Input, OnInit, Optional, forwardRef } from '@angular/core';
+import { Component, Host, Input, OnInit, Optional, SimpleChanges, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { RadioGroupComponent } from '../radio-group/radio-group.component';
@@ -20,20 +20,27 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
   onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
 
-  public disabled: boolean = false;
   public innerValue: any;
+  public innerDisabled: boolean = false;
 
   public get innerChecked() {
     return this.innerValue === this.value;
   }
 
   @Input() value: any = true;
+  @Input() disabled: boolean = false;
 
   constructor( @Optional() @Host() private radioGroup: RadioGroupComponent) {
 
   }
 
   ngOnInit() { }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.disabled) {
+      this.innerDisabled = this.disabled;
+    }
+  }
 
   public handleCheckedChange(v: boolean) {
     this.onChange(this.value);
@@ -54,6 +61,6 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
     this.onTouched = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    this.innerDisabled = isDisabled;
   }
 }

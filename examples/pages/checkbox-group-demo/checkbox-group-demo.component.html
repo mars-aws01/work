@@ -1,1 +1,17 @@
-<div class="checkbox-group-demo"> Hello CheckboxGroupDemoComponent! </div>
+<div class="page-checkbox-group-demo">
+  <nk-row>
+    <nk-col [span]="8">
+      <nk-checkbox-group [(ngModel)]="selectedLanguages">
+        <nk-checkbox *ngFor="let item of languageList" [value]="item" [disabled]="item === 'Java'">{{item}}</nk-checkbox>
+      </nk-checkbox-group>
+    </nk-col>
+    <nk-col [span]="8">
+      <span class="nk-text">选中值：{{selectedLanguages | json}}</span>
+    </nk-col>
+    <nk-col [span]="8">
+      <nk-checkbox-group [(ngModel)]="selectedLanguages" [disabled]="true">
+        <nk-checkbox *ngFor="let item of languageList" [value]="item">{{item}}</nk-checkbox>
+      </nk-checkbox-group>
+    </nk-col>
+  </nk-row>
+</div>

@@ -1,7 +1,9 @@
 import './checkbox.component.styl';
 
-import { Component, OnInit, forwardRef } from '@angular/core';
+import { Component, Host, Input, OnInit, Optional, SimpleChanges, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+import { CheckboxGroupComponent } from '../checkbox-group/checkbox-group.component';
 
 export const CHECKBOX_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -19,14 +21,31 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
   onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
 
-  public disabled: boolean = false;
+  public innerDisabled: boolean = false;
   public innerChecked: boolean = false;
 
-  ngOnInit() { }
+  @Input() value: any;
+
+  @Input() disabled: boolean = false;
+
+  constructor( @Optional() @Host() private checkboxGroup: CheckboxGroupComponent) {
+  }
+
+  ngOnInit() {
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.disabled) {
+      this.innerDisabled = this.disabled;
+    }
+  }
 
   public handleCheckedChange(v: boolean) {
     this.innerChecked = v;
     this.onChange(v);
+    if (this.checkboxGroup) {
+      this.checkboxGroup.updateCheckboxGroupValue(this.value, v);
+    }
   }
 
   writeValue(obj: any): void {
@@ -39,6 +58,6 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
     this.onTouched = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    this.innerDisabled = isDisabled;
   }
 }

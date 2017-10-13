@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-	selector: 'checkbox-group-demo',
-	templateUrl: 'checkbox-group-demo.component.html'
+  selector: 'checkbox-group-demo',
+  templateUrl: 'checkbox-group-demo.component.html'
 })
 
 export class CheckboxGroupDemoComponent implements OnInit {
 
-	ngOnInit() { }
+  public languageList = ['JavaScript', 'C#', 'Java', 'Go', 'Python'];
+  public selectedLanguages: string[] = [];
+  
+  ngOnInit() { }
 }

@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ALL_COMPONENTS } from './components';
 import { CommonModule } from '@angular/common';
+import { HELPERS } from './helpers';
 import { NgModule } from '@angular/core';
 
 // import { SERVICE_COMPONENTS } from './services';
@@ -18,7 +19,7 @@ const SERVICE_COMPONENTS: any[] = [];
   declarations: [...ALL_COMPONENTS, ...SERVICE_COMPONENTS],
   entryComponents: [...SERVICE_COMPONENTS],
   exports: [...ALL_COMPONENTS, ...SERVICE_COMPONENTS],
-  providers: []
+  providers: [...HELPERS]
 })
 export class KubiUIModule {
 

@@ -20,12 +20,20 @@ export class RadioGroupComponent implements OnInit {
   onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
 
-  public disabled: boolean = false;
+  @Input() disabled: boolean = false;
 
   @ContentChildren(forwardRef(() => RadioComponent))
   public radioList: Array<RadioComponent> = [];
 
   ngOnInit() { }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.disabled) {
+      setTimeout(() => {
+        this.radioList.forEach(c => c.innerDisabled = this.disabled);
+      });
+    }
+  }
 
   public setRadioGroupValue(v: any) {
     this.onChange(v);
