@@ -19,3 +19,27 @@
 | --- | --- |
 | '' | 放置具体内容 |
 
+**Usage**
+
+```html
+// 占满所有栅格
+<nk-row>
+  <nk-col></nk-col> // 默认栅格24
+</nk-row>
+
+// 4等分排列，通过span指定栅格个数
+<nk-row>
+  <nk-col [span]="8"></nk-col>
+  <nk-col [span]="8"></nk-col>
+  <nk-col [span]="8"></nk-col>
+  <nk-col [span]="8"></nk-col>
+</nk-row>
+
+// 通过gutter设置栅格间的间距
+<nk-row [gutter]="20">
+  <nk-col [span]="8"></nk-col>
+  <nk-col [span]="8"></nk-col>
+  <nk-col [span]="8"></nk-col>
+  <nk-col [span]="8"></nk-col>
+</nk-row>
+```
