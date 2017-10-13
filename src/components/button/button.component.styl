@@ -1,2 +1,52 @@
 .nk-button {
+  border-radius: 2px;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 2px 8px;
+  outline: none;
+  line-height: 1.5;
+  background: #fff;
+  color: #000;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ccc;
+
+  &:hover {
+    color: #3795db;
+    border-color: #3795db;
+  }
+
+  &:active {
+    color: #2871ab;
+    border-color: #2871ab;
+  }
+
+  &.nk-button-disabled {
+    cursor: not-allowed;
+    background: #f1f1f1;
+    color: #b8b8b8;
+    border-color: #e1e1e1;
+  }
+
+  &.nk-button-primary {
+    background: #3174ae;
+    border-color: #3174ae;
+    color: #fff;
+
+    &:hover {
+      background: #3795db;
+      border-color: #3795db;
+    }
+
+    &:active {
+      background: #2871ab;
+      border-color: #2871ab;
+    }
+
+    &.nk-button-disabled {
+      background: #f1f1f1;
+      color: #b8b8b8;
+      border-color: #f1f1f1;
+    }
+  }
 }

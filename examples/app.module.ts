@@ -1,4 +1,5 @@
 import './styl/common.styl';
+import './styl/github-markdown.css';
 
 import { AppComponent, PAGE_COMPONENTS } from './pages';
 

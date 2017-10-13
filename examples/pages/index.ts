@@ -1,4 +1,5 @@
 import { AppComponent } from './app/app.component';
+import { ButtonDemoComponent } from './button-demo/button-demo.component';
 import { DemoContainerComponent } from './demo-container/demo-container.component';
 import { HomeComponent } from './home/home.component';
 import { LayoutDemoComponent } from './layout-demo/layout-demo.component';
@@ -11,7 +12,10 @@ export {
   DemoContainerComponent,
 
   // Layout  
-  LayoutDemoComponent
+  LayoutDemoComponent,
+
+  // UI Elements
+  ButtonDemoComponent
 };
 
 export const PAGE_COMPONENTS = [
@@ -21,5 +25,8 @@ export const PAGE_COMPONENTS = [
   DemoContainerComponent,
 
   // Layout  
-  LayoutDemoComponent
+  LayoutDemoComponent,
+
+  // UI Elements
+  ButtonDemoComponent
 ];

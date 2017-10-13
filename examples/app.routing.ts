@@ -1,4 +1,5 @@
 import {
+  ButtonDemoComponent,
   DemoContainerComponent,
   HomeComponent,
   LayoutDemoComponent,
@@ -9,10 +10,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 const demoRoutes: Routes = [
-
   // Layout
   { path: 'row', component: LayoutDemoComponent },
-  { path: 'col', component: LayoutDemoComponent }
+  { path: 'col', component: LayoutDemoComponent },
+  // UI Elements
+  { path: 'button', component: ButtonDemoComponent }
 ];
 
 const routes: Routes = [
