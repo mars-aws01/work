@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit, SimpleChanges, OnChanges, ElementRef } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'markdown-box',
@@ -38,9 +38,15 @@ export class MarkdownBoxComponent implements OnInit, AfterViewInit, OnChanges {
     if (!marked) {
       return console.error('markdown-box component depend marked(https://github.com/chjj/marked).');
     }
+    marked.setOptions({
+      highlight(code: string, lang: string) {
+        console.log(code, lang);
+        return window['hljs'].highlight(lang, code).value;
+      }
+    });
     let htmlCode = marked(this.markdown);
-    htmlCode = htmlCode.replace(/<table>/g, '<table class="table table-bordered">');
-    this.elementRef.nativeElement.innerHTML = htmlCode;
+    // htmlCode = htmlCode.replace(/<table>/g, '<table class="table table-bordered">');
+    this.elementRef.nativeElement.querySelector('.markdown-box').innerHTML = htmlCode;
   }
 
   private _setMarkedOptions() {

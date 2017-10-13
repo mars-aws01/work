@@ -46,5 +46,5 @@ export const menuData: Array<MenuItem> = [
 
 window['AppConf'] = {
   menuData,
-  rootHost: process.env.NODE_ENV === 'production' ? '' : 'http://localhost:7777'
+  rootHost: process.env.NODE_ENV === 'production' ? '' : 'http://10.16.85.170:7777'
 };
