@@ -1,4 +1,5 @@
 import { ButtonComponent } from './button/button.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
 import { ColComponent } from './col/col.component';
 import { CollapseBoxComponent } from './collapse-box/collapse-box.component';
 import { RowComponent } from './row/row.component';
@@ -10,5 +11,8 @@ export const ALL_COMPONENTS = [
 
   // UI元素组件
   ButtonComponent,
-  CollapseBoxComponent
+  CollapseBoxComponent,
+
+  // Form元素
+  CheckboxComponent
 ];

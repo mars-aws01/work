@@ -31,7 +31,7 @@ export class AppModule {
 
 - [ ] Accordion [Usage](src/components/accordion/README.md)
 - [ ] Alert [Usage](src/components/alert/README.md)
-- [ ] Button [Usage](src/components/button/README.md)
+- [x] Button [Usage](src/components/button/README.md)
 - [ ] Carousel [Usage](src/components/carousel/README.md)
 - [ ] CollapseBox [Usage](src/components/collapse-box/README.md)
 - [ ] Modal [Usage](src/components/modal/README.md)
@@ -46,7 +46,7 @@ export class AppModule {
 
 - [ ] Form [Usage](src/components/form/README.md)
 - [ ] Autocomplete [Usage](src/components/autocomplete/README.md)
-- [ ] CheckBox [Usage](src/components/checkbox/README.md)
+- [x] CheckBox [Usage](src/components/checkbox/README.md)
 - [ ] CheckBoxGroup [Usage](src/components/checkbox-group/README.md)
 - [ ] DatePicker [Usage](src/components/date-picker/README.md)
 - [ ] Input [Usage](src/components/autocomplete/README.md)

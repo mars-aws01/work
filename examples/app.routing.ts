@@ -1,5 +1,6 @@
 import {
   ButtonDemoComponent,
+  CheckboxDemoComponent,
   DemoContainerComponent,
   HomeComponent,
   LayoutDemoComponent,
@@ -14,7 +15,9 @@ const demoRoutes: Routes = [
   { path: 'row', component: LayoutDemoComponent },
   { path: 'col', component: LayoutDemoComponent },
   // UI Elements
-  { path: 'button', component: ButtonDemoComponent }
+  { path: 'button', component: ButtonDemoComponent },
+  // Form Elements
+  { path: 'checkbox', component: CheckboxDemoComponent }
 ];
 
 const routes: Routes = [

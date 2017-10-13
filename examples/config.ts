@@ -1,5 +1,8 @@
 export const menuData: Array<MenuItem> = [
   {
+    text: 'Home', icon: 'fa-home', url: '/'
+  },
+  {
     text: 'Layout', icon: 'fa-list', subMenu: [
       { text: 'Row', url: '/row' },
       { text: 'Col', url: '/col' }

@@ -1,5 +1,6 @@
 import { AppComponent } from './app/app.component';
 import { ButtonDemoComponent } from './button-demo/button-demo.component';
+import { CheckboxDemoComponent } from './checkbox-demo/checkbox-demo.component';
 import { DemoContainerComponent } from './demo-container/demo-container.component';
 import { HomeComponent } from './home/home.component';
 import { LayoutDemoComponent } from './layout-demo/layout-demo.component';
@@ -15,7 +16,10 @@ export {
   LayoutDemoComponent,
 
   // UI Elements
-  ButtonDemoComponent
+  ButtonDemoComponent,
+
+  // Form Elements
+  CheckboxDemoComponent
 };
 
 export const PAGE_COMPONENTS = [
@@ -28,5 +32,8 @@ export const PAGE_COMPONENTS = [
   LayoutDemoComponent,
 
   // UI Elements
-  ButtonDemoComponent
+  ButtonDemoComponent,
+
+  // Form Elements
+  CheckboxDemoComponent
 ];

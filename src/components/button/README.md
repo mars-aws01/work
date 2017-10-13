@@ -11,7 +11,7 @@
  
 **Slots（ng-content占位符）**
 
-| Name | Description |
+| 占位符名称 | 说明 |
 | --- | --- |
 | '' | 放置按钮具体内容 |
 
