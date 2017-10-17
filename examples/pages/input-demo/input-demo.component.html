@@ -1,1 +1,32 @@
-<div class="input-demo"> Hello InputDemoComponent! </div>
+<div class="page-input-demo">
+  <nk-form>
+    <nk-row [gutter]="20">
+      <nk-col [span]="6">
+        <nk-input [(ngModel)]="inputValue" placeholder="test"></nk-input>
+      </nk-col>
+      <nk-col [span]="6">
+        <nk-input type="password" [(ngModel)]="inputValue"></nk-input>
+      </nk-col>
+      <nk-col [span]="6">
+        <nk-input type="textarea" [(ngModel)]="inputValue"></nk-input>
+      </nk-col>
+      <nk-col [span]="6">
+        <nk-input [(ngModel)]="inputValue" required></nk-input>
+      </nk-col>
+    </nk-row>
+  </nk-form>
+  <nk-row [gutter]="20">
+    <nk-col [span]="6">
+      <nk-input [(ngModel)]="inputValue"></nk-input>
+    </nk-col>
+    <nk-col [span]="6">
+      <nk-input type="text" [readonly]="true" [(ngModel)]="inputValue"></nk-input>
+    </nk-col>
+    <nk-col [span]="6">
+      <nk-input type="textarea" [disabled]="true" [(ngModel)]="inputValue"></nk-input>
+    </nk-col>
+    <nk-col [span]="6">
+      <nk-input [(ngModel)]="inputValue" required></nk-input>
+    </nk-col>
+  </nk-row>
+</div>

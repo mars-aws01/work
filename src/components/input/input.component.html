@@ -1,1 +1,5 @@
-<div class="input"> Hello InputComponent! </div>
+<input *ngIf="!isTextarea" [ngClass]="inputClass" [type]="type" [readonly]="readonly" [disabled]="disabled" [placeholder]="placeholder"
+  [ngModel]="innerValue" (ngModelChange)="handleModelChange($event)">
+<textarea *ngIf="isTextarea" [ngClass]="inputClass" [rows]="rows" [readonly]="readonly" [disabled]="disabled" [placeholder]="placeholder"
+  [ngModel]="innerValue" (ngModelChange)="handleModelChange($event)">
+</textarea>
