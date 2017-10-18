@@ -1,3 +1,14 @@
+.nk-input-wrap {
+  position: relative;
+  display: block;
+
+  i {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+  }
+}
+
 .nk-input {
   font-size: 12px;
   font-family: Arial, Helvetica, sans-serif;
@@ -31,5 +42,9 @@
   .ng-invalid.ng-dirty & {
     border-color: #dc1d1d;
     box-shadow: none;
+  }
+
+  &.nk-input-has-icon {
+    padding-right: 24px;
   }
 }

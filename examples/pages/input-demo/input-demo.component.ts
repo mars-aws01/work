@@ -10,4 +10,8 @@ export class InputDemoComponent implements OnInit {
   public inputValue: string = '';
 
   ngOnInit() { }
+
+  public handleIconClick(evt: MouseEvent) {
+    alert('icon被点击');
+  }
 }

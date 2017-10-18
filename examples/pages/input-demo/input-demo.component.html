@@ -2,7 +2,7 @@
   <nk-form>
     <nk-row [gutter]="20">
       <nk-col [span]="6">
-        <nk-input [(ngModel)]="inputValue" placeholder="test"></nk-input>
+        <nk-input [(ngModel)]="inputValue" placeholder="test" icon="fa fa-star" (iconClick)="handleIconClick($event)"></nk-input>
       </nk-col>
       <nk-col [span]="6">
         <nk-input type="password" [(ngModel)]="inputValue"></nk-input>

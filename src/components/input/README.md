@@ -10,6 +10,12 @@
 | disabled | 设置是否为禁用状态 | boolean | false |
 | rows | 设置textarea高度，仅当type=textarea时生效 | number | 3 |
 | ngModel | 指定当前是否选中 | boolean | - |
+
+**Output**
+
+| 属性 | 说明 | 参数值类型 |
+| --- | --- | --- | --- |
+| iconClick | 输入框按钮点击时触发 | MouseEvent |
  
 **Slots（ng-content占位符）**
 

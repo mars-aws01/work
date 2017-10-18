@@ -1,5 +1,6 @@
 <input *ngIf="!isTextarea" [ngClass]="inputClass" [type]="type" [readonly]="readonly" [disabled]="disabled" [placeholder]="placeholder"
   [ngModel]="innerValue" (ngModelChange)="handleModelChange($event)">
+<i *ngIf="!!icon" [ngClass]="icon" (click)="handleIconClick($event)"></i>
 <textarea *ngIf="isTextarea" [ngClass]="inputClass" [rows]="rows" [readonly]="readonly" [disabled]="disabled" [placeholder]="placeholder"
   [ngModel]="innerValue" (ngModelChange)="handleModelChange($event)">
 </textarea>
