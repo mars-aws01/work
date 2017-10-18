@@ -1,1 +1,14 @@
-<div class="switch-demo"> Hello SwitchDemoComponent! </div>
+<div class="page-switch-demo">
+  <nk-row>
+    <nk-col [span]="4">
+      <nk-switch [(ngModel)]="checked">保存账户 - {{checked}}</nk-switch>
+    </nk-col>
+    <nk-col [span]="4">
+      <nk-button (click)="toggleChecked()">切换选中状态</nk-button>
+    </nk-col>
+    <nk-col [span]="4">
+      禁用状态
+      <nk-switch [(ngModel)]="checked" [disabled]="true">保存账户 - {{checked}}</nk-switch>
+    </nk-col>
+  </nk-row>
+</div>

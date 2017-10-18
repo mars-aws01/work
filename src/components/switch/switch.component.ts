@@ -1,37 +1,29 @@
-import './checkbox.component.styl';
+import './switch.component.styl';
 
-import { Component, Host, Input, OnInit, Optional, SimpleChanges, forwardRef } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { CheckboxGroupComponent } from '../checkbox-group/checkbox-group.component';
-
-export const CHECKBOX_VALUE_ACCESSOR: any = {
+export const SWITCH_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => CheckboxComponent),
+  useExisting: forwardRef(() => SwitchComponent),
   multi: true
 };
 
 @Component({
-  selector: 'nk-checkbox',
-  templateUrl: 'checkbox.component.html',
-  providers: [CHECKBOX_VALUE_ACCESSOR]
+  selector: 'nk-switch',
+  templateUrl: 'switch.component.html',
+  providers: [SWITCH_VALUE_ACCESSOR]
 })
 
-export class CheckboxComponent implements OnInit, ControlValueAccessor {
+export class SwitchComponent implements OnInit, ControlValueAccessor {
   onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
-
   public innerDisabled: boolean = false;
   public innerChecked: boolean = false;
 
-  @Input() value: any;
   @Input() disabled: boolean = false;
 
-  constructor( @Optional() @Host() private checkboxGroup: CheckboxGroupComponent) {
-  }
-
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.disabled) {
@@ -42,9 +34,6 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
   public handleCheckedChange(v: boolean) {
     this.innerChecked = v;
     this.onChange(v);
-    if (this.checkboxGroup) {
-      this.checkboxGroup.updateCheckboxGroupValue(this.value, v);
-    }
   }
 
   writeValue(obj: any): void {

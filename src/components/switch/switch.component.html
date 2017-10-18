@@ -1,0 +1,8 @@
+<label class="nk-switch" [ngClass]="{'nk-switch-checked': innerChecked, 'nk-switch-disabled': innerDisabled}">
+  <span class="nk-switch-inner">
+    <input type="checkbox" [ngModel]="innerChecked" [disabled]="innerDisabled" (ngModelChange)="handleCheckedChange($event)">
+  </span>
+  <span>
+    <ng-content></ng-content>
+  </span>
+</label>

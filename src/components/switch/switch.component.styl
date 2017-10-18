@@ -1,0 +1,64 @@
+.nk-switch {
+  font-weight: normal;
+  font-size: 12px;
+  font-weight: normal;
+  margin-bottom: 0;
+  line-height: 1;
+  padding: 3px 4px;
+  cursor: pointer;
+
+  .nk-switch-inner {
+    display: inline-block;
+    width: 36px;
+    height: 18px;
+    border-radius: 8px;
+    background: #ccc;
+    vertical-align: text-bottom;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #fff;
+    }
+  }
+
+  input[type=checkbox] {
+    display: none;
+  }
+
+  &:hover:not(.nk-switch-disabled) .nk-switch-inner {
+    border-color: #3795db;
+    box-shadow: 0 0 3px #3795db;
+  }
+
+  &.nk-switch-checked {
+    .nk-switch-inner {
+      background: #3795db;
+
+      &::before {
+        left: auto;
+        right: 2px;
+        transition: all 0.3s  cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+      }
+    }
+  }
+
+  &.nk-switch-disabled {
+    cursor: not-allowed;
+
+    .nk-switch-inner {
+      background: #f1f1f1;
+      border-color: #e1e1e1;
+
+      &::before {
+        border-color: #b8b8b8;
+      }
+    }
+  }
+}
