@@ -11,6 +11,7 @@ import {
   NotfoundComponent,
   RadioDemoComponent,
   RadioGroupDemoComponent,
+  SelectDemoComponent,
   SwitchDemoComponent
 } from './pages';
 import { RouterModule, Routes } from '@angular/router';
@@ -31,6 +32,7 @@ const demoRoutes: Routes = [
   { path: 'form', component: FormDemoComponent },
   { path: 'radio', component: RadioDemoComponent },
   { path: 'radio-group', component: RadioGroupDemoComponent },
+  { path: 'select', component: SelectDemoComponent },
   { path: 'switch', component: SwitchDemoComponent }
 ];
 

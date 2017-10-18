@@ -1,0 +1,33 @@
+.nk-select {
+  position: relative;
+
+  .nk-select-dropdown {
+    position: absolute;
+    top: 100%;
+    margin-top: 4px;
+    padding-left: 0;
+    background: #fff;
+    width: 100%;
+    z-index: 100;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 #ccc 3px;
+    max-height: 240px;
+    overflow-y: auto;
+
+    li {
+      list-style: none;
+      line-height: 16px;
+      padding: 4px 8px;
+      cursor: pointer;
+
+      &.active {
+        background: #e0eefa;
+      }
+
+      &:hover {
+        background: #f1f1f1;
+      }
+    }
+  }
+}

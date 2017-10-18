@@ -9,6 +9,8 @@ import { InputComponent } from './input/input.component';
 import { RadioComponent } from './radio/radio.component';
 import { RadioGroupComponent } from './radio-group/radio-group.component';
 import { RowComponent } from './row/row.component';
+import { SelectComponent } from './select/select.component';
+import { SelectOptionComponent } from './select/select-option.component';
 import { ValidatorComponent } from './validator/validator.component';
 
 export const ALL_COMPONENTS = [
@@ -25,5 +27,6 @@ export const ALL_COMPONENTS = [
   FormComponent, FormItemComponent,
   InputComponent,
   RadioComponent, RadioGroupComponent,
+  SelectComponent, SelectOptionComponent,
   ValidatorComponent
 ];

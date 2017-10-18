@@ -11,6 +11,7 @@ import { LayoutDemoComponent } from './layout-demo/layout-demo.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { RadioDemoComponent } from './radio-demo/radio-demo.component';
 import { RadioGroupDemoComponent } from './radio-group-demo/radio-group-demo.component';
+import { SelectDemoComponent } from './select-demo/select-demo.component';
 import { SwitchDemoComponent } from './switch-demo/switch-demo.component';
 
 export {
@@ -31,6 +32,7 @@ export {
   FormDemoComponent,
   RadioDemoComponent,
   RadioGroupDemoComponent,
+  SelectDemoComponent,
   SwitchDemoComponent
 };
 
@@ -52,5 +54,6 @@ export const PAGE_COMPONENTS = [
   FormDemoComponent,
   RadioDemoComponent,
   RadioGroupDemoComponent,
+  SelectDemoComponent,
   SwitchDemoComponent
 ];
