@@ -2,10 +2,19 @@
   position: relative;
   display: block;
 
-  i {
+  > i {
     position: absolute;
     top: 6px;
     right: 8px;
+  }
+
+  .nk-input-error {
+    display: inline-block;
+    border: 1px solid red;
+    background: red;
+    color: #fff;
+    position: absolute;
+    bottom: calc(100% + 10px);
   }
 }
 

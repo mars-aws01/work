@@ -15,7 +15,7 @@ export const INPUT_VALUE_ACCESSOR: any = {
   providers: [INPUT_VALUE_ACCESSOR]
 })
 
-export class InputComponent implements OnInit {
+export class InputComponent implements OnInit, ControlValueAccessor {
   public onChange: any = Function.prototype;
   public onTouched: any = Function.prototype;
   public innerValue: string;
@@ -46,10 +46,10 @@ export class InputComponent implements OnInit {
   }
 
   constructor() {
-
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   public handleModelChange(val: any) {
     this.innerValue = val;

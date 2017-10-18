@@ -1,0 +1,5 @@
+<div class="nk-validator" *ngIf="control?.dirty && control?.invalid">
+  <em *ngFor="let type of validationTypes" *ngIf="getShown(tyoe)">
+    {{getErrorMessage(type)}}
+  </em>
+</div>
