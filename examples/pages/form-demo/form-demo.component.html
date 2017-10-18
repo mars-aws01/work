@@ -1,0 +1,31 @@
+<div class="page-form-demo">
+  <nk-form labelWidth="60px" #form1="nkForm">
+    <nk-row [gutter]="20">
+      <nk-col [span]="6">
+        <nk-form-item label="用户名：" [control]="username">
+          <nk-input [(ngModel)]="v1" required #username="ngModel"></nk-input>
+        </nk-form-item>
+      </nk-col>
+      <nk-col [span]="6">
+        <nk-form-item label="密码：" [control]="password">
+          <nk-input type="password" [(ngModel)]="v1" #password="ngModel" required maxlength="5"></nk-input>
+        </nk-form-item>
+      </nk-col>
+    </nk-row>
+    <hr>
+    <nk-row [gutter]="20">
+      <nk-col [span]="6">
+        <nk-form-item label="用户名：" [control]="username">
+          <nk-input [(ngModel)]="v1" required #username="ngModel"></nk-input>
+        </nk-form-item>
+      </nk-col>
+      <nk-col [span]="6">
+        <nk-form-item label="密码：" [control]="password" [errorMsg]="{required: '必须填写密码', minlength: '密码必须不少于{0}位'}">
+          <nk-input type="password" [(ngModel)]="v1" #password="ngModel" required minlength="2"></nk-input>
+        </nk-form-item>
+      </nk-col>
+    </nk-row>
+    <hr>
+    <nk-button type="primary" (click)="submitForm(form1)">提交表单</nk-button>
+  </nk-form>
+</div>

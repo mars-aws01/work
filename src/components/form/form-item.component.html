@@ -1,2 +1,9 @@
-<ng-content></ng-content>
-<nk-validator [control]="control"></nk-validator>
+<div class="nk-form-item">
+  <label class="nk-form-item-label" [ngStyle]="labelStyle">
+    {{label}}
+  </label>
+  <div class="nk-form-item-content" [ngStyle]="contentStyle">
+    <ng-content></ng-content>
+  </div>
+  <nk-validator [control]="control" [left]="labelWidth" [errorMsg]="errorMsg"></nk-validator>
+</div>

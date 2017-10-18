@@ -9,6 +9,7 @@ import { InputComponent } from './input/input.component';
 import { RadioComponent } from './radio/radio.component';
 import { RadioGroupComponent } from './radio-group/radio-group.component';
 import { RowComponent } from './row/row.component';
+import { ValidatorComponent } from './validator/validator.component';
 
 export const ALL_COMPONENTS = [
   // 布局组件
@@ -23,5 +24,6 @@ export const ALL_COMPONENTS = [
   CheckboxComponent, CheckboxGroupComponent,
   FormComponent, FormItemComponent,
   InputComponent,
-  RadioComponent, RadioGroupComponent
+  RadioComponent, RadioGroupComponent,
+  ValidatorComponent
 ];

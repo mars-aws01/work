@@ -4,6 +4,7 @@ import {
   CheckboxGroupDemoComponent,
   CollapseBoxDemoComponent,
   DemoContainerComponent,
+  FormDemoComponent,
   HomeComponent,
   InputDemoComponent,
   LayoutDemoComponent,
@@ -27,6 +28,7 @@ const demoRoutes: Routes = [
   { path: 'checkbox', component: CheckboxDemoComponent },
   { path: 'checkbox-group', component: CheckboxGroupDemoComponent },
   { path: 'input', component: InputDemoComponent },
+  { path: 'form', component: FormDemoComponent },
   { path: 'radio', component: RadioDemoComponent },
   { path: 'radio-group', component: RadioGroupDemoComponent },
   { path: 'switch', component: SwitchDemoComponent }

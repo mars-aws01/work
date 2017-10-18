@@ -4,6 +4,7 @@ import { CheckboxDemoComponent } from './checkbox-demo/checkbox-demo.component';
 import { CheckboxGroupDemoComponent } from './checkbox-group-demo/checkbox-group-demo.component';
 import { CollapseBoxDemoComponent } from './collapse-box-demo/collapse-box-demo.component';
 import { DemoContainerComponent } from './demo-container/demo-container.component';
+import { FormDemoComponent } from './form-demo/form-demo.component';
 import { HomeComponent } from './home/home.component';
 import { InputDemoComponent } from './input-demo/input-demo.component';
 import { LayoutDemoComponent } from './layout-demo/layout-demo.component';
@@ -27,6 +28,7 @@ export {
   CheckboxDemoComponent,
   CheckboxGroupDemoComponent,
   InputDemoComponent,
+  FormDemoComponent,
   RadioDemoComponent,
   RadioGroupDemoComponent,
   SwitchDemoComponent
@@ -47,6 +49,7 @@ export const PAGE_COMPONENTS = [
   CheckboxDemoComponent,
   CheckboxGroupDemoComponent,
   InputDemoComponent,
+  FormDemoComponent,
   RadioDemoComponent,
   RadioGroupDemoComponent,
   SwitchDemoComponent

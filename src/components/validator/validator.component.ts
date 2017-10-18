@@ -1,3 +1,5 @@
+import './validator.component.styl';
+
 import { Component, Input, OnInit, } from '@angular/core';
 import { FormControl, NgModel } from '@angular/forms';
 
@@ -14,6 +16,14 @@ export class ValidatorComponent implements OnInit {
   ];
 
   @Input() control: NgModel | FormControl;
+  @Input() left: string | number;
+  @Input() errorMsg: any = {};
+
+  public get validatorStyle() {
+    return {
+      left: this.left
+    };
+  }
 
   @Input() requiredMsg: string = 'This field is required.';
   @Input() minlengthMsg: string = 'Field letters must greater and equals to {0}.';
@@ -35,16 +45,17 @@ export class ValidatorComponent implements OnInit {
   ngOnInit() { }
 
   public getShown(type: string) {
-    return this.getValue(type) !== undefined;
+    let shown = this.getValue(type) !== undefined;
+    return shown;
   }
 
   public getErrorMessage(type: string) {
     let val: any = this.getValue(type);
-    return (this[`${type}Msg`] || '')
-      .replace(`{0}`, val.to || val.requiredLength || val.requiredValue);
+    let errorMessage = (this.errorMsg || {})[type] || this[`${type}Msg`] || '';
+    return errorMessage.replace(`{0}`, (val && val.to || val.requiredLength || val.requiredValue));
   }
 
   private getValue(type: string) {
-    this.control && this.control.errors && this.control.errors[type];
+    return this.control && this.control.errors && this.control.errors[type];
   }
 }

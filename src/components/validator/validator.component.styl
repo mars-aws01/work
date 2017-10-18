@@ -1,3 +1,28 @@
-.validator {
+.nk-validator {
+  .nk-form-item & {
+    position: absolute;
+    bottom: 100%;
+    background: #dd261b;
+    color: #fff;
+    margin-bottom: 8px;
 
+    span {
+      font-size: 12px;
+      padding: 6px 8px;
+      line-height: 1;
+      display: inline-block;
+    }
+
+    &::before {
+      content: ' ';
+      display: block;
+      position: absolute;
+      top: 100%;
+      border-width: 5px;
+      border-style: solid;
+      border-color: transparent;
+      border-top-color: #dd261b;
+      left: 10px;
+    }
+  }
 }
