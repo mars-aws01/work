@@ -22,6 +22,8 @@ import { RowComponent } from './row/row.component';
 import { SelectComponent } from './select/select.component';
 import { SelectOptionComponent } from './select/select-option.component';
 import { SwitchComponent } from './switch/switch.component';
+import { TabItemComponent } from './tabset/tab-item.component';
+import { TabsetComponent } from './tabset/tabset.component';
 import { ValidatorComponent } from './validator/validator.component';
 
 export const ALL_COMPONENTS = [
@@ -37,6 +39,7 @@ export const ALL_COMPONENTS = [
   CollapseBoxComponent,
   ImageZoomComponent,
   ProgressComponent,
+  TabsetComponent, TabItemComponent,
 
   // Form元素
   CascaderComponent,

@@ -20,6 +20,7 @@ import { RadioGroupDemoComponent } from './radio-group-demo/radio-group-demo.com
 import { RatingDemoComponent } from './rating-demo/rating-demo.component';
 import { SelectDemoComponent } from './select-demo/select-demo.component';
 import { SwitchDemoComponent } from './switch-demo/switch-demo.component';
+import { TabsetDemoComponent } from './tabset-demo/tabset-demo.component';
 
 export {
   AppComponent,
@@ -36,6 +37,7 @@ export {
   CollapseBoxDemoComponent,
   ImageZoomDemoComponent,
   ProgressDemoComponent,
+  TabsetDemoComponent,
 
   // Form Elements
   CheckboxDemoComponent,
@@ -65,6 +67,7 @@ export const PAGE_COMPONENTS = [
   CollapseBoxDemoComponent,
   ImageZoomDemoComponent,
   ProgressDemoComponent,
+  TabsetDemoComponent,
 
   // Form Elements
   CheckboxDemoComponent,

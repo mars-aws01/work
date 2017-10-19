@@ -19,7 +19,8 @@ import {
   RadioGroupDemoComponent,
   RatingDemoComponent,
   SelectDemoComponent,
-  SwitchDemoComponent
+  SwitchDemoComponent,
+  TabsetDemoComponent
 } from './pages';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -37,6 +38,7 @@ const demoRoutes: Routes = [
   { path: 'collapse-box', component: CollapseBoxDemoComponent },
   { path: 'image-zoom', component: ImageZoomDemoComponent },
   { path: 'progress', component: ProgressDemoComponent },
+  { path: 'tabset', component: TabsetDemoComponent },
   // Form Elements
   { path: 'checkbox', component: CheckboxDemoComponent },
   { path: 'checkbox-group', component: CheckboxGroupDemoComponent },
