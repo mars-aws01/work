@@ -1,29 +1,33 @@
 .nk-collapse-box {
   margin-bottom: 10px;
 
+  &.nk-collapse-box-disabled {
+    color: #b8b8b8;
+  }
+
   .collapse-box-header {
-    font-size: 13px;
-    height: 25px;
-    line-height: 25px;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    height: 24px;
+    line-height: 24px;
+    border-bottom: 1px solid #ccc;
     display: flex;
+
+    .nk-collapse-icon {
+      width: 14px;
+      height: 14px;
+      margin-top: 4.5px;
+    }
+
+    .nk-collapse-box-disabled& {
+      color: #b8b8b8;
+      border-bottom: 1px solid #e1e1e1;
+      cursor: not-allowed;
+    }
 
     b {
       cursor: pointer;
-    }
-
-    span {
-      flex: 1;
-      position: relative;
-
-      &::before {
-        content: '';
-        position: absolute;
-        top: 12px;
-        right: 0;
-        left: 5px;
-        height: 1px;
-        background: linear-gradient(to right, #ccc, #666, #ccc);
-      }
     }
   }
 }

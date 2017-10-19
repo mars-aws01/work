@@ -1,9 +1,7 @@
-<div class="nk-collapse-box">
+<div class="nk-collapse-box" [ngClass]="{'nk-collapse-box-disabled': disabled}">
   <div class="collapse-box-header">
-    <b (click)="onHeaderClick()">{{header}} 
-      <i class="fa" [ngClass]="{'fa-angle-double-left': innerCollapsed, 'fa-angle-double-down': !innerCollapsed}"></i>
-    </b>
-    <span></span>
+    <i class="nk-collapse-icon fa" [ngClass]="{'fa-angle-right': innerCollapsed, 'fa-angle-down': !innerCollapsed}"></i>
+    <b (click)="handleHeaderClick()">{{header}}</b>
   </div>
   <div class="collapse-box-content" [hidden]="innerCollapsed">
     <ng-content></ng-content>

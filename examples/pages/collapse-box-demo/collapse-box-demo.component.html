@@ -1,1 +1,14 @@
-<div class="collapse-box-demo"> Hello CollapseBoxDemoComponent! </div>
+<div class="page-collapse-box-demo">
+  <nk-row [gutter]="20">
+    <nk-col [span]="12">
+      <nk-collapse-box header="Item1">
+        Item1内容
+      </nk-collapse-box>
+    </nk-col>
+    <nk-col [span]="12">
+      <nk-collapse-box header="Item2" [disabled]="true">
+        Item2内容
+      </nk-collapse-box>
+    </nk-col>
+  </nk-row>
+</div>

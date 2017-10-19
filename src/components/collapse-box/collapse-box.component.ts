@@ -11,11 +11,9 @@ export class CollapseBoxComponent implements OnInit, OnChanges {
 
   public innerCollapsed: boolean = false;
 
-  @Input()
-  public header: string;
-
-  @Input()
-  public collapsed: boolean = false;
+  @Input() header: string;
+  @Input() collapsed: boolean = false;
+  @Input() disabled: boolean = false;
 
   @Output()
   public collapsedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -28,7 +26,10 @@ export class CollapseBoxComponent implements OnInit, OnChanges {
     }
   }
 
-  public onHeaderClick() {
+  public handleHeaderClick() {
+    if (this.disabled) {
+      return;
+    }
     this.innerCollapsed = !this.innerCollapsed;
     this.collapsedChange.next(this.innerCollapsed);
   }
