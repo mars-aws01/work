@@ -1,6 +1,25 @@
 .nk-select {
   position: relative;
 
+  &::before {
+    content: '';
+    position: absolute;
+    right: 8px;
+    top: 9.5px;
+    width: 6px;
+    height: 5px;
+    border-style: solid;
+    border-width: 5px 3px;
+    border-color: transparent;
+    border-top-color: #ccc;
+
+    .nk-select-open& {
+      top: 3.5px;
+      border-top-color: transparent;
+      border-bottom-color: #ccc;
+    }
+  }
+
   .nk-select-dropdown {
     position: absolute;
     top: 100%;

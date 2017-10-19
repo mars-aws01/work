@@ -1,6 +1,6 @@
 import './select.component.styl';
 
-import { Component, Input, OnInit, forwardRef } from '@angular/core';
+import { Component, Input, OnInit, Renderer2, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { SelectOptionComponent } from './select-option.component';
@@ -28,8 +28,20 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
 
   @Input() placeholder: string = '';
   @Input() allowClear: boolean = false;
+  @Input() disabled: boolean = false;
 
-  ngOnInit() { }
+  constructor(private renderer: Renderer2) {
+
+  }
+
+  ngOnInit() {
+    this.renderer.listen('document', 'keydown', (event: KeyboardEvent) => {
+      // 27 - ESCAPE
+      if (event.keyCode === 27) {
+        this.closeDropdown();
+      }
+    });
+  }
 
   public addOption(option: SelectOptionComponent) {
     this.options.push(option);
@@ -41,6 +53,10 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
 
   public handleInputClick() {
     this.dropdownShown = true;
+  }
+
+  public closeDropdown() {
+    this.dropdownShown = false;
   }
 
   public handleItemClick(option: SelectOptionComponent) {
