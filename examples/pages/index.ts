@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { ImageZoomDemoComponent } from './image-zoom-demo/image-zoom-demo.component';
 import { InputDemoComponent } from './input-demo/input-demo.component';
 import { LayoutDemoComponent } from './layout-demo/layout-demo.component';
+import { ModalDemoComponent } from './modal-demo/modal-demo.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { PaginationDemoComponent } from './pagination-demo/pagination-demo.component';
 import { ProgressDemoComponent } from './progress-demo/progress-demo.component';
@@ -35,6 +36,7 @@ export {
   ButtonDemoComponent,
   CarouselDemoComponent,
   CollapseBoxDemoComponent,
+  ModalDemoComponent,
   ImageZoomDemoComponent,
   ProgressDemoComponent,
   TabsetDemoComponent,
@@ -65,6 +67,7 @@ export const PAGE_COMPONENTS = [
   ButtonDemoComponent,
   CarouselDemoComponent,
   CollapseBoxDemoComponent,
+  ModalDemoComponent,
   ImageZoomDemoComponent,
   ProgressDemoComponent,
   TabsetDemoComponent,

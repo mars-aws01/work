@@ -37,8 +37,8 @@ export const menuData: Array<MenuItem> = [
       { text: 'Pagination', url: '/pagination' },
       { text: 'Progress', url: '/progress' },
       { text: 'TabSet', url: '/tabset' },
-      { text: 'Widget', url: '/widget' },
-      { text: 'Wizard', url: '/wizard' }
+      // { text: 'Widget', url: '/widget' },
+      // { text: 'Wizard', url: '/wizard' }
     ]
   }, {
     text: 'Services', icon: 'fa-star', subMenu: [

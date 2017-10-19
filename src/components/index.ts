@@ -13,6 +13,7 @@ import { FormComponent } from './form/form.component';
 import { FormItemComponent } from './form/form-item.component';
 import { ImageZoomComponent } from './image-zoom/image-zoom.component';
 import { InputComponent } from './input/input.component';
+import { ModalComponent } from './modal/modal.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { ProgressComponent } from './progress/progress.component';
 import { RadioComponent } from './radio/radio.component';
@@ -37,6 +38,7 @@ export const ALL_COMPONENTS = [
   ButtonComponent,
   CarouselComponent, CarouselItemComponent,
   CollapseBoxComponent,
+  ModalComponent,
   ImageZoomComponent,
   ProgressComponent,
   TabsetComponent, TabItemComponent,
