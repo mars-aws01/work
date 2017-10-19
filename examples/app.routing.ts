@@ -9,14 +9,17 @@ import {
   DemoContainerComponent,
   FormDemoComponent,
   HomeComponent,
+  ImageZoomDemoComponent,
   InputDemoComponent,
   LayoutDemoComponent,
   NotfoundComponent,
   PaginationDemoComponent,
+  ProgressDemoComponent,
   RadioDemoComponent,
   RadioGroupDemoComponent,
+  RatingDemoComponent,
   SelectDemoComponent,
-  SwitchDemoComponent,
+  SwitchDemoComponent
 } from './pages';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -32,14 +35,17 @@ const demoRoutes: Routes = [
   { path: 'button', component: ButtonDemoComponent },
   { path: 'carousel', component: CarouselDemoComponent },
   { path: 'collapse-box', component: CollapseBoxDemoComponent },
-  { path: 'pagination', component: PaginationDemoComponent },
+  { path: 'image-zoom', component: ImageZoomDemoComponent },
+  { path: 'progress', component: ProgressDemoComponent },
   // Form Elements
   { path: 'checkbox', component: CheckboxDemoComponent },
   { path: 'checkbox-group', component: CheckboxGroupDemoComponent },
   { path: 'input', component: InputDemoComponent },
   { path: 'form', component: FormDemoComponent },
+  { path: 'pagination', component: PaginationDemoComponent },
   { path: 'radio', component: RadioDemoComponent },
   { path: 'radio-group', component: RadioGroupDemoComponent },
+  { path: 'rating', component: RatingDemoComponent },
   { path: 'select', component: SelectDemoComponent },
   { path: 'switch', component: SwitchDemoComponent }
 ];

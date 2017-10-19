@@ -9,12 +9,15 @@ import { CollapseBoxDemoComponent } from './collapse-box-demo/collapse-box-demo.
 import { DemoContainerComponent } from './demo-container/demo-container.component';
 import { FormDemoComponent } from './form-demo/form-demo.component';
 import { HomeComponent } from './home/home.component';
+import { ImageZoomDemoComponent } from './image-zoom-demo/image-zoom-demo.component';
 import { InputDemoComponent } from './input-demo/input-demo.component';
 import { LayoutDemoComponent } from './layout-demo/layout-demo.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { PaginationDemoComponent } from './pagination-demo/pagination-demo.component';
+import { ProgressDemoComponent } from './progress-demo/progress-demo.component';
 import { RadioDemoComponent } from './radio-demo/radio-demo.component';
 import { RadioGroupDemoComponent } from './radio-group-demo/radio-group-demo.component';
+import { RatingDemoComponent } from './rating-demo/rating-demo.component';
 import { SelectDemoComponent } from './select-demo/select-demo.component';
 import { SwitchDemoComponent } from './switch-demo/switch-demo.component';
 
@@ -31,15 +34,18 @@ export {
   ButtonDemoComponent,
   CarouselDemoComponent,
   CollapseBoxDemoComponent,
-  PaginationDemoComponent,
+  ImageZoomDemoComponent,
+  ProgressDemoComponent,
 
   // Form Elements
   CheckboxDemoComponent,
   CheckboxGroupDemoComponent,
   InputDemoComponent,
   FormDemoComponent,
+  PaginationDemoComponent,
   RadioDemoComponent,
   RadioGroupDemoComponent,
+  RatingDemoComponent,
   SelectDemoComponent,
   SwitchDemoComponent
 };
@@ -57,15 +63,18 @@ export const PAGE_COMPONENTS = [
   ButtonDemoComponent,
   CarouselDemoComponent,
   CollapseBoxDemoComponent,
-  PaginationDemoComponent,
+  ImageZoomDemoComponent,
+  ProgressDemoComponent,
 
   // Form Elements
   CheckboxDemoComponent,
   CheckboxGroupDemoComponent,
   InputDemoComponent,
   FormDemoComponent,
+  PaginationDemoComponent,
   RadioDemoComponent,
   RadioGroupDemoComponent,
+  RatingDemoComponent,
   SelectDemoComponent,
   SwitchDemoComponent
 ];

@@ -4,6 +4,7 @@ import { AlertComponent } from './alert/alert.component';
 import { ButtonComponent } from './button/button.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { CarouselItemComponent } from './carousel/carousel-item.component';
+import { CascaderComponent } from './cascader/cascader.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
 import { ColComponent } from './col/col.component';
@@ -13,8 +14,10 @@ import { FormItemComponent } from './form/form-item.component';
 import { ImageZoomComponent } from './image-zoom/image-zoom.component';
 import { InputComponent } from './input/input.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { ProgressComponent } from './progress/progress.component';
 import { RadioComponent } from './radio/radio.component';
 import { RadioGroupComponent } from './radio-group/radio-group.component';
+import { RatingComponent } from './rating/rating.component';
 import { RowComponent } from './row/row.component';
 import { SelectComponent } from './select/select.component';
 import { SelectOptionComponent } from './select/select-option.component';
@@ -33,13 +36,16 @@ export const ALL_COMPONENTS = [
   CarouselComponent, CarouselItemComponent,
   CollapseBoxComponent,
   ImageZoomComponent,
+  ProgressComponent,
 
   // Form元素
+  CascaderComponent,
   CheckboxComponent, CheckboxGroupComponent,
   FormComponent, FormItemComponent,
   InputComponent,
   PaginationComponent,
   RadioComponent, RadioGroupComponent,
+  RatingComponent,
   SelectComponent, SelectOptionComponent,
   SwitchComponent,
   ValidatorComponent
