@@ -3,7 +3,7 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, O
 import { AccordionComponent } from './accordion.component';
 
 @Component({
-  selector: 'sa-accordion-item',
+  selector: 'nk-accordion-item',
   templateUrl: 'accordion-item.component.html'
 })
 export class AccordionItemComponent implements OnInit, AfterViewInit {

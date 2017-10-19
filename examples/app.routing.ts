@@ -1,5 +1,8 @@
 import {
+  AccordionDemoComponent,
+  AlertDemoComponent,
   ButtonDemoComponent,
+  CarouselDemoComponent,
   CheckboxDemoComponent,
   CheckboxGroupDemoComponent,
   CollapseBoxDemoComponent,
@@ -9,10 +12,11 @@ import {
   InputDemoComponent,
   LayoutDemoComponent,
   NotfoundComponent,
+  PaginationDemoComponent,
   RadioDemoComponent,
   RadioGroupDemoComponent,
   SelectDemoComponent,
-  SwitchDemoComponent
+  SwitchDemoComponent,
 } from './pages';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -23,8 +27,12 @@ const demoRoutes: Routes = [
   { path: 'row', component: LayoutDemoComponent },
   { path: 'col', component: LayoutDemoComponent },
   // UI Elements
+  { path: 'accordion', component: AccordionDemoComponent },
+  { path: 'alert', component: AlertDemoComponent },
   { path: 'button', component: ButtonDemoComponent },
+  { path: 'carousel', component: CarouselDemoComponent },
   { path: 'collapse-box', component: CollapseBoxDemoComponent },
+  { path: 'pagination', component: PaginationDemoComponent },
   // Form Elements
   { path: 'checkbox', component: CheckboxDemoComponent },
   { path: 'checkbox-group', component: CheckboxGroupDemoComponent },

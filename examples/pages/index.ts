@@ -1,5 +1,8 @@
+import { AccordionDemoComponent } from './accordion-demo/accordion-demo.component';
+import { AlertDemoComponent } from './alert-demo/alert-demo.component';
 import { AppComponent } from './app/app.component';
 import { ButtonDemoComponent } from './button-demo/button-demo.component';
+import { CarouselDemoComponent } from './carousel-demo/carousel-demo.component';
 import { CheckboxDemoComponent } from './checkbox-demo/checkbox-demo.component';
 import { CheckboxGroupDemoComponent } from './checkbox-group-demo/checkbox-group-demo.component';
 import { CollapseBoxDemoComponent } from './collapse-box-demo/collapse-box-demo.component';
@@ -9,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { InputDemoComponent } from './input-demo/input-demo.component';
 import { LayoutDemoComponent } from './layout-demo/layout-demo.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { PaginationDemoComponent } from './pagination-demo/pagination-demo.component';
 import { RadioDemoComponent } from './radio-demo/radio-demo.component';
 import { RadioGroupDemoComponent } from './radio-group-demo/radio-group-demo.component';
 import { SelectDemoComponent } from './select-demo/select-demo.component';
@@ -22,8 +26,12 @@ export {
   LayoutDemoComponent,
 
   // UI Elements
+  AccordionDemoComponent,
+  AlertDemoComponent,
   ButtonDemoComponent,
+  CarouselDemoComponent,
   CollapseBoxDemoComponent,
+  PaginationDemoComponent,
 
   // Form Elements
   CheckboxDemoComponent,
@@ -44,8 +52,12 @@ export const PAGE_COMPONENTS = [
   LayoutDemoComponent,
 
   // UI Elements
+  AccordionDemoComponent,
+  AlertDemoComponent,
   ButtonDemoComponent,
+  CarouselDemoComponent,
   CollapseBoxDemoComponent,
+  PaginationDemoComponent,
 
   // Form Elements
   CheckboxDemoComponent,
