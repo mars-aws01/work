@@ -6,8 +6,9 @@
           <ng-content select="[slot=modal-header]"></ng-content>
           <ng-template [ngIf]="!hasCustomHeader">
             <button type="button" class="close" (click)="hideModal()">
-            <span style="user-select: none;">&times;</span><span class="sr-only">Close</span>
-          </button>
+              <span style="user-select: none;">&times;</span>
+              <span class="sr-only">Close</span>
+            </button>
             <h4 class="modal-title">
               {{header}}
             </h4>

@@ -40,7 +40,6 @@ export class ModalComponent implements OnInit, AfterViewInit {
     elLeft: 0,
     elTop: 0
   };
-
   private onHeaderMouseDown = (evt: MouseEvent) => {
     let styleObj = window.getComputedStyle(this.modalDialog);
     document.body.style.userSelect = 'none';
@@ -73,49 +72,23 @@ export class ModalComponent implements OnInit, AfterViewInit {
     document.body.style.userSelect = 'unset';
     this.dragObj.isDragging = false;
   };
-
   public get modalSize() {
     return (this.size || '').indexOf('modal') === -1 ? `modal-${this.size}` : this.size;
   }
 
-  @Input()
-  public size: string;
-
-  @Input()
-  public width: number;
-
-  @Input()
-  public header: string;
-
-  @Input()
-  public animate: string = 'fade';
-
-  @Input()
-  public okText: string = 'Save changes';
-
-  @Input()
-  public cancelText: string = 'Close';
-
-  @Input()
-  public draggable: boolean = false;
-
-  @Input()
-  public options: { backdrop?: boolean | string, show?: boolean, keyboard?: boolean };
-
-  @Output()
-  public onShown: EventEmitter<any> = new EventEmitter();
-
-  @Output()
-  public onHidden: EventEmitter<any> = new EventEmitter();
-
-  @Output()
-  public onCancel: EventEmitter<any> = new EventEmitter();
-
-  @Output()
-  public onOk: EventEmitter<any> = new EventEmitter();
-
-  @Input()
-  public set shown(val: boolean) {
+  @Input() size: string;
+  @Input() width: number;
+  @Input() header: string;
+  @Input() animate: string = 'fade';
+  @Input() okText: string = 'Save changes';
+  @Input() cancelText: string = 'Close';
+  @Input() draggable: boolean = false;
+  @Input() options: { backdrop?: boolean | string, show?: boolean, keyboard?: boolean };
+  @Output() onShown: EventEmitter<any> = new EventEmitter();
+  @Output() onHidden: EventEmitter<any> = new EventEmitter();
+  @Output() onCancel: EventEmitter<any> = new EventEmitter();
+  @Output() onOk: EventEmitter<any> = new EventEmitter();
+  @Input() set shown(val: boolean) {
     this.isShown = val;
     this.shownChange.emit(this.isShown);
     if (!this.$modal) {
@@ -123,19 +96,14 @@ export class ModalComponent implements OnInit, AfterViewInit {
     }
     this.isShown ? this.showModal() : this.hideModal();
   }
-
-  @Output()
-  public shownChange = new EventEmitter();
-
-  @ViewChild('modalHeader')
-  public modalHeader: any;
-
-  @ViewChild('modalFooter')
-  public modalFooter: any;
+  @Output() shownChange = new EventEmitter();
+  @ViewChild('modalHeader') modalHeader: any;
+  @ViewChild('modalFooter') modalFooter: any;
 
   constructor(
     private elementRef: ElementRef
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.$el = this.elementRef.nativeElement;
