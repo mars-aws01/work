@@ -9,6 +9,7 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
 import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
 import { ColComponent } from './col/col.component';
 import { CollapseBoxComponent } from './collapse-box/collapse-box.component';
+import { DatePickerComponent } from './date-picker/date-picker.component';
 import { FormComponent } from './form/form.component';
 import { FormItemComponent } from './form/form-item.component';
 import { ImageZoomComponent } from './image-zoom/image-zoom.component';
@@ -46,6 +47,7 @@ export const ALL_COMPONENTS = [
   // Form元素
   CascaderComponent,
   CheckboxComponent, CheckboxGroupComponent,
+  DatePickerComponent,
   FormComponent, FormItemComponent,
   InputComponent,
   PaginationComponent,

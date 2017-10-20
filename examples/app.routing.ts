@@ -6,6 +6,7 @@ import {
   CheckboxDemoComponent,
   CheckboxGroupDemoComponent,
   CollapseBoxDemoComponent,
+  DatePickerDemoComponent,
   DemoContainerComponent,
   FormDemoComponent,
   HomeComponent,
@@ -44,6 +45,7 @@ const demoRoutes: Routes = [
   // Form Elements
   { path: 'checkbox', component: CheckboxDemoComponent },
   { path: 'checkbox-group', component: CheckboxGroupDemoComponent },
+  { path: 'date-picker', component: DatePickerDemoComponent },
   { path: 'input', component: InputDemoComponent },
   { path: 'form', component: FormDemoComponent },
   { path: 'pagination', component: PaginationDemoComponent },

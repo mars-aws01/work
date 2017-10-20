@@ -6,6 +6,7 @@ import { CarouselDemoComponent } from './carousel-demo/carousel-demo.component';
 import { CheckboxDemoComponent } from './checkbox-demo/checkbox-demo.component';
 import { CheckboxGroupDemoComponent } from './checkbox-group-demo/checkbox-group-demo.component';
 import { CollapseBoxDemoComponent } from './collapse-box-demo/collapse-box-demo.component';
+import { DatePickerDemoComponent } from './date-picker-demo/date-picker-demo.component';
 import { DemoContainerComponent } from './demo-container/demo-container.component';
 import { FormDemoComponent } from './form-demo/form-demo.component';
 import { HomeComponent } from './home/home.component';
@@ -44,6 +45,7 @@ export {
   // Form Elements
   CheckboxDemoComponent,
   CheckboxGroupDemoComponent,
+  DatePickerDemoComponent,
   InputDemoComponent,
   FormDemoComponent,
   PaginationDemoComponent,
@@ -73,13 +75,12 @@ export const PAGE_COMPONENTS = [
   TabsetDemoComponent,
 
   // Form Elements
-  CheckboxDemoComponent,
-  CheckboxGroupDemoComponent,
+  CheckboxDemoComponent, CheckboxGroupDemoComponent,
+  DatePickerDemoComponent,
   InputDemoComponent,
   FormDemoComponent,
   PaginationDemoComponent,
-  RadioDemoComponent,
-  RadioGroupDemoComponent,
+  RadioDemoComponent, RadioGroupDemoComponent,
   RatingDemoComponent,
   SelectDemoComponent,
   SwitchDemoComponent
