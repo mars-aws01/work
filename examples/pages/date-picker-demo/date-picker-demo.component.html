@@ -1,9 +1,16 @@
 <div class="page-date-picker-demo">
-  <nk-row>
-    <nk-col [span]="8">
+  <nk-row [gutter]="20">
+    <nk-col [span]="6">
+      <nk-date-picker lang="zh-cn"></nk-date-picker>
+    </nk-col>
+    <nk-col [span]="6">
       <nk-date-picker></nk-date-picker>
     </nk-col>
-    <nk-col [span]="8"></nk-col>
-    <nk-col [span]="8"></nk-col>
+    <nk-col [span]="6">
+      <nk-date-picker mode="year"></nk-date-picker>
+    </nk-col>
+    <nk-col [span]="6">
+      <nk-date-picker mode="month"></nk-date-picker>
+    </nk-col>
   </nk-row>
 </div>

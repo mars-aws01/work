@@ -1,5 +1,5 @@
-<div class="sa-date-picker2">
-  <input class="form-control" (click)="showDatePicker()" readonly [ngModel]="innerDateString" [attr.placeholder]="placeholder"
+<div class="sa-date-picker">
+  <input class="nk-input" (click)="showDatePicker()" readonly [ngModel]="innerDateString" [attr.placeholder]="placeholder"
     (blur)="closeDatePicker()">
   <span class="input-icon">
     <i class="fa fa-calendar"></i>
@@ -7,6 +7,13 @@
   <span class="input-icon">
     <i class="fa fa-close" [hidden]="true"></i>
   </span>
+  <ng-container #test>
+    ABC
+  </ng-container>
+  <ng-template #test2>
+    ABC
+  </ng-template>
+  {{test222 | json}}
   <div class="picker-panel" [hidden]="!pickerShown">
     <div class="picker-panel-main">
       <div class="picker-panel-header">
@@ -27,7 +34,21 @@
         </span>
       </div>
       <div class="picker-panel-content">
-        <table>
+        <table *ngIf="currentMode === 'year'">
+          <tbody>
+            <tr *ngFor="let yearArr of yearList">
+              <td *ngFor="let year of yearArr" [ngClass]="{'is-now': year.val === nowYear}">{{year.text}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <table *ngIf="currentMode === 'month'">
+          <tbody>
+            <tr *ngFor="let mArr of monthList">
+              <td *ngFor="let m of mArr">{{m.text}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <table *ngIf="currentMode === 'day'">
           <thead>
             <tr>
               <th *ngFor="let item of labelObject.weekLabels">{{item}}</th>

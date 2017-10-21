@@ -1,4 +1,4 @@
-# sa-date-picker
+# nk-date-picker
 
 **Input**
 

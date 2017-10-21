@@ -1,6 +1,6 @@
 import './date-picker.component.styl';
 
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation, forwardRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { SaDate } from './SaDate';
@@ -10,6 +10,10 @@ export const DATE_PICKER_VALUE_ACCESSOR: any = {
   useExisting: forwardRef(() => DatePickerComponent),
   multi: true
 };
+export interface YearMonthItem {
+  val: number,
+  text: string,
+}
 
 export interface DayEntity {
   number: number,
@@ -28,7 +32,13 @@ export interface WeekEntity {
 const multiLang = {
   'en-us': {
     weekLabels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-    monthLabels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Seq', 'Oct', 'Nov', 'Dec']
+    monthLabels: ['01 Jan', '02 Feb', '03 Mar', '04 Apr', '05 May', '06 Jun', '07 Jul', '08 Aug', '09 Seq', '10 Oct', '11 Nov', '12 Dec'],
+    yearSuffix: ''
+  },
+  'zh-cn': {
+    weekLabels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+    monthLabels: ['01 Jan', '02 Feb', '03 Mar', '04 Apr', '05 May', '06 Jun', '07 Jul', '08 Aug', '09 Seq', '10 Oct', '11 Nov', '12 Dec'],
+    yearSuffix: ' 年'
   }
 };
 
@@ -47,6 +57,15 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
   public labelObject: any = {};
   public monthWeeks: Array<WeekEntity> = [];
   public innerDate: Date;
+  public monthList: YearMonthItem[][];
+  public currentYear: number;
+  public yearList: YearMonthItem[][];
+  public currentMode: string = 'day';
+  public today: Date = new Date();
+
+  public get nowYear() { return this.today.getFullYear(); }
+  public get nowMonth() { return this.today.getMonth() + 1; }
+  public get nowDay() { return this.today.getDate() };
 
   public get innerDateString() {
     if (this.innerDate) {
@@ -62,32 +81,33 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
     return `${monthStr} ${d.getFullYear()}`;
   }
 
-  @Input()
-  public disabled: boolean = false;
-
-  @Input()
-  public mode: string = 'day';
-
-  @Input()
-  public placeholder: string = '';
-
-  @Input()
-  public lang: string = 'en-us';
-
-  @Input()
-  public minDate: Date;
-
-  @Input()
-  public maxDate: Date;
+  @Input() disabled: boolean = false;
+  @Input() mode: string = 'day';
+  @Input() placeholder: string = '';
+  @Input() lang: string = 'en-us';
+  @Input() minDate: Date;
+  @Input() maxDate: Date;
+  @ViewChild('test2') test2: TemplateRef<any>;
 
   ngOnInit() {
     this.setLabelObject();
+    this._buildMonthList();
+    this.currentYear = new Date().getFullYear();
+    this._buildYearList();
     this._initMonthPanel();
+    setInterval(() => {
+      console.log('exe', this.test2);
+    }, 2000);
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.lang) {
       this.setLabelObject();
+      this._buildMonthList();
+      this._buildYearList();
+    }
+    if (changes.mode) {
+      this.currentMode = this.mode;
     }
   }
 
@@ -116,6 +136,42 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
   public changeYear(yearChange: number) {
     this.innerDate = new SaDate(this.innerDate).addYears(yearChange).get();
     this._initMonthPanel(this.innerDate);
+  }
+
+  private _buildMonthList() {
+    let tempArr = [];
+    let result = [];
+    let langTexts = multiLang[this.lang];
+    for (let i = 0; i < 12; i++) {
+      tempArr.push({
+        val: i + 1,
+        text: langTexts.monthLabels[i]
+      });
+      if (tempArr.length === 3) {
+        result.push(tempArr);
+        tempArr = [];
+      }
+    }
+    this.monthList = result;
+  }
+
+
+  private _buildYearList() {
+    let tempArr = [];
+    let result = [];
+    let startYear = Math.floor(this.currentYear / 10) * 10 - 1;
+    let yearSuffix = multiLang[this.lang].yearSuffix;
+    for (let i = startYear, end = startYear + 12; i < end; i++) {
+      tempArr.push({
+        val: i,
+        text: `${i}${yearSuffix}`
+      });
+      if (tempArr.length === 3) {
+        result.push(tempArr);
+        tempArr = [];
+      }
+    }
+    this.yearList = result;
   }
 
   private _initMonthPanel(d?: Date) {
