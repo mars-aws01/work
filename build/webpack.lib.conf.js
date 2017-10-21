@@ -10,7 +10,7 @@ const util = require('./util');
 const libConfig = webpackMerge(baseConfig, {
   devtool: '#source-map',
   entry: {
-    'ngx-smartadmin': './src/index.ts'
+    'kubi-ui': './src/index.ts'
   },
   output: {
     path: util.root('lib'),
