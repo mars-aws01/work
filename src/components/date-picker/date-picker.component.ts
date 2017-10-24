@@ -11,18 +11,20 @@ export const DATE_PICKER_VALUE_ACCESSOR: any = {
   multi: true
 };
 export interface YearMonthItem {
-  val: number,
-  text: string,
+  val: number;
+  text: string;
+  selected?: boolean;
+  current?: boolean;
 }
 
 export interface DayEntity {
-  number: number,
-  isCurrentDay: boolean,
-  isSelectedDay: boolean,
-  isPrevMonth: boolean,
-  isNextMonth: boolean,
-  date: Date,
-  disabled: boolean
+  number: number;
+  isCurrentDay: boolean;
+  isSelectedDay: boolean;
+  isPrevMonth: boolean;
+  isNextMonth: boolean;
+  date: Date;
+  disabled: boolean;
 }
 
 export interface WeekEntity {
@@ -31,13 +33,13 @@ export interface WeekEntity {
 
 const multiLang = {
   'en-us': {
-    weekLabels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-    monthLabels: ['01 Jan', '02 Feb', '03 Mar', '04 Apr', '05 May', '06 Jun', '07 Jul', '08 Aug', '09 Seq', '10 Oct', '11 Nov', '12 Dec'],
+    weekLabels: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+    monthLabels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Seq', 'Oct', 'Nov', 'Dec'],
     yearSuffix: ''
   },
   'zh-cn': {
-    weekLabels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-    monthLabels: ['01 Jan', '02 Feb', '03 Mar', '04 Apr', '05 May', '06 Jun', '07 Jul', '08 Aug', '09 Seq', '10 Oct', '11 Nov', '12 Dec'],
+    weekLabels: ['日', '一', '二', '三', '四', '五', '六'],
+    monthLabels: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
     yearSuffix: ' 年'
   }
 };
@@ -62,6 +64,7 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
   public yearList: YearMonthItem[][];
   public currentMode: string = 'day';
   public today: Date = new Date();
+  public showDate: Date;
 
   public get nowYear() { return this.today.getFullYear(); }
   public get nowMonth() { return this.today.getMonth() + 1; }
@@ -74,11 +77,27 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
     return '';
   }
 
-  public get currentYearMonth() {
-    let d = this.innerDate || new Date();
-    console.log(d, d.getMonth());
-    let monthStr = this.labelObject.monthLabels[d.getMonth()];
-    return `${monthStr} ${d.getFullYear()}`;
+  public get headerText() {
+    let d = this.showDate || new Date();
+    if (this.currentMode === 'day') {
+      let monthStr = this.labelObject.monthLabels[d.getMonth()];
+      return `${monthStr} ${d.getFullYear()}`;
+    } else if (this.currentMode === 'month') {
+      return d.getFullYear();
+    } else if (this.currentMode === 'year') {
+      let startYear = Math.floor(d.getFullYear() / 10) * 10;
+      return `${startYear}-${startYear + 9}`;
+    }
+  }
+
+  public get footerText() {
+    if (this.currentMode === 'day') {
+      return 'Today';
+    } else if (this.currentMode === 'month') {
+      return 'This month';
+    } else {
+      return 'This year';
+    }
   }
 
   @Input() disabled: boolean = false;
@@ -87,7 +106,6 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
   @Input() lang: string = 'en-us';
   @Input() minDate: Date;
   @Input() maxDate: Date;
-  @ViewChild('test2') test2: TemplateRef<any>;
 
   ngOnInit() {
     this.setLabelObject();
@@ -95,9 +113,6 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
     this.currentYear = new Date().getFullYear();
     this._buildYearList();
     this._initMonthPanel();
-    setInterval(() => {
-      console.log('exe', this.test2);
-    }, 2000);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -121,21 +136,28 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
     // }, 300);
   }
 
-  public selectDate(d: DayEntity) {
+  public handleFooterClick() {
+    this.selectDate({
+      date: new Date()
+    });
+  }
+
+  public selectDate(d: DayEntity | { date: Date }) {
     this.innerDate = d.date;
     this.onChange(this.innerDate);
     this.pickerShown = false;
-    this._initMonthPanel(this.innerDate);
+    this.showDate = this.innerDate;
+    this._initMonthPanel(this.showDate);
   }
 
   public changeMonth(monthChange: number) {
-    this.innerDate = new SaDate(this.innerDate).addMonths(monthChange).get();
-    this._initMonthPanel(this.innerDate);
+    this.showDate = new SaDate(this.showDate).addMonths(monthChange).get();
+    this._initMonthPanel(this.showDate);
   }
 
   public changeYear(yearChange: number) {
-    this.innerDate = new SaDate(this.innerDate).addYears(yearChange).get();
-    this._initMonthPanel(this.innerDate);
+    this.showDate = new SaDate(this.showDate).addYears(yearChange).get();
+    this._initMonthPanel(this.showDate);
   }
 
   private _buildMonthList() {
@@ -145,7 +167,9 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
     for (let i = 0; i < 12; i++) {
       tempArr.push({
         val: i + 1,
-        text: langTexts.monthLabels[i]
+        text: langTexts.monthLabels[i],
+        selected: (this.innerDate && this.innerDate.getMonth() === i),
+        current: i === this.today.getMonth()
       });
       if (tempArr.length === 3) {
         result.push(tempArr);
@@ -155,7 +179,6 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
     this.monthList = result;
   }
 
-
   private _buildYearList() {
     let tempArr = [];
     let result = [];
@@ -164,7 +187,9 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
     for (let i = startYear, end = startYear + 12; i < end; i++) {
       tempArr.push({
         val: i,
-        text: `${i}${yearSuffix}`
+        text: `${i}${yearSuffix}`,
+        selected: (this.innerDate && this.innerDate.getFullYear() === i),
+        current: i === this.today.getFullYear()
       });
       if (tempArr.length === 3) {
         result.push(tempArr);
@@ -239,7 +264,8 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
 
   writeValue(obj: any): void {
     this.innerDate = (obj instanceof Date) ? obj : new Date(obj);
-    this._initMonthPanel(this.innerDate);
+    this.showDate = this.innerDate;
+    this._initMonthPanel(this.showDate);
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;

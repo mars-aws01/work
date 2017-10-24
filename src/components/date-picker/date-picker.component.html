@@ -7,26 +7,19 @@
   <span class="input-icon">
     <i class="fa fa-close" [hidden]="true"></i>
   </span>
-  <ng-container #test>
-    ABC
-  </ng-container>
-  <ng-template #test2>
-    ABC
-  </ng-template>
-  {{test222 | json}}
   <div class="picker-panel" [hidden]="!pickerShown">
     <div class="picker-panel-main">
       <div class="picker-panel-header">
         <span class="prev-year" (click)="changeYear(-1)">
           <i class="fa fa-angle-double-left"></i>
         </span>
-        <span class="prev-month" (click)="changeMonth(-1)">
+        <span class="prev-month" (click)="changeMonth(-1)" [hidden]="currentMode !== 'day'">
           <i class="fa fa-angle-left"></i>
         </span>
         <div class="set-year-month">
-          <span>{{currentYearMonth}}</span>
+          <span>{{headerText}}</span>
         </div>
-        <span class="next-month" (click)="changeMonth(1)">
+        <span class="next-month" (click)="changeMonth(1)" [hidden]="currentMode !== 'day'">
           <i class="fa fa-angle-right"></i>
         </span>
         <span class="next-year" (click)="changeYear(1)">
@@ -34,37 +27,47 @@
         </span>
       </div>
       <div class="picker-panel-content">
-        <table *ngIf="currentMode === 'year'">
+        <table class="ym-panel" *ngIf="currentMode === 'year'">
           <tbody>
             <tr *ngFor="let yearArr of yearList">
-              <td *ngFor="let year of yearArr" [ngClass]="{'is-now': year.val === nowYear}">{{year.text}}</td>
+              <td *ngFor="let year of yearArr" [ngClass]="{'current': year.current, 'selected': year.selected }">
+                <span>{{year.text}}</span>
+              </td>
             </tr>
           </tbody>
         </table>
-        <table *ngIf="currentMode === 'month'">
+        <!-- 月份选择面板 -->
+        <table class="ym-panel" *ngIf="currentMode === 'month'">
           <tbody>
             <tr *ngFor="let mArr of monthList">
-              <td *ngFor="let m of mArr">{{m.text}}</td>
+              <td *ngFor="let m of mArr" [ngClass]="{'current': m.current, 'selected': m.selected }">
+                <span>{{m.text}}</span>
+              </td>
             </tr>
           </tbody>
         </table>
+        <!-- 日期选择面板 -->
         <table *ngIf="currentMode === 'day'">
           <thead>
             <tr>
-              <th *ngFor="let item of labelObject.weekLabels">{{item}}</th>
+              <th *ngFor="let item of labelObject.weekLabels">
+                <span>{{item}}</span>
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let week of monthWeeks">
-              <td *ngFor="let d of week.days" [ngClass]="{'day-prev': d.isPrevMonth, 'day-next': d.isNextMonth, 'day-current': d.isCurrentDay, 'day-selected': d.isSelectedDay }"
-                (click)="selectDate(d)">{{d.number}}</td>
+              <td *ngFor="let d of week.days" [ngClass]="{'day-prev': d.isPrevMonth, 'day-next': d.isNextMonth, 'current': d.isCurrentDay, 'selected': d.isSelectedDay }"
+                (click)="selectDate(d)">
+                <span>{{d.number}}</span>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-    <div class="picker-panel-footer">
-
+    <div class="picker-panel-footer" (click)="handleFooterClick()">
+      {{footerText}}
     </div>
   </div>
 </div>

@@ -15,43 +15,48 @@
     position: absolute;
     background: #fff;
     top: calc(100% + 4px);
-    width: 100%;
-    min-width: 250px;
+    right: 0;
+    width: 182px;
+    border: 1px solid #3795db;
     box-shadow: 0 0 3px #3795db;
   }
 
   .picker-panel-header {
     position: relative;
-    height: 30px;
+    height: 22px;
+    line-height: 1;
+    font-size: 12px;
+    font-weight: bold;
     background: #4192db;
-    padding: 6px 8px;
+    padding: 4px 8px;
 
     > span {
       color: #f6f6f6;
       position: absolute;
-      font-size: 18px;
-      top: 2.5px;
+      top: 4px;
+      font-size: 14px;
       cursor: pointer;
     }
 
     .prev-year {
-      left: 15px;
+      left: 8px;
     }
 
     .prev-month {
-      left: 45px;
+      left: 32px;
     }
 
     .next-month {
-      right: 45px;
+      right: 32px;
     }
 
     .next-year {
-      right: 15px;
+      right: 8px;
     }
 
     .set-year-month {
       width: 100%;
+      font-size: 14px;
       text-align: center;
       white-space: nowrap;
       overflow: hidden;
@@ -63,44 +68,77 @@
   }
 
   .picker-panel-content {
-    padding: 8px;
+    padding: 6px;
     user-select: none;
-    border: 1px solid #e2e2e2;
-    border-top: none;
-    border-bottom: none;
 
     table {
-      width: 100%;
+      // width: 100%;
       border-collapse: collapse;
     }
 
     th, td {
+      font-size: 12px;
       text-align: center;
-      width: 36px;
-      height: 30px;
+      padding: 2px;
+
+      >span {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        line-height: 18px;
+        background: #f1f1f1;
+        border-radius: 2px;
+      }
+    }
+
+    .ym-panel td >span {
+      width: 52px;
+      height: 32px;
+      line-height: 30px;
+    }
+
+    th {
+      color: #b8b8b8;
     }
 
     td {
       cursor: pointer;
-      color: #666;
+      color: #000;
 
-      &:hover {
-        background-color: #eaeaea;
-        color: #333;
+      >span {
       }
 
+      // &:hover {
+      // background-color: #eaeaea;
+      // color: #333;
+      // }
       &.day-next, &.day-prev {
-        color: #d2d2d2;
+        >span {
+          color: #b8b8b8;
+        }
       }
 
-      &.day-selected {
-        background: #393d49;
+      &.current>span {
+        color: #3795db;
+        background: #ebf4fb;
+        border: 1px solid #3795db;
+      }
+
+      &.selected >span {
+        background: #3795db;
         color: #fff;
-      }
-
-      &.day-current {
-        border: 1px solid #393d49;
+        border: 1px solid #3795db;
       }
     }
+  }
+
+  .picker-panel-footer {
+    height: 22px;
+    border-top: 1px solid #3795db;
+    background: #ebf4fb;
+    line-height: 21px;
+    color: #3798db;
+    text-align: center;
+    cursor: pointer;
   }
 }
