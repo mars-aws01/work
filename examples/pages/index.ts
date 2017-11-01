@@ -12,6 +12,7 @@ import { FormDemoComponent } from './form-demo/form-demo.component';
 import { HomeComponent } from './home/home.component';
 import { ImageZoomDemoComponent } from './image-zoom-demo/image-zoom-demo.component';
 import { InputDemoComponent } from './input-demo/input-demo.component';
+import { InputGroupDemoComponent } from './input-group-demo/input-group-demo.component';
 import { LayoutDemoComponent } from './layout-demo/layout-demo.component';
 import { ModalDemoComponent } from './modal-demo/modal-demo.component';
 import { NotfoundComponent } from './notfound/notfound.component';
@@ -23,6 +24,7 @@ import { RatingDemoComponent } from './rating-demo/rating-demo.component';
 import { SelectDemoComponent } from './select-demo/select-demo.component';
 import { SwitchDemoComponent } from './switch-demo/switch-demo.component';
 import { TabsetDemoComponent } from './tabset-demo/tabset-demo.component';
+import { WidgetDemoComponent } from './widget-demo/widget-demo.component';
 
 export {
   AppComponent,
@@ -41,12 +43,14 @@ export {
   ImageZoomDemoComponent,
   ProgressDemoComponent,
   TabsetDemoComponent,
+  WidgetDemoComponent,
 
   // Form Elements
   CheckboxDemoComponent,
   CheckboxGroupDemoComponent,
   DatePickerDemoComponent,
   InputDemoComponent,
+  InputGroupDemoComponent,
   FormDemoComponent,
   PaginationDemoComponent,
   RadioDemoComponent,
@@ -73,11 +77,13 @@ export const PAGE_COMPONENTS = [
   ImageZoomDemoComponent,
   ProgressDemoComponent,
   TabsetDemoComponent,
+  WidgetDemoComponent,
 
   // Form Elements
   CheckboxDemoComponent, CheckboxGroupDemoComponent,
   DatePickerDemoComponent,
   InputDemoComponent,
+  InputGroupDemoComponent,
   FormDemoComponent,
   PaginationDemoComponent,
   RadioDemoComponent, RadioGroupDemoComponent,

@@ -37,7 +37,7 @@ export const menuData: Array<MenuItem> = [
       { text: 'Pagination', url: '/pagination' },
       { text: 'Progress', url: '/progress' },
       { text: 'TabSet', url: '/tabset' },
-      // { text: 'Widget', url: '/widget' },
+      { text: 'Widget', url: '/widget' },
       // { text: 'Wizard', url: '/wizard' }
     ]
   }, {

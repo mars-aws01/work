@@ -12,6 +12,7 @@ import {
   HomeComponent,
   ImageZoomDemoComponent,
   InputDemoComponent,
+  InputGroupDemoComponent,
   LayoutDemoComponent,
   ModalDemoComponent,
   NotfoundComponent,
@@ -22,7 +23,8 @@ import {
   RatingDemoComponent,
   SelectDemoComponent,
   SwitchDemoComponent,
-  TabsetDemoComponent
+  TabsetDemoComponent,
+  WidgetDemoComponent
 } from './pages';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -42,11 +44,13 @@ const demoRoutes: Routes = [
   { path: 'image-zoom', component: ImageZoomDemoComponent },
   { path: 'progress', component: ProgressDemoComponent },
   { path: 'tabset', component: TabsetDemoComponent },
+  { path: 'widget', component: WidgetDemoComponent },
   // Form Elements
   { path: 'checkbox', component: CheckboxDemoComponent },
   { path: 'checkbox-group', component: CheckboxGroupDemoComponent },
   { path: 'date-picker', component: DatePickerDemoComponent },
   { path: 'input', component: InputDemoComponent },
+  { path: 'input-group', component: InputGroupDemoComponent },
   { path: 'form', component: FormDemoComponent },
   { path: 'pagination', component: PaginationDemoComponent },
   { path: 'radio', component: RadioDemoComponent },
