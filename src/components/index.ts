@@ -27,6 +27,7 @@ import { SwitchComponent } from './switch/switch.component';
 import { TabItemComponent } from './tabset/tab-item.component';
 import { TabsetComponent } from './tabset/tabset.component';
 import { ValidatorComponent } from './validator/validator.component';
+import { WidgetComponent } from './widget/widget.component';
 
 export const ALL_COMPONENTS = [
   // 布局组件
@@ -43,6 +44,7 @@ export const ALL_COMPONENTS = [
   ImageZoomComponent,
   ProgressComponent,
   TabsetComponent, TabItemComponent,
+  WidgetComponent,
 
   // Form元素
   CascaderComponent,
