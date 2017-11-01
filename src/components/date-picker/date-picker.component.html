@@ -30,7 +30,7 @@
         <table class="ym-panel" *ngIf="currentMode === 'year'">
           <tbody>
             <tr *ngFor="let yearArr of yearList">
-              <td *ngFor="let year of yearArr" [ngClass]="{'current': year.current, 'selected': year.selected }">
+              <td *ngFor="let year of yearArr" [ngClass]="{'current': year.current, 'selected': year.selected }" (click)="selectYear(year)">
                 <span>{{year.text}}</span>
               </td>
             </tr>
@@ -40,7 +40,7 @@
         <table class="ym-panel" *ngIf="currentMode === 'month'">
           <tbody>
             <tr *ngFor="let mArr of monthList">
-              <td *ngFor="let m of mArr" [ngClass]="{'current': m.current, 'selected': m.selected }">
+              <td *ngFor="let m of mArr" [ngClass]="{'current': m.current, 'selected': m.selected }" (click)="selectMonth(m)">
                 <span>{{m.text}}</span>
               </td>
             </tr>

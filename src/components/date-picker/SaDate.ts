@@ -37,7 +37,9 @@ export class SaDate {
   }
 
   format(format: string) {
-    return this.innerDate.getFullYear() + '/' + this._fixedZero(this.innerDate.getMonth() + 1) + '/' + this._fixedZero(this.innerDate.getDate());
+    return format.replace('yyyy', this.innerDate.getFullYear().toString())
+      .replace('MM', this._fixedZero(this.innerDate.getMonth() + 1))
+      .replace('dd', this._fixedZero(this.innerDate.getDate()));
   }
 
   _fixedZero(v: number | string): string {

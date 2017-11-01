@@ -71,8 +71,14 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
   public get nowDay() { return this.today.getDate() };
 
   public get innerDateString() {
+    let format = this.format;
+    if (this.mode === 'month') {
+      format = 'yyyy/MM';
+    } else if (this.mode === 'year') {
+      format = 'yyyy';
+    }
     if (this.innerDate) {
-      return new SaDate(this.innerDate).format('yyyy/MM/dd');
+      return new SaDate(this.innerDate).format(format);
     }
     return '';
   }
@@ -106,6 +112,7 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
   @Input() lang: string = 'en-us';
   @Input() minDate: Date;
   @Input() maxDate: Date;
+  @Input() format: string = 'yyyy/MM/dd';
 
   ngOnInit() {
     this.setLabelObject();
@@ -150,13 +157,34 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
     this._initMonthPanel(this.showDate);
   }
 
+  public selectMonth(m: YearMonthItem) {
+    let d = this.showDate || new Date();
+    let val = new Date(d.getFullYear(), m.val - 1, 1);
+    this.selectDate({ date: val });
+  }
+
+  public selectYear(year: YearMonthItem) {
+    let val = new Date(year.val, 0, 1);
+    this.currentYear = year.val;
+    this.selectDate({ date: val });
+    this._buildYearList();
+  }
+
+
   public changeMonth(monthChange: number) {
     this.showDate = new SaDate(this.showDate).addMonths(monthChange).get();
     this._initMonthPanel(this.showDate);
   }
 
   public changeYear(yearChange: number) {
+    if (this.mode === 'year') {
+      yearChange *= 10;
+      setTimeout(() => {
+        this._buildYearList();
+      });
+    }
     this.showDate = new SaDate(this.showDate).addYears(yearChange).get();
+    this.currentYear = this.showDate.getFullYear();
     this._initMonthPanel(this.showDate);
   }
 
