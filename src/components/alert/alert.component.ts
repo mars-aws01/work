@@ -9,8 +9,6 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 
 export class AlertComponent implements OnInit, OnChanges {
 
-  public innerClass: string;
-
   @Input()
   public type: string = 'info';
 
@@ -29,23 +27,19 @@ export class AlertComponent implements OnInit, OnChanges {
   @Output()
   public onClose: EventEmitter<any> = new EventEmitter();
 
+  public get innerClass() {
+    return `alert-${this.type}`;
+  }
+
   ngOnInit() {
-    this.setInnerClass();
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.type || changes.alertClass) {
-      this.setInnerClass();
-    }
   }
 
   public onCloseBtnClick() {
     this.shown = false;
     this.shownChange.emit(false);
     this.onClose.emit(false);
-  }
-
-  private setInnerClass() {
-    this.innerClass = `alert-${this.type} ${this.alertClass}`;
   }
 }

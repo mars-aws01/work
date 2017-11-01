@@ -1,3 +1,5 @@
+import './pagination.component.styl';
+
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -26,12 +28,6 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, OnChan
   public pages: Array<any> = [];
 
   @Input()
-  public size: string = '';
-
-  @Input()
-  public alt: boolean = false;
-
-  @Input()
   public totalCount: number = 0;
 
   @Input()
@@ -46,9 +42,6 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, OnChan
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.size || changes.alt) {
-      this.setPaginationClass();
-    }
     if (changes.totalCount || changes.pageSize) {
       this.calcPageInfo();
     }
@@ -79,17 +72,6 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, OnChan
   private emitValue() {
     this.onChange(this.pageIndex);
     this.onPageChange.next(this.pageIndex);
-  }
-
-  private setPaginationClass() {
-    let tmpClass = '';
-    if (this.alt) {
-      tmpClass += ' pagination-alt';
-    }
-    if (this.size) {
-      tmpClass += ` pagination-${this.size}`;
-    }
-    return this.paginationClass = tmpClass;
   }
 
   private buildPages() {
