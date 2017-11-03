@@ -1,10 +1,11 @@
-<div class="nk-tabset" [ngClass]="{'tabs-left': tabsLeft}">
-  <ul class="nav nav-tabs bordered" [ngClass]="{'tabs-left': tabsLeft}">
+<div class="nk-tabset" [ngClass]="{'nk-tabset-left': tabsLeft}">
+  <ul class="nav nk-tabset-header" [ngClass]="{'tabs-left': tabsLeft}" [ngStyle]="headerStyle">
     <li class="active" *ngFor="let tab of tabItems" [ngClass]="{active: tab.active}" (click)="setActiveItem(tab)">
-      <a href="javascript:;"> <i *ngIf="tab.icon" [ngClass]="tab.icon"></i> {{tab.header}}</a>
+      <a href="javascript:;">
+        <i *ngIf="tab.icon" [ngClass]="tab.icon"></i> {{tab.header}}</a>
     </li>
   </ul>
-  <div class="tab-content padding-10">
+  <div class="nk-tab-content">
     <ng-content></ng-content>
   </div>
 </div>

@@ -1,16 +1,85 @@
-.nk-tabset {
-  &.tabs-left {
-    border: 1px solid #ddd;
+$border-color = #e1e1e1;
 
-    .tab-content {
-      border: none;
+.nk-tabset {
+  border: 1px solid $border-color;
+  position: relative;
+
+  .nk-tabset-header {
+    height: 24px;
+    background: #f1f1f1;
+    border-bottom: 1px solid $border-color;
+
+    >li {
+      float: left;
+      display: block;
+
+      a {
+        position: relative;
+        border-radius: 0;
+        font-size: 12px;
+        color: #000;
+        font-weight: bold;
+        padding: 4px 8px;
+        line-height: 16px;
+      }
+
+      &.active a {
+        background: #fff;
+
+        &::before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          left: 0;
+          height: 2px;
+          background: #3795db;
+        }
+      }
+    }
+  }
+
+  .nk-tab-content {
+    padding: 4px;
+
+    .nk-tab-item {
+      display: none;
+
+      &.active {
+        display: block;
+      }
+    }
+  }
+
+  &.nk-tabset-left {
+    display: flex;
+
+    .nk-tabset-header {
+      height: auto;
+      border-right: 1px solid $border-color;
+      border-bottom: 0;
+
+      li {
+        float: none;
+
+        a {
+          width: calc(100% + 1px);
+        }
+
+        a::before {
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: auto;
+          width: 2px;
+          height: auto;
+        }
+      }
     }
 
-    .nav-tabs {
-      width: 109px;
-      margin-right: 0;
-      border-left: 0;
-      border-top: 0;
+    .nk-tab-content {
+      flex: 1;
     }
   }
 }

@@ -34,7 +34,7 @@ export class TabItemComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.tabset.tabItems.push(this);
-    this.elementRef.nativeElement.className = 'nk-tab-item tab-pane';
+    this.elementRef.nativeElement.className = 'nk-tab-item';
   }
 
   ngOnChanges(changes: SimpleChanges) {

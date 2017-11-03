@@ -12,15 +12,19 @@ export class TabsetComponent implements OnInit, AfterViewInit, OnChanges {
   private _currentTabItem: TabItemComponent;
   public tabItems: TabItemComponent[] = [];
 
+  @Input() selected: string;
+  @Input() tabsLeft: boolean = false;
+  @Input() headerWidth: number = 80;
+  @Output() selectedChange = new EventEmitter();
 
-  @Input()
-  public selected: string;
-
-  @Input()
-  public tabsLeft: boolean = false;
-
-  @Output()
-  public selectedChange = new EventEmitter();
+  public get headerStyle() {
+    if (!this.tabsLeft) {
+      return {};
+    }
+    return {
+      width: `${this.headerWidth}px`
+    };
+  }
 
   constructor() { }
 
