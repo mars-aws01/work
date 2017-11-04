@@ -39,7 +39,7 @@ export class AppModule {
 - [x] Pagination [Usage](src/components/pagination/README.md)
 - [x] Progress [Usage](src/components/progress/README.md)
 - [x] TabSet [Usage](src/components/tabset/README.md)
-- [ ] Widget [Usage](src/components/widget/README.md)
+- [x] Widget [Usage](src/components/widget/README.md)
 - [ ] Wizard [Usage](src/components/wizard/README.md)
 
 ## Forms Elements
@@ -50,7 +50,7 @@ export class AppModule {
 - [x] CheckBoxGroup [Usage](src/components/checkbox-group/README.md)
 - [ ] DatePicker [Usage](src/components/date-picker/README.md)
 - [x] Input [Usage](src/components/autocomplete/README.md)
-- [ ] InputGroup [Usage](src/components/input-group/README.md)
+- [] InputGroup [Usage](src/components/input-group/README.md)
 - [x] Radio [Usage](src/components/radio/README.md)
 - [x] RadioGroup [Usage](src/components/radio-group/README.md)
 - [x] Rating [Usage](src/components/rating/README.md)
