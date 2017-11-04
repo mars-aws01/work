@@ -1,5 +1,5 @@
 .nk-collapse-box {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 
   &.nk-collapse-box-disabled {
     color: #b8b8b8;
@@ -16,19 +16,29 @@
     font-weight: bold;
     height: 24px;
     line-height: 24px;
-    border-bottom: 1px solid #ccc;
     display: flex;
 
+    .nk-collapse-box-line {
+      flex: 1;
+      border-bottom: 1px solid #ccc;
+      border-image: linear-gradient(to right, #eee, #ccc, #eee) 30 30;
+      height: 50%;
+      margin: 0 5px;
+    }
+
     .nk-collapse-icon {
-      width: 14px;
+      width: 10px;
       height: 14px;
       margin-top: 4.5px;
     }
 
     .nk-collapse-box-disabled& {
       color: #b8b8b8;
-      border-bottom: 1px solid #e1e1e1;
       cursor: not-allowed;
+
+      .nk-collapse-box-line {
+        border-bottom-color: #e1e1e1;
+      }
     }
 
     b {

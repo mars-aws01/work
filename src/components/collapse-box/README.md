@@ -13,6 +13,7 @@
 | Name | Description |
 | --- | --- |
 | '' | 放置内容 |
+| box-tools | 用于在标题栏右侧放置工具元素（链接或者按钮） |
 
 **Events（Output）**
 
@@ -25,6 +26,9 @@
 ```html
 <nk-collapse-box header="Item1">
   Item1内容
+  <ng-container slot="box-tools">
+    <nk-button>ABCDE</nk-button>
+  </ng-container>
 </nk-collapse-box>
 <nk-collapse-box header="Item2" [disabled]="true">
   Item2内容

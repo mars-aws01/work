@@ -1,11 +1,27 @@
 <div class="page-home">
-  <h1>Welcome to Kubi-UI Components Demo Page.</h1>
+  <h2>Welcome to Kubi-UI Components Demo Page.</h2>
+  <hr>
 </div>
 
-<h1>如何使用占位符？</h1>
+<h4>1、如何使用占位符？</h4>
 
+<span>
+  在组件的实现中，除了默认的占位符
+  <code>ng-content</code> 之外，还可能包含有命名占位符。 在组件模板的实现如下：
+</span>
 <code>
   <pre>
-&lt;ng-container slot="slotName">&lt;/ng-container>
-  </pre>
+&lt;ng-content select="[slot=xxx]">&lt;/ng-content></pre>
 </code>
+
+<span>此时，我们在使用组件的时候，如果要给这些占位符填充元素，那么我们应该按照如下方式编写模板代码：</span>
+<code>
+  <pre>
+&lt;ng-container slot="xxx">&lt;/ng-container></pre>
+</code>
+
+<span>采用这种方式，可以有效的避免嵌套一层无用标签。同时，该用法和
+  <code>Vue.js</code>的
+  <code>slot</code> 用法比较雷同，也更简单。</span>
+
+<h4>2、待定</h4>

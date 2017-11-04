@@ -22,7 +22,7 @@ export const menuData: Array<MenuItem> = [
       { text: 'Rating', url: '/rating' },
       { text: 'Select', url: '/select' },
       { text: 'Switch', url: '/switch' },
-      { text: 'Time Picker', url: '/time-picker' }
+      // { text: 'Time Picker', url: '/time-picker' }
     ]
   },
   {
