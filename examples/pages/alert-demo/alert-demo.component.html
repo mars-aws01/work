@@ -2,20 +2,16 @@
   <nk-collapse-box header="多种不同的类型">
     <div class="padding-10">
       <nk-alert (onClose)="onClose()">
-        <i class="fa-fw fa fa-info"></i>
-        <strong>Info</strong> You have 198 unread messages.
+        You have 198 unread messages.
       </nk-alert>
       <nk-alert type="success" (onClose)="onClose()">
-        <i class="fa-fw fa fa-check"></i>
-        <strong>Success</strong> The page has been added.
+        The page has been added.
       </nk-alert>
       <nk-alert type="warning" (onClose)="onClose()">
-        <i class="fa-fw fa fa-warning"></i>
-        <strong>Warning</strong> Your monthly traffic is reaching limit.
+        Your monthly traffic is reaching limit.
       </nk-alert>
       <nk-alert type="danger" (onClose)="onClose()">
-        <i class="fa-fw fa fa-times"></i>
-        <strong>Danger!</strong> The daily cronjob has failed.
+        The daily cronjob has failed.
       </nk-alert>
     </div>
   </nk-collapse-box>
@@ -36,18 +32,18 @@
   </nk-collapse-box>
   <nk-collapse-box header="Block Messages">
     <div class="padding-10">
-      <nk-alert type="warning">
-        <h4 class="alert-heading">Warning!</h4>
+      <nk-alert type="warning" [inline]="false">
         Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna,
         vel scelerisque nisl consectetur et.
       </nk-alert>
-      <nk-alert type="danger">
-        <h4 class="alert-heading">Error!</h4>
+      <nk-alert type="danger" [inline]="false">
         Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna,
         vel scelerisque nisl consectetur et.
         <p class="text-align-left">
           <br>
-          <a href="javascript:void(0);" class="btn btn-sm btn-default"><strong>Action Button</strong></a>
+          <a href="javascript:void(0);" class="btn btn-sm btn-default">
+            <strong>Action Button</strong>
+          </a>
         </p>
       </nk-alert>
     </div>

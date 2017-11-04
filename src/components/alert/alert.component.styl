@@ -1,6 +1,56 @@
+$color-danger = #f7515e;
+$color-info = #3795db;
+$color-success = #6cb319;
+$color-warning = #fda900;
+
+borderAndShadow(color, bgColor = #fff) {
+  border-color: color;
+  background: bgColor;
+  box-shadow: inset 0 0 3px rgba(color, 0.075), 0 0 6px rgba(color, 0.6);
+
+  .alert-title, .alert-close {
+    color: color;
+  }
+}
+
 .nk-alert {
   margin-bottom: 0;
-  .widget-body.no-padding & {
-    border-width: 0 0 0 5px !important;
+  padding: 16px 8px;
+
+  .alert-title {
+    font-size: 16px;
+    display: block;
+
+    >span {
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 16px;
+    }
+  }
+
+  .alert-close {
+    opacity: 1;
+  }
+
+  &.nk-alert-inline {
+    .alert-title {
+      display: inline;
+    }
+  }
+
+  &.nk-alert-danger {
+    borderAndShadow($color-danger, #fef6f7);
+  }
+
+  &.nk-alert-info {
+    borderAndShadow($color-info, #f5f9fd);
+  }
+
+  &.nk-alert-success {
+    borderAndShadow($color-success, #f7fbf3);
+  }
+
+  &.nk-alert-warning {
+    borderAndShadow($color-warning, #fffaf2);
   }
 }

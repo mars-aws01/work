@@ -7,6 +7,7 @@
 | type | string | | 'info' | 设置alert类型，可选['info', 'warning', 'danger', 'success'] |
 | shown | boolean | Y | true | 是否显示ALERT |
 | closable | boolean | | true | 是否可关闭（显示关闭按钮） |
+| inline | boolean | | true | 是否显示在一行 |
 
 **Slots（ng-content占位符）**
 

@@ -10,7 +10,7 @@ export const menuData: Array<MenuItem> = [
   },
   {
     text: 'Forms', icon: 'fa-pencil-square-o', subMenu: [
-      { text: 'Autocomplete', url: '/autocomplete' },
+      // { text: 'Autocomplete', url: '/autocomplete' },
       { text: 'Check Box', url: '/checkbox' },
       { text: 'Check Box Group', url: '/checkbox-group' },
       { text: 'Date Picker', url: '/date-picker' },
@@ -27,7 +27,7 @@ export const menuData: Array<MenuItem> = [
   },
   {
     text: 'UI Elements', icon: 'fa-desktop', subMenu: [
-      { text: 'Accordion', url: '/accordion' },
+      // { text: 'Accordion', url: '/accordion' },
       { text: 'Alert', url: '/alert' },
       { text: 'Button', url: '/button' },
       { text: 'Carousel', url: '/carousel' },
