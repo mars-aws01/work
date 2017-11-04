@@ -20,8 +20,8 @@
         <div class="modal-footer" #modalFooter>
           <ng-content select="[slot=modal-footer]"></ng-content>
           <ng-template [ngIf]="!hasCustomFooter">
-            <button type="button" class="btn btn-default btn-sm" (click)="onCancelClick()">{{cancelText}}</button>
-            <button type="button" class="btn btn-primary btn-sm" (click)="onOkClick()">{{okText}}</button>
+            <nk-button (click)="onCancelClick()">{{cancelText}}</nk-button>
+            <nk-button type="primary" (click)="onOkClick()">{{okText}}</nk-button>
           </ng-template>
         </div>
       </div>

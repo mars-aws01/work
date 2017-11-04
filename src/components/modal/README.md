@@ -4,7 +4,6 @@
 
 | Name | Data Type |  Two-way | Default Value | Description |
 | --- | --- | --- | --- | --- |
-| size | string | | '' | 设置弹出层的大小，可选 ['sm', 'lg', ''] |
 | width | number | | | 设置弹出层的宽度，设置后size属性将会失效 |
 | header | string | | | 设置弹出层的标题 |
 | animate | string | | 'fade' | 设置弹出层的动画效果 |
