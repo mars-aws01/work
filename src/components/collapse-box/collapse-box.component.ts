@@ -3,7 +3,7 @@ import './collapse-box.component.styl';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 @Component({
-  selector: 'nk-collapse-box',
+  selector: 'nk-collapse-box, nk-widget',
   templateUrl: 'collapse-box.component.html'
 })
 
