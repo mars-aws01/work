@@ -61,7 +61,7 @@ export class AppModule {
 
 ## Date Elements
 
-- [ ] Table [Usage](src/components/table/README.md)
+- [x] Table [Usage](src/components/grid/README.md)
 - [ ] Tree [Usage](src/components/tree/README.md)
 
 # Services
