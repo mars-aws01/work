@@ -9,6 +9,7 @@ import {
   DatePickerDemoComponent,
   DemoContainerComponent,
   FormDemoComponent,
+  GridDemoComponent,
   HomeComponent,
   ImageZoomDemoComponent,
   InputDemoComponent,
@@ -40,6 +41,7 @@ const demoRoutes: Routes = [
   { path: 'button', component: ButtonDemoComponent },
   { path: 'carousel', component: CarouselDemoComponent },
   { path: 'collapse-box', component: CollapseBoxDemoComponent },
+  { path: 'grid', component: GridDemoComponent },
   { path: 'modal', component: ModalDemoComponent },
   { path: 'image-zoom', component: ImageZoomDemoComponent },
   { path: 'progress', component: ProgressDemoComponent },
@@ -67,14 +69,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    useHash: true,
-    errorHandler() {
-      console.log('路由匹配失败！');
-    }
-  })],
-  exports: [RouterModule],
+  imports: [
+    RouterModule.forRoot(routes, {
+      useHash: true,
+      errorHandler() {
+        console.log('路由匹配失败！');
+      }
+    })
+  ],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {
-
-}
+export class AppRoutingModule {}

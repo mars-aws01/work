@@ -9,6 +9,7 @@ import { CollapseBoxDemoComponent } from './collapse-box-demo/collapse-box-demo.
 import { DatePickerDemoComponent } from './date-picker-demo/date-picker-demo.component';
 import { DemoContainerComponent } from './demo-container/demo-container.component';
 import { FormDemoComponent } from './form-demo/form-demo.component';
+import { GridDemoComponent } from './grid-demo/grid-demo.component';
 import { HomeComponent } from './home/home.component';
 import { ImageZoomDemoComponent } from './image-zoom-demo/image-zoom-demo.component';
 import { InputDemoComponent } from './input-demo/input-demo.component';
@@ -32,19 +33,18 @@ export {
   NotfoundComponent,
   DemoContainerComponent,
   LayoutDemoComponent,
-
   // UI Elements
   AccordionDemoComponent,
   AlertDemoComponent,
   ButtonDemoComponent,
   CarouselDemoComponent,
   CollapseBoxDemoComponent,
+  GridDemoComponent,
   ModalDemoComponent,
   ImageZoomDemoComponent,
   ProgressDemoComponent,
   TabsetDemoComponent,
   WidgetDemoComponent,
-
   // Form Elements
   CheckboxDemoComponent,
   CheckboxGroupDemoComponent,
@@ -73,6 +73,7 @@ export const PAGE_COMPONENTS = [
   ButtonDemoComponent,
   CarouselDemoComponent,
   CollapseBoxDemoComponent,
+  GridDemoComponent,
   ModalDemoComponent,
   ImageZoomDemoComponent,
   ProgressDemoComponent,
@@ -80,13 +81,15 @@ export const PAGE_COMPONENTS = [
   WidgetDemoComponent,
 
   // Form Elements
-  CheckboxDemoComponent, CheckboxGroupDemoComponent,
+  CheckboxDemoComponent,
+  CheckboxGroupDemoComponent,
   DatePickerDemoComponent,
   InputDemoComponent,
   InputGroupDemoComponent,
   FormDemoComponent,
   PaginationDemoComponent,
-  RadioDemoComponent, RadioGroupDemoComponent,
+  RadioDemoComponent,
+  RadioGroupDemoComponent,
   RatingDemoComponent,
   SelectDemoComponent,
   SwitchDemoComponent

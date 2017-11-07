@@ -1,15 +1,18 @@
 export const menuData: Array<MenuItem> = [
   {
-    text: 'Home', icon: 'fa-home', url: '/'
+    text: 'Home',
+    icon: 'fa-home',
+    url: '/'
   },
   {
-    text: 'Layout', icon: 'fa-list', subMenu: [
-      { text: 'Row', url: '/row' },
-      { text: 'Col', url: '/col' }
-    ]
+    text: 'Layout',
+    icon: 'fa-list',
+    subMenu: [{ text: 'Row', url: '/row' }, { text: 'Col', url: '/col' }]
   },
   {
-    text: 'Forms', icon: 'fa-pencil-square-o', subMenu: [
+    text: 'Forms',
+    icon: 'fa-pencil-square-o',
+    subMenu: [
       // { text: 'Autocomplete', url: '/autocomplete' },
       { text: 'Check Box', url: '/checkbox' },
       { text: 'Check Box Group', url: '/checkbox-group' },
@@ -21,29 +24,33 @@ export const menuData: Array<MenuItem> = [
       { text: 'Radio Group', url: '/radio-group' },
       { text: 'Rating', url: '/rating' },
       { text: 'Select', url: '/select' },
-      { text: 'Switch', url: '/switch' },
+      { text: 'Switch', url: '/switch' }
       // { text: 'Time Picker', url: '/time-picker' }
     ]
   },
   {
-    text: 'UI Elements', icon: 'fa-desktop', subMenu: [
+    text: 'UI Elements',
+    icon: 'fa-desktop',
+    subMenu: [
       // { text: 'Accordion', url: '/accordion' },
       { text: 'Alert', url: '/alert' },
       { text: 'Button', url: '/button' },
       { text: 'Carousel', url: '/carousel' },
       { text: 'Collapse Box', url: '/collapse-box' },
+      { text: 'Grid/Table', url: '/grid' },
       { text: 'Modal', url: '/modal' },
       { text: 'Image Zoom', url: '/image-zoom' },
       { text: 'Pagination', url: '/pagination' },
       { text: 'Progress', url: '/progress' },
       { text: 'TabSet', url: '/tabset' },
-      { text: 'Widget', url: '/widget' },
+      { text: 'Widget', url: '/widget' }
       // { text: 'Wizard', url: '/wizard' }
     ]
-  }, {
-    text: 'Services', icon: 'fa-star', subMenu: [
-      { text: 'MessageBox', url: '/message-box' }
-    ]
+  },
+  {
+    text: 'Services',
+    icon: 'fa-star',
+    subMenu: [{ text: 'MessageBox', url: '/message-box' }]
   }
 ];
 

@@ -12,6 +12,9 @@ import { CollapseBoxComponent } from './collapse-box/collapse-box.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { FormComponent } from './form/form.component';
 import { FormItemComponent } from './form/form-item.component';
+import { GridCellDirective } from './grid/column-cell.directive';
+import { GridColumnDirective } from './grid/grid-column.directive';
+import { GridComponent } from './grid/grid.component';
 import { ImageZoomComponent } from './image-zoom/image-zoom.component';
 import { InputComponent } from './input/input.component';
 import { ModalComponent } from './modal/modal.component';
@@ -34,26 +37,36 @@ export const ALL_COMPONENTS = [
   ColComponent,
 
   // UI元素组件
-  AccordionComponent, AccordionItemComponent,
+  AccordionComponent,
+  AccordionItemComponent,
   AlertComponent,
   ButtonComponent,
-  CarouselComponent, CarouselItemComponent,
+  CarouselComponent,
+  CarouselItemComponent,
   CollapseBoxComponent,
+  GridComponent,
+  GridColumnDirective,
+  GridCellDirective,
   ModalComponent,
   ImageZoomComponent,
   ProgressComponent,
-  TabsetComponent, TabItemComponent,
+  TabsetComponent,
+  TabItemComponent,
 
   // Form元素
   CascaderComponent,
-  CheckboxComponent, CheckboxGroupComponent,
+  CheckboxComponent,
+  CheckboxGroupComponent,
   DatePickerComponent,
-  FormComponent, FormItemComponent,
+  FormComponent,
+  FormItemComponent,
   InputComponent,
   PaginationComponent,
-  RadioComponent, RadioGroupComponent,
+  RadioComponent,
+  RadioGroupComponent,
   RatingComponent,
-  SelectComponent, SelectOptionComponent,
+  SelectComponent,
+  SelectOptionComponent,
   SwitchComponent,
   ValidatorComponent
 ];
