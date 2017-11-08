@@ -18,6 +18,7 @@ import {
   ModalDemoComponent,
   NotfoundComponent,
   PaginationDemoComponent,
+  PopoverDemoComponent,
   ProgressDemoComponent,
   RadioDemoComponent,
   RadioGroupDemoComponent,
@@ -25,6 +26,7 @@ import {
   SelectDemoComponent,
   SwitchDemoComponent,
   TabsetDemoComponent,
+  TooltipDemoComponent,
   WidgetDemoComponent
 } from './pages';
 import { RouterModule, Routes } from '@angular/router';
@@ -59,7 +61,11 @@ const demoRoutes: Routes = [
   { path: 'radio-group', component: RadioGroupDemoComponent },
   { path: 'rating', component: RatingDemoComponent },
   { path: 'select', component: SelectDemoComponent },
-  { path: 'switch', component: SwitchDemoComponent }
+  { path: 'switch', component: SwitchDemoComponent },
+
+  // Directives
+  { path: 'popover', component: PopoverDemoComponent },
+  { path: 'tooltip', component: TooltipDemoComponent }
 ];
 
 const routes: Routes = [

@@ -18,6 +18,7 @@ import { LayoutDemoComponent } from './layout-demo/layout-demo.component';
 import { ModalDemoComponent } from './modal-demo/modal-demo.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { PaginationDemoComponent } from './pagination-demo/pagination-demo.component';
+import { PopoverDemoComponent } from './popover-demo/popover-demo.component';
 import { ProgressDemoComponent } from './progress-demo/progress-demo.component';
 import { RadioDemoComponent } from './radio-demo/radio-demo.component';
 import { RadioGroupDemoComponent } from './radio-group-demo/radio-group-demo.component';
@@ -25,6 +26,7 @@ import { RatingDemoComponent } from './rating-demo/rating-demo.component';
 import { SelectDemoComponent } from './select-demo/select-demo.component';
 import { SwitchDemoComponent } from './switch-demo/switch-demo.component';
 import { TabsetDemoComponent } from './tabset-demo/tabset-demo.component';
+import { TooltipDemoComponent } from './tooltip-demo/tooltip-demo.component';
 import { WidgetDemoComponent } from './widget-demo/widget-demo.component';
 
 export {
@@ -57,7 +59,10 @@ export {
   RadioGroupDemoComponent,
   RatingDemoComponent,
   SelectDemoComponent,
-  SwitchDemoComponent
+  SwitchDemoComponent,
+  // Directives
+  PopoverDemoComponent,
+  TooltipDemoComponent
 };
 
 export const PAGE_COMPONENTS = [
@@ -92,5 +97,9 @@ export const PAGE_COMPONENTS = [
   RadioGroupDemoComponent,
   RatingDemoComponent,
   SelectDemoComponent,
-  SwitchDemoComponent
+  SwitchDemoComponent,
+
+  // Directives
+  PopoverDemoComponent,
+  TooltipDemoComponent
 ];

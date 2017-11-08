@@ -48,6 +48,14 @@ export const menuData: Array<MenuItem> = [
     ]
   },
   {
+    text: 'Directives',
+    icon: 'fa-fire',
+    subMenu: [
+      { text: 'Popover', url: '/popover' },
+      { text: 'Tooltip', url: '/tooltip' }
+    ]
+  },
+  {
     text: 'Services',
     icon: 'fa-star',
     subMenu: [{ text: 'MessageBox', url: '/message-box' }]
