@@ -21,7 +21,11 @@ export const CORE_DIRECTIVES: any[] = [
   OverlayOriginDirective
 ];
 
-export const CORE_SERVICES: any[] = [Overlay, OverlayContainer];
+export const CORE_SERVICES: any[] = [
+  Overlay, OverlayContainer,
+  ComponentLoaderFactory,
+  PositioningService
+];
 
 export {
   Overlay,

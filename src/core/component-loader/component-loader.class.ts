@@ -87,8 +87,9 @@ export class ComponentLoader<T> {
   ) {}
 
   attach(compType: Type<T>): ComponentLoader<T> {
-    this._componentFactory = this._componentFactoryResolver
-      .resolveComponentFactory<T>(compType);
+    this._componentFactory = this._componentFactoryResolver.resolveComponentFactory<
+      T
+    >(compType);
 
     return this;
   }
@@ -335,11 +336,11 @@ export class ComponentLoader<T> {
     if (!content) {
       return new ContentRef([]);
     }
-
     if (content instanceof TemplateRef) {
       if (this._viewContainerRef) {
-        const _viewRef = this._viewContainerRef
-          .createEmbeddedView<TemplateRef<T>>(content, context);
+        const _viewRef = this._viewContainerRef.createEmbeddedView<
+          TemplateRef<T>
+        >(content, context);
         _viewRef.markForCheck();
 
         return new ContentRef([_viewRef.rootNodes], _viewRef);

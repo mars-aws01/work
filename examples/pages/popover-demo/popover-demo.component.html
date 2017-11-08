@@ -1,19 +1,22 @@
 <div class="page-popover-demo">
+  <br>
+  <br>
+  <br>
   <nk-row>
     <nk-col [span]="8">
       <nk-input type="textarea" [(ngModel)]="content"></nk-input>
     </nk-col>
-    <nk-col [span]="2">
-      <nk-checkbox [(ngModel)]="allowHtml">允许HTML</nk-checkbox>
-    </nk-col>
     <nk-col [span]="8">
-      <nk-button [nk-popover]="content" title="Popover 标题" placement="bottom" [allowHtml]="allowHtml">点我试试</nk-button>
+      <nk-button [nk-popover]="content" title="Popover 标题" placement="bottom">点我试试</nk-button>
       <ng-template #popTemplate>
-        我是文本内容
-        <br> 这里可以放大段文本。
-        <br>注意，不能使用事件。 {{content}}
+        <div style="width: 400px;">
+          我是文本内容
+          <br> 这里可以放大段文本。
+          <h2>{{content}}</h2>
+          <nk-button (click)="handleBtnClick()">哎哎哎</nk-button>
+        </div>
       </ng-template>
-      <nk-button [nk-popover]="popTemplate" title="Popover 标题" placement="bottom" [allowHtml]="allowHtml">点我试试</nk-button>
+      <nk-button [nk-popover]="popTemplate" title="Popover 标题" placement="right">点我试试</nk-button>
     </nk-col>
   </nk-row>
 </div>

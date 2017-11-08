@@ -20,6 +20,7 @@ import { ImageZoomComponent } from './image-zoom/image-zoom.component';
 import { InputComponent } from './input/input.component';
 import { ModalComponent } from './modal/modal.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { PopoverContentComponent } from './popover/popover-content.component';
 import { PopoverDirective } from './popover/popover.directive';
 import { ProgressComponent } from './progress/progress.component';
 import { RadioComponent } from './radio/radio.component';
@@ -34,9 +35,12 @@ import { TabsetComponent } from './tabset/tabset.component';
 import { TooltipDirective } from './tooltip/tooltip.directive';
 import { ValidatorComponent } from './validator/validator.component';
 
+export const ENTRY_COMPONENTS = [PopoverContentComponent];
+
 export const ALL_COMPONENTS = [
   // 指令
   PopoverDirective,
+  PopoverContentComponent,
   TooltipDirective,
 
   // 验证器
