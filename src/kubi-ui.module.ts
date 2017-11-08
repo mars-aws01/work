@@ -7,18 +7,13 @@ import { ALL_COMPONENTS } from './components';
 import { CommonModule } from '@angular/common';
 import { HELPERS } from './helpers';
 import { NgModule } from '@angular/core';
+import { NkValidators } from './components/validators';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   declarations: [...ALL_COMPONENTS, ...CORE_DIRECTIVES],
   entryComponents: [],
   exports: [...ALL_COMPONENTS, ...CORE_DIRECTIVES],
-  providers: [...HELPERS, ...CORE_SERVICES]
+  providers: [...HELPERS, ...CORE_SERVICES, NkValidators]
 })
-export class KubiUIModule {
-
-}
+export class KubiUIModule {}

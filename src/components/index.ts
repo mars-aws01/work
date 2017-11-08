@@ -1,3 +1,4 @@
+import { ALL_VALIDATORS } from './validators';
 import { AccordionComponent } from './accordion/accordion.component';
 import { AccordionItemComponent } from './accordion/accordion-item.component';
 import { AlertComponent } from './alert/alert.component';
@@ -37,6 +38,9 @@ export const ALL_COMPONENTS = [
   // 指令
   PopoverDirective,
   TooltipDirective,
+
+  // 验证器
+  ...ALL_VALIDATORS,
 
   // 布局组件
   RowComponent,

@@ -1,10 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v0.1.2(2017.11.xx)
+## v0.1.3(2017.11.08)
 
 - 增加 `nk-grid`，允许自定义列头样式与列样式
 - 增加 `nk-tooltip, nk-popover` 指令
+- 优化验证器指令
 
 ## v0.1.1 (2017.11.07)
 

@@ -60,7 +60,7 @@ export class NkValidators {
       if (isEmptyInputValue(control.value)) {
         return null; // don't validate empty values to allow optional controls
       }
-      let emails = control.value.split(';').map(item => item.trim());
+      let emails = control.value.split(';').map((item: string) => item.trim());
       let invalid = false;
       for (let item of emails) {
         if (!emailReg.test(item)) {
