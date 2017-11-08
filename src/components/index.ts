@@ -19,6 +19,7 @@ import { ImageZoomComponent } from './image-zoom/image-zoom.component';
 import { InputComponent } from './input/input.component';
 import { ModalComponent } from './modal/modal.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { PopoverDirective } from './popover/popover.directive';
 import { ProgressComponent } from './progress/progress.component';
 import { RadioComponent } from './radio/radio.component';
 import { RadioGroupComponent } from './radio-group/radio-group.component';
@@ -29,9 +30,14 @@ import { SelectOptionComponent } from './select/select-option.component';
 import { SwitchComponent } from './switch/switch.component';
 import { TabItemComponent } from './tabset/tab-item.component';
 import { TabsetComponent } from './tabset/tabset.component';
+import { TooltipDirective } from './tooltip/tooltip.directive';
 import { ValidatorComponent } from './validator/validator.component';
 
 export const ALL_COMPONENTS = [
+  // 指令
+  PopoverDirective,
+  TooltipDirective,
+
   // 布局组件
   RowComponent,
   ColComponent,

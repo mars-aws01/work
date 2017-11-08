@@ -20,7 +20,12 @@ export class AppModule {
 }
 ```
 
-# Components
+# Components & Directives
+
+## Directives
+
+- [x] Tooltip [Usage](src/directives/tooltip/README.md)
+- [x] Popover [Usage](src/directives/popover/README.md)
 
 ## Layout
 

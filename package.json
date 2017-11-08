@@ -52,6 +52,7 @@
     "@angular/platform-browser": "^4.4.3",
     "@angular/platform-browser-dynamic": "^4.4.3",
     "@angular/router": "^4.4.3",
+    "@types/jquery": "^3.2.16",
     "@types/node": "^8.0.28",
     "angular2-template-loader": "^0.6.2",
     "awesome-typescript-loader": "^3.2.3",

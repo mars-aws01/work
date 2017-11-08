@@ -30,7 +30,6 @@ export class DemoContainerComponent implements OnInit {
     if (!componentName) {
       return;
     }
-    this.isService = false;
     this.http.get(`${AppConf.rootHost}/src/${this.isService ? 'services' : 'components'}/${componentName}/README.md`)
       .subscribe(res => {
         this.componentDocument = res.text();
