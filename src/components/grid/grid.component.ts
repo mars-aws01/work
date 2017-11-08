@@ -71,6 +71,15 @@ export class GridComponent implements OnInit, OnChanges {
     }
   }
 
+  public getHeaderClass(column: GridColumnDirective) {
+    return {
+      sorting: column.sortable,
+      sorting_desc: column.sort === 'desc',
+      sorting_asc: column.sort === 'asc',
+      [column.headerClass]: true
+    };
+  }
+
   public onPageSizeSelectChange(val: number) {
     this.pageSize = val;
     this.onPageSizeChanged.next(val);

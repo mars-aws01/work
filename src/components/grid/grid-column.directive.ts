@@ -22,7 +22,9 @@ export class GridColumnDirective implements OnInit {
   @Input() field: string;
   @Input() width: number | string = 'auto';
   @Input() sortable: boolean = false;
-  
+  @Input('class') contentClass: string = '';
+  @Input() headerClass: string = '';
+
   @Input()
   @ContentChild(GridCellDirective, { read: TemplateRef })
   cellTemplate: TemplateRef<any>;

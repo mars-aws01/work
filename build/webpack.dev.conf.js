@@ -6,7 +6,7 @@ const util = require('./util');
 
 module.exports = webpackMerge(baseConfig, {
   entry: {
-    'build': './examples/main.ts'
+    build: './examples/main.ts'
   },
   output: {
     path: util.root('dist'),
