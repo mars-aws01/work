@@ -6,7 +6,7 @@
 | placement      | Tooltip要显示的位置，可选 ['top', 'bottom', 'left', 'right', 'auto'] | string | 'top'  |
 | delay          | 指定显示tooltip的延迟时间                                       | number,object | 0 |
 | allowHtml      | 是否允许解析HTML标签 | boolean | false |
-| tooltipTrigger | 触发tooltip的事件，可选 ['click', 'hover', 'click hover'] | string | 'click hover' |
+| tooltipTrigger | 触发tooltip的事件，可选 ['click', 'hover', 'focus', 'manual'] | string | 'hover focus' |
 
 **更详细的说明，请参考[Bootstrap Tooltips](http://v3.bootcss.com/javascript/#tooltips)**
 
