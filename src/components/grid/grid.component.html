@@ -1,8 +1,7 @@
 <table class="nk-grid table table-striped table-bordered table-hover dataTable" width="100%">
   <thead>
     <tr>
-      <th *ngFor="let column of columns" [ngClass]="getHeaderClass(column)"
-        [style.width]="column.styleWidth" (click)="onHeaderClick(column)">{{column.header}}</th>
+      <th *ngFor="let column of columns" [ngClass]="getHeaderClass(column)" [style.width]="column.styleWidth" (click)="onHeaderClick(column)">{{column.header}}</th>
     </tr>
   </thead>
   <tbody>
@@ -15,21 +14,18 @@
   </tbody>
   <tfoot *ngIf="pageable">
     <tr>
-      <td [attr.colspan]="columns.length">
-        <div class="dt-toolbar-footer">
-          <div class="col-sm-4 col-xs-12 hidden-xs">
-            <div class="dataTables_info">Showing {{1 + pageSize * (pageIndex - 1)}} to {{currentEndIdx}} of {{_totalCount}} entries
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-8">
-            <div class="dataTables_paginate paging_simple_numbers">
-              <nk-pagination [totalCount]="_totalCount" [pageSize]="pageSize" [(ngModel)]="pageIndex"></nk-pagination>
-            </div>
+      <td [attr.colspan]="columns.length" class="dt-toolbar-footer">
+        <nk-row>
+          <nk-col [span]="12">
+            Showing {{1 + pageSize * (pageIndex - 1)}} to {{currentEndIdx}} of {{_totalCount}} entries
+          </nk-col>
+          <nk-col [span]="12">
+            <nk-pagination [totalCount]="_totalCount" [pageSize]="pageSize" [(ngModel)]="pageIndex"></nk-pagination>
             <select class="nk-grid-pagesize-select" *ngIf="showPageSizeList" [ngModel]="pageSize" (ngModelChange)="onPageSizeSelectChange($event)">
               <option *ngFor="let p of pageSizeList" [value]="p">{{p}}</option>
             </select>
-          </div>
-        </div>
+          </nk-col>
+        </nk-row>
       </td>
     </tr>
   </tfoot>
