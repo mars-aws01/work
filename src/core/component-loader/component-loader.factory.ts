@@ -2,32 +2,47 @@ import {
   ApplicationRef,
   ComponentFactoryResolver,
   ElementRef,
+  Injectable,
   Injector,
   NgZone,
   Renderer2,
   ViewContainerRef
 } from '@angular/core';
 
-import { ComponentLoader } from './component-loader';
+import { ComponentLoader } from './component-loader.class';
+import { PositioningService } from '../positioning';
 
+@Injectable()
 export class ComponentLoaderFactory {
   constructor(
-    private cfr: ComponentFactoryResolver,
-    private injector: Injector,
-    private ngZone: NgZone,
-    private appRef: ApplicationRef
-  ) {
-  }
+    private _componentFactoryResolver: ComponentFactoryResolver,
+    private _ngZone: NgZone,
+    private _injector: Injector,
+    private _posService: PositioningService,
+    private _applicationRef: ApplicationRef
+  ) {}
 
-  createLoader<T>(elementRef: ElementRef, viewContainerRef: ViewContainerRef, renderer: Renderer2) {
-    return new ComponentLoader(
-      elementRef,
-      viewContainerRef,
-      renderer,
-      this.injector,
-      this.cfr,
-      this.ngZone,
-      this.appRef
+  /**
+   *
+   * @param _elementRef
+   * @param _viewContainerRef
+   * @param _renderer
+   * @returns {ComponentLoader}
+   */
+  createLoader<T>(
+    _elementRef: ElementRef,
+    _viewContainerRef: ViewContainerRef,
+    _renderer: Renderer2
+  ): ComponentLoader<T> {
+    return new ComponentLoader<T>(
+      _viewContainerRef,
+      _renderer,
+      _elementRef,
+      this._injector,
+      this._componentFactoryResolver,
+      this._ngZone,
+      this._applicationRef,
+      this._posService
     );
   }
 }
