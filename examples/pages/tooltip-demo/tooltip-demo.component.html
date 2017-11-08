@@ -1,1 +1,13 @@
-<div class="tooltip-demo"> Hello TooltipDemoComponent! </div>
+<div class="page-tooltip-demo">
+  <nk-row>
+    <nk-col [span]="8">
+      <nk-input [(ngModel)]="tooltipContent"></nk-input>
+    </nk-col>
+    <nk-col [span]="2">
+      <nk-checkbox [(ngModel)]="allowHtml">允许HTML</nk-checkbox>
+    </nk-col>
+    <nk-col [span]="8">
+      <nk-button [nk-tooltip]="tooltipContent" [allowHtml]="allowHtml">点我试试</nk-button>
+    </nk-col>
+  </nk-row>
+</div>

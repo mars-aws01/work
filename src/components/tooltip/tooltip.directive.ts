@@ -18,7 +18,25 @@ export class TooltipDirective implements OnInit, OnChanges, AfterViewInit {
   @Input() allowHtml: boolean = false;
   @Input() tooltipTrigger: string = 'hover focus';
 
-  public get tooltipOptions() {
+  private $el: any;
+  private timerForInit: any;
+
+  constructor(private elementRef: ElementRef) {}
+
+  ngOnInit() {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.$el) {
+      this.initTooltip();
+    }
+  }
+
+  ngAfterViewInit() {
+    this.$el = jQuery(this.elementRef.nativeElement) as any;
+    this.initTooltip();
+  }
+
+  private getTooltipOptions() {
     return {
       delay: this.delay,
       html: this.allowHtml,
@@ -28,29 +46,13 @@ export class TooltipDirective implements OnInit, OnChanges, AfterViewInit {
     };
   }
 
-  public get $el() {
-    return jQuery(this.elementRef.nativeElement) as any;
-  }
-
-  constructor(private elementRef: ElementRef) {}
-
-  ngOnInit() {}
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log('in');
-    if (this.elementRef.nativeElement) {
-      console.log('do');
-      this.initTooltip();
-    }
-  }
-
-  ngAfterViewInit() {
-    this.initTooltip();
-  }
-
   private initTooltip() {
+    window.clearTimeout(this.timerForInit);
     this.destroyTooltip();
-    this.$el.tooltip(this.tooltipOptions);
+    this.timerForInit = setTimeout(() => {
+      let opt = this.getTooltipOptions();
+      this.$el.tooltip(opt);
+    }, 300);
   }
 
   private destroyTooltip() {
