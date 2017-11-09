@@ -1,6 +1,16 @@
 import './carousel.component.styl';
 
-import { Component, ContentChildren, EventEmitter, Input, OnInit, Output, QueryList, Renderer2, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  ContentChildren,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  QueryList,
+  Renderer2,
+  SimpleChanges
+} from '@angular/core';
 
 import { CarouselItemComponent } from './carousel-item.component';
 
@@ -8,34 +18,24 @@ import { CarouselItemComponent } from './carousel-item.component';
   selector: 'nk-carousel',
   templateUrl: 'carousel.component.html'
 })
-
 export class CarouselComponent implements OnInit {
-
   private intervalId: any;
   public innerIndex: number = 0;
   private pause: boolean = false; // 是否暂停播放
 
-  @Input()
-  public animateType: string = 'slide';
+  @Input() public animateType: string = 'slide';
+  @Input() public autoplay: boolean = true;
+  @Input() public interval: number = 3000;
+  @Output() public change: EventEmitter<number> = new EventEmitter();
+  @ContentChildren(CarouselItemComponent) public items: QueryList<CarouselItemComponent>;
 
-  @Input()
-  public autoplay: boolean = true;
-
-  @Input()
-  public interval: number = 3000;
-
-  @Output()
-  public change: EventEmitter<number> = new EventEmitter();
-
-  @ContentChildren(CarouselItemComponent)
-  public items: QueryList<CarouselItemComponent>;
-
-  constructor(private renderer: Renderer2) {
-
+  public get onlyOneItem() {
+    return this.items.length <= 1;
   }
 
-  ngOnInit() {
-  }
+  constructor(private renderer: Renderer2) {}
+
+  ngOnInit() {}
 
   ngOnChange(changes: SimpleChanges) {
     if (changes.autoplay || changes.interval) {
@@ -66,7 +66,9 @@ export class CarouselComponent implements OnInit {
     if (this.autoplay) {
       this.intervalId = setInterval(() => {
         if (!this.pause) {
-          this.next();
+          if (!this.onlyOneItem) {
+            this.next();
+          }
         }
       }, this.interval);
     }
@@ -74,13 +76,13 @@ export class CarouselComponent implements OnInit {
 
   public prev() {
     let prevIdx = this.innerIndex - 1;
-    prevIdx = (prevIdx < 0 ? this.items.length - 1 : prevIdx);
+    prevIdx = prevIdx < 0 ? this.items.length - 1 : prevIdx;
     this.slide(prevIdx, 'prev');
   }
 
   public next() {
     let nextIdx = this.innerIndex + 1;
-    nextIdx = (nextIdx > this.items.length - 1 ? 0 : nextIdx);
+    nextIdx = nextIdx > this.items.length - 1 ? 0 : nextIdx;
     this.slide(nextIdx);
   }
 
