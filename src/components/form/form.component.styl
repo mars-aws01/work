@@ -1,6 +1,11 @@
 .nk-form-item {
   position: relative;
-  overflow: hidden;
+
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
 
   .nk-form-item-label {
     float: left;
