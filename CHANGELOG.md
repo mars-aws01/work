@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v0.1.4 (2017.11.xx)
+## v0.1.4 (2017.11.10)
 
 - 清理 `overlay`
 - 修复 `nk-form-item` 中验证信息不显示的问题
