@@ -1,7 +1,7 @@
 <div class="page-checkbox-demo">
   <nk-row>
     <nk-col [span]="4">
-      <nk-checkbox [(ngModel)]="checked">保存账户 - {{checked}}</nk-checkbox>
+      <nk-checkbox [(ngModel)]="checked" (click)="handleCheckboxClick($event)">保存账户 - {{checked}}</nk-checkbox>
     </nk-col>
     <nk-col [span]="4">
       <nk-button (click)="toggleChecked()">切换选中状态</nk-button>

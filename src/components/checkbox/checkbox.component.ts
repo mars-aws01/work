@@ -39,11 +39,15 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  public handleCheckedChange(v: boolean) {
-    this.innerChecked = v;
-    this.onChange(v);
+  public handleCheckedChange(evt: MouseEvent) {
+    if (!evt) {
+      return;
+    }
+    evt.stopPropagation();
+    this.innerChecked = (evt.target as HTMLInputElement).checked;
+    this.onChange(this.innerChecked);
     if (this.checkboxGroup) {
-      this.checkboxGroup.updateCheckboxGroupValue(this.value, v);
+      this.checkboxGroup.updateCheckboxGroupValue(this.value, this.innerChecked);
     }
   }
 

@@ -1,7 +1,7 @@
 <div class="page-radio-demo">
   <nk-row>
     <nk-col [span]="4">
-      <nk-radio value="男" [(ngModel)]="sex">男</nk-radio>
+      <nk-radio value="男" [(ngModel)]="sex" (click)="handleRadioClick()">男</nk-radio>
       <nk-radio value="女" [(ngModel)]="sex">女</nk-radio>
     </nk-col>
     <nk-col [span]="4">

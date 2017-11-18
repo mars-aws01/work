@@ -14,4 +14,9 @@ export class CheckboxDemoComponent implements OnInit {
   public toggleChecked() {
     this.checked = !this.checked;
   }
+
+  public handleCheckboxClick(evt: MouseEvent) {
+    evt.stopPropagation();
+    alert('click');
+  }
 }

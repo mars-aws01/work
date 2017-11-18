@@ -14,4 +14,8 @@ export class RadioDemoComponent implements OnInit {
   public toggleSex() {
     this.sex = this.sex === '男' ? '女' : '男';
   }
+
+  public handleRadioClick() {
+    alert('click');
+  }
 }

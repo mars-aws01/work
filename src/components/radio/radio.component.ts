@@ -42,7 +42,8 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  public handleCheckedChange(v: boolean) {
+  public handleRadioClick(evt: MouseEvent) {
+    evt && evt.stopPropagation();
     this.onChange(this.value);
     this.innerValue = this.value;
     // 如果有radio-group，则需要反向设置value
