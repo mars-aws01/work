@@ -6,7 +6,7 @@
   <button class="btn btn-primary" (click)="showModal('modal5Shown')">Show Draggable Modal</button>
   <button class="btn btn-primary" (click)="showModal('modal6Shown')">Show Custom Footer Modal</button>
 
-  <nk-modal [(shown)]="modalShown" header="我是弹出层">
+  <nk-modal [(shown)]="modalShown" header="我是弹出层" [options]="{backdrop:false}">
     一个简单的弹出层
   </nk-modal>
   <nk-modal [(shown)]="modal2Shown" size="lg" header="Size=lg">
@@ -19,7 +19,8 @@
     自定义OkText
   </nk-modal>
   <nk-modal [(shown)]="modal5Shown" header="点我拖拽" okText="OK Button" [draggable]="true" (onOk)="onOkBtnClick()">
-    一个可以被拖拽的弹出层，点击<b>OK Button</b>有惊喜哦！
+    一个可以被拖拽的弹出层，点击
+    <b>OK Button</b>有惊喜哦！
   </nk-modal>
   <nk-modal [(shown)]="modal6Shown" header="自定义Footer" okText="OK TEXT">
     <div slot="modal-footer">
