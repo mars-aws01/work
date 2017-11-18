@@ -2,19 +2,21 @@
 
 **Input**
 
-| Name | Data Type |  Two-way | Default Value | Description |
-| --- | --- | --- | --- | --- |
-| totalCount | number | | 0 | 总记录数 |
-| pageSize | number | | 10 | 每页显示的记录数 |
-| ngModel | number | Y | | 当前选中的页码 |
+| Name       | Data Type | Two-way | Default Value | Description                               |
+| ---------- | --------- | ------- | ------------- | ----------------------------------------- |
+| totalCount | number    |         | 0             | 总记录数                                  |
+| pageSize   | number    |         | 10            | 每页显示的记录数                          |
+| ngModel    | number    | Y       |               | 当前选中的页码                            |
+| simpleMode | boolean   |         | false         | 是否是简单模式，简单模式可以自定义toolbar |
  
 **Slots（ng-content占位符）**
 
-| Name | Description |
-| --- | --- |
+| Name               | Description                                 |
+| ------------------ | ------------------------------------------- |
+| pagination-toolbar | 用于放置分页统计信息，如显示xxx提交，共xx条 |
 
 **Events（Output）**
 
-| Name | Paramters | Description |
-| --- | --- | --- |
-| onPageChange | number | 页码变更后触发，并传入当前选择的页码 |
+| Name         | Paramters | Description                          |
+| ------------ | --------- | ------------------------------------ |
+| onPageChange | number    | 页码变更后触发，并传入当前选择的页码 |

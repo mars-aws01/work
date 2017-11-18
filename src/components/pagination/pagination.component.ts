@@ -23,55 +23,55 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, OnChan
   private onTouched: any = Function.prototype;
   public paginationClass: string = '';
   public pageIndex: number = 1;
-  private _pageSize: number = 10;
-  public pageCount: number = 1;
   public pages: Array<any> = [];
+  public inputValue: number = this.pageIndex;
 
-  @Input()
-  public totalCount: number = 0;
+  @Input() totalCount: number = 0;
+  @Input() simpleMode: boolean = false;
+  @Input() pageSize: number = 20;
+  @Output() onPageChange: EventEmitter<number> = new EventEmitter();
 
-  @Input()
-  public set pageSize(val: number) {
-    this._pageSize = Math.floor(Math.max(1, val));
+  public get pageCount() {
+    return Math.ceil(this.totalCount / this.pageSize);
   }
-
-  @Output()
-  public onPageChange: EventEmitter<number> = new EventEmitter();
 
   ngOnInit() {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.totalCount || changes.pageSize) {
-      this.calcPageInfo();
+    let pageIndex = Math.min(this.pageIndex, this.pageCount);
+    if (pageIndex !== this.pageIndex) {
+      this.emitValue(pageIndex);
     }
   }
 
+  public handleInputBlur(val: number) {
+    this.inputValue = this.pageIndex;
+  }
+
+  public handleEnterInput(evt: KeyboardEvent) {
+    if (evt.keyCode !== 13) {
+      return;
+    }
+    const val = +this.inputValue;
+    if (val !== val) {
+      return;
+    }
+    this.pageClick(val);
+  }
+
   pageClick(p: number) {
-    if (p < 1) { return; }
-    if (p > this.pageCount) { return; }
-    this.pageIndex = p;
-    this.emitValue();
-    this.buildPages();
+    if (p < 1 || p > this.pageCount) { return; }
+    this.emitValue(p);
   }
 
-  public writeValue(value: any): void {
-    this.pageIndex = Math.max(1, +value);
-    this.buildPages();
-    this.onPageChange.next(this.pageIndex);
-  }
-
-  public registerOnChange(fn: (_: any) => {}): void {
-    this.onChange = fn;
-  }
-
-  public registerOnTouched(fn: () => {}): void {
-    this.onTouched = fn;
-  }
-
-  private emitValue() {
-    this.onChange(this.pageIndex);
-    this.onPageChange.next(this.pageIndex);
+  private emitValue(value: number) {
+    this.inputValue = this.pageIndex = value;
+    this.onChange(value);
+    this.onPageChange.next(value);
+    if (!this.simpleMode) {
+      this.buildPages();
+    }
   }
 
   private buildPages() {
@@ -109,15 +109,18 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, OnChan
     this.pages = result;
   }
 
-  private calcPageInfo() {
-    this.pageCount = Math.ceil(this.totalCount / this._pageSize);
-    this.buildPages();
-    if (this.pageIndex > this.pageCount) {
-      this.pageIndex = this.pageCount;
+  public writeValue(value: any): void {
+    let pageIndex = Math.min(Math.max(1, +value), this.pageCount);
+    this.inputValue = pageIndex;
+    this.pageIndex = this.inputValue;
+    if (!this.simpleMode) {
       this.buildPages();
-      setTimeout(() => {
-        this.emitValue();
-      });
     }
+  }
+  public registerOnChange(fn: (_: any) => {}): void {
+    this.onChange = fn;
+  }
+  public registerOnTouched(fn: () => {}): void {
+    this.onTouched = fn;
   }
 }

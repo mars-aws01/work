@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.1.5 (2017.11.18)
+
+- 修复 `nk-radio`, `nk-checkbox` 重复执行的bug
+- 
+
 ## v0.1.4 (2017.11.10)
 
 - 清理 `overlay`
