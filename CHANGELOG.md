@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 
 - 修复 `nk-input` 在 `[disabled]="true"` 时，仍能触发 `iconClick` 事件的bug
 - 分页组件增强，增加 `toolbar` 和 页码下拉选择
+- 修复 `collapse-box` 点击列头icon不能伸缩的问题
 
 ## v0.1.5 (2017.11.18)
 
