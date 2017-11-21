@@ -32,6 +32,11 @@
       <i class="fa fa-angle-double-right"></i>
     </a>
   </li>
+  <li class="pagesize-bar" *ngIf="allowPageSize">
+    <select [ngModel]="pageSize" (ngModelChange)="handlePageSizeChange($event)">
+      <option *ngFor="let p of pageSizeList" [value]="p">{{p}}</option>
+    </select>
+  </li>
   <li class="pagination-toolbar" *ngIf="simpleMode">
     <ng-content select="[slot=pagination-toolbar]" #toolbar></ng-content>
   </li>

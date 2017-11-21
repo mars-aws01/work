@@ -19,12 +19,18 @@
       <nk-pagination [totalCount]="pageObj.totalCount" [pageSize]="pageObj.pageSize" name="pageIndex" [(ngModel)]="pageIndex" (onPageChange)="onPageChanged($event)"></nk-pagination>
     </div>
     <div class="col-xs-6">
-      {{pageIndex}}
       <nk-pagination [simpleMode]="true" [totalCount]="pageObj.totalCount" [pageSize]="pageObj.pageSize" name="pageIndex" [(ngModel)]="pageIndex"
         (onPageChange)="onPageChanged($event)">
         <ng-container slot="pagination-toolbar">
           显示{{(pageIndex-1)*pageObj.pageSize+1}} - {{pageIndex*pageObj.pageSize}} 条，共{{pageObj.totalCount}}条
         </ng-container>
+      </nk-pagination>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <nk-pagination [simpleMode]="true" [totalCount]="pageObj.totalCount" [pageSize]="pageObj.pageSize" name="pageIndex" [(ngModel)]="pageIndex"
+        (onPageChange)="onPageChanged($event)" [allowPageSize]="true" (onPageSizeChange)="handleSizeChange($event)">
       </nk-pagination>
     </div>
   </div>

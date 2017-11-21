@@ -1,7 +1,9 @@
 import './pagination.component.styl';
 
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, forwardRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+import { setTimeout } from 'timers';
 
 export const PAGINATION_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -14,7 +16,8 @@ const MAX_PAGE_BUTTON_COUNT = 10;
 @Component({
   selector: 'nk-pagination',
   templateUrl: 'pagination.component.html',
-  providers: [PAGINATION_VALUE_ACCESSOR]
+  providers: [PAGINATION_VALUE_ACCESSOR],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class PaginationComponent implements ControlValueAccessor, OnInit, OnChanges {
@@ -29,12 +32,15 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, OnChan
   @Input() totalCount: number = 0;
   @Input() simpleMode: boolean = false;
   @Input() pageSize: number = 20;
+  @Input() pageSizeList: number[] = [10, 20, 50];
+  @Input() allowPageSize = false;
   @Output() onPageChange: EventEmitter<number> = new EventEmitter();
+  @Output() onPageSizeChange: EventEmitter<number> = new EventEmitter();
 
   public get pageCount() {
     return Math.ceil(this.totalCount / this.pageSize);
   }
-
+  
   ngOnInit() {
   }
 
@@ -60,7 +66,12 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, OnChan
     this.pageClick(val);
   }
 
-  pageClick(p: number) {
+  public handlePageSizeChange(v: number) {
+    v = +v;
+    this.onPageSizeChange.emit(v);
+  }
+
+  public pageClick(p: number) {
     if (p < 1 || p > this.pageCount) { return; }
     this.emitValue(p);
   }

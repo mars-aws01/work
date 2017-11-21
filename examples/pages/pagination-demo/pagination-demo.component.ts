@@ -18,4 +18,9 @@ export class PaginationDemoComponent implements OnInit {
   public onPageChanged(pageIndex: number) {
     console.log('页码变更，当前页：', pageIndex);
   }
+
+  public handleSizeChange(size: number) {
+    console.log(size);
+    this.pageObj.pageSize = size;
+  }
 }

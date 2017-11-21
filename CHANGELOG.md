@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.1.6 (2017.11.21)
+
+- 修复 `nk-input` 在 `[disabled]="true"` 时，仍能触发 `iconClick` 事件的bug
+- 分页组件增强，增加 `toolbar` 和 页码下拉选择
+
 ## v0.1.5 (2017.11.18)
 
 - 修复 `nk-radio`, `nk-checkbox` 重复执行的bug

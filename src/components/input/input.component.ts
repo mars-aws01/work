@@ -57,7 +57,9 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   public handleIconClick(evt: MouseEvent) {
-    this.iconClick.emit(evt);
+    if (!this.disabled) {
+      this.iconClick.emit(evt);
+    }
   }
 
   writeValue(obj: any): void {
