@@ -1,3 +1,26 @@
-<div class="nk-step">
-  
+<div class="nk-step" [ngClass]="stepClass" [style]="makeStepStyles()">
+  <div [class]="'nk-step__head is-' + currentStatus()">
+    <div class="nk-step__line" [ngStyle]="{
+    'margin-right': isLast() ? '' : parent.offset + 'px',
+    'display': isLast() ? 'none' : 'block'}">
+      <i class="nk-step__line-inner" [style]="makeLineStyles()"></i>
+    </div>
+    <span [class]="'nk-step__icon ' + (icon ? 'is-icon' : 'is-text')">
+      <ng-container *ngIf="currentStatus() !== 'success' && currentStatus() !== 'error'">
+        <i *ngIf="icon" [class]="'nk-step__icon-inner ' + icon"></i>
+        <div *ngIf="!icon && !parent.simple" class="nk-step__icon-inner">{{ index + 1 }}</div>
+      </ng-container>
+      <i *ngIf="currentStatus() === 'success' || currentStatus() === 'error'" [class]="'fa fa-' + (currentStatus() === 'success' ? 'check' : 'close') + ' nk-step__icon-inner is-status'">
+      </i>
+    </span>
+  </div>
+  <div class="nk-step__main">
+    <div [class]="'nk-step__title ' + 'is-' + currentStatus()" #titleRef>
+      <ng-container>{{ title }}</ng-container>
+    </div>
+    <div *ngIf="parent.simple" class="nk-step__arrow"></div>
+    <div [class]="'nk-step__description ' + 'is-' + currentStatus()">
+      <ng-container>{{ description }}</ng-container>
+    </div>
+  </div>
 </div>
