@@ -29,6 +29,8 @@ import { RatingComponent } from './rating/rating.component';
 import { RowComponent } from './row/row.component';
 import { SelectComponent } from './select/select.component';
 import { SelectOptionComponent } from './select/select-option.component';
+import { StepComponent } from './steps/step.component';
+import { StepsComponent } from './steps/steps.component';
 import { SwitchComponent } from './switch/switch.component';
 import { TabItemComponent } from './tabset/tab-item.component';
 import { TabsetComponent } from './tabset/tabset.component';
@@ -64,6 +66,7 @@ export const ALL_COMPONENTS = [
   ModalComponent,
   ImageZoomComponent,
   ProgressComponent,
+  StepsComponent, StepComponent,
   TabsetComponent,
   TabItemComponent,
 

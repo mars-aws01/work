@@ -24,6 +24,7 @@ import { RadioDemoComponent } from './radio-demo/radio-demo.component';
 import { RadioGroupDemoComponent } from './radio-group-demo/radio-group-demo.component';
 import { RatingDemoComponent } from './rating-demo/rating-demo.component';
 import { SelectDemoComponent } from './select-demo/select-demo.component';
+import { StepsDemoComponent } from './steps-demo/steps-demo.component';
 import { SwitchDemoComponent } from './switch-demo/switch-demo.component';
 import { TabsetDemoComponent } from './tabset-demo/tabset-demo.component';
 import { TooltipDemoComponent } from './tooltip-demo/tooltip-demo.component';
@@ -45,6 +46,7 @@ export {
   ModalDemoComponent,
   ImageZoomDemoComponent,
   ProgressDemoComponent,
+  StepsDemoComponent,
   TabsetDemoComponent,
   WidgetDemoComponent,
   // Form Elements
@@ -82,6 +84,7 @@ export const PAGE_COMPONENTS = [
   ModalDemoComponent,
   ImageZoomDemoComponent,
   ProgressDemoComponent,
+  StepsDemoComponent,
   TabsetDemoComponent,
   WidgetDemoComponent,
 
