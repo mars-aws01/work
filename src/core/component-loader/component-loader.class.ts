@@ -16,7 +16,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { PositioningOptions, PositioningService } from '../positioning';
-import { listenToTriggersV2, registerOutsideClick } from '../utils/triggers';
+import { listenToTriggersV2, registerOutsideClick } from '../utils';
 
 import { ContentRef } from './content-ref.class';
 import { ListenOptions } from './listen-options.model';

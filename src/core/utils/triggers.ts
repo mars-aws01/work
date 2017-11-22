@@ -11,7 +11,7 @@ const DEFAULT_ALIASES = {
   focus: ['focusin', 'focusout']
 };
 
-export function parseTriggers(
+function parseTriggers(
   triggers: string,
   aliases: any = DEFAULT_ALIASES
 ): Trigger[] {
@@ -47,7 +47,7 @@ export function parseTriggers(
   return parsedTriggers;
 }
 
-export function listenToTriggers(
+function listenToTriggers(
   renderer: Renderer2,
   target: any,
   triggers: string,
@@ -80,7 +80,7 @@ export function listenToTriggers(
   };
 }
 
-export function listenToTriggersV2(
+function listenToTriggersV2(
   renderer: Renderer2,
   options: ListenOptions
 ): Function {
@@ -124,7 +124,7 @@ export function listenToTriggersV2(
   };
 }
 
-export function registerOutsideClick(
+function registerOutsideClick(
   renderer: Renderer2,
   options: ListenOptions
 ) {
@@ -146,3 +146,10 @@ export function registerOutsideClick(
     options.hide();
   });
 }
+
+export {
+  parseTriggers,
+  listenToTriggers,
+  listenToTriggersV2,
+  registerOutsideClick
+};
