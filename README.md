@@ -43,26 +43,23 @@ export class AppModule {
 - [x] ImageZoom [Usage](src/components/image-zoom/README.md)
 - [x] Pagination [Usage](src/components/pagination/README.md)
 - [x] Progress [Usage](src/components/progress/README.md)
+- [x] Steps [Usage](src/components/steps/README.md)
 - [x] TabSet [Usage](src/components/tabset/README.md)
 - [x] Widget [Usage](src/components/widget/README.md)
-- [ ] Wizard [Usage](src/components/wizard/README.md)
 
 ## Forms Elements
 
 - [x] Form [Usage](src/components/form/README.md)
-- [ ] Autocomplete [Usage](src/components/autocomplete/README.md)
 - [x] CheckBox [Usage](src/components/checkbox/README.md)
 - [x] CheckBoxGroup [Usage](src/components/checkbox-group/README.md)
-- [ ] DatePicker [Usage](src/components/date-picker/README.md)
 - [x] Input [Usage](src/components/autocomplete/README.md)
-- [] InputGroup [Usage](src/components/input-group/README.md)
+- [ ] InputGroup [Usage](src/components/input-group/README.md)
 - [x] Radio [Usage](src/components/radio/README.md)
 - [x] RadioGroup [Usage](src/components/radio-group/README.md)
 - [x] Rating [Usage](src/components/rating/README.md)
 - [x] Switch [Usage](src/components/switch/README.md)
 - [ ] Cascader [Usage](src/components/cascader/README.md)
 - [x] Select [Usage](src/components/select/README.md)
-- [ ] TimePicker [Usage](src/components/time-picker/README.md)
 
 ## Date Elements
 

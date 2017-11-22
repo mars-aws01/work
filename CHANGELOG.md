@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.1.7 (2017.11.xx)
+
+- 增加 `nk-steps` 组件
+
 ## v0.1.6 (2017.11.21)
 
 - 修复 `nk-input` 在 `[disabled]="true"` 时，仍能触发 `iconClick` 事件的bug
