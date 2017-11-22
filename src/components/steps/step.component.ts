@@ -8,5 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class StepComponent implements OnInit {
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log('xxxx');
+  }
 }

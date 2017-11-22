@@ -24,6 +24,7 @@ import {
   RadioGroupDemoComponent,
   RatingDemoComponent,
   SelectDemoComponent,
+  StepsDemoComponent,
   SwitchDemoComponent,
   TabsetDemoComponent,
   TooltipDemoComponent,
@@ -47,6 +48,7 @@ const demoRoutes: Routes = [
   { path: 'modal', component: ModalDemoComponent },
   { path: 'image-zoom', component: ImageZoomDemoComponent },
   { path: 'progress', component: ProgressDemoComponent },
+  { path: 'steps', component: StepsDemoComponent },
   { path: 'tabset', component: TabsetDemoComponent },
   { path: 'widget', component: WidgetDemoComponent },
   // Form Elements
@@ -85,4 +87,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

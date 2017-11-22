@@ -7,5 +7,6 @@ import { Component, OnInit } from '@angular/core';
 
 export class StepsDemoComponent implements OnInit {
 
-	ngOnInit() { }
+	ngOnInit() { 
+  }
 }

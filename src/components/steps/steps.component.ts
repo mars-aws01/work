@@ -25,13 +25,13 @@ export class StepsComponent implements OnInit {
   }
 
   ngOnInit() {
-    const children = this.elementRef.nativeElement.querySelectorAll('el-step')
-    if (!children || !children.length) {
-      return console.warn('steps components required children')
-    }
-    children.forEach((el: HTMLElement, index: number) => {
-      this.renderer.setAttribute(el, 'el-index', String(index))
-    })
-    this.stepsLength = children.length
+    // const children = this.elementRef.nativeElement.querySelectorAll('el-step')
+    // if (!children || !children.length) {
+    //   return console.warn('steps components required children')
+    // }
+    // children.forEach((el: HTMLElement, index: number) => {
+    //   this.renderer.setAttribute(el, 'el-index', String(index))
+    // })
+    // this.stepsLength = children.length
   }
 }
