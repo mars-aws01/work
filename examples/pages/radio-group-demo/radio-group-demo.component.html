@@ -14,4 +14,14 @@
       </nk-radio-group>
     </nk-col>
   </nk-row>
+  <nk-row>
+    <nk-col>
+      <nk-radio-group [(ngModel)]="val2" name="xxxx">
+        <nk-radio value="A">A</nk-radio>
+        <nk-radio value="B">B</nk-radio>
+        <nk-radio value="C" name="abc">C</nk-radio>
+      </nk-radio-group>
+      {{val2}}
+    </nk-col>
+  </nk-row>
 </div>

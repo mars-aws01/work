@@ -21,6 +21,7 @@ export class RadioGroupComponent implements OnInit {
   onTouched: any = Function.prototype;
 
   @Input() disabled: boolean = false;
+  @Input() name: string;
 
   @ContentChildren(forwardRef(() => RadioComponent))
   public radioList: Array<RadioComponent> = [];

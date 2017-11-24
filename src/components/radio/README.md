@@ -7,6 +7,7 @@
 | value | 设置当前Radio的value | any | - |
 | disabled | 设置是否为禁用状态 | boolean | false |
 | ngModel | 指定当前选中的值 | any | - |
+| name | 设置 `input type=radio` 的 name 属性 | string | |
  
 **Slots（ng-content占位符）**
 

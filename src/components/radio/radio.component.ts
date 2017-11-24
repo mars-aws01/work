@@ -27,8 +27,13 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
     return this.innerValue === this.value;
   }
 
+  public get radioName() {
+    return this.name || (this.radioGroup || { name: '' }).name || 'nk-radio';
+  }
+
   @Input() value: any = true;
   @Input() disabled: boolean = false;
+  @Input() name: string;
 
   constructor( @Optional() @Host() private radioGroup: RadioGroupComponent) {
 

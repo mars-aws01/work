@@ -2,16 +2,17 @@
 
 **Input**
 
-| 属性 | 说明 |  类型 | 默认值 |
-| --- | --- | --- | --- | --- |
-| disabled | 设置是否为禁用状态 | boolean | false |
-| ngModel | 指定当前选中的值 | any | - |
+| 属性     | 说明                         | 类型    | 默认值           |
+| -------- | ---------------------------- | ------- | ---------------- |  |
+| disabled | 设置是否为禁用状态           | boolean | false            |
+| ngModel  | 指定当前选中的值             | any     | -                |
+| name     | 设置radio-group下radio的name | string  |  |
  
 **Slots（ng-content占位符）**
 
-| Name | Description |
-| --- | --- |
-| '' | 放置 `nk-radio` |
+| Name | Description     |
+| ---- | --------------- |
+| ''   | 放置 `nk-radio` |
 
 **Usage**
 
