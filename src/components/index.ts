@@ -11,6 +11,7 @@ import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.componen
 import { ColComponent } from './col/col.component';
 import { CollapseBoxComponent } from './collapse-box/collapse-box.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
+import { FixbarComponent } from './fixbar/fixbar.component';
 import { FormComponent } from './form/form.component';
 import { FormItemComponent } from './form/form-item.component';
 import { GridCellDirective } from './grid/column-cell.directive';
@@ -61,6 +62,7 @@ export const ALL_COMPONENTS = [
   CarouselComponent,
   CarouselItemComponent,
   CollapseBoxComponent,
+  FixbarComponent,
   GridComponent,
   GridColumnDirective,
   GridCellDirective,

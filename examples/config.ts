@@ -37,6 +37,7 @@ export const menuData: Array<MenuItem> = [
       { text: 'Button', url: '/button' },
       { text: 'Carousel', url: '/carousel' },
       { text: 'Collapse Box', url: '/collapse-box' },
+      { text: 'FixBar', url: '/fixbar' },
       { text: 'Grid/Table', url: '/grid' },
       { text: 'Modal', url: '/modal' },
       { text: 'Image Zoom', url: '/image-zoom' },

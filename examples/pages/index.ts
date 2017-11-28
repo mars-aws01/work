@@ -8,6 +8,7 @@ import { CheckboxGroupDemoComponent } from './checkbox-group-demo/checkbox-group
 import { CollapseBoxDemoComponent } from './collapse-box-demo/collapse-box-demo.component';
 import { DatePickerDemoComponent } from './date-picker-demo/date-picker-demo.component';
 import { DemoContainerComponent } from './demo-container/demo-container.component';
+import { FixbarDemoComponent } from './fixbar-demo/fixbar-demo.component';
 import { FormDemoComponent } from './form-demo/form-demo.component';
 import { GridDemoComponent } from './grid-demo/grid-demo.component';
 import { HomeComponent } from './home/home.component';
@@ -42,6 +43,7 @@ export {
   ButtonDemoComponent,
   CarouselDemoComponent,
   CollapseBoxDemoComponent,
+  FixbarDemoComponent,
   GridDemoComponent,
   ModalDemoComponent,
   ImageZoomDemoComponent,
@@ -80,6 +82,7 @@ export const PAGE_COMPONENTS = [
   ButtonDemoComponent,
   CarouselDemoComponent,
   CollapseBoxDemoComponent,
+  FixbarDemoComponent,
   GridDemoComponent,
   ModalDemoComponent,
   ImageZoomDemoComponent,

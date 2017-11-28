@@ -1,9 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v0.1.7 (2017.11.xx)
+## v0.1.7 (2017.11.28)
 
 - 增加 `nk-steps` 组件
+- 还原 `nk-widget` 组件
+- 增加 `nk-fixbar` 组件
 
 ## v0.1.6 (2017.11.21)
 

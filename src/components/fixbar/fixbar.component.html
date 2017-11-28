@@ -1,0 +1,5 @@
+<ul class="nk-comp nk-fixbar">
+  <li *ngFor="let item of items" [title]="item.title" (click)="onItemClick(item, $event)">
+    <i [ngClass]="item.icon"></i>
+  </li>
+</ul>
