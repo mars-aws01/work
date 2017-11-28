@@ -36,6 +36,7 @@ import { TabItemComponent } from './tabset/tab-item.component';
 import { TabsetComponent } from './tabset/tabset.component';
 import { TooltipDirective } from './tooltip/tooltip.directive';
 import { ValidatorComponent } from './validator/validator.component';
+import { WidgetComponent } from './widget/widget.component';
 
 export const ENTRY_COMPONENTS = [PopoverContentComponent];
 
@@ -66,6 +67,7 @@ export const ALL_COMPONENTS = [
   ModalComponent,
   ImageZoomComponent,
   ProgressComponent,
+  WidgetComponent,
   StepsComponent, StepComponent,
   TabsetComponent,
   TabItemComponent,

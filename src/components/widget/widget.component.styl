@@ -1,0 +1,23 @@
+.nk-widget {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  .widget-heading {
+    height: 22px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 4px;
+  }
+
+  .widget-body {
+    min-height: 30px;
+    border-bottom: 1px solid #ccc;
+    padding: 4px;
+  }
+}

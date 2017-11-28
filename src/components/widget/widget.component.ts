@@ -1,13 +1,13 @@
-import './collapse-box.component.styl';
+import './widget.component.styl';
 
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 @Component({
-  selector: 'nk-collapse-box',
-  templateUrl: 'collapse-box.component.html'
+  selector: 'nk-widget',
+  templateUrl: 'widget.component.html'
 })
 
-export class CollapseBoxComponent implements OnInit, OnChanges {
+export class WidgetComponent implements OnInit, OnChanges {
 
   public innerCollapsed: boolean = false;
 

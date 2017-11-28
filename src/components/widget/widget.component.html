@@ -1,0 +1,15 @@
+<div class="nk-comp nk-widget">
+  <div class="widget-heading">
+    <span class="cursor-pointer" (click)="handleHeaderClick()">
+      <i class="nk-collapse-icon fa" [ngClass]="{'fa-angle-right': innerCollapsed, 'fa-angle-down': !innerCollapsed}"></i>
+      <b>{{header}}</b>
+    </span>
+    <span class="nk-collapse-box-line"></span>
+    <span>
+      <ng-content select="[slot=box-tools]"></ng-content>
+    </span>
+  </div>
+  <div class="widget-body" [hidden]="innerCollapsed">
+    <ng-content></ng-content>
+  </div>
+</div>
