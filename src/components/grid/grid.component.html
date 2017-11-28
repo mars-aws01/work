@@ -1,4 +1,4 @@
-<table class="nk-grid table table-striped table-bordered table-hover dataTable" width="100%">
+<table class="nk-comp nk-grid table table-striped table-bordered table-hover dataTable" width="100%">
   <thead>
     <tr>
       <th *ngFor="let column of columns" [ngClass]="getHeaderClass(column)" [style.width]="column.styleWidth" (click)="onHeaderClick(column)">{{column.header}}</th>

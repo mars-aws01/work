@@ -1,4 +1,4 @@
-<div class="nk-validator" *ngIf="control?.dirty && control?.invalid" [ngStyle]="validatorStyle">
+<div class="nk-comp nk-validator" *ngIf="control?.dirty && control?.invalid" [ngStyle]="validatorStyle">
   <span *ngFor="let type of validationTypes" [hidden]="!getShown(type)">
     <ng-container *ngIf="getShown(type)">
       {{getErrorMessage(type)}}

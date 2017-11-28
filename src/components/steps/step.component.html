@@ -1,4 +1,4 @@
-<div class="nk-step" [ngClass]="stepClass" [style]="makeStepStyles()">
+<div class="nk-comp nk-step" [ngClass]="stepClass" [style]="makeStepStyles()">
   <div [class]="'nk-step__head is-' + currentStatus()">
     <div class="nk-step__line" [ngStyle]="{
     'margin-right': isLast() ? '' : parent.offset + 'px',
