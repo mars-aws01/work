@@ -5,5 +5,26 @@
         ABCDE
       </nk-widget>
     </nk-col>
+
   </nk-row>
+  <nk-row [gutter]="20">
+    <nk-col [span]="12">
+      <nk-widget header="这是一个挂件" icon="fa fa-star">
+        ABCDE
+        <ng-container slot="header">
+          <i>我是自定义Header</i>
+        </ng-container>
+      </nk-widget>
+    </nk-col>
+    <nk-col [span]="12">
+      <nk-widget header="这是一个挂件" icon="fa fa-star" defaultColor="#ccc">
+        ABCDE
+        <ng-container slot="header">
+          <i>我是自定义Header</i>
+        </ng-container>
+        <ng-container slot="toolbar">xxxxx</ng-container>
+      </nk-widget>
+    </nk-col>
+  </nk-row>
+
 </div>

@@ -1,12 +1,15 @@
 <div class="nk-comp nk-widget">
-  <div class="widget-heading">
+  <div class="widget-heading" [ngStyle]="headerStyle">
     <span class="cursor-pointer" (click)="handleHeaderClick()">
-      <i class="nk-collapse-icon fa" [ngClass]="{'fa-angle-right': innerCollapsed, 'fa-angle-down': !innerCollapsed}"></i>
-      <b>{{header}}</b>
+      <i class="nk-widget-icon fa" [ngClass]="{'fa-angle-right': innerCollapsed, 'fa-angle-down': !innerCollapsed}"></i>
+      <b *ngIf="!hasCustomHeader">
+        <i [hidden]="!icon" [attr.class]="icon"></i> {{header}}</b>
+      <span #customHeader>
+        <ng-content select="[slot=header]"></ng-content>
+      </span>
     </span>
-    <span class="nk-collapse-box-line"></span>
-    <span>
-      <ng-content select="[slot=box-tools]"></ng-content>
+    <span class="widget-toolbar">
+      <ng-content select="[slot=toolbar]"></ng-content>
     </span>
   </div>
   <div class="widget-body" [hidden]="innerCollapsed">
