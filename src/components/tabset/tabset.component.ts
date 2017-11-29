@@ -1,6 +1,6 @@
 import './tabset.component.styl';
 
-import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, Renderer2, SimpleChanges } from '@angular/core';
 
 import { TabItemComponent } from './tab-item.component';
 
@@ -11,6 +11,7 @@ import { TabItemComponent } from './tab-item.component';
 export class TabsetComponent implements OnInit, AfterViewInit, OnChanges {
   private _currentTabItem: TabItemComponent;
   public tabItems: TabItemComponent[] = [];
+  private isDestroyed = false;
 
   @Input() selected: string;
   @Input() tabsLeft: boolean = false;
@@ -26,7 +27,7 @@ export class TabsetComponent implements OnInit, AfterViewInit, OnChanges {
     };
   }
 
-  constructor() { }
+  constructor(private renderer: Renderer2) { }
 
   ngOnInit() { }
 
@@ -38,9 +39,12 @@ export class TabsetComponent implements OnInit, AfterViewInit, OnChanges {
 
   ngAfterViewInit() {
     setTimeout(() => {
-      this._setTabItemsName();
       this._processSelectedChange(this.selected);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.isDestroyed = true;
   }
 
   public setActiveItem(tabItem: TabItemComponent) {
@@ -55,18 +59,37 @@ export class TabsetComponent implements OnInit, AfterViewInit, OnChanges {
     this.selectedChange.emit(this._currentTabItem.innerName);
   }
 
+  public addTab(tab: TabItemComponent): void {
+    this.tabItems.push(tab);
+    if (!tab.innerName) {
+      tab.innerName = `tabpane-${this.tabItems.length - 1}`;
+    }
+    tab.active = this.tabItems.length === 1 && !tab.active;
+    if (tab.active) {
+      setTimeout(() => {
+        this.setActiveItem(tab);
+      });
+    }
+  }
+
+  public removeTab(tab: TabItemComponent) {
+    const index = this.tabItems.indexOf(tab);
+    if (index === -1 || this.isDestroyed) {
+      return;
+    }
+    this.tabItems.splice(index, 1);
+    if (tab.elementRef.nativeElement.parentNode) {
+      this.renderer.removeChild(tab.elementRef.nativeElement.parentNode, tab.elementRef.nativeElement);
+    }
+    if (this.tabItems.length > 0 && this.tabItems.filter(x => x.active).length === 0) {
+      this.setActiveItem(this.tabItems[this.tabItems.length - 1]);
+    }
+  }
+
   private _processSelectedChange(name: string) {
     let findTabItem = this.tabItems.find(x => x.innerName === name) || this.tabItems[0];
     if (findTabItem) {
       this.setActiveItem(findTabItem);
     }
-  }
-
-  private _setTabItemsName() {
-    this.tabItems.forEach((item: TabItemComponent, idx: number) => {
-      if (!item.innerName) {
-        item.innerName = `tabpane-${idx}`;
-      }
-    });
   }
 }

@@ -9,5 +9,15 @@ export class TabsetDemoComponent implements OnInit {
 
   public selected: string = 'tabpane-1';
 
+  public tabs = [{
+    header: 'Tab1'
+  }, {
+    header: 'Tab2'
+  }];
+
   ngOnInit() { }
+
+  public consoleChangeEvent(val: any) {
+    console.log(val);
+  }
 }

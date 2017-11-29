@@ -1,5 +1,6 @@
 <div class="page-tabset-demo">
-  当前选中项的名字：{{selected}} <button class="btn btn-primary" (click)="selected = 'tabpane-1'">设置为tabpane-1</button>
+  当前选中项的名字：{{selected}}
+  <button class="btn btn-primary" (click)="selected = 'tabpane-1'">设置为tabpane-1</button>
   <hr>
   <div class="col-xs-6">
     <nk-tabset [(selected)]="selected">
@@ -30,5 +31,15 @@
         <br> 我是第二个Tab的内容
       </nk-tab-item>
     </nk-tabset>
+  </div>
+  <div class="col-xs-6">
+    <nk-tabset (selectedChange)="consoleChangeEvent($event)">
+      <nk-tab-item [header]="tab.header" *ngFor="let tab of tabs">
+        我是第一个Tab的内容-Header = {{tab.header}}
+      </nk-tab-item>
+    </nk-tabset>
+    {{tabs.length}}
+    <nk-button (click)="tabs.push({header: 'Tab' + (tabs.length+1) })">Add</nk-button>
+    <nk-button (click)="tabs.splice(0, 1)">Remove</nk-button>
   </div>
 </div>

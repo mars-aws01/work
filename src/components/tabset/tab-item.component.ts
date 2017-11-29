@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnChanges, OnInit, Renderer, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, Renderer2, SimpleChanges } from '@angular/core';
 
 import { TabsetComponent } from './tabset.component';
 
@@ -13,7 +13,7 @@ export class TabItemComponent implements OnInit, OnChanges {
   public get active() { return this._active; }
   public set active(val) {
     this._active = val;
-    this.renderer.setElementClass(this.elementRef.nativeElement, 'active', val);
+    this.renderer[val ? 'addClass' : 'removeClass'](this.elementRef.nativeElement, 'active');
   }
 
   @Input()
@@ -26,14 +26,14 @@ export class TabItemComponent implements OnInit, OnChanges {
   public icon: string;
 
   constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer,
+    public elementRef: ElementRef,
+    public renderer: Renderer2,
     private tabset: TabsetComponent
   ) {
   }
 
   ngOnInit() {
-    this.tabset.tabItems.push(this);
+    this.tabset.addTab(this);
     this.elementRef.nativeElement.className = 'nk-tab-item';
   }
 
@@ -41,5 +41,9 @@ export class TabItemComponent implements OnInit, OnChanges {
     if (changes.name) {
       this.innerName = name;
     }
+  }
+
+  ngOnDestroy() {
+    this.tabset.removeTab(this);
   }
 }
