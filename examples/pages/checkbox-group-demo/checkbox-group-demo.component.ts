@@ -8,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class CheckboxGroupDemoComponent implements OnInit {
 
   public languageList = ['JavaScript', 'C#', 'Java', 'Go', 'Python'];
-  public selectedLanguages: string[] = [];
-  
-  ngOnInit() { }
+  public selectedLanguages: string[] = ['C#'];
+
+  ngOnInit() {
+    setTimeout(() => {
+      this.selectedLanguages.push('Java');
+      this.selectedLanguages = this.selectedLanguages.slice(0);
+      console.log('push');
+    }, 2000);
+  }
 }
