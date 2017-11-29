@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.1.8 (2017.11.29)
+
+- 修复 `nk-tabset` 不卸载TabItem的bug
+
 ## v0.1.7 (2017.11.28)
 
 - 增加 `nk-steps` 组件
