@@ -1,16 +1,36 @@
 <div class="page-date-picker-demo">
-  <nk-row [gutter]="20">
-    <nk-col [span]="6">
-      <nk-date-picker lang="zh-cn"></nk-date-picker>
-    </nk-col>
-    <nk-col [span]="6">
-      <nk-date-picker></nk-date-picker>
-    </nk-col>
-    <nk-col [span]="6">
-      <nk-date-picker mode="year"></nk-date-picker>
-    </nk-col>
-    <nk-col [span]="6">
-      <nk-date-picker mode="month"></nk-date-picker>
-    </nk-col>
-  </nk-row>
+  <div class="row m-b-10">
+    <div class="col-md-4">
+      <div class="m-b-5">
+        <nk-date-picker [(ngModel)]="selectDate"></nk-date-picker>
+      </div>
+      <div>
+        {{ selectDate }}
+      </div>
+    </div>
+    <div class="col-md-4">
+      <nk-date-picker [(ngModel)]="selectDate" lang="zh-cn" placeholder="Select Date"></nk-date-picker>
+    </div>
+    <div class="col-md-4">
+      <nk-date-picker [(ngModel)]="selectDate" [disabled]="true"></nk-date-picker>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="m-b-5">
+        <nk-date-picker [(ngModel)]="selectMonth" mode="month"></nk-date-picker>
+      </div>
+      <div>
+        {{ selectMonth }}
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="m-b-5">
+        <nk-date-picker [(ngModel)]="selectYear" mode="year"></nk-date-picker>
+      </div>
+      <div>
+        {{ selectYear }}
+      </div>
+    </div>
+  </div>
 </div>

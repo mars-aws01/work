@@ -10,23 +10,49 @@ import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, Renderer
 
 export class StepsComponent implements OnInit {
 
-  @Input() space: string | number;                      //  ex: 10px, 50%
+  @Input()
+  get space(): string | number {
+    return null;
+  }//  ex: 10px, 50%
+  set space(value: string | number) {
+    console.warn("[nk-steps] 'space' property has expired");
+  }
   @Input() direction: string = 'horizontal'     // enum: vertical/horizontal
   @Input() active: number = 0
-  @Input() simple: boolean = false
-  @Input('process-status') processStatus: string = 'process'
-  @Input('finish-status') finishStatus: string = 'finish'     // enum: wait/process/finish/error/success
-  @Input('align-center') alignCenter: boolean = false
+  @Input()
+  get simple(): boolean {
+    return false;
+  }
+
+  @Input('process-status')
+  get processStatus(): string {
+    return 'process';
+  }
+  set processStatus(value: string) {
+    console.warn("[nk-steps] 'process-status' property has expired");
+  }
+  @Input('finish-status')
+  get finishStatus(): string {
+    return 'finish';     // enum: wait/process/finish/error/success
+  }
+  set finishStatus(value: string) {
+    console.warn("[nk-steps] 'finish-status' property has expired");
+  }
+  @Input('align-center')
+  get alignCenter(): boolean {
+    return false;
+  }
+  set alignCenter(value: boolean) {
+    console.warn("[nk-steps] 'align-center' property has expired");
+  }
 
   offset: number = 0;
   stepsLength: number = 0;
 
   public get stepsClass() {
     const c = {
-      [`el-steps--${this.direction}`]: !this.simple,
-      ['el-steps--simple']: this.simple
-    };
-    console.log(c);
+      [`nk-steps--${this.direction}`]: !this.simple      
+    };    
     return c;
   }
 

@@ -1,9 +1,21 @@
 <div class="page-select-demo">
-  <nk-row>
-    <nk-col [span]="8">
-      <nk-select>
+  <div class="flex-display">
+    <div style="width: 150px">
+      <nk-select [(ngModel)]="selectedValue" [placeholder]="'Select Item'">
+        <ng-container *ngFor="let item of selectOptions; let i = index">
+          <nk-option [value]="item" [label]="item" [disabled]="i == 2"></nk-option>
+        </ng-container>
+      </nk-select>
+    </div>
+    <div>
+      Selected Value: {{selectedValue}}
+    </div>
+  </div>
+  <div class="flex-display">
+    <div style="width: 150px">
+      <nk-select [(ngModel)]="selectedValue2" [disabled]="true">
         <nk-option *ngFor="let item of selectOptions" [value]="item" [label]="item"></nk-option>
       </nk-select>
-    </nk-col>
-  </nk-row>
+    </div>
+  </div>
 </div>

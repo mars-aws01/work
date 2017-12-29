@@ -7,13 +7,17 @@ import { Component, OnInit } from '@angular/core';
 
 export class SelectDemoComponent implements OnInit {
 
-  public selectOptions = (function () {
-    let arr = [];
-    let i = 20;
-    while (i--) {
-      arr.push('Item' + i);
+  selectedValue: any;
+  selectedValue2 = 'Item2';
+
+  public selectOptions: Array<any>;
+
+  ngOnInit() {
+    this.selectOptions = [];
+    let i = 0;
+    while (i < 10) {
+      this.selectOptions.push('Item' + i);
+      i++;
     }
-    return arr;
-  })();
-  ngOnInit() { }
+  }
 }

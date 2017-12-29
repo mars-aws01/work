@@ -1,46 +1,41 @@
-.nk-pagination {
-  margin: 0;
+.nk-pagination-panel {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 -8px 4px -8px;
 
-  li a {
-    padding: 2.5px 8px;
+  >div {
+    padding: 0 8px;
   }
 
-  .pagination-input a {
-    padding: 0;
-
-    input {
-      height: 22px;
-      border: none;
-      width: 40px;
-      text-align: center;
-    }
+  .total-count {
   }
 
-  .pagesize-bar {
-    border: 1px solid #ddd;
-    height: 24px;
-    display: inline-block;
-    border-left: 0;
+  .page-info {
+    display: flex;
+    align-items: center;
 
-    select {
-      border: none;
-      height: 22px;
-      outline: none;
-      width: 50px;
-    }
-  }
+    >div {
+      display: flex;
+      align-items: center;
 
-  .pagination-toolbar {
-    line-height: 24px;
-    margin-left: 4px;
-
-    a {
-      color: #000;
-
-      &:hover {
-        background-color: #fff;
-        color: #000;
+      &+div {
+        margin-left: 4px;
       }
+
+      >span {
+        margin-right: 4px;
+      }
+
+      nk-select {
+        width: 60px;
+      }
+    }
+  }
+
+  .pagination-nav {
+    .nk-button {
+      margin-bottom: 0;
     }
   }
 }

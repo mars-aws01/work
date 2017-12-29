@@ -1,5 +1,5 @@
 <div class="page-demo-container">
-  <nk-collapse-box [header]="isService ? '服务Demo': '组件Demo'" icon="fa fa-file">
+  <nk-collapse-box [header]="isService ? 'Service Demo': 'Component Demo'" icon="fa fa-file">
     <div class="padding-10">
       <div class="demo-page-container">
         <router-outlet></router-outlet>
@@ -7,7 +7,7 @@
     </div>
   </nk-collapse-box>
   <div class="margin-top-20"></div>
-  <nk-collapse-box [header]="isService ? '服务文档': '组件文档'" icon="fa fa-book">
+  <nk-collapse-box [header]="isService ? 'Service Document': 'Component Document'" icon="fa fa-book">
     <div class="padding-10">
       <div class="document-container">
         <markdown-box [markdown]="componentDocument"></markdown-box>

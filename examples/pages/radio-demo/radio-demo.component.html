@@ -1,20 +1,15 @@
 <div class="page-radio-demo">
-  <nk-row>
-    <nk-col [span]="4">
-      <nk-radio value="男" [(ngModel)]="sex" (click)="handleRadioClick()">男</nk-radio>
-      <nk-radio value="女" [(ngModel)]="sex">女</nk-radio>
-    </nk-col>
-    <nk-col [span]="4">
-      <nk-button (click)="toggleSex()">切换性别</nk-button>
-    </nk-col>
-    <nk-col [span]="4">
-      禁用状态
-      <nk-radio value="男" [(ngModel)]="sex" disabled>无法选中</nk-radio>
-    </nk-col>
-    <nk-col [span]="4">
-      <span class="nk-text">
-        当前选中值： {{sex}}
-      </span>
-    </nk-col>
-  </nk-row>
+  <div class="flex-display">
+    <div>
+      <nk-radio value="Male" [(ngModel)]="sex">Male</nk-radio>
+      <nk-radio value="Female" [(ngModel)]="sex">Female</nk-radio>
+      <nk-radio value="Unknown" [(ngModel)]="sex" disabled>Unknown</nk-radio>
+    </div>
+    <div>
+      Sex: {{sex}}
+    </div>
+  </div>
+  <div>
+    <nk-button (click)="toggleSex()">Change Sex</nk-button>
+  </div>
 </div>

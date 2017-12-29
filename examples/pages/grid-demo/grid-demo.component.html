@@ -1,18 +1,46 @@
 <div class="page-grid-demo">
-  <nk-row [gutter]="30">
-    <nk-col [span]="12">
-      <nk-grid [data]="userList">
-        <nk-grid-column header="姓名" field="Name" class="content-class" headerClass="header-class"></nk-grid-column>
-        <nk-grid-column header="性别" field="Sex"></nk-grid-column>
-        <nk-grid-column header="年龄" field="Age"></nk-grid-column>
-      </nk-grid>
-    </nk-col>
-    <nk-col [span]="12">
-      <nk-grid [data]="userList" [pageable]="true">
-        <nk-grid-column header="姓名" field="Name" class="content-class" headerClass="header-class"></nk-grid-column>
-        <nk-grid-column header="性别" field="Sex"></nk-grid-column>
-        <nk-grid-column header="年龄" field="Age"></nk-grid-column>
-      </nk-grid>
-    </nk-col>
-  </nk-row>
+  <div>
+    <nk-grid [data]="itemList" [(pageIndex)]="pageIndex" [pageSizeList]="pageSizeList" (onSorting)="onSorting($event)" (onPaging)="onPaging($event)"
+      (onPageSizeChanged)="onPageSizeChanged($event)" [pageable]="true" [showPageSizeList]="true" [defaultSortField]="'UnitPrice'"
+      [maxHeight]="200">
+      <nk-grid-column header="Action" class="content-class" headerClass="header-class">
+        <ng-template nkGridCellTemplate let-item="item">
+          <a href="javascript: void(0)" class="nk-link">
+            <i class="fa fa-pencil-square-o"></i>
+          </a>
+          <a href="javascript: void(0)" class="nk-link">
+            <i class="fa fa-trash"></i>
+          </a>
+          <a href="javascript: void(0)" class="nk-link">
+            Link
+          </a>
+        </ng-template>
+      </nk-grid-column>
+      <nk-grid-column header="Item#" field="ItemNo"></nk-grid-column>
+      <nk-grid-column header="Item Description" field="Description"></nk-grid-column>
+      <nk-grid-column header="Qty" field="Qty" [sortable]="true"></nk-grid-column>
+      <nk-grid-column header="Unit Price" field="UnitPrice" [sortable]="true"></nk-grid-column>
+      <nk-grid-column header="Ext Price" field="ExtPrice" [sortable]="true"></nk-grid-column>
+      <nk-grid-column header="Shipping Charge" field="Charge" [sortable]="true"></nk-grid-column>
+      <nk-grid-column header="WH" field="WH"></nk-grid-column>
+      <nk-grid-column header="Margin" field="Margin"></nk-grid-column>
+      <nk-grid-column header="Margin%" field="Margin_"></nk-grid-column>
+      <nk-grid-column header="Weight" field="Weight" [sortable]="true"></nk-grid-column>
+    </nk-grid>
+  </div>
+  <div [hidden]="eventLog?.length == 0">
+    <hr>
+    <div>
+      <h5>
+        <strong>Event Log</strong>
+      </h5>
+      <div #eventLogDiv style="background: #333; border-radius: 5px; max-height: 150px; overflow: auto; padding: 10px;">
+        <p *ngFor="let item of eventLog; let islast = last" [style.marginBottom]="islast ? '0px' : null">
+          <span style="color: #9acd32">[ {{ item.date | date: 'HH:mm:ss' }} ]</span>
+          <span style="color: tomato">[ {{ item.event }} ]</span>
+          <span style="color: white"> {{ item.log }} </span>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>

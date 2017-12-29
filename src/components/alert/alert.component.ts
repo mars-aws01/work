@@ -2,13 +2,6 @@ import './alert.component.styl';
 
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
-const iconTypeMap = {
-  info: 'fa-info-circle',
-  danger: 'fa-times-circle',
-  success: 'fa-check-circle',
-  warning: 'fa-info-circle'
-};
-
 @Component({
   selector: 'nk-alert',
   templateUrl: 'alert.component.html'
@@ -22,6 +15,23 @@ export class AlertComponent implements OnInit, OnChanges {
   @Input() closable: boolean = true;
   @Input() inline: boolean = true;
   @Output() onClose: EventEmitter<any> = new EventEmitter();
+  @Input() header: string;
+
+  public get inlineHeader() {
+    if (this.header) return this.header;
+    switch (this.header) {
+      case 'info':
+        return 'Information';
+      case 'warning':
+        return 'Warning';
+      case 'danger':
+        return 'Danger';
+      case 'success':
+        return 'Success';
+      default:
+        return 'Information';
+    }
+  }
 
   public get alertClass() {
     let arr = [`nk-alert-${this.type}`];
@@ -29,10 +39,6 @@ export class AlertComponent implements OnInit, OnChanges {
       arr.push('nk-alert-inline');
     }
     return arr;
-  }
-
-  public get iconClass() {
-    return iconTypeMap[this.type];
   }
 
   ngOnInit() {

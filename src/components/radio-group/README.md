@@ -1,12 +1,12 @@
-# nk-radio-group
+## nk-radio-group
 
 **Input**
 
-| 属性     | 说明                         | 类型    | 默认值           |
-| -------- | ---------------------------- | ------- | ---------------- |  |
-| disabled | 设置是否为禁用状态           | boolean | false            |
-| ngModel  | 指定当前选中的值             | any     | -                |
-| name     | 设置radio-group下radio的name | string  |  |
+| Name| Data Type | Two-way | Default Value | Description |
+| -------- | -------- | -------- | -------- | -------- |
+| disabled | boolean | | false | 设置是否为禁用状态 | 
+| name     | string  | | | 设置radio-group下radio的name |
+| ngModel  | any     | Y | - | 指定当前选中的值 |
  
 **Slots（ng-content占位符）**
 
@@ -23,12 +23,8 @@
 ```
 
 ```js
-export class RadioGroupDemoComponent implements OnInit {
-
-  public sex = '男';
-  public sexList = ['男', '女', '人妖', '保密'];
-  
-  ngOnInit() { }
-
+export class RadioGroupDemoComponent {
+  public sex = 'Male';
+  public sexList = ['Male', 'Female', 'Unknown'];
 }
 ```

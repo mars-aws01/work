@@ -8,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class InputDemoComponent implements OnInit {
 
   public inputValue: string = '';
+  public inputValue2: any = 123456;
+  public inputValue3: any = 123456;
+  public inputValue4: number;
 
   ngOnInit() { }
 
   public handleIconClick(evt: MouseEvent) {
-    alert('icon被点击');
+    alert('icon clicked');
   }
 }

@@ -1,4 +1,4 @@
-# nk-carousel
+## nk-carousel
 
 **Input**
 
@@ -20,7 +20,7 @@
 | --- | --- | --- |
 | change | currentIndex: number | 切换后触发，并传入当前切换到第几张 |
 
-# nk-carousel-item
+## nk-carousel-item
 
 **Input**
 
@@ -34,3 +34,30 @@
 | Name | Description |
 | --- | --- |
 | '' | 设置Item的内容 |
+
+**Usage**
+```html
+<nk-carousel>
+  <nk-carousel-item imgUrl="http://10.16.75.10:8001/img/demo/m3.jpg">
+    <h4>Title 1</h4>
+    <p>
+      Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id
+      dolor id nibh ultricies vehicula ut id elit.
+    </p>
+    <br>
+    <a href="javascript:void(0);" class="btn btn-info btn-sm">Read more</a>
+  </nk-carousel-item>
+  <nk-carousel-item imgUrl="http://10.16.75.10:8001/img/demo/m1.jpg">
+    <h4>Title 2</h4>
+    <p>
+      Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id
+      dolor id nibh ultricies vehicula ut id elit.
+    </p>
+    <br>
+    <a href="javascript:void(0);" class="btn btn-danger btn-sm">Read more</a>
+  </nk-carousel-item>
+  <nk-carousel-item imgUrl="http://10.16.75.10:8001/img/demo/m2.jpg">
+    <h4>A very long thumbnail title here to fill the space</h4>
+  </nk-carousel-item>
+</nk-carousel>
+```

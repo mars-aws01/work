@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const baseConfig = require('./webpack.base.conf');
 const util = require('./util');
+const webpack = require('webpack');
 
 module.exports = webpackMerge(baseConfig, {
   entry: {
@@ -14,6 +15,10 @@ module.exports = webpackMerge(baseConfig, {
     chunkFilename: '[id].js'
   },
   plugins: [
+    new webpack.ContextReplacementPlugin(
+      /angular(\\|\/)core(\\|\/)@angular/,
+      util.root('src', 'client')
+    ),
     new HtmlWebpackPlugin({
       template: util.root('examples/index.html')
     })

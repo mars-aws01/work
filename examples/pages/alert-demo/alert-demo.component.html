@@ -1,51 +1,47 @@
 <div class="page-alert-demo">
-  <nk-collapse-box header="多种不同的类型">
-    <div class="padding-10">
-      <nk-alert (onClose)="onClose()">
-        You have 198 unread messages.
-      </nk-alert>
-      <nk-alert type="success" (onClose)="onClose()">
-        The page has been added.
-      </nk-alert>
-      <nk-alert type="warning" (onClose)="onClose()">
-        Your monthly traffic is reaching limit.
-      </nk-alert>
-      <nk-alert type="danger" (onClose)="onClose()">
-        The daily cronjob has failed.
+  <div class="flex-display">
+    <div class="flex-1">
+      <nk-alert [header]="'Information'" (onClose)="onClose()">
+        This is info alert
       </nk-alert>
     </div>
-  </nk-collapse-box>
-  <nk-collapse-box header="禁止被关闭">
-    <div class="padding-10">
-      <nk-alert [closable]="false">
-        我不能被关闭
+    <div class="flex-1">
+      <nk-alert [header]="'Success'" type="success" (onClose)="onClose()">
+        This is success alert
       </nk-alert>
     </div>
-  </nk-collapse-box>
-  <nk-collapse-box header="允许动态显示隐藏">
-    <div class="padding-10">
-      <input type="checkbox" name="shown" [(ngModel)]="shown">
-      <nk-alert [(shown)]="shown" type="success">
-        我可以动态的被显示隐藏！
+    <div class="flex-1">
+      <nk-alert [header]="'Warning'" type="warning" (onClose)="onClose()">
+        This is warning alert
       </nk-alert>
     </div>
-  </nk-collapse-box>
-  <nk-collapse-box header="Block Messages">
-    <div class="padding-10">
-      <nk-alert type="warning" [inline]="false">
-        Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna,
-        vel scelerisque nisl consectetur et.
-      </nk-alert>
-      <nk-alert type="danger" [inline]="false">
-        Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna,
-        vel scelerisque nisl consectetur et.
-        <p class="text-align-left">
-          <br>
-          <a href="javascript:void(0);" class="btn btn-sm btn-default">
-            <strong>Action Button</strong>
-          </a>
-        </p>
+    <div class="flex-1">
+      <nk-alert [header]="'Danger'" type="danger" (onClose)="onClose()">
+        This is danger alert
       </nk-alert>
     </div>
-  </nk-collapse-box>
+  </div>
+  <div class="flex-display">
+    <div class="flex-1">
+      <nk-alert [header]="'Custom Header'" [closable]="false">
+        I can not be closed
+      </nk-alert>
+    </div>
+  </div>
+  <div>
+    <nk-alert [header]="'Block Messages'" type="warning" [inline]="false">
+      Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna,
+      vel scelerisque nisl consectetur et.
+    </nk-alert>
+  </div>
+  <div>
+    <nk-alert [header]="'Block Messages'" type="danger" [inline]="false">
+      Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna,
+      vel scelerisque nisl consectetur et.
+      <p class="text-align-left">
+        <br>
+        <nk-button>Action Button</nk-button>
+      </p>
+    </nk-alert>
+  </div>
 </div>

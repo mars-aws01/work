@@ -1,15 +1,18 @@
 <div class="page-rating-demo">
-  当前值：{{ratingVal}}，<input type="number" [(ngModel)]="ratingVal">
-  <hr>
-  <div class="row">
-    <div class="col-xs-4">
+  <div class="flex-display">
+    <div>
       <nk-rating [(ngModel)]="ratingVal"></nk-rating>
     </div>
-    <div class="col-xs-4">
-      <nk-rating [(ngModel)]="ratingVal" [maxNum]="10"></nk-rating>
+    <div>
+      <nk-rating [(ngModel)]="ratingVal" [maxNum]="10" rateClass="fa fa-heart"></nk-rating>
     </div>
-    <div class="col-xs-4">
-      <nk-rating [(ngModel)]="ratingVal" rateClass="fa fa-fire"></nk-rating>
+  </div>
+  <div class="flex-display">
+    <div>
+      <input type="number" max="10" min="0" class="nk-input" [(ngModel)]="ratingVal">
+    </div>
+    <div>
+      Value: {{ ratingVal }}
     </div>
   </div>
 </div>

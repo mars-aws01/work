@@ -2,51 +2,50 @@
   border-radius: 2px;
   font-size: 12px;
   font-family: Arial, Helvetica, sans-serif;
-  padding: 2px 8px;
+  padding: 3px 8px;
+  color: #272727;
+  line-height: 16px;
+  border: 1px solid #c0bfc0;
+  background: #ffffff;
+  margin-bottom: 4px;
   outline: none;
-  line-height: 1.5;
-  background: #fff;
-  color: #000;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #ccc;
 
-  &:hover {
-    color: #3795db;
-    border-color: #3795db;
-  }
-
-  &:active {
-    color: #2871ab;
-    border-color: #2871ab;
+  &:hover, &:active {
+    color: #0077c7;
+    border-color: #0077c7;
   }
 
   &.nk-button-disabled {
     cursor: not-allowed;
-    background: #f1f1f1;
-    color: #b8b8b8;
-    border-color: #e1e1e1;
+    background: #f3f3f3 !important;
+    color: #c0bfc0 !important;
+    border-color: #f3f3f3 !important;
   }
 
   &.nk-button-primary {
-    background: #3174ae;
-    border-color: #3174ae;
+    background: #0077c7;
+    border-color: #0077c7;
     color: #fff;
 
-    &:hover {
-      background: #3795db;
-      border-color: #3795db;
-    }
+    &:hover, &:active {
+      background: #3d97d4;
+      border-color: #3d97d4;
+      box-shadow: 0 0 4px 0 #0077c7;
 
-    &:active {
-      background: #2871ab;
-      border-color: #2871ab;
+      &.nk-button-disabled {
+        box-shadow: initial;
+      }
     }
+  }
 
-    &.nk-button-disabled {
-      background: #f1f1f1;
-      color: #b8b8b8;
-      border-color: #f1f1f1;
+  &.nk-button-danger {
+    background: #f43f3f;
+    border-color: #f43f3f;
+    color: #fff;
+
+    &:hover, &:active {
+      background: #f66565;
+      border-color: #f66565;
     }
   }
 }

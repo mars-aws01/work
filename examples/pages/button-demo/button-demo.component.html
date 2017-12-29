@@ -1,52 +1,31 @@
 <div class="page-button-demo">
-  <nk-row>
-    <nk-col :span="3">
-      主要按钮
-    </nk-col>
-    <nk-col :span="4">
+  <div class="flex-display">
+    <div>
       <nk-button type="primary" (click)="handleBtnClick()">Save Order</nk-button>
-    </nk-col>
-    <nk-col :span="4">
+      <nk-button type="normal" (click)="handleBtnClick()">Cancel</nk-button>
+      <nk-button type="danger" (click)="handleBtnClick()">Delete</nk-button>
+    </div>
+    <div>
+      <nk-button type="primary" icon="fa fa-save" (click)="handleBtnClick()">Save Order</nk-button>
+      <nk-button type="normal" icon="fa fa-times" (click)="handleBtnClick()">Cancel</nk-button>
+      <nk-button type="danger" icon="fa fa-trash" (click)="handleBtnClick()">Delete</nk-button>
+    </div>
+  </div>
+  <div class="flex-display">
+    <div>
       <nk-button type="primary" [disabled]="true" (click)="handleBtnClick()">Save Order</nk-button>
-    </nk-col>
-  </nk-row>
-  <br>
-  <nk-row>
-    <nk-col :span="3">
-      常规按钮
-    </nk-col>
-    <nk-col :span="4">
-      <nk-button (click)="handleBtnClick()">Cancel</nk-button>
-    </nk-col>
-    <nk-col :span="4">
-      <nk-button [disabled]="true" (click)="handleBtnClick()">Cancel</nk-button>
-    </nk-col>
-  </nk-row>
-  <br>
-  <nk-row>
-    <nk-col :span="3">
-      带ICON的按钮
-    </nk-col>
-    <nk-col :span="4">
-      <nk-button icon="fa fa-star" (click)="handleBtnClick()">Send</nk-button>
-    </nk-col>
-    <nk-col :span="4">
-      <nk-button icon="fa fa-star" [disabled]="true" (click)="handleBtnClick()">Send</nk-button>
-    </nk-col>
-  </nk-row>
-  <br>
-  <nk-row>
-    <nk-col :span="3">
-      设置按钮宽度
-    </nk-col>
-    <nk-col :span="4">
-      <nk-button icon="fa fa-star" width="150px" (click)="handleBtnClick()">固定宽度150px</nk-button>
-    </nk-col>
-    <nk-col :span="4">
-      <nk-button icon="fa fa-star" [width]="150" (click)="handleBtnClick()">固定宽度150px</nk-button>
-    </nk-col>
-    <nk-col :span="4">
-      <nk-button icon="fa fa-star" width="50%" (click)="handleBtnClick()">宽度50%</nk-button>
-    </nk-col>
-  </nk-row>
+      <nk-button type="normal" [disabled]="true" (click)="handleBtnClick()">Cancel</nk-button>
+      <nk-button type="danger" [disabled]="true" (click)="handleBtnClick()">Delete</nk-button>
+    </div>
+    <div>
+      <nk-button type="primary" icon="fa fa-save" [disabled]="true" (click)="handleBtnClick()">Save Order</nk-button>
+      <nk-button type="normal" icon="fa fa-times" [disabled]="true" (click)="handleBtnClick()">Cancel</nk-button>
+      <nk-button type="danger" icon="fa fa-trash" [disabled]="true" (click)="handleBtnClick()">Delete</nk-button>
+    </div>
+  </div>
+  <div>
+    <nk-button width="150px" (click)="handleBtnClick()">固定宽度150px</nk-button>
+    <nk-button [width]="250" (click)="handleBtnClick()">固定宽度250px</nk-button>
+    <nk-button width="30%" (click)="handleBtnClick()">宽度30%</nk-button>
+  </div>
 </div>

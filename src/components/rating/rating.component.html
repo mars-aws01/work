@@ -1,3 +1,7 @@
-<div class="nk-comp nk-rating rating">
-  <label *ngFor="let v of rateArr" [ngClass]="{active: v <= value, hover: v <= hoverIdx}" (click)="onClick(v)" (mouseenter)="onMouseEnter(v)" (mouseleave)="onMouseLeave(v)"><i [ngClass]="rateClass"></i></label>
+<div class="nk-comp nk-rating rating" [class.read-only]="readOnly">
+  <label *ngFor="let v of rateArr" [ngClass]="{active: v <= value, hover: v <= hoverIdx}" (click)="onClick(v)" (mouseenter)="onMouseEnter(v)"
+    (mouseleave)="onMouseLeave(v)">
+    <i [ngClass]="rateClass" *ngIf="rateClass"></i>
+    <div class="egg" *ngIf="!rateClass"></div>
+  </label>
 </div>

@@ -6,6 +6,39 @@
     overflow: hidden;
     width: 100%;
   }
+
+  .nk-carousel-control {
+    position: absolute;
+    top: 50%;
+    margin-top: -16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 2px;
+    background: #f3f3f3;
+    opacity: 0.4;
+    z-index: 5;
+    padding: 6px 12px;
+
+    span {
+      line-height: 20px;
+      font-size: 20px;
+      color: #272727;
+      width: 8px;
+      text-align: center;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.left {
+      left: 20px;
+    }
+
+    &.right {
+      right: 20px;
+    }
+  }
 }
 
 .carousel-inner {
@@ -134,4 +167,8 @@
   &, .carousel-control {
     z-index: 5;
   }
+}
+
+.carousel-indicators {
+  display: none;
 }

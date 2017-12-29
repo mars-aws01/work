@@ -2,7 +2,7 @@
   <span class="nk-radio-inner">
     <input type="radio" [attr.name]="radioName" [ngModel]="innerChecked" [disabled]="innerDisabled" (click)="handleRadioClick($event)">
   </span>
-  <span>
+  <span class="nk-radio-content">
     <ng-content></ng-content>
   </span>
 </label>

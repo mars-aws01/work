@@ -11,11 +11,18 @@
     display: inline-block;
     border-radius: 50%;
     background: #fff;
-    border: 1px solid #ccc;
+    border: 1px solid #c0bfc0;
     width: 14px;
     height: 14px;
     vertical-align: text-bottom;
     position: relative;
+    box-sizing: content-box;
+  }
+
+  .nk-radio-content {
+    font-size: 12px;
+    color: #272727;
+    line-height: 16px;
   }
 
   input[type=radio] {
@@ -24,13 +31,13 @@
 
   &:hover:not(.nk-radio-disabled) .nk-radio-inner {
     border-color: #3795db;
-    box-shadow: 0 0 3px #3795db;
+    box-shadow: 0 0 4px #3795db;
   }
 
   &.nk-radio-checked {
     .nk-radio-inner {
-      background: #3795db;
-      border-color: #3795db;
+      background: #0077c7;
+      border-color: #0077c7;
 
       &::before {
         content: '';
@@ -38,8 +45,8 @@
         position: absolute;
         background: #fff;
         border-radius: 50%;
-        left: 3px;
-        top: 3px;
+        left: 4px;
+        top: 4px;
         display: table;
         width: 6px;
         height: 6px;
@@ -52,12 +59,16 @@
     cursor: not-allowed;
 
     .nk-radio-inner {
-      background: #f1f1f1;
-      border-color: #e1e1e1;
+      background: #f3f3f3;
+      border-color: #c0bfc0;
 
       &::before {
-        background: #b8b8b8;
+        background: #c0bfc0;
       }
+    }
+
+    .nk-radio-content {
+      color: #c0bfc0;
     }
   }
 }

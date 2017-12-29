@@ -1,19 +1,22 @@
 .nk-input-wrap {
   position: relative;
   display: block;
+  margin-bottom: 4px;
 
   > i {
     position: absolute;
-    top: 6px;
-    right: 8px;
-    color: #b8b8b8;
+    top: 4px;
+    right: 4px;
+    color: #777677;
+    line-height: 16px;
+    width: 16px;
+    text-align: center;
+    cursor: pointer;
   }
 
   .nk-input-error {
     display: inline-block;
-    border: 1px solid red;
-    background: red;
-    color: #fff;
+    border: 1px solid #f43f3f;
     position: absolute;
     bottom: calc(100% + 10px);
   }
@@ -22,39 +25,48 @@
 .nk-input {
   font-size: 12px;
   font-family: Arial, Helvetica, sans-serif;
-  line-height: 14px;
-  padding: 4px 8px;
-  border: 1px solid #ccc;
-  background: #fff;
+  line-height: 16px;
+  padding: 3px 8px;
+  border: 1px solid #c0bfc0;
+  background: #ffffff;
   outline: none;
-  color: #000;
+  color: #272727;
   width: 100%;
+  border-radius: 2px;
+
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #c0bfc0;
+  }
+
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: #c0bfc0;
+  }
+
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: #c0bfc0;
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+    color: #c0bfc0;
+  }
 
   &:active, &:focus {
-    border-color: #3795db;
-    box-shadow: 0px 0px 3px #3795db;
+    border-color: #0077c7;
+    box-shadow: 0px 0px 4px #0077c7;
   }
 
-  &.nk-input-readonly {
-    color: #444;
-    background: #f1f1f1;
-    border-color: #e1e1e1;
-    box-shadow: none;
-  }
-
-  &.nk-input-disabled {
-    color: #b8b8b8;
-    background: #f1f1f1;
-    border-color: #e1e1e1;
+  &.nk-input-readonly, &.nk-input-disabled {
+    background: #fcfcfc;
+    border-color: #eaeaea;
     box-shadow: none;
   }
 
   .ng-invalid.ng-dirty & {
-    border-color: #dc1d1d;
+    border-color: #f43f3f;
     box-shadow: none;
   }
 
   &.nk-input-has-icon {
-    padding-right: 24px;
+    padding-right: 20px;
   }
 }

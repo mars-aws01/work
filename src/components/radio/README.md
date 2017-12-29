@@ -1,13 +1,13 @@
-# nk-radio
+## nk-radio
 
 **Input**
 
-| 属性 | 说明 |  类型 | 默认值 |
+| Name| Data Type | Two-way | Default Value | Description |
 | --- | --- | --- | --- | --- |
-| value | 设置当前Radio的value | any | - |
-| disabled | 设置是否为禁用状态 | boolean | false |
-| ngModel | 指定当前选中的值 | any | - |
-| name | 设置 `input type=radio` 的 name 属性 | string | |
+| value | any | | - | 设置当前Radio的value |
+| disabled | boolean | | false | 设置是否为禁用状态 | 
+| name | string | | | 设置 `input type=radio` 的 name 属性 | 
+| ngModel | any | Y | - | 指定当前选中的值 |
  
 **Slots（ng-content占位符）**
 
@@ -18,6 +18,6 @@
 **Usage**
 
 ```html
-<nk-radio value="男" [(ngModel)]="sex">男</nk-radio>
-<nk-radio value="女" [(ngModel)]="sex">女</nk-radio>
+<nk-radio value="Male" [(ngModel)]="sex">Male</nk-radio>
+<nk-radio value="Female" [(ngModel)]="sex">Female</nk-radio>
 ```

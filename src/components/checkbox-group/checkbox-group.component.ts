@@ -52,8 +52,7 @@ export class CheckboxGroupComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(obj: any): void {
-    this.checkedValues = obj;
-    console.log(obj);
+    this.checkedValues = obj;    
     this.syncCheckboxStatus();
   }
   registerOnChange(fn: any): void {

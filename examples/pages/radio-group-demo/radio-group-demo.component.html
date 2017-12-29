@@ -1,27 +1,19 @@
 <div class="page-radio-group-demo">
-  <nk-row>
-    <nk-col [span]="8">
+  <div class="flex-display">
+    <div>
       <nk-radio-group [(ngModel)]="sex">
         <nk-radio *ngFor="let item of sexList" [value]="item">{{item}}</nk-radio>
       </nk-radio-group>
-    </nk-col>
-    <nk-col [span]="8">
-      <span class="nk-text">当前选中值：{{sex}}</span>
-    </nk-col>
-    <nk-col [span]="8">
+    </div>
+    <div>
+      Sex: {{sex}}
+    </div>
+  </div>
+  <div class="flex-display">
+    <div>
       <nk-radio-group [(ngModel)]="sex" disabled>
         <nk-radio *ngFor="let item of sexList" [value]="item">{{item}}</nk-radio>
       </nk-radio-group>
-    </nk-col>
-  </nk-row>
-  <nk-row>
-    <nk-col>
-      <nk-radio-group [(ngModel)]="val2" name="xxxx">
-        <nk-radio value="A">A</nk-radio>
-        <nk-radio value="B">B</nk-radio>
-        <nk-radio value="C" name="abc">C</nk-radio>
-      </nk-radio-group>
-      {{val2}}
-    </nk-col>
-  </nk-row>
+    </div>
+  </div>
 </div>

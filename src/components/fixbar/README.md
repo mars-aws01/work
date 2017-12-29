@@ -1,10 +1,10 @@
-# nk-fixbar
+## nk-fixbar
 
 **Input**
 
-| 属性  | 说明             | 类型         | 默认值 |
+| Name| Data Type | Two-way | Default Value | Description |
 | ----- | ---------------- | ------------ | ------ |  |
-| items | 要显示的内容列表 | FixbarItem[] | -      |
+| items | FixbarItem[] | | - | 要显示的内容列表 |
 
 **FixbarItem属性**
 

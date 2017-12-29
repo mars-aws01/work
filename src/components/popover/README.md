@@ -1,11 +1,11 @@
 # [nk-popover]
 
-| 属性           | 说明                                                   | 类型    | 默认值 |
+| Name | Data Type | Two-way | Default Value | Description |
 | -------------- | ------------------------------------------------------ | ------- | ------ |  |
-| nk-popover     | 设置要提示的文本，当allowHtml=true时，可以接受html标签 | string  | -      |
-| placement      | Popover要显示的位置，可选 ['top', 'bottom', 'left', 'right', 'auto'] | string | 'right'  |
-| delay          | 指定显示popover的延迟时间                                       | number,object | 0 |
-| popoverTrigger | 触发popover的事件，可选 ['click', 'mouseenter:mouseleave'] | string | 'click' |
+| nk-popover     | string  | | -      | 设置要提示的文本，当allowHtml=true时，可以接受html标签 |
+| placement      | string | | 'right'  | Popover要显示的位置，可选 ['top', 'bottom', 'left', 'right', 'auto'] |
+| delay          | number,object | | 0 | 指定显示popover的延迟时间                                       | 
+| popoverTrigger | string | | 'click' | 触发popover的事件，可选 ['click', 'mouseenter:mouseleave'] |
 
 **更详细的说明，请参考[Bootstrap Popovers](http://v3.bootcss.com/javascript/#popovers)**
 

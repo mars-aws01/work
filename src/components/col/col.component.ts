@@ -79,8 +79,7 @@ export class ColComponent implements OnInit {
 
   constructor(
     private elementRef: ElementRef,
-    @Host() @Optional() private row: RowComponent
-  ) {
+    @Host() @Optional() private row: RowComponent) {
 
   }
 
@@ -88,11 +87,16 @@ export class ColComponent implements OnInit {
 
   }
 
+  ngAfterViewInit() {
+    this._setElementClassAndStyle();
+  }
+
   ngOnChanges(change: SimpleChanges) {
     this._setElementClassAndStyle();
   }
 
   private _setElementClassAndStyle() {
+    if (!this.elementRef.nativeElement) return;
     let containerEl = this.elementRef.nativeElement as HTMLElement;
     containerEl.className = ['nk-col'].concat(this.colClass).join(' ');
     if (this.gutter) {

@@ -1,13 +1,42 @@
 <div class="page-tooltip-demo">
-  <nk-row>
-    <nk-col [span]="8">
-      <nk-input [(ngModel)]="tooltipContent"></nk-input>
-    </nk-col>
-    <nk-col [span]="2">
-      <nk-checkbox [(ngModel)]="allowHtml">允许HTML</nk-checkbox>
-    </nk-col>
-    <nk-col [span]="8">
-      <nk-button [nk-tooltip]="tooltipContent" [allowHtml]="allowHtml">点我试试</nk-button>
-    </nk-col>
-  </nk-row>
+  <div class="flex-display">
+    <div>
+      <nk-button [placement]="'auto'" [nk-tooltip]="'According to new process rule. We now only accept SO between 05/01/2017 and 11/01/2017.'"
+        [tooltipTrigger]="'hover'">
+        Hover Me
+      </nk-button>
+    </div>
+
+    <div>
+      <nk-button [placement]="'bottom'" [nk-tooltip]="'SO Number is invalid. Please check again.'" [tooltip-type]="'error'" [tooltipTrigger]="'click'">Click Me</nk-button>
+    </div>
+    <div>
+      <nk-input type="text" placeholder="Focus Me" [nk-tooltip]="'SO Number is invalid. Please check again.'" [tooltipTrigger]="'focus'">
+
+      </nk-input>
+    </div>
+  </div>
+  <div class="flex-display">
+    <div>
+      <nk-button [placement]="'top'" [nk-tooltip]="'In top position'" [tooltipTrigger]="'hover'">
+        Top
+      </nk-button>
+    </div>
+    <div>
+      <nk-button [placement]="'right'" [nk-tooltip]="'In right position'" [tooltipTrigger]="'hover'">
+        Right
+      </nk-button>
+    </div>
+    <div>
+      <nk-button [placement]="'bottom'" [nk-tooltip]="'In bottom position'" [tooltipTrigger]="'hover'">
+        Bottom
+      </nk-button>
+    </div>
+    <div>
+      <nk-button [placement]="'left'" [nk-tooltip]="'In left position'" [tooltipTrigger]="'hover'">
+        Left
+      </nk-button>
+    </div>
+  </div>
+
 </div>

@@ -1,0 +1,61 @@
+.nk-tooltip {
+  padding: initial;
+  margin-bottom: initial;
+  opacity: 1 !important;
+
+  .tooltip-inner {
+    background: #0077c7;
+    color: #ffffff;
+    font-size: 12px;
+    line-height: 14px;
+    border-radius: 2px;
+    max-width: 250px;
+    padding: 8px;
+  }
+
+  &.top {
+    margin-top: -5px;
+
+    .tooltip-arrow {
+      border-top-color: #0077c7 !important;
+    }
+  }
+
+  &.right .tooltip-arrow {
+    border-right-color: #0077c7 !important;
+  }
+
+  &.bottom {
+    margin-top: 5px;
+
+    .tooltip-arrow {
+      border-bottom-color: #0077c7 !important;
+    }
+  }
+
+  &.left .tooltip-arrow {
+    border-left-color: #0077c7 !important;
+  }
+
+  &.nk-tooltip-error {
+    .tooltip-inner {
+      background: #f43f3f;
+    }
+
+    &.top .tooltip-arrow {
+      border-top-color: #f43f3f !important;
+    }
+
+    &.right .tooltip-arrow {
+      border-right-color: #f43f3f !important;
+    }
+
+    &.bottom .tooltip-arrow {
+      border-bottom-color: #f43f3f !important;
+    }
+
+    &.left .tooltip-arrow {
+      border-left-color: #f43f3f !important;
+    }
+  }
+}

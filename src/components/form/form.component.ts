@@ -19,8 +19,7 @@ export class FormComponent implements OnInit {
 
   ngOnInit() { }
 
-  public validateForm() {
-    debugger
+  public validateForm() {    
     Object.keys(this.form.controls).forEach(k => {
       this.form.controls[k].markAsDirty();
     });

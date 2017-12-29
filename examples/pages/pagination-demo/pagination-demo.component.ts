@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'pagination-demo',
@@ -6,6 +6,12 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class PaginationDemoComponent implements OnInit {
+
+  @ViewChild('eventLogDiv') eventLogDiv: any;
+
+  eventLog: Array<any> = [];
+  showTotalCount = true;
+  allowPageSize = false;
 
   public pageObj = {
     totalCount: 1024,
@@ -16,11 +22,22 @@ export class PaginationDemoComponent implements OnInit {
   ngOnInit() { }
 
   public onPageChanged(pageIndex: number) {
-    console.log('页码变更，当前页：', pageIndex);
+    this.setEventLogPos('onPageChange', `Pageindex changed to ${pageIndex}`);
   }
 
-  public handleSizeChange(size: number) {
-    console.log(size);
-    this.pageObj.pageSize = size;
+  onPageSizeChange(pageSize: number) {
+    this.setEventLogPos('onPageSizeChange', `Pagesize changed to ${pageSize}`);
+  }
+
+  setEventLogPos(event: any, log: any) {
+    this.eventLog.push({
+      date: new Date(),
+      event: event,
+      log: log
+    });
+    if (!this.eventLogDiv) return;
+    setTimeout(() => {
+      this.eventLogDiv.nativeElement.scrollTop = this.eventLogDiv.nativeElement.scrollHeight;
+    });
   }
 }

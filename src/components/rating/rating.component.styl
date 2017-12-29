@@ -1,15 +1,43 @@
 .nk-rating {
   display: inline-block;
+  margin: 0 -2px 4px -2px;
 
-  .smart-form & label {
+  &.read-only {
+    label {
+      cursor: default;
+    }
+  }
+
+  label {
+    margin-bottom: 0;
+    color: #d8d8d8;
+    cursor: pointer;
     float: left;
 
-    &.active {
-      color: #3276B1;
+    i {
+      line-height: 16px;
+      padding: 4px 2px;
+      font-size: 16px;
     }
 
-    &.hover {
-      color: #3b9ff3;
+    &.active, &.hover {
+      color: #f09000;
+
+      .egg {
+        background: #f09000;
+      }
     }
+  }
+
+  .egg {
+    box-sizing: content-box;
+    width: 18px;
+    height: 24px;
+    border: none;
+    border-radius: 50% / 60% 60% 40% 40%;
+    text-overflow: clip;
+    background: #d8d8d8;
+    transform: rotateZ(28deg);
+    margin: 0 2px;
   }
 }

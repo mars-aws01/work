@@ -1,6 +1,31 @@
 .sa-date-picker {
   position: relative;
 
+  &.disabled {
+    pointer-events: none;
+
+    input {
+      background: #fcfcfc;
+      border-color: #eaeaea;
+      color: #c0bfc0;
+    }
+
+    .input-icon {
+      color: #c0bfc0;
+    }
+  }
+
+  &.show-picker {
+    .nk-input {
+      border: 1px solid #0077c7;
+      box-shadow: 0 0 4px 0 #0077c7;
+    }
+
+    .input-icon {
+      color: #0077c7;
+    }
+  }
+
   input.form-control {
     background: #fff;
   }
@@ -8,7 +33,10 @@
   .input-icon {
     position: absolute;
     top: 4px;
-    right: 8px;
+    right: 4px;
+    line-height: 16px;
+    width: 16px;
+    text-align: center;
   }
 
   .picker-panel {
@@ -16,9 +44,11 @@
     background: #fff;
     top: calc(100% + 4px);
     right: 0;
-    width: 182px;
-    border: 1px solid #3795db;
-    box-shadow: 0 0 3px #3795db;
+    width: 178px;
+    border: 1px solid #0077c7;
+    box-shadow: 0 0 4px 0 #0077c7;
+    border-radius: 2px;
+    z-index: 2;
   }
 
   .picker-panel-header {
@@ -27,20 +57,40 @@
     line-height: 1;
     font-size: 12px;
     font-weight: bold;
-    background: #4192db;
-    padding: 4px 8px;
+    background: #ffffff;
+    padding: 3px 8px;
+    border-bottom: 1px solid #0077c7;
+
+    &.year-mode {
+      .prev-year {
+        >i.fa-caret-left:last-child {
+          margin-left: 0;
+        }
+      }
+
+      .next-year {
+        >i.fa-caret-right:first-child {
+          margin-right: 0;
+        }
+      }
+    }
 
     > span {
-      color: #f6f6f6;
+      color: #0077c7;
       position: absolute;
-      top: 4px;
-      font-size: 14px;
+      top: 3px;
+      font-size: 12px;
+      line-height: 16px;
       cursor: pointer;
     }
 
     .prev-year {
       left: 8px;
       width: 20px;
+
+      >i.fa-caret-left:last-child {
+        margin-left: -3px;
+      }
     }
 
     .prev-month {
@@ -55,23 +105,29 @@
       right: 8px;
       width: 20px;
       text-align: right;
+
+      >i.fa-caret-right:first-child {
+        margin-right: -3px;
+      }
     }
 
     .set-year-month {
       width: 100%;
-      font-size: 14px;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 16px;
       text-align: center;
       white-space: nowrap;
       overflow: hidden;
 
       >span {
-        color: #f6f6f6;
+        color: #0077c7;
       }
     }
   }
 
   .picker-panel-content {
-    padding: 6px;
+    padding: 5px;
     user-select: none;
 
     table {
@@ -88,59 +144,54 @@
         display: inline-block;
         width: 20px;
         height: 20px;
-        line-height: 18px;
-        background: #f1f1f1;
+        line-height: 20px;
         border-radius: 2px;
+        color: #272727;
+        text-align: center;
       }
     }
 
     .ym-panel td >span {
       width: 52px;
-      height: 32px;
-      line-height: 30px;
+      height: 38px;
+      line-height: 36px;
     }
 
     th {
-      color: #b8b8b8;
+      >span {
+        color: #777677;
+      }
     }
 
     td {
       cursor: pointer;
-      color: #000;
 
-      >span {
-      }
-
-      // &:hover {
-      // background-color: #eaeaea;
-      // color: #333;
-      // }
       &.day-next, &.day-prev {
         >span {
-          color: #b8b8b8;
+          color: #c0bfc0;
         }
       }
 
-      &.current>span {
-        color: #3795db;
-        background: #ebf4fb;
-        border: 1px solid #3795db;
+      >span:hover, &.selected >span {
+        background: #0077c7 !important;
+        color: #fff !important;
+        border: 1px solid #0077c7 !important;
       }
 
-      &.selected >span {
-        background: #3795db;
-        color: #fff;
-        border: 1px solid #3795db;
+      &.current>span {
+        background: #d6e9f5;
+        color: #0077c7;
+        border: 1px solid #d6e9f5;
       }
     }
   }
 
   .picker-panel-footer {
     height: 22px;
-    border-top: 1px solid #3795db;
-    background: #ebf4fb;
+    border-top: 1px solid #0077c7;
+    background: #ffffff;
     line-height: 21px;
-    color: #3798db;
+    color: #0077c7;
     text-align: center;
     cursor: pointer;
   }

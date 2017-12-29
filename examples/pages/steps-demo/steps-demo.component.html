@@ -1,26 +1,22 @@
 <div class="page-steps-demo">
-  <nk-steps [active]="active" [finish-status]="'success'">
-    <nk-step title="步骤 1"></nk-step>
-    <nk-step title="步骤 2"></nk-step>
-    <nk-step title="步骤 3"></nk-step>
-  </nk-steps>
-  <hr>
-  <nk-steps space="150px" [active]="1" [finish-status]="'success'">
-    <nk-step title="已完成"></nk-step>
-    <nk-step title="进行中"></nk-step>
-    <nk-step title="步骤 3"></nk-step>
-  </nk-steps>
-  <hr>
-  <nk-steps [active]="1" [align-center]="true">
-    <nk-step title="步骤 1" description="这是一段很长很长很长的描述性文字"></nk-step>
-    <nk-step title="步骤 2" description="这是一段很长很长很长的描述性文字"></nk-step>
-    <nk-step title="步骤 3" description="这是一段很长很长很长的描述性文字"></nk-step>
+  <nk-steps>
+    <nk-step title="Shipping Information"></nk-step>
+    <nk-step title="Billing Information"></nk-step>
+    <nk-step title="Order Review"></nk-step>
+    <nk-step title="Confirm"></nk-step>
   </nk-steps>
   <hr>
   <nk-steps [active]="1">
-    <nk-step title="步骤 1" icon="fa fa-edit"></nk-step>
-    <nk-step title="步骤 2" icon="fa fa-upload"></nk-step>
-    <nk-step title="步骤 3" icon="fa fa-star"></nk-step>
+    <nk-step title="Shipping Information"></nk-step>
+    <nk-step title="Billing Information"></nk-step>
+    <nk-step title="Order Review"></nk-step>
+    <nk-step title="Confirm"></nk-step>
   </nk-steps>
-
+  <hr>
+  <nk-steps [active]="2" [direction]="'vertical'">
+    <nk-step></nk-step>
+    <nk-step></nk-step>
+    <nk-step></nk-step>
+    <nk-step title="Confirm"></nk-step>
+  </nk-steps>
 </div>

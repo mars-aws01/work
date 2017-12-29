@@ -1,6 +1,6 @@
 import './row.component.styl';
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, style, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'nk-row',
@@ -8,6 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 
 export class RowComponent implements OnInit {
+
+  @ViewChild('rowDiv') rowDiv: ElementRef;
 
   @Input()
   public gutter: number = 0;
@@ -21,11 +23,28 @@ export class RowComponent implements OnInit {
   @Input()
   public align: string = 'top';
 
+  @Input('style')
+  set style(val: string) {
+    if (val) {
+      this._styleObj = {};
+      let ruleParts = val.split(':');
+      let key = this.camelize(ruleParts[0].trim());
+      this._styleObj[key] = ruleParts[1].trim();
+    } else {
+      this._styleObj = null;
+    }
+  }
+  private _styleObj: any;
+
   public get rowStyle() {
     let styleObj: any = {};
     if (this.gutter) {
       styleObj.marginLeft = `-${this.gutter / 2}px`;
       styleObj.marginRight = styleObj.marginLeft;
+      styleObj.width = `calc(100% + ${this.gutter}px)`;
+    }
+    if (this._styleObj) {
+      Object.assign(styleObj, this._styleObj)
     }
     return styleObj;
   }
@@ -45,4 +64,11 @@ export class RowComponent implements OnInit {
   }
 
   ngOnInit() { }
+
+  private camelize(str: string) {
+    return str.replace(/(?:^|[-])(\w)/g, function (a, c) {
+      c = a.substr(0, 1) === '-' ? c.toUpperCase() : c;
+      return c ? c : '';
+    });
+  }
 }

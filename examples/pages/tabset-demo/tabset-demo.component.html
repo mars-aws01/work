@@ -1,45 +1,62 @@
 <div class="page-tabset-demo">
-  当前选中项的名字：{{selected}}
-  <button class="btn btn-primary" (click)="selected = 'tabpane-1'">设置为tabpane-1</button>
+  <div class="flex-display">
+    <div>
+      <nk-button type="primary" (click)="selected = selected == 'tabpane-1' ? 'tabpane-0' : 'tabpane-1'">Change Active Tab</nk-button>
+    </div>
+    <div>
+      Currrent Tab: {{ selected == 'tabpane-1' ? 'Order 1' : 'Order 2' }}
+    </div>
+  </div>
+
   <hr>
-  <div class="col-xs-6">
-    <nk-tabset [(selected)]="selected">
-      <nk-tab-item header="Tab1">
-        我是第一个Tab的内容
-      </nk-tab-item>
-      <nk-tab-item header="Tab2">
-        我的第二个Tab的内容
-      </nk-tab-item>
-    </nk-tabset>
+  <div class="row">
+    <div class="col-xs-6">
+      <nk-tabset [(selected)]="selected">
+        <nk-tab-item header="Order 1">
+          <p>我是第一个Tab的内容</p>
+          <p>我是第一个Tab的内容</p>
+          <p style="margin-bottom: 0">我是第一个Tab的内容</p>
+        </nk-tab-item>
+        <nk-tab-item header="Order 2">
+          <p>我的第二个Tab的内容</p>
+          <p style="margin-bottom: 0">我的第二个Tab的内容</p>
+        </nk-tab-item>
+      </nk-tabset>
+    </div>
+    <div class="col-xs-6">
+      <nk-tabset [(selected)]="selected" [tabsLeft]="true" [headerWidth]="60">
+        <nk-tab-item header="Order 1">
+          <p>我是第一个Tab的内容</p>
+          <p>我是第一个Tab的内容</p>
+          <p style="margin-bottom: 0">我是第一个Tab的内容</p>
+        </nk-tab-item>
+        <nk-tab-item header="Order 2">
+          <p>我的第二个Tab的内容</p>
+          <p>我的第二个Tab的内容</p>
+          <p>我的第二个Tab的内容</p>
+          <p style="margin-bottom: 0">我的第二个Tab的内容</p>
+        </nk-tab-item>
+      </nk-tabset>
+    </div>
   </div>
-  <div class="col-xs-6">
-    <nk-tabset [(selected)]="selected" [tabsLeft]="true" [headerWidth]="60">
-      <nk-tab-item header="Tab1">
-        我是第一个Tab的内容
-        <br> 我是第一个Tab的内容
-        <br> 我是第一个Tab的内容
-        <br> 我是第一个Tab的内容
-      </nk-tab-item>
-      <nk-tab-item header="Tab2">
-        我是第二个Tab的内容
-        <br> 我是第二个Tab的内容
-        <br> 我是第二个Tab的内容
-        <br> 我是第二个Tab的内容
-        <br> 我是第二个Tab的内容
-        <br> 我是第二个Tab的内容
-        <br> 我是第二个Tab的内容
-        <br> 我是第二个Tab的内容
-      </nk-tab-item>
-    </nk-tabset>
-  </div>
-  <div class="col-xs-6">
-    <nk-tabset (selectedChange)="consoleChangeEvent($event)">
-      <nk-tab-item [header]="tab.header" *ngFor="let tab of tabs">
-        我是第一个Tab的内容-Header = {{tab.header}}
-      </nk-tab-item>
-    </nk-tabset>
-    {{tabs.length}}
-    <nk-button (click)="tabs.push({header: 'Tab' + (tabs.length+1) })">Add</nk-button>
-    <nk-button (click)="tabs.splice(0, 1)">Remove</nk-button>
+  <hr>
+  <div class="row">
+    <div class="col-xs-6">
+      <nk-tabset (selectedChange)="consoleChangeEvent($event)">
+        <nk-tab-item [header]="tab.header" *ngFor="let tab of tabs">
+          我是第一个Tab的内容-Header = {{tab.header}}
+        </nk-tab-item>
+      </nk-tabset>
+
+      <div class="flex-display">
+        <div>
+          Tab Count: {{tabs.length}}
+        </div>
+        <div>
+          <nk-button [disabled]="tabs.length == 5" (click)="addTab()">Add</nk-button>
+          <nk-button [disabled]="tabs.length == 1" (click)="removeTab()">Remove</nk-button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

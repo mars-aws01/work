@@ -1,26 +1,51 @@
 .nk-modal {
-  .modal-header {
-    padding: 4px;
-    padding-right: 8px;
+  .modal-content {
+    border-radius: 4px;
+    border: none;    
+  }
 
-    .close {
-      height: 14px;
-      margin-top: 0;
+  .modal-header {
+    background: #0068ae;
+    padding: 8px;
+    border-radius: 4px 4px 0 0;
+
+    .modal-title {
+      font-weight: bold;
+      font-size: 12px;
+      color: #ffffff;
+      line-height: 16px;
     }
 
-    h4 {
-      font-size: 14px;
-      font-weight: bold;
+    .colse {
+      font-size: 12px;
+      color: #ffffff;
+      line-height: 16px;
+      width: 16px;
+      margin-top: -16px;
+      float: right;
+      text-align: center;
+      background: none;
+      border: none;
+      padding: 0;
+
+      &:hover {
+        border-radius: 4px;
+        background: rgba(0, 0, 0, 0.1);
+      }
     }
   }
 
   .modal-body {
-    padding: 4px;
-    min-height: 100px;
+    padding: 16px;
   }
 
-  .modal-footer{
-    padding: 4px;
+  .modal-footer {
+    border-top: none;
+    padding: 0 16px 16px 16px;
+
+    .nk-button {
+      margin-bottom: 0;
+    }
   }
 
   &.nk-modal-drag {

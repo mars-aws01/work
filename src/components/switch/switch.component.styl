@@ -4,15 +4,15 @@
   font-weight: normal;
   margin-bottom: 0;
   line-height: 1;
-  padding: 3px 4px;
+  margin-bottom: 4px;
   cursor: pointer;
 
   .nk-switch-inner {
     display: inline-block;
-    width: 36px;
-    height: 18px;
-    border-radius: 8px;
-    background: #ccc;
+    width: 40px;
+    height: 20px;
+    border-radius: 10px;
+    background: #c0bfc0;
     vertical-align: text-bottom;
     position: relative;
 
@@ -21,30 +21,35 @@
       position: absolute;
       top: 2px;
       left: 2px;
-      width: 14px;
-      height: 14px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       background: #fff;
     }
+  }
+
+  .nk-switch-content {
+    user-select: none;
+    padding: 2px 4px;
+    float: right;
+    display: inline-block;
+    font-size: 12px;
+    color: #272727;
+    line-height: 16px;
   }
 
   input[type=checkbox] {
     display: none;
   }
 
-  &:hover:not(.nk-switch-disabled) .nk-switch-inner {
-    border-color: #3795db;
-    box-shadow: 0 0 3px #3795db;
-  }
-
   &.nk-switch-checked {
     .nk-switch-inner {
-      background: #3795db;
+      background: #0077c7;
 
       &::before {
         left: auto;
         right: 2px;
-        transition: all 0.3s  cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+        transition: all 0.3s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
       }
     }
   }
@@ -52,12 +57,17 @@
   &.nk-switch-disabled {
     cursor: not-allowed;
 
+    &.nk-switch-checked {
+      .nk-switch-inner {
+        background: #d6e9f5;
+      }
+    }
+
     .nk-switch-inner {
-      background: #f1f1f1;
-      border-color: #e1e1e1;
+      background: #f3f3f3;
 
       &::before {
-        border-color: #b8b8b8;
+        border-color: #ffffff;
       }
     }
   }

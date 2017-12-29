@@ -23,7 +23,7 @@ export class WidgetComponent implements OnInit, OnChanges {
 
   @ViewChild('customHeader') customHeader: ElementRef;
   public get hasCustomHeader() {
-    return this.customHeader.nativeElement.children.length > 0;
+    return false;
   }
 
   public get headerStyle() {

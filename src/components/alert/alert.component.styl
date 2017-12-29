@@ -1,12 +1,12 @@
-$color-danger = #f7515e;
-$color-info = #3795db;
-$color-success = #6cb319;
-$color-warning = #fda900;
+$color-danger = #f43f3f;
+$color-info = #0077c7;
+$color-success = #00c78d;
+$color-warning = #f09000;
 
 borderAndShadow(color, bgColor = #fff) {
   border-color: color;
   background: bgColor;
-  box-shadow: inset 0 0 3px rgba(color, 0.075), 0 0 6px rgba(color, 0.6);
+  box-shadow: inset 0 0 4px rgba(color, 0.075), 0 0 6px rgba(color, 0.6);
 
   .alert-title, .alert-close {
     color: color;
@@ -16,6 +16,7 @@ borderAndShadow(color, bgColor = #fff) {
 .nk-alert {
   margin-bottom: 0;
   padding: 16px 8px;
+  line-height: 16px;
 
   .alert-title {
     font-size: 16px;
@@ -30,6 +31,13 @@ borderAndShadow(color, bgColor = #fff) {
 
   .alert-close {
     opacity: 1;
+    line-height: 16px;
+  }
+
+  &:not(.nk-alert-inline) {
+    .alert-title {
+      margin-bottom: 8px;
+    }
   }
 
   &.nk-alert-inline {

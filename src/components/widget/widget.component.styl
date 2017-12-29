@@ -1,6 +1,6 @@
-.nk-widget {
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
+.nk-section, .nk-widget {
+  background: #ffffff;
+  border-radius: 4px;
 
   &::after {
     content: '';
@@ -8,25 +8,39 @@
     clear: both;
   }
 
-  .widget-heading {
-    height: 22px;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    padding: 4px;
+  .section-heading, .widget-heading {
+    border-radius: 4px 4px 0 0;
+    padding: 8px;
+    display: flex;
 
-    .nk-widget-icon {
-      margin-top: -1px;
-      width: 12px;
+    .nk-section-title, .nk-widget-title {
+      font-size: 14px;
+      color: #272727;
+      line-height: 24px;
+      font-weight: bold;
+      flex: 1;
     }
 
-    .widget-toolbar {
-      float: right;
+    .nk-widget-icon {
+      width: 16px;
+      line-height: 16px;
+      color: #c0bfc0;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .nk-section-toolbar, .widget-toolbar {
+      display: flex;
+      align-items: center;
+
+      div[slot='toolbar'] {
+        margin-right: 8px;
+      }
     }
   }
 
-  .widget-body {
-    min-height: 30px;
-    border-bottom: 1px solid #ccc;
-    padding: 4px;
+  .nk-section-body, .widget-body {
+    padding: 0 8px 8px 8px;
+    border-radius: 0 0 4px 4px;
   }
 }

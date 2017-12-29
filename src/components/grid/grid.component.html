@@ -1,32 +1,70 @@
-<table class="nk-comp nk-grid table table-striped table-bordered table-hover dataTable" width="100%">
-  <thead>
-    <tr>
-      <th *ngFor="let column of columns" [ngClass]="getHeaderClass(column)" [style.width]="column.styleWidth" (click)="onHeaderClick(column)">{{column.header}}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let row of dataItems, let idx = index" [ngClass]="{odd: idx % 2 === 0, even: idx % 2 === 1}" (click)="rowClick(row, $event)">
-      <td *ngFor="let column of columns" [ngClass]="column.contentClass">
-        <span *ngIf="!column.cellTemplate">{{row[column.field]}}</span>
-        <ng-template [ngIf]="column.cellTemplate" [ngTemplateOutlet]="column.cellTemplate" [ngOutletContext]="{ item: row, column: column }"></ng-template>
-      </td>
-    </tr>
-  </tbody>
-  <tfoot *ngIf="pageable">
-    <tr>
-      <td [attr.colspan]="columns.length" class="dt-toolbar-footer">
-        <nk-row>
-          <nk-col [span]="12">
-            Showing {{1 + pageSize * (pageIndex - 1)}} to {{currentEndIdx}} of {{_totalCount}} entries
-          </nk-col>
-          <nk-col [span]="12">
-            <nk-pagination [totalCount]="_totalCount" [pageSize]="pageSize" [(ngModel)]="pageIndex"></nk-pagination>
-            <select class="nk-grid-pagesize-select" *ngIf="showPageSizeList" [ngModel]="pageSize" (ngModelChange)="onPageSizeSelectChange($event)">
-              <option *ngFor="let p of pageSizeList" [value]="p">{{p}}</option>
-            </select>
-          </nk-col>
-        </nk-row>
-      </td>
-    </tr>
-  </tfoot>
-</table>
+<div>
+
+  <div class="nk-fixed-header">
+    <table class="nk-comp nk-grid table table-striped table-bordered table-hover dataTable m-b-none" #tableHeader>
+      <thead>
+        <tr>
+          <th [style.cursor]="column.sortable ? 'pointer' : null" *ngFor="let column of columns" [style.width]="column.styleWidth"
+            (click)="onHeaderClick(column)">
+            {{column.header}}
+            <ng-container *ngIf="column.sortable && sortField == column.field">
+              <i class="fa fa-caret-up" *ngIf="sortOrder == 'asc'"></i>
+              <i class="fa fa-caret-down" *ngIf="sortOrder == 'desc'"></i>
+            </ng-container>
+          </th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+
+  <div class="nk-grid-body" [style.maxHeight]="maxHeight > 0 ? maxHeight + 'px' : null">
+    <table class="nk-comp nk-grid table table-striped table-bordered table-hover dataTable m-b-none" #tableBody>
+      <thead style="visibility: collapse">
+        <tr>
+          <th *ngFor="let column of columns" [style.width]="column.styleWidth">
+            {{column.header}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of dataItems" (click)="rowClick(row, $event)">
+          <td *ngFor="let column of columns" [ngClass]="column.contentClass">
+            <span *ngIf="!column.cellTemplate">{{row[column.field]}}</span>
+            <ng-template [ngIf]="column.cellTemplate" [ngTemplateOutlet]="column.cellTemplate" [ngOutletContext]="{ item: row, column: column }"></ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="nk-fixed-footer">
+    <table class="nk-comp nk-grid table table-striped table-bordered table-hover dataTable" *ngIf="pageable || sortable">
+      <tfoot>
+        <tr>
+          <td [attr.colspan]="columns.length" class="dt-toolbar-footer">
+            <div class="tool-panel">
+              <div class="sort-panel" *ngIf="sortable">
+                <span>Sort by:</span>
+                <nk-select class="sort-field-select" placeholder="Field" [ngModel]="sortField" (ngModelChange)="onSortFieldChanged($event)">
+                  <ng-container *ngFor="let item of sortableColumns">
+                    <nk-option [value]="item.field" [label]="item.header"></nk-option>
+                  </ng-container>
+                </nk-select>
+                <nk-select *ngIf="sortField" class="order-select" placeholder="Order" [ngModel]="sortOrder" (ngModelChange)="onSortOrderChanged($event)">
+                  <nk-option [value]="'asc'" [label]="'Asc'"></nk-option>
+                  <nk-option [value]="'desc'" [label]="'Desc'"></nk-option>
+                </nk-select>
+              </div>
+              <div class="page-panel" *ngIf="pageable">
+                <nk-pagination [totalCount]="_totalCount" [ngModel]="pageIndex" (ngModelChange)="onPageIndexChanged($event)" [allowPageSize]="showPageSizeList"
+                  (onPageSizeChange)="onPageSizeSelectChange($event)" [pageSize]="pageSize" [pageSizeList]="pageSizeList">
+
+                </nk-pagination>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

@@ -20,4 +20,12 @@ export class TabsetDemoComponent implements OnInit {
   public consoleChangeEvent(val: any) {
     console.log(val);
   }
+
+  addTab() {
+    this.tabs.length < 5 && this.tabs.push({ header: 'Tab_' + (Math.floor(Math.random() * 100)) });
+  }
+
+  removeTab() {
+    this.tabs.length > 1 && this.tabs.splice(0, 1);
+  }
 }

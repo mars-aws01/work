@@ -1,6 +1,6 @@
 import './date-picker.component.styl';
 
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation, forwardRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation, forwardRef, ElementRef, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { SaDate } from './SaDate';
@@ -34,7 +34,7 @@ export interface WeekEntity {
 const multiLang = {
   'en-us': {
     weekLabels: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-    monthLabels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Seq', 'Oct', 'Nov', 'Dec'],
+    monthLabels: ['01 Jan', '02 Feb', '03 Mar', '04 Apr', '05 May', '06 Jun', '07 Jul', '08 Aug', '09 Seq', '10 Oct', '11 Nov', '12 Dec'],
     yearSuffix: ''
   },
   'zh-cn': {
@@ -100,9 +100,9 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
     if (this.currentMode === 'day') {
       return 'Today';
     } else if (this.currentMode === 'month') {
-      return 'This month';
+      return 'This Month';
     } else {
-      return 'This year';
+      return 'This Year';
     }
   }
 
@@ -114,12 +114,24 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
   @Input() maxDate: Date;
   @Input() format: string = 'yyyy/MM/dd';
 
+  constructor(
+    private renderer2: Renderer2,
+    private elementRef: ElementRef) {
+
+  }
+
   ngOnInit() {
     this.setLabelObject();
     this._buildMonthList();
     this.currentYear = new Date().getFullYear();
     this._buildYearList();
     this._initMonthPanel();
+
+    this.renderer2.listen('document', 'click', (event: any) => {
+      if (event.path.indexOf(this.elementRef.nativeElement) === -1 && this.pickerShown) {
+        this.pickerShown = false;
+      }
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -135,12 +147,6 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
 
   public showDatePicker() {
     this.pickerShown = true;
-  }
-
-  public closeDatePicker() {
-    // setTimeout(() => {
-    //   this.pickerShown = false;
-    // }, 300);
   }
 
   public handleFooterClick() {
@@ -291,9 +297,11 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
 
 
   writeValue(obj: any): void {
-    this.innerDate = (obj instanceof Date) ? obj : new Date(obj);
-    this.showDate = this.innerDate;
-    this._initMonthPanel(this.showDate);
+    if (obj) {
+      this.innerDate = (obj instanceof Date) ? obj : new Date(obj);
+      this.showDate = this.innerDate;
+      this._initMonthPanel(this.showDate);
+    }
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;

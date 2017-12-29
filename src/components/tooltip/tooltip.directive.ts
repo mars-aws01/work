@@ -1,3 +1,5 @@
+import './tooltip.styl';
+
 import {
   AfterViewInit,
   Directive,
@@ -17,13 +19,14 @@ export class TooltipDirective implements OnInit, OnChanges, AfterViewInit {
   @Input() delay: number | any = 0;
   @Input() allowHtml: boolean = false;
   @Input() tooltipTrigger: string = 'hover focus';
+  @Input('tooltip-type') type: string = 'normal';
 
   private $el: any;
   private timerForInit: any;
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.$el) {
@@ -36,13 +39,23 @@ export class TooltipDirective implements OnInit, OnChanges, AfterViewInit {
     this.initTooltip();
   }
 
+  ngOnDestroy() {
+    this.destroyTooltip();
+  }
+
   private getTooltipOptions() {
     return {
+      container: 'body',
       delay: this.delay,
       html: this.allowHtml,
       placement: this.placement,
       title: this.content,
-      trigger: this.tooltipTrigger
+      trigger: this.tooltipTrigger,
+      template: `
+      <div class="tooltip nk-tooltip nk-tooltip-${this.type}" role="tooltip">
+        <div class="tooltip-arrow"></div>
+        <div class="tooltip-inner"></div>
+      </div>`
     };
   }
 
@@ -58,6 +71,6 @@ export class TooltipDirective implements OnInit, OnChanges, AfterViewInit {
   private destroyTooltip() {
     try {
       this.$el.tooltip('destroy');
-    } catch (e) {}
+    } catch (e) { }
   }
 }

@@ -1,11 +1,11 @@
-# nk-switch
+## nk-switch
 
 **Input**
 
-| 属性 | 说明 |  类型 | 默认值 |
+| Name| Data Type | Two-way | Default Value | Description |
 | --- | --- | --- | --- | --- |
-| disabled | 设置是否为禁用状态 | boolean | false |
-| ngModel | 指定当前是否选中 | boolean | - |
+| disabled | boolean | | false | 设置是否为禁用状态 |
+| ngModel | boolean | Y | - | 指定当前是否选中 |
  
 **Slots（ng-content占位符）**
 
@@ -16,6 +16,6 @@
 **Usage**
 
 ```html
-<nk-switch [(ngModel)]="checked">保存账户 - {{checked}}</nk-switch>
-<nk-switch [(ngModel)]="checked" [disabled]="true">保存账户 - {{checked}}</nk-switch>
+<nk-switch [(ngModel)]="checked">Bypass Address QAS</nk-switch>
+<nk-switch [(ngModel)]="checked" [disabled]="true">Bypass Address QAS</nk-switch>
 ```

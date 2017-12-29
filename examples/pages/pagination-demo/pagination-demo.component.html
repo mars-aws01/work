@@ -1,37 +1,32 @@
 <div class="page-pagination-demo">
-  <div class="form-group">
-    <div class="col-xs-6">
-      <label for="">总记录数</label>
-      <label class="input">
-        <input type="number" class="form-control" name="totalCount" [(ngModel)]="pageObj.totalCount">
-      </label>
+  <div class="flex-display">
+    <div>
+      <nk-switch [(ngModel)]="showTotalCount">{{ showTotalCount ? 'Hidden' : 'Show' }} Total Count</nk-switch>
     </div>
-    <div class="col-xs-6">
-      <label for="">每页记录数</label>
-      <label class="input">
-        <input type="number" class="form-control" name="pageSize" [(ngModel)]="pageObj.pageSize">
-      </label>
+    <div>
+      <nk-switch [(ngModel)]="allowPageSize">{{ allowPageSize ? 'Hidden' : 'Show' }} Page Size Select</nk-switch>
     </div>
   </div>
   <hr>
   <div class="row">
     <div class="col-xs-6">
-      <nk-pagination [totalCount]="pageObj.totalCount" [pageSize]="pageObj.pageSize" name="pageIndex" [(ngModel)]="pageIndex" (onPageChange)="onPageChanged($event)"></nk-pagination>
-    </div>
-    <div class="col-xs-6">
-      <nk-pagination [simpleMode]="true" [totalCount]="pageObj.totalCount" [pageSize]="pageObj.pageSize" name="pageIndex" [(ngModel)]="pageIndex"
-        (onPageChange)="onPageChanged($event)">
-        <ng-container slot="pagination-toolbar">
-          显示{{(pageIndex-1)*pageObj.pageSize+1}} - {{pageIndex*pageObj.pageSize}} 条，共{{pageObj.totalCount}}条
-        </ng-container>
-      </nk-pagination>
+      <nk-pagination [totalCount]="pageObj.totalCount" [showTotalCount]="showTotalCount" [allowPageSize]="allowPageSize" [pageSize]="pageObj.pageSize"
+        name="pageIndex" [(ngModel)]="pageIndex" (onPageChange)="onPageChanged($event)" (onPageSizeChange)="onPageSizeChange($event)"></nk-pagination>
     </div>
   </div>
-  <div class="row">
-    <div class="col-xs-6">
-      <nk-pagination [simpleMode]="true" [totalCount]="pageObj.totalCount" [pageSize]="pageObj.pageSize" name="pageIndex" [(ngModel)]="pageIndex"
-        (onPageChange)="onPageChanged($event)" [allowPageSize]="true" (onPageSizeChange)="handleSizeChange($event)">
-      </nk-pagination>
+  <div [hidden]="eventLog?.length == 0">
+    <hr>
+    <div>
+      <h5>
+        <strong>Event Log</strong>
+      </h5>
+      <div #eventLogDiv style="background: #333; border-radius: 5px; max-height: 150px; overflow: auto; padding: 10px;">
+        <p *ngFor="let item of eventLog; let islast = last" [style.marginBottom]="islast ? '0px' : null">
+          <span style="color: #9acd32">[ {{ item.date | date: 'HH:mm:ss' }} ]</span>
+          <span style="color: tomato">[ {{ item.event }} ]</span>
+          <span style="color: white"> {{ item.log }} </span>
+        </p>
+      </div>
     </div>
   </div>
 </div>

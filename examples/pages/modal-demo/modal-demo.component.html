@@ -1,30 +1,102 @@
 <div class="page-modal-demo">
-  <button class="btn btn-primary" (click)="showModal('modalShown')">Show Modal</button>
-  <button class="btn btn-primary" (click)="showModal('modal2Shown')">Show Large Modal</button>
-  <button class="btn btn-primary" (click)="showModal('modal3Shown')">Show width=200 Modal</button>
-  <button class="btn btn-primary" (click)="showModal('modal4Shown')">Show custom okText Modal</button>
-  <button class="btn btn-primary" (click)="showModal('modal5Shown')">Show Draggable Modal</button>
-  <button class="btn btn-primary" (click)="showModal('modal6Shown')">Show Custom Footer Modal</button>
+  <nk-button (click)="showModal('modalShown')">
+    Normal Modal
+  </nk-button>
+  <nk-button (click)="showModal('modal2Shown')">
+    Large Modal
+  </nk-button>
+  <nk-button (click)="showModal('modal3Shown')">
+    Custom Width
+  </nk-button>
+  <nk-button (click)="showModal('modal4Shown')">
+    Custom Button Text
+  </nk-button>
+  <nk-button (click)="showModal('modal5Shown')">
+    Draggable Modal
+  </nk-button>
 
-  <nk-modal [(shown)]="modalShown" header="我是弹出层" [options]="{backdrop:false}">
-    一个简单的弹出层
+  <nk-modal [(shown)]="modalShown" header="Shipping Information">
+    <nk-row [gutter]="12">
+      <nk-col [span]="8">
+        <div class="nk-inline-form-group">
+          <label style="width: 60px" class="control-label">Company:</label>
+          <nk-input type="text" [(ngModel)]="formInfo.Company"></nk-input>
+        </div>
+      </nk-col>
+      <nk-col [span]="8">
+        <div class="nk-inline-form-group">
+          <label style="width: 40px" class="control-label">Name:</label>
+          <nk-input type="text" [(ngModel)]="formInfo.Name"></nk-input>
+        </div>
+      </nk-col>
+      <nk-col [span]="8">
+        <div class="nk-inline-form-group">
+          <label style="width: 40px" class="control-label">Phone:</label>
+          <nk-input type="text" [(ngModel)]="formInfo.Phone"></nk-input>
+        </div>
+      </nk-col>
+    </nk-row>
+    <nk-row [gutter]="12">
+      <nk-col>
+        <div class="nk-inline-form-group">
+          <label style="width: 60px" class="control-label">Address:</label>
+          <nk-input type="text" [(ngModel)]="formInfo.Address"></nk-input>
+        </div>
+      </nk-col>
+    </nk-row>
+    <nk-row [gutter]="12">
+      <nk-col [span]="8">
+        <div class="nk-inline-form-group">
+          <label style="width: 60px" class="control-label">Country:</label>
+          <nk-input type="text" [(ngModel)]="formInfo.Country"></nk-input>
+        </div>
+      </nk-col>
+      <nk-col [span]="8">
+        <div class="nk-inline-form-group">
+          <label style="width: 40px" class="control-label">City:</label>
+          <nk-input type="text" [(ngModel)]="formInfo.City"></nk-input>
+        </div>
+      </nk-col>
+      <nk-col [span]="8">
+        <div class="nk-inline-form-group">
+          <label style="width: 40px" class="control-label">State:</label>
+          <nk-input type="text" [(ngModel)]="formInfo.State"></nk-input>
+        </div>
+      </nk-col>
+    </nk-row>
+    <nk-row [gutter]="12">
+      <nk-col [span]="8">
+        <div class="nk-inline-form-group">
+          <label style="width: 60px" class="control-label">Zip Code:</label>
+          <nk-input type="text" [(ngModel)]="formInfo.ZipCode"></nk-input>
+        </div>
+      </nk-col>
+      <nk-col [span]="8">
+        <div class="nk-inline-form-group">
+          <label style="width: 40px" class="control-label">Fax:</label>
+          <nk-input type="text" [(ngModel)]="formInfo.Fax"></nk-input>
+        </div>
+      </nk-col>
+    </nk-row>
+    <div>
+      <nk-switch [(ngModel)]="formInfo.SameAsBiling">Same as Billing</nk-switch>
+      <nk-switch [(ngModel)]="formInfo.ByPass">By Pass QAS</nk-switch>
+    </div>
+    <div slot="modal-footer">
+
+    </div>
   </nk-modal>
-  <nk-modal [(shown)]="modal2Shown" size="lg" header="Size=lg">
+  <nk-modal [(shown)]="modal2Shown" size="lg" header="Large Modal">
     大号的弹出层
   </nk-modal>
-  <nk-modal [(shown)]="modal3Shown" size="lg" header="Width=200" [width]="200">
+  <nk-modal [(shown)]="modal3Shown" size="lg" header="Custom Width" [width]="400">
     设定宽度=200的弹出层
   </nk-modal>
-  <nk-modal [(shown)]="modal4Shown" header="Custom okText" okText="OK TEXT">
+  <nk-modal [(shown)]="modal4Shown" header="Custom Button Text" okText="OK" cancelText="Cancel2">
     自定义OkText
   </nk-modal>
-  <nk-modal [(shown)]="modal5Shown" header="点我拖拽" okText="OK Button" [draggable]="true" (onOk)="onOkBtnClick()">
+  <nk-modal [(shown)]="modal5Shown" header="点我拖拽" [draggable]="true" (onOk)="onOkBtnClick()">
     一个可以被拖拽的弹出层，点击
     <b>OK Button</b>有惊喜哦！
-  </nk-modal>
-  <nk-modal [(shown)]="modal6Shown" header="自定义Footer" okText="OK TEXT">
-    <div slot="modal-footer">
-      <button class="btn btn-danger" (click)="onOkBtnClick()">自定义Footer按钮</button>
-    </div>
   </nk-modal>
 </div>

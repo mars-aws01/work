@@ -1,11 +1,11 @@
-# nk-checkbox-group
+## nk-checkbox-group
 
 **Input**
 
-| 属性 | 说明 |  类型 | 默认值 |
+| Name| Data Type | Two-way | Default Value | Description |
 | --- | --- | --- | --- | --- |
-| ngModel | 指定当前选中的值 | any | - |
-| disabled | 设定是否禁用复选框组 | boolean | false |
+| ngModel | any | Y | | 指定当前选中的值 |
+| disabled | boolean | | false | 设定是否禁用复选框组 |
  
 **Slots（ng-content占位符）**
 
@@ -22,11 +22,8 @@
 ```
 
 ```js
-export class CheckboxGroupDemoComponent implements OnInit {
-
+export class CheckboxGroupDemoComponent {
   public languageList = ['JavaScript', 'C#', 'Java', 'Go', 'Python'];
   public selectedLanguages: string[] = [];
-  
-  ngOnInit() { }
 }
 ```

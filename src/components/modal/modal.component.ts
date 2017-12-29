@@ -80,8 +80,8 @@ export class ModalComponent implements OnInit, AfterViewInit {
   @Input() width: number;
   @Input() header: string;
   @Input() animate: string = 'fade';
-  @Input() okText: string = 'Save changes';
-  @Input() cancelText: string = 'Close';
+  @Input() okText: string = 'Save';
+  @Input() cancelText: string = 'Cancel';
   @Input() draggable: boolean = false;
   @Input() options: { backdrop?: boolean | string, show?: boolean, keyboard?: boolean };
   @Output() onShown: EventEmitter<any> = new EventEmitter();
@@ -90,7 +90,6 @@ export class ModalComponent implements OnInit, AfterViewInit {
   @Output() onOk: EventEmitter<any> = new EventEmitter();
   @Input() set shown(val: boolean) {
     this.isShown = val;
-    this.shownChange.emit(this.isShown);
     if (!this.$modal) {
       return;
     }
@@ -101,8 +100,7 @@ export class ModalComponent implements OnInit, AfterViewInit {
   @ViewChild('modalFooter') modalFooter: any;
 
   constructor(
-    private elementRef: ElementRef
-  ) {
+    private elementRef: ElementRef) {
   }
 
   ngOnInit() {
@@ -122,6 +120,9 @@ export class ModalComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.configModalOptions();
     this.configModalEvents();
+    if (this.isShown) {
+      this.showModal();
+    }
   }
 
   ngOnDestroy() {

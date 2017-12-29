@@ -1,4 +1,4 @@
-# nk-progress
+## nk-progress
 
 **Input**
 
@@ -17,7 +17,10 @@
 | --- | --- |
 | '' | 设置进度条的内容 |
 
-**Events（Output）**
-
-| Name | Paramters | Description |
-| --- | --- | --- |
+**Usage**
+```html
+<nk-progress type="success" [value]="value25"></nk-progress>
+<nk-progress type="info" [value]="value50"></nk-progress>
+<nk-progress type="warning" [value]="value75"></nk-progress>
+<nk-progress type="danger" [value]="value100"></nk-progress>
+```

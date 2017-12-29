@@ -1,13 +1,139 @@
 .nk-grid {
+  border: none;
+  width: 100%;
+
+  &.m-b-none {
+    margin-bottom: 0;
+  }
+
   &.table {
     >tbody, >tfoot, >thead {
-      >tr>td, >tr>th {
-        padding: 3.5px 4px;
+      >tr>th {
+        background: #f9f9f9;
+        font-size: 12px;
+        color: #777677;
+        line-height: 16px;
+        padding: 4px 8px;
+        border: none;
       }
 
-      >tr>th {
-        background: #eee;
-        border-bottom-width: 1px;
+      >tr>td {
+        padding: 8px;
+        border: none;
+        background: #ffffff;
+        color: #272727;
+        line-height: 16px;
+
+        a.nk-link {
+          display: inline-block;
+          font-size: 12px;
+          color: #0077c7;
+          line-height: 16px;
+          width: 16px;
+          text-align: center;
+
+          &:hover {
+            text-decoration: underline;
+
+            i.fa {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+
+      >tr:hover {
+        td {
+          background: #d6e9f5;
+        }
+      }
+    }
+
+    >tfoot {
+      >tr:hover {
+        td {
+          background: initial;
+        }
+      }
+
+      >tr>td {
+        padding: 8px 8px 0 8px;
+      }
+
+      .tool-panel {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .sort-panel, .page-panel {
+          margin-bottom: 8px !important;
+        }
+
+        .sort-panel {
+          display: flex;
+          align-items: center;
+          flex: 1;
+          margin: 0 -2px;
+
+          >span {
+            white-space: nowrap;
+          }
+
+          >* {
+            padding: 0 2px;
+          }
+
+          .sort-field-select {
+            min-width: 100px;
+          }
+
+          .order-select {
+            width: 60px;
+            min-width: 60px;
+          }
+
+          nk-select:last-child {
+            margin-right: 20px;
+          }
+        }
+
+        .page-panel {
+          display: flex;
+          align-items: center;
+          margin: 0 -8px;
+
+          >* {
+            padding: 0 8px;
+          }
+
+          .page-info {
+            display: flex;
+            align-items: center;
+
+            >div {
+              display: flex;
+              align-items: center;
+
+              &+div {
+                margin-left: 4px;
+              }
+
+              >span {
+                margin-right: 4px;
+              }
+
+              nk-select {
+                width: 50px;
+              }
+            }
+          }
+        }
+
+        .table-pagination {
+          .nk-button {
+            margin-bottom: 0;
+          }
+        }
       }
     }
   }
@@ -38,5 +164,33 @@
       border-color: #ddd;
       float: right;
     }
+  }
+
+  .nk-pagination-panel {
+    margin-bottom: 8px;
+  }
+}
+
+.nk-fixed-header {
+  overflow: hidden;
+}
+
+.nk-grid-body {
+  overflow: auto;
+
+  /* 设置滚动条的样式 */
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* 滚动条滑块 */
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: #f3f3f3;
   }
 }

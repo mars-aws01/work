@@ -5,23 +5,22 @@
         <div class="modal-header" #modalHeader>
           <ng-content select="[slot=modal-header]"></ng-content>
           <ng-template [ngIf]="!hasCustomHeader">
-            <button type="button" class="close" (click)="hideModal()">
-              <span style="user-select: none;">&times;</span>
-              <span class="sr-only">Close</span>
-            </button>
             <h4 class="modal-title">
               {{header}}
             </h4>
           </ng-template>
+          <button type="button" class="colse" (click)="hideModal()">
+            <i class="fa fa-remove"></i>
+          </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" [style.paddingBottom]="modalFooter?.offsetHeight == 16 ? '0' : null">          
           <ng-content></ng-content>
         </div>
         <div class="modal-footer" #modalFooter>
           <ng-content select="[slot=modal-footer]"></ng-content>
-          <ng-template [ngIf]="!hasCustomFooter">
-            <nk-button (click)="onCancelClick()">{{cancelText}}</nk-button>
+          <ng-template [ngIf]="!hasCustomFooter">            
             <nk-button type="primary" (click)="onOkClick()">{{okText}}</nk-button>
+            <nk-button (click)="onCancelClick()">{{cancelText}}</nk-button>
           </ng-template>
         </div>
       </div>

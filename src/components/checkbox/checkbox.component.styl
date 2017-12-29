@@ -10,11 +10,20 @@
   .nk-checkbox-inner {
     display: inline-block;
     border-radius: 2px;
-    border: 1px solid #ccc;
+    border: 1px solid #c0bfc0;
+    background: #ffffff;
     width: 14px;
     height: 14px;
     vertical-align: text-bottom;
     position: relative;
+    box-sizing: content-box;
+  }
+
+  .nk-checkbox-content {
+    user-select: none;
+    font-size: 12px;
+    color: #272727;
+    line-height: 16px;
   }
 
   input[type=checkbox] {
@@ -22,25 +31,25 @@
   }
 
   &:hover:not(.nk-checkbox-disabled) .nk-checkbox-inner {
-    border-color: #3795db;
-    box-shadow: 0 0 3px #3795db;
+    border-color: #0077c7;
+    box-shadow: 0 0 4px #0077c7;
   }
 
   &.nk-checkbox-checked {
     .nk-checkbox-inner {
-      background: #3795db;
-      border-color: #3795db;
+      background: #0077c7;
+      border-color: #0077c7;
 
       &::before {
         content: '';
         position: absolute;
         transform: rotate(45deg) scale(1);
-        left: 4px;
-        top: 1px;
+        left: 5.4px;
+        top: 2.3px;
         display: table;
-        width: 5px;
+        width: 4.5px;
         height: 8px;
-        border: 2px solid #fff;
+        border: 1px solid #fff;
         border-top: 0;
         border-left: 0;
         transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
@@ -52,12 +61,16 @@
     cursor: not-allowed;
 
     .nk-checkbox-inner {
-      background: #f1f1f1;
-      border-color: #e1e1e1;
+      background: #f3f3f3;
+      border-color: #c0bfc0;
 
       &::before {
-        border-color: #b8b8b8;
+        border-color: #c0bfc0;
       }
+    }
+
+    .nk-checkbox-content {
+      color: #c0bfc0;
     }
   }
 }

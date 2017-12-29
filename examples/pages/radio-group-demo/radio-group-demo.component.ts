@@ -7,9 +7,8 @@ import { Component, OnInit } from '@angular/core';
 
 export class RadioGroupDemoComponent implements OnInit {
 
-  public sex = '男';
-  public sexList = ['男', '女', '人妖', '保密'];
-  public val2 = 'B';
+  public sex = 'Male';
+  public sexList = ['Male', 'Female', 'Unknown'];
   
   ngOnInit() { }
 

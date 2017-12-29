@@ -19,7 +19,7 @@ export const menuData: Array<MenuItem> = [
       { text: 'Date Picker', url: '/date-picker' },
       { text: 'Form', url: '/form' },
       { text: 'Input', url: '/input' },
-      { text: 'Input Group', url: '/input-group' },
+      // { text: 'Input Group', url: '/input-group' },
       { text: 'Radio', url: '/radio' },
       { text: 'Radio Group', url: '/radio-group' },
       { text: 'Rating', url: '/rating' },
@@ -57,11 +57,11 @@ export const menuData: Array<MenuItem> = [
       { text: 'Tooltip', url: '/tooltip' }
     ]
   },
-  {
-    text: 'Services',
-    icon: 'fa-star',
-    subMenu: [{ text: 'MessageBox', url: '/message-box' }]
-  }
+  // {
+  //   text: 'Services',
+  //   icon: 'fa-star',
+  //   subMenu: [{ text: 'MessageBox', url: '/message-box' }]
+  // }
 ];
 
 window['AppConf'] = {

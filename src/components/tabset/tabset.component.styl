@@ -1,47 +1,62 @@
-$border-color = #e1e1e1;
+$border-color = #c0bfc0;
 
 .nk-tabset {
-  border: 1px solid $border-color;
   position: relative;
+  margin-bottom: 4px;
 
   .nk-tabset-header {
     height: 24px;
-    background: #f1f1f1;
-    border-bottom: 1px solid $border-color;
 
     >li {
       float: left;
       display: block;
+      background: #f3f3f3;
+      border: 1px solid #c0bfc0;
+      border-radius: 2px 2px 0 0;
+
+      &:not(:last-child) {
+        border-right: none;
+      }
 
       a {
         position: relative;
         border-radius: 0;
         font-size: 12px;
-        color: #000;
-        font-weight: bold;
+        color: #777677;
         padding: 4px 8px;
         line-height: 16px;
+
+        &:hover {
+          background-color: initial;
+        }
+
+        &:focus {
+          outline: none;
+          background: transparent;
+        }
       }
 
-      &.active a {
-        background: #fff;
+      &.active {
+        background: #ffffff;
+        border-bottom: 1px solid #ffffff;
 
-        &::before {
-          content: '';
-          display: block;
-          position: absolute;
-          top: 0;
-          right: 0;
-          left: 0;
-          height: 2px;
-          background: #3795db;
+        a {
+          color: #0077c7;
+
+          &:hover {
+            background: transparent;
+          }
         }
       }
     }
   }
 
   .nk-tab-content {
-    padding: 4px;
+    border: 1px solid $border-color;
+    border-radius: 2px;
+    border-top-left-radius: 0;
+    padding: 8px;
+    margin-top: 1px;
 
     .nk-tab-item {
       display: none;
@@ -57,29 +72,41 @@ $border-color = #e1e1e1;
 
     .nk-tabset-header {
       height: auto;
-      border-right: 1px solid $border-color;
-      border-bottom: 0;
+      border: none;
 
       li {
         float: none;
+        border-radius: 2px 0 0 2px;
+
+        &:not(:last-child) {
+          border-right: 1px solid $border-color;
+          border-bottom: none !important;
+        }
 
         a {
           width: calc(100% + 1px);
         }
 
-        a::before {
-          top: 0;
-          left: 0;
-          bottom: 0;
-          right: auto;
-          width: 2px;
-          height: auto;
+        &.active {
+          background: #ffffff;
+          border-bottom: 1px solid $border-color;
+          border-right: 1px solid #ffffff;
+
+          a {
+            color: #0077c7;
+
+            &:hover {
+              background: transparent;
+            }
+          }
         }
       }
     }
 
     .nk-tab-content {
       flex: 1;
+      margin-top: 0;
+      margin-left: -1px;
     }
   }
 }

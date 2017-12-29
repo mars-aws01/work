@@ -14,7 +14,7 @@ export class CheckboxGroupDemoComponent implements OnInit {
     setTimeout(() => {
       this.selectedLanguages.push('Java');
       this.selectedLanguages = this.selectedLanguages.slice(0);
-      console.log('push');
+      console.log('[checkbox group] value pushed');
     }, 2000);
   }
 }

@@ -81,7 +81,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      useHash: true,
+      useHash: false,
       errorHandler() {
         console.log('路由匹配失败！');
       }

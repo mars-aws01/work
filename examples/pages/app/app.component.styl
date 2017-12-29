@@ -1,16 +1,16 @@
 .left-panel {
   position: fixed;
-  top: 50px;
+  top: 0;
   bottom: 0;
   left: 0;
   width: 220px;
-  border-right: 1px solid #ccc;
   overflow-y: auto;
+  background: #333;
 }
 
 .page-content {
   position: absolute;
-  top: 50px;
+  top: 0;
   right: 0;
   bottom: 0;
   left: 220px;
@@ -30,26 +30,58 @@
   li {
     font-size: 0;
 
-    &.active:not(.open) a {
-      background: #999;
-      color: yellow;
+    &.active:not(.open)>a {
+      background: #333;
+    }
+
+    &:hover:not(.open)>a, &.active:not(.open) a {
+      background: rgba(0, 0, 0, 0.4);
+      color: yellowgreen;
       font-weight: bold;
+    }
+
+    &.open {
+      background: rgba(0, 0, 0, 0.4);
+
+      >a {
+        background: #333;
+      }
+
+      >ul {
+        display: block;
+      }
+    }
+
+    >ul {
+      display: none;
     }
   }
 
   a {
-    height: 30px;
     display: flex;
     font-size: 12px;
-    line-height: 30px;
     text-decoration: none;
+    color: #eee;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    padding: 10px 0 10px 5px;
 
     &.level1 {
-      padding-left: 16px;
+      >i {
+        font-size: 14px;
+        height: 17px;
+        line-height: 17px;
+      }
     }
 
     &.level2 {
-      padding-left: 40px;
+      padding-left: 15px;
+
+      >i {
+        line-height: 17px;
+        width: 25px;
+      }
     }
 
     >span {
@@ -61,10 +93,8 @@
     }
 
     >i, >b {
-      flex: 0;
-      min-width: 20px;
+      width: 30px;
       text-align: center;
-      line-height: 30px;
     }
   }
 }

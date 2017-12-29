@@ -1,8 +1,7 @@
 <div class="nk-comp nk-alert alert" [ngClass]="alertClass" [hidden]="!shown">
   <button class="alert-close close" *ngIf="closable" (click)="onCloseBtnClick()">×</button>
-  <span class="alert-title">
-    <i class="fa" [ngClass]="iconClass"></i>
-    <span>我是标题内容 </span>
+  <span class="alert-title">    
+    <span>{{inlineHeader}} </span>
   </span>
   <ng-content></ng-content>
 </div>

@@ -1,43 +1,38 @@
-<ul class="nk-comp nk-pagination pagination" [ngClass]="paginationClass">
-  <li (click)="pageClick(1)">
-    <a href="javascript:;">
+<div class="nk-pagination-panel">
+  <div class="total-count" *ngIf="showTotalCount">
+    <span>Total Count:</span>
+    <span>{{ totalCount }}</span>
+  </div>
+  <div class="page-info">
+    <div *ngIf="allowPageSize">
+      <span>Pagesize:</span>
+      <nk-select [ngModel]="_pageSize" (ngModelChange)="onPageSizeSelectChange($event)">
+        <ng-container *ngFor="let item of pageSizeList">
+          <nk-option [value]="item" [label]="item"></nk-option>
+        </ng-container>
+      </nk-select>
+    </div>
+    <div *ngIf="pages?.length > 0">
+      <span>Page:</span>      
+      <nk-select [allowSearch]="true" [ngModel]="pageIndex" (ngModelChange)="pageClick($event)">
+        <ng-container *ngFor="let item of pages">
+          <nk-option [value]="item" [label]="item"></nk-option>
+        </ng-container>
+      </nk-select>
+    </div>
+  </div>
+  <div class="pagination-nav">
+    <nk-button (click)="setPage('start')">
       <i class="fa fa-angle-double-left"></i>
-    </a>
-  </li>
-  <li [ngClass]="{disabled: pageIndex <= 1}" (click)="pageClick(pageIndex - 1)">
-    <a href="javascript:;">
-      <i class="fa fa-angle-left"></i>
-    </a>
-  </li>
-  <ng-container *ngIf="!simpleMode">
-    <li *ngFor="let p of pages" [ngClass]="{'active': pageIndex === p.value}" (click)="pageClick(p.value)">
-      <a href="javascript:void(0);">{{p.text}}</a>
-    </li>
-  </ng-container>
-  <ng-container *ngIf="simpleMode">
-    <li class="pagination-input">
-      <a>
-        <!-- {{inputValue}} -->
-        <input type="text" [(ngModel)]="inputValue" (blur)="handleInputBlur()" (keypress)="handleEnterInput($event)">
-      </a>
-    </li>
-  </ng-container>
-  <li [ngClass]="{disabled: pageIndex >= pageCount}" (click)="pageClick(pageIndex + 1)">
-    <a href="javascript:void(0);">
-      <i class="fa fa-angle-right"></i>
-    </a>
-  </li>
-  <li (click)="pageClick(pageCount)">
-    <a href="javascript:void(0);">
+    </nk-button>
+    <nk-button (click)="setPage('prev')">
+      Prev
+    </nk-button>
+    <nk-button (click)="setPage('next')">
+      Next
+    </nk-button>
+    <nk-button (click)="setPage('end')">
       <i class="fa fa-angle-double-right"></i>
-    </a>
-  </li>
-  <li class="pagesize-bar" *ngIf="allowPageSize">
-    <select [ngModel]="pageSize" (ngModelChange)="handlePageSizeChange($event)">
-      <option *ngFor="let p of pageSizeList" [value]="p">{{p}}</option>
-    </select>
-  </li>
-  <li class="pagination-toolbar" *ngIf="simpleMode">
-    <ng-content select="[slot=pagination-toolbar]" #toolbar></ng-content>
-  </li>
-</ul>
+    </nk-button>
+  </div>
+</div>

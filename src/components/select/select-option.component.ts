@@ -9,7 +9,7 @@ import { SelectComponent } from './select.component';
 })
 
 export class SelectOptionComponent implements OnInit, OnDestroy {
-
+  
   @Input() label: string;
   @Input() value: string;
   @Input() disabled: boolean = false;
@@ -17,7 +17,8 @@ export class SelectOptionComponent implements OnInit, OnDestroy {
   constructor(private select: SelectComponent) {
 
   }
-  ngOnInit() {
+
+  ngOnInit() {    
     this.select.addOption(this);
   }
 

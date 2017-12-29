@@ -16,117 +16,114 @@ const MAX_PAGE_BUTTON_COUNT = 10;
 @Component({
   selector: 'nk-pagination',
   templateUrl: 'pagination.component.html',
-  providers: [PAGINATION_VALUE_ACCESSOR],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  providers: [PAGINATION_VALUE_ACCESSOR]
 })
 
-export class PaginationComponent implements ControlValueAccessor, OnInit, OnChanges {
+export class PaginationComponent implements ControlValueAccessor, OnInit {
 
   private onChange: any = Function.prototype;
   private onTouched: any = Function.prototype;
   public paginationClass: string = '';
   public pageIndex: number = 1;
   public pages: Array<any> = [];
-  public inputValue: number = this.pageIndex;
 
-  @Input() totalCount: number = 0;
+  // Deprecated
   @Input() simpleMode: boolean = false;
-  @Input() pageSize: number = 20;
-  @Input() pageSizeList: number[] = [10, 20, 50];
+
+  @Input() showTotalCount: boolean = true;
+  @Input()
+  get totalCount(): any {
+    return this._totalCount;
+  }
+  set totalCount(val: any) {
+    this._totalCount = parseInt(val, 10) || 0;
+    this.buildPages();
+  }
+  private _totalCount: number = 0;
+
   @Input() allowPageSize = false;
+  @Input() pageSizeList: number[] = [10, 20, 50];
+  @Input()
+  get pageSize(): any {
+    return this._pageSize;
+  }
+  set pageSize(val: any) {
+    val = parseInt(val, 10);
+    if (this.pageSizeList.indexOf(val) === -1) return;
+    this._pageSize = parseInt(val, 10);
+    this.buildPages();
+  }
+  private _pageSize: number = 20;
+
   @Output() onPageChange: EventEmitter<number> = new EventEmitter();
   @Output() onPageSizeChange: EventEmitter<number> = new EventEmitter();
 
   public get pageCount() {
     return Math.ceil(this.totalCount / this.pageSize);
   }
-  
+
   ngOnInit() {
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    let pageIndex = Math.min(this.pageIndex, this.pageCount);
-    if (pageIndex !== this.pageIndex) {
-      this.emitValue(pageIndex);
+  setPage(type: string) {
+    let totalPage = this.pages[this.pages.length - 1];
+    let pageIndex = this.pageIndex;
+    switch (type) {
+      case 'start':
+        pageIndex = 1;
+        break;
+      case 'prev':
+        if (pageIndex > 1)
+          pageIndex--;
+        break;
+      case 'next':
+        if (pageIndex < totalPage)
+          pageIndex++;
+        break;
+      case 'end':
+        pageIndex = totalPage;
+        break;
     }
+    if (this.pageIndex === pageIndex) return;
+    this.pageIndex = pageIndex;
+    this.pageClick(this.pageIndex);
   }
 
-  public handleInputBlur(val: number) {
-    this.inputValue = this.pageIndex;
+  onPageSizeSelectChange(val: number) {
+    this.pageSize = val;
+    this.onPageSizeChange.emit(val);
   }
 
-  public handleEnterInput(evt: KeyboardEvent) {
-    if (evt.keyCode !== 13) {
-      return;
-    }
-    const val = +this.inputValue;
-    if (val !== val) {
-      return;
-    }
-    this.pageClick(val);
-  }
-
-  public handlePageSizeChange(v: number) {
-    v = +v;
-    this.onPageSizeChange.emit(v);
-  }
-
-  public pageClick(p: number) {
+  pageClick(p: number) {
     if (p < 1 || p > this.pageCount) { return; }
     this.emitValue(p);
   }
 
   private emitValue(value: number) {
-    this.inputValue = this.pageIndex = value;
+    this.pageIndex = value;
     this.onChange(value);
     this.onPageChange.next(value);
-    if (!this.simpleMode) {
-      this.buildPages();
-    }
   }
 
+  private _buildPagesTimer: any;
   private buildPages() {
-    let result = [];
-    let startIndex;
-    let endIndex;
-    let needHead = false;
-    let needFoot = false;
-    if (this.pageCount <= MAX_PAGE_BUTTON_COUNT) {
-      startIndex = 1;
-      endIndex = this.pageCount;
-    } else {
-      if (this.pageCount - this.pageIndex < MAX_PAGE_BUTTON_COUNT) { // 在最后10页内
-        endIndex = this.pageCount;
-        startIndex = this.pageCount - MAX_PAGE_BUTTON_COUNT + 1;
-        needHead = true;
-      } else { // 常规
-        startIndex = (Math.ceil(this.pageIndex / MAX_PAGE_BUTTON_COUNT) - 1) * MAX_PAGE_BUTTON_COUNT + 1;
-        endIndex = startIndex + MAX_PAGE_BUTTON_COUNT - 1;
-        if (this.pageIndex > MAX_PAGE_BUTTON_COUNT) {
-          needHead = true;
-        }
-        needFoot = true;
+    if (this._buildPagesTimer) clearTimeout(this._buildPagesTimer);
+    this._buildPagesTimer = setTimeout(() => {
+      let arr: Array<any> = [];
+      for (let i = 1; i <= this.pageCount; i++) {
+        arr.push(i);
       }
-    }
-    for (let i = startIndex; i <= endIndex; i++) {
-      result.push({ value: i, text: i });
-    }
-    if (needHead) {
-      result.unshift({ text: '...', value: startIndex - 1, });
-    }
-    if (needFoot) {
-      result.push({ text: '...', value: endIndex + 1 });
-    }
-    this.pages = result;
+      this.pages = arr;
+    }, 100);
   }
 
   public writeValue(value: any): void {
-    let pageIndex = Math.min(Math.max(1, +value), this.pageCount);
-    this.inputValue = pageIndex;
-    this.pageIndex = this.inputValue;
-    if (!this.simpleMode) {
-      this.buildPages();
+    value = Math.max(1, Math.abs(+value));
+    let pageIndex = Math.min(value, this.pageCount);
+    if (pageIndex !== this.pageIndex) {
+      this.emitValue(pageIndex);
     }
+    this.pageIndex = pageIndex;
   }
   public registerOnChange(fn: (_: any) => {}): void {
     this.onChange = fn;

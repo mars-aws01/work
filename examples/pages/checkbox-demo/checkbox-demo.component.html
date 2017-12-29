@@ -1,14 +1,16 @@
 <div class="page-checkbox-demo">
-  <nk-row>
-    <nk-col [span]="4">
-      <nk-checkbox [(ngModel)]="checked" (click)="handleCheckboxClick($event)">保存账户 - {{checked}}</nk-checkbox>
-    </nk-col>
-    <nk-col [span]="4">
-      <nk-button (click)="toggleChecked()">切换选中状态</nk-button>
-    </nk-col>
-    <nk-col [span]="4">
-      禁用状态
-      <nk-checkbox [(ngModel)]="checked" [disabled]="true">保存账户 - {{checked}}</nk-checkbox>
-    </nk-col>
-  </nk-row>
+  <div class="flex-display">
+    <div>
+      <nk-checkbox [(ngModel)]="checked">Shipped</nk-checkbox>
+    </div>
+    <div>
+      <nk-checkbox [(ngModel)]="checked" [disabled]="true">Shipped</nk-checkbox>
+    </div>
+    <div>
+      Checked: {{checked}}
+    </div>
+  </div>
+  <div>
+    <nk-button (click)="toggleChecked()">{{ checked ? 'UnCheck' : 'Check' }}</nk-button>
+  </div>
 </div>

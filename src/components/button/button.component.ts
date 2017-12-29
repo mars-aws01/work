@@ -17,7 +17,8 @@ export class ButtonComponent implements OnInit {
   public get buttonClass() {
     return {
       'nk-button-disabled': this.disabled,
-      'nk-button-primary': this.type === 'primary'
+      'nk-button-primary': this.type === 'primary',
+      'nk-button-danger': this.type === 'danger'
     };
   }
 

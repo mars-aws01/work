@@ -1,6 +1,5 @@
-<div class="sa-date-picker">
-  <input class="nk-input" (click)="showDatePicker()" readonly [ngModel]="innerDateString" [attr.placeholder]="placeholder"
-    (blur)="closeDatePicker()">
+<div class="sa-date-picker" [class.show-picker]="pickerShown" [class.disabled]="disabled">
+  <input class="nk-input" (click)="showDatePicker()" readonly [ngModel]="innerDateString" [attr.placeholder]="placeholder">
   <span class="input-icon">
     <i class="fa fa-calendar"></i>
   </span>
@@ -9,25 +8,27 @@
   </span>
   <div class="picker-panel" [hidden]="!pickerShown">
     <div class="picker-panel-main">
-      <div class="picker-panel-header">
+      <div class="picker-panel-header" [class.year-mode]="currentMode == 'year'">
         <span class="prev-year" (click)="changeYear(-1)">
-          <i class="fa fa-angle-double-left"></i>
+          <i class="fa fa-caret-left"></i>
+          <i class="fa fa-caret-left" *ngIf="currentMode != 'year'"></i>
         </span>
-        <span class="prev-month" (click)="changeMonth(-1)" [hidden]="currentMode !== 'day'">
-          <i class="fa fa-angle-left"></i>
+        <span class="prev-month" (click)="changeMonth(-1)" [hidden]="currentMode != 'day'">
+          <i class="fa fa-caret-left"></i>
         </span>
         <div class="set-year-month">
           <span>{{headerText}}</span>
         </div>
-        <span class="next-month" (click)="changeMonth(1)" [hidden]="currentMode !== 'day'">
-          <i class="fa fa-angle-right"></i>
+        <span class="next-month" (click)="changeMonth(1)" [hidden]="currentMode != 'day'">
+          <i class="fa fa-caret-right"></i>
         </span>
         <span class="next-year" (click)="changeYear(1)">
-          <i class="fa fa-angle-double-right"></i>
+          <i class="fa fa-caret-right"></i>
+          <i class="fa fa-caret-right" *ngIf="currentMode != 'year'"></i>
         </span>
       </div>
       <div class="picker-panel-content">
-        <table class="ym-panel" *ngIf="currentMode === 'year'">
+        <table class="ym-panel" *ngIf="currentMode == 'year'">
           <tbody>
             <tr *ngFor="let yearArr of yearList">
               <td *ngFor="let year of yearArr" [ngClass]="{'current': year.current, 'selected': year.selected }" (click)="selectYear(year)">

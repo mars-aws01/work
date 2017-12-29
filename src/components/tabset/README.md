@@ -1,4 +1,4 @@
-# nk-tabset
+## nk-tabset
 
 **Input**
 
@@ -19,7 +19,7 @@
 | Name | Paramters | Description |
 | --- | --- | --- |
 
-# nk-tab-item
+## nk-tab-item
 
 **Input**
 
@@ -28,3 +28,21 @@
 | name | string | | | 设置选项卡名称，不设置，则是 `tabpane-${index}` |
 | header | string | | | 设置选项卡Header |
 | icon | string | | | 设置选项卡Header Icon Class |
+
+
+**Usage**
+```html
+<nk-tabset [(selected)]="selected">
+  <nk-tab-item header="Order 1">
+    <p>我是第一个Tab的内容</p>
+    <p>我是第一个Tab的内容</p>
+    <p style="margin-bottom: 0">我是第一个Tab的内容</p>
+  </nk-tab-item>
+  <nk-tab-item header="Order 2">
+    <p>我的第二个Tab的内容</p>
+    <p>我的第二个Tab的内容</p>
+    <p>我的第二个Tab的内容</p>
+    <p style="margin-bottom: 0">我的第二个Tab的内容</p>
+  </nk-tab-item>
+</nk-tabset>
+```

@@ -1,55 +1,30 @@
 <div class="app">
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-          aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Kubi-UI</a>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li class="active">
-            <a href="#">Home</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
   <aside class="left-panel">
     <ul class="menu-sidebar">
-      <li *ngFor="let m1 of menuData" [class.active]="m1.active" [class.open]="m1.open" (click)="onMenuItemClick($event, m1)">
-        <a href="#" [title]="m1.text" class="level1">
-          <i class="fa fa-lg fa-fw" [ngClass]="m1.icon"></i>
+      <li *ngFor="let m1 of menuData" routerLinkActive="active open" [routerLinkActiveOptions]="{exact: true}" [class.open]="m1.open">
+        <a href="javascript: void(0)" (click)="toggleMenuState(m1)" *ngIf="m1.subMenu && m1.subMenu.length > 0; else aLink">
+          <i class="fa fa-fw" [ngClass]="m1.icon"></i>
           <span class="menu-item-parent">{{m1.text}}</span>
-          <b class="collapse-sign" *ngIf="m1.subMenu && m1.subMenu.length > 0">
+          <b class="collapse-sign">
             <em class="fa" [class.fa-angle-up]="m1.open" [class.fa-angle-down]="!m1.open"></em>
           </b>
         </a>
-        <ul *ngIf="m1.subMenu && m1.subMenu.length > 0" [style.display]="m1.open ? 'block': 'none'">
-          <li *ngFor="let m2 of m1.subMenu" [class.active]="m2.active" [class.open]="m2.open" (click)="onMenuItemClick($event, m2)">
-            <a href="#" [title]="m2.text" class="level2">
-              <!-- <i class="fa fa-lg fa-fw"></i> -->
+        <ng-template #aLink>
+          <a routerLink="{{m1.url}}" [title]="m1.text" class="level1">
+            <i class="fa fa-fw" [ngClass]="m1.icon"></i>
+            <span class="menu-item-parent">{{m1.text}}</span>
+          </a>
+        </ng-template>
+
+        <ul *ngIf="m1.subMenu && m1.subMenu.length > 0">
+          <li *ngFor="let m2 of m1.subMenu" routerLinkActive="active">
+            <a routerLink="{{m2.url}}" [title]="m2.text" class="level2">
+              <i class="fa fa-circle-o"></i>
               <span class="menu-item-parent">{{m2.text}}</span>
               <b class="collapse-sign" *ngIf="m2.subMenu && m2.subMenu.length > 0">
                 <em class="fa" [class.fa-angle-up]="m2.open" [class.fa-angle-down]="!m2.open"></em>
               </b>
             </a>
-            <ul *ngIf="m2.subMenu && m2.subMenu.length > 0" [style.display]="m2.open ? 'block': 'none'">
-              <li *ngFor="let m3 of m2.subMenu" [class.active]="m3.active" [class.open]="m3.open" (click)="onMenuItemClick($event, m3)">
-                <a href="#" [title]="m3.text" class="level3">
-                  <!-- <i class="fa fa-lg fa-fw"></i> -->
-                  <span class="menu-item-parent">{{m3.text}}</span>
-                  <b class="collapse-sign" *ngIf="m3.subMenu && m3.subMenu.length > 0">
-                    <em class="fa" [class.fa-angle-up]="m3.open" [class.fa-angle-down]="!m3.open"></em>
-                  </b>
-                </a>
-              </li>
-            </ul>
           </li>
         </ul>
       </li>

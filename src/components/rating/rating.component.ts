@@ -27,7 +27,10 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   private maxNum: number = 5;
 
   @Input()
-  private rateClass: string = 'fa fa-star';
+  private rateClass: string = '';
+
+  @Input()
+  readOnly: boolean = false;
 
   constructor(private elementRef: ElementRef) {
   }
@@ -44,15 +47,18 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   }
 
   public onClick(v: number) {
+    if (this.readOnly) return;
     this.value = v;
     this.onChange(v);
   }
 
   public onMouseLeave() {
+    if (this.readOnly) return;
     this.hoverIdx = 0;
   }
 
   public onMouseEnter(v: number) {
+    if (this.readOnly) return;
     this.hoverIdx = v;
   }
 

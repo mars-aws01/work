@@ -1,8 +1,4 @@
-<div class="nk-comp nk-select" [ngClass]="{'nk-select-open': dropdownShown}">
-  <input type="text" class="nk-input" readonly [value]="selectedOption?.label" [placeholder]="placeholder" (click)="handleInputClick()">
-  <ul class="nk-select-dropdown" [hidden]="!dropdownShown">
-    <li *ngFor="let option of options" (click)="handleItemClick(option)" [ngClass]="{active: selectedOption === option}">
-      {{option.label}}
-    </li>
-  </ul>
+<div class="nk-select">
+  <select style="width: 100%;" #select2Ctrl>
+  </select>
 </div>

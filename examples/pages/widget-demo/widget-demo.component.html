@@ -1,30 +1,77 @@
 <div class="page-widget-demo">
   <nk-row>
     <nk-col>
-      <nk-widget header="这是一个挂件">
-        ABCDE
-      </nk-widget>
+      <div style="background: #f6f6f6; padding: 20px">
+        <nk-widget header="Shipping Information">
+          <div slot="toolbar">
+            <a href="javascript: void(0)">
+              Link
+            </a>
+          </div>
+          <nk-row [gutter]="12">
+            <nk-col [span]="8">
+              <div class="nk-inline-form-group">
+                <label style="width: 60px" class="control-label">Company:</label>
+                <nk-input type="text" [(ngModel)]="formInfo.Company"></nk-input>
+              </div>
+            </nk-col>
+            <nk-col [span]="8">
+              <div class="nk-inline-form-group">
+                <label style="width: 40px" class="control-label">Name:</label>
+                <nk-input type="text" [(ngModel)]="formInfo.Name"></nk-input>
+              </div>
+            </nk-col>
+            <nk-col [span]="8">
+              <div class="nk-inline-form-group">
+                <label style="width: 40px" class="control-label">Phone:</label>
+                <nk-input type="text" [(ngModel)]="formInfo.Phone"></nk-input>
+              </div>
+            </nk-col>
+          </nk-row>
+          <nk-row [gutter]="12">
+            <nk-col>
+              <div class="nk-inline-form-group">
+                <label style="width: 60px" class="control-label">Address:</label>
+                <nk-input type="text" [(ngModel)]="formInfo.Address"></nk-input>
+              </div>
+            </nk-col>
+          </nk-row>
+          <nk-row [gutter]="12">
+            <nk-col [span]="8">
+              <div class="nk-inline-form-group">
+                <label style="width: 60px" class="control-label">Country:</label>
+                <nk-input type="text" [(ngModel)]="formInfo.Country"></nk-input>
+              </div>
+            </nk-col>
+            <nk-col [span]="8">
+              <div class="nk-inline-form-group">
+                <label style="width: 40px" class="control-label">City:</label>
+                <nk-input type="text" [(ngModel)]="formInfo.City"></nk-input>
+              </div>
+            </nk-col>
+            <nk-col [span]="8">
+              <div class="nk-inline-form-group">
+                <label style="width: 40px" class="control-label">State:</label>
+                <nk-input type="text" [(ngModel)]="formInfo.State"></nk-input>
+              </div>
+            </nk-col>
+          </nk-row>
+          <nk-row [gutter]="12" style="margin-bottom: 0">
+            <nk-col [span]="8">
+              <div class="nk-inline-form-group">
+                <label style="width: 60px" class="control-label">Zip Code:</label>
+                <nk-input type="text" [(ngModel)]="formInfo.ZipCode"></nk-input>
+              </div>
+            </nk-col>
+            <nk-col [span]="8">
+              <div class="nk-inline-form-group">
+                <label style="width: 40px" class="control-label">Fax:</label>
+                <nk-input type="text" [(ngModel)]="formInfo.Fax"></nk-input>
+              </div>
+            </nk-col>
+          </nk-row>
+        </nk-widget>
+      </div>
     </nk-col>
-
   </nk-row>
-  <nk-row [gutter]="20">
-    <nk-col [span]="12">
-      <nk-widget header="这是一个挂件" icon="fa fa-star">
-        ABCDE
-        <ng-container slot="header">
-          <i>我是自定义Header</i>
-        </ng-container>
-      </nk-widget>
-    </nk-col>
-    <nk-col [span]="12">
-      <nk-widget header="这是一个挂件" icon="fa fa-star" defaultColor="#ccc">
-        ABCDE
-        <ng-container slot="header">
-          <i>我是自定义Header</i>
-        </ng-container>
-        <ng-container slot="toolbar">xxxxx</ng-container>
-      </nk-widget>
-    </nk-col>
-  </nk-row>
-
 </div>

@@ -7,12 +7,12 @@ import { Component, OnInit } from '@angular/core';
 
 export class RadioDemoComponent implements OnInit {
 
-  public sex: string = '男';
+  public sex: string = 'Male';
 
   ngOnInit() { }
 
   public toggleSex() {
-    this.sex = this.sex === '男' ? '女' : '男';
+    this.sex = this.sex === 'Male' ? 'Female' : 'Male';
   }
 
   public handleRadioClick() {
