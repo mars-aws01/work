@@ -16,15 +16,18 @@
     "webpack:aot": "webpack --config build/webpack.aot.conf.js",
     "lib": "npm run cleanlib && webpack --config build/webpack.lib.conf.js",
     "build": "webpack --config build/webpack.prod.conf.js",
-    "build:aot":
-      "ngc -p tsconfig-demo-aot.json && webpack --config build/webpack.aot.conf.js",
+    "build:aot": "ngc -p tsconfig-demo-aot.json && webpack --config build/webpack.aot.conf.js",
     "test": "test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://trgit2/newkit/kubi-ui.git"
   },
-  "keywords": ["Angular", "Compact", "Components"],
+  "keywords": [
+    "Angular",
+    "Compact",
+    "Components"
+  ],
   "author": "Jay.M.Hu",
   "license": "MIT",
   "bugs": {
