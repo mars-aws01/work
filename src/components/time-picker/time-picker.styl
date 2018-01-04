@@ -1,0 +1,108 @@
+.nk-time-picker {
+  position: relative;
+  margin-bottom: 4px;
+
+  &.disabled {
+    pointer-events: none;
+
+    input {
+      background: #fcfcfc;
+      border-color: #eaeaea;
+      color: #c0bfc0;
+    }
+
+    .input-icon {
+      color: #c0bfc0;
+    }
+  }
+
+  &.show-picker {
+    >.nk-input {
+      border: 1px solid #0077c7;
+      box-shadow: 0 0 4px 0 #0077c7;
+    }
+
+    .input-icon {
+      color: #0077c7;
+    }
+  }
+
+  input.form-control {
+    background: #fff;
+  }
+
+  .input-icon {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    line-height: 16px;
+    width: 16px;
+    text-align: center;
+  }
+
+  .picker-panel {
+    position: absolute;
+    background: #fff;
+    top: calc(100% + 4px);
+    left: 0;
+    // width: 154px;
+    border: 1px solid #0077c7;
+    box-shadow: 0 0 4px 0 #0077c7;
+    border-radius: 2px;
+    z-index: 2;
+
+    .picker-panel-main {
+      padding: 8px;
+      display: flex;
+      align-items: center;
+
+      .split-char {
+        margin: 0 4px;
+      }
+
+      .nk-input {
+        padding: 3px 4px;
+        width: 24px;
+
+        &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+        }
+      }
+
+      .nk-time-type {
+        display: flex;
+        align-items: center;
+        margin-left: 8px;
+
+        >div {
+          padding: 4px 0;
+          cursor: pointer;
+          background: #ffffff;
+          border: 1px solid #0077c7;
+          width: 24px;
+          height: 24px;
+          line-height: 16px;
+          font-size: 12px;
+          text-align: center;
+
+          &:first-child {
+            border-radius: 2px 0 0 2px;
+          }
+
+          &:last-child {
+            border-radius: 0 2px 2px 0;
+          }
+
+          &:not(:last-child) {
+            border-right: none;
+          }
+
+          &.active, &:hover {
+            background: #0077c7;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+}

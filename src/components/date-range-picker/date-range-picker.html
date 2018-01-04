@@ -1,0 +1,11 @@
+<div class="nk-date-range">
+  <div class="sa-date-picker" [class.show-picker]="pickerShown" [class.disabled]="disabled">
+    <input class="nk-input" #dateRangeInput readonly [ngModel]="innerDateString" [attr.placeholder]="placeholder">
+    <span class="input-icon" (click)="dateRangeInput.click()">
+      <i class="fa fa-calendar"></i>
+    </span>
+  </div>
+  <div style="position: relative" #dateRangePickerContainer>
+
+  </div>
+</div>

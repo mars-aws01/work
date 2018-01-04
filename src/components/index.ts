@@ -11,6 +11,9 @@ import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.componen
 import { ColComponent } from './col/col.component';
 import { CollapseBoxComponent } from './collapse-box/collapse-box.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
+import { DateRangePickerComponent } from './date-range-picker/date-range-picker.component';
+import { TimePickerComponent } from './time-picker/time-picker.component';
+import { TimeRangePickerComponent } from './time-range-picker/time-range-picker.component';
 import { FixbarComponent } from './fixbar/fixbar.component';
 import { FormComponent } from './form/form.component';
 import { FormItemComponent } from './form/form-item.component';
@@ -79,6 +82,9 @@ export const ALL_COMPONENTS = [
   CheckboxComponent,
   CheckboxGroupComponent,
   DatePickerComponent,
+  DateRangePickerComponent,
+  TimePickerComponent,
+  TimeRangePickerComponent,
   FormComponent,
   FormItemComponent,
   InputComponent,

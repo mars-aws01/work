@@ -3,7 +3,16 @@ export class SaDate {
   private innerDate: Date;
 
   constructor(d?: Date) {
-    this.innerDate = d || new Date();
+    if (d) {
+      if (d instanceof Date) {
+        this.innerDate = d;
+      } else {
+        this.innerDate = new Date(d);
+      }
+    } else {
+      this.innerDate = new Date();
+    }
+
   }
 
   addYears(year: number) {

@@ -44,6 +44,8 @@ const multiLang = {
   }
 };
 
+export const MultiLang = multiLang;
+
 @Component({
   selector: 'nk-date-picker',
   templateUrl: 'date-picker.component.html',
@@ -128,7 +130,7 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
     this._initMonthPanel();
 
     this.renderer2.listen('document', 'click', (event: any) => {
-      if (event.path.indexOf(this.elementRef.nativeElement) === -1 && this.pickerShown) {
+      if (event.path && event.path.indexOf(this.elementRef.nativeElement) === -1 && this.pickerShown) {
         this.pickerShown = false;
       }
     });
@@ -145,8 +147,8 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
     }
   }
 
-  public showDatePicker() {
-    this.pickerShown = true;
+  public toggleDatePicker() {
+    this.pickerShown = !this.pickerShown;
   }
 
   public handleFooterClick() {

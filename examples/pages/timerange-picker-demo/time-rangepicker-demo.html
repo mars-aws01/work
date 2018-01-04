@@ -1,0 +1,17 @@
+<div>
+  <div class="row">
+    <div class="col-md-3">
+      <nk-time-range [(ngModel)]="timeRange"></nk-time-range>
+    </div>
+    <div class="col-md-3">
+      <nk-time-range [(ngModel)]="timeRange" [disabled]="true"></nk-time-range>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <p>From: {{ timeRange.from }}</p>
+      <p>To: {{ timeRange.to }}</p>      
+    </div>
+  </div>
+</div>

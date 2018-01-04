@@ -1,0 +1,23 @@
+<div class="nk-time-picker" [class.show-picker]="pickerShown" [class.disabled]="disabled">
+  <input class="nk-input" (click)="toggleTimePicker()" readonly [ngModel]="innerDateString" [attr.placeholder]="placeholder">
+  <span class="input-icon" (click)="toggleTimePicker()">
+    <i class="fa fa-clock-o"></i>
+  </span>
+  <div class="picker-panel" [hidden]="!pickerShown">
+    <div class="picker-panel-main" (keydown)="keyDown($event)">
+      <div>
+        <input class="nk-input" type="number" min="0" max="23" [ngModel]="innerHours" (ngModelChange)="hourChange($event)">
+      </div>
+      <div class="split-char">
+        <strong>:</strong>
+      </div>
+      <div>
+        <input class="nk-input" type="number" min="0" max="59" [ngModel]="innerMins" (ngModelChange)="minChange($event)">
+      </div>
+      <!-- <div class="nk-time-type" *ngIf="mode == 'hh'">
+        <div [class.active]="currentTimeType == 'AM'" (click)="setType('AM')">AM</div>
+        <div [class.active]="currentTimeType == 'PM'" (click)="setType('PM')">PM</div>        
+      </div> -->
+    </div>
+  </div>
+</div>

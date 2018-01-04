@@ -1,5 +1,7 @@
 .nk-form-item {
   position: relative;
+  margin-bottom: 4px;
+  display: flex;
 
   &::after {
     content: '';
@@ -8,13 +10,28 @@
   }
 
   .nk-form-item-label {
-    float: left;
     line-height: 24px;
     font-weight: normal;
     margin-bottom: 0;
+    color: #7a7a7a;
+    margin-right: 4px;
   }
 
   .nk-form-item-content {
-    float: left;
+    flex: 1;
+
+    nk-input {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.nk-form.nk-form-vertical {
+  .nk-form-item {
+    flex-direction: column;
+
+    .nk-form-item-content {
+      position: relative;
+    }
   }
 }

@@ -89,12 +89,13 @@ export class ModalComponent implements OnInit, AfterViewInit {
   @Output() onCancel: EventEmitter<any> = new EventEmitter();
   @Output() onOk: EventEmitter<any> = new EventEmitter();
   @Input() set shown(val: boolean) {
-    this.isShown = val;
-    if (!this.$modal) {
+    if (!this.$modal || this.isShown === val) {
       return;
     }
+    this.isShown = val;
     this.isShown ? this.showModal() : this.hideModal();
   }
+
   @Output() shownChange = new EventEmitter();
   @ViewChild('modalHeader') modalHeader: any;
   @ViewChild('modalFooter') modalFooter: any;
@@ -139,12 +140,16 @@ export class ModalComponent implements OnInit, AfterViewInit {
 
   private configModalEvents() {
     this.$modal.on('hidden.bs.modal', (e: Event) => {
-      this.shownChange.emit(false);
-      this.onHidden.emit(e);
+      if (e.target === this.$el.querySelector('.modal')) {
+        this.shownChange.emit(false);
+        this.onHidden.emit(e);
+      }
     });
     this.$modal.on('shown.bs.modal', (e: Event) => {
-      this.shownChange.emit(true);
-      this.onShown.emit(e);
+      if (e.target === this.$el.querySelector('.modal')) {
+        this.shownChange.emit(true);
+        this.onShown.emit(e);
+      }
     });
   }
 

@@ -13,6 +13,7 @@ export class ButtonComponent implements OnInit {
   @Input() icon: string; // Set icon class
   @Input() disabled: boolean = false;
   @Input() width: string | number = '';
+  @Input() mode: string = 'button';
 
   public get buttonClass() {
     return {

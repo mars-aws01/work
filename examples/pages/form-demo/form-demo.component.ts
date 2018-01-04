@@ -9,14 +9,21 @@ import { NgForm } from '@angular/forms';
 
 export class FormDemoComponent implements OnInit {
 
-  public v1: string = 'abc';
+  data1 = {
+    Company: 'Newegg Group',
+    Name: '',
+    Address: '2721 Calle Colima West Convina, Los Angeles'
+  }
+
+  data2 = {
+    Company: '',
+    Name: '',
+    Address: '2721 Calle Colima West Convina, Los Angeles'
+  }
 
   ngOnInit() { }
 
-  public submitForm(form: any) {
-    var valid = form.validateForm();
-    if (valid) {
-      alert('pass');
-    }
+  submitForm(form: any) {
+    
   }
 }

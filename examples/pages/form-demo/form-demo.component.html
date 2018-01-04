@@ -1,31 +1,101 @@
 <div class="page-form-demo">
-  <nk-form labelWidth="60px" #form1="nkForm">
-    <nk-row [gutter]="20">
-      <nk-col [span]="6">
-        <nk-form-item label="用户名：" [control]="username">
-          <nk-input [(ngModel)]="v1" required #username="ngModel"></nk-input>
-        </nk-form-item>
-      </nk-col>
-      <nk-col [span]="6">
-        <nk-form-item label="密码：" [control]="password">
-          <nk-input type="password" [(ngModel)]="v1" #password="ngModel" required maxlength="5"></nk-input>
-        </nk-form-item>
-      </nk-col>
-    </nk-row>
-    <hr>
-    <nk-row [gutter]="20">
-      <nk-col [span]="6">
-        <nk-form-item label="用户名：" [control]="username">
-          <nk-input [(ngModel)]="v1" required #username="ngModel"></nk-input>
-        </nk-form-item>
-      </nk-col>
-      <nk-col [span]="6">
-        <nk-form-item label="密码：" [control]="password" [errorMsg]="{required: '必须填写密码', minlength: '密码必须不少于{0}位'}">
-          <nk-input type="password" [(ngModel)]="v1" #password="ngModel" required minlength="2"></nk-input>
-        </nk-form-item>
-      </nk-col>
-    </nk-row>
-    <hr>
-    <nk-button type="primary" (click)="submitForm(form1)">提交表单</nk-button>
-  </nk-form>
+  <div style="background: #f6f6f6; padding: 20px">
+    <div class="flex-display">
+      <div class="flex-1">
+        <div class="nk-section">
+          <div class="section-heading">
+            <div class="nk-section-title">Horizontal</div>
+            <div class="nk-section-toolbar">
+              <a href="javascript: void(0)">Edit</a>
+            </div>
+          </div>
+          <div class="nk-section-body">
+            <form novalidate class="nk-form" #form="ngForm" (ngSubmit)="submitForm(form)" [class.ng-submitted]="form.submitted">
+              <nk-row [gutter]="16">
+                <nk-col [span]="12">
+                  <div class="nk-form-item">
+                    <label class="nk-form-item-label width-60">Company:</label>
+                    <div class="nk-form-item-content">
+                      <nk-input type="text" name="Company" [(ngModel)]="data1.Company" #comCtrl="ngModel" required minlength="2"></nk-input>
+                      <ng-container *ngIf="form.submitted">
+                        <nk-validator [control]="comCtrl" [errorMsg]="{required: 'Company is required', minlength: 'The company length cannot be less then {0}'}"></nk-validator>
+                      </ng-container>
+                    </div>
+                  </div>
+                </nk-col>
+                <nk-col [span]="12">
+                  <div class="nk-form-item">
+                    <label class="nk-form-item-label">Name:</label>
+                    <div class="nk-form-item-content">
+                      <nk-input type="text" name="Name" [(ngModel)]="data1.Name" #nameCtrl="ngModel" required maxlength="5"></nk-input>
+                      <ng-container *ngIf="form.submitted">
+                        <nk-validator [control]="nameCtrl" [errorMsg]="{required: 'Name is required', maxlength: 'Name cannot be more then {0}'}"></nk-validator>
+                      </ng-container>
+                    </div>
+                  </div>
+                </nk-col>
+              </nk-row>
+              <div class="nk-form-item">
+                <label class="nk-form-item-label width-60">Address:</label>
+                <div class="nk-form-item-content">
+                  <nk-input type="text" name="Address" [(ngModel)]="data1.Address" #addCtrl="ngModel" required minlength="2"></nk-input>
+                  <ng-container *ngIf="form.submitted">
+                    <nk-validator [control]="addCtrl" [errorMsg]="{required: 'Address is required', minlength: 'Address cannot be less then {0}'}"></nk-validator>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="m-t-md">
+                <button mode="submit" class="nk-button nk-button-primary">Save</button>
+                <span>Form Invalid: {{ form.invalid }} </span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="flex-1">
+        <div class="nk-section">
+          <div class="section-heading">
+            <div class="nk-section-title">Vertical</div>
+            <div class="nk-section-toolbar">
+              <a href="javascript: void(0)">Edit</a>
+            </div>
+          </div>
+          <div class="nk-section-body">
+            <form novalidate class="nk-form nk-form-vertical" #form2="ngForm" (ngSubmit)="submitForm(form2)" [class.ng-submitted]="form2.submitted">
+              <div class="nk-form-item">
+                <label class="nk-form-item-label width-60">Company:</label>
+                <div class="nk-form-item-content">
+                  <nk-input type="text" name="Company" [(ngModel)]="data2.Company" #com2Ctrl="ngModel" required minlength="2"></nk-input>
+                  <ng-container *ngIf="form2.submitted">
+                    <nk-validator [control]="com2Ctrl" [errorMsg]="{required: 'Company is required', minlength: 'The company length cannot be less then {0}'}"></nk-validator>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="nk-form-item">
+                <label class="nk-form-item-label">Name:</label>
+                <div class="nk-form-item-content">
+                  <nk-input type="text" name="Name" [(ngModel)]="data2.Name" #name2Ctrl="ngModel" required maxlength="5"></nk-input>
+                  <ng-container *ngIf="form2.submitted">
+                    <nk-validator [control]="name2Ctrl" [errorMsg]="{required: 'Name is required', maxlength: 'Name cannot be more then {0}'}"></nk-validator>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="nk-form-item">
+                <label class="nk-form-item-label width-60">Address:</label>
+                <div class="nk-form-item-content">
+                  <nk-input type="text" name="Address" [(ngModel)]="data2.Address" #add2Ctrl="ngModel" required minlength="2"></nk-input>
+                  <ng-container *ngIf="form2.submitted">
+                    <nk-validator [control]="add2Ctrl" [errorMsg]="{required: 'Address is required', minlength: 'Address cannot be less then {0}'}"></nk-validator>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="m-t-md">
+                <nk-button mode="submit" type="primary">Save</nk-button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

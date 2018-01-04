@@ -1,0 +1,34 @@
+<div class="nk-time-picker nk-time-range-picker" [class.show-picker]="pickerShown" [class.disabled]="disabled">
+  <input class="nk-input" (click)="toggleTimePicker()" readonly [ngModel]="innerDateString" [attr.placeholder]="placeholder">
+  <span class="input-icon" (click)="toggleTimePicker()">
+    <i class="fa fa-clock-o"></i>
+  </span>
+  <div class="picker-panel" [hidden]="!pickerShown" *ngIf="innerDateRange">
+    <div (keydown)="keyDown($event)">      
+      <div class="range-title">From:</div>
+      <div class="picker-panel-main">
+        <div>
+          <input class="nk-input" type="number" min="0" max="23" [ngModel]="innerDateRange.from.innerHours" (ngModelChange)="hourChange($event, 'from')">
+        </div>
+        <div class="split-char">
+          <strong>:</strong>
+        </div>
+        <div>
+          <input class="nk-input" type="number" min="0" max="59" [ngModel]="innerDateRange.from.innerMins" (ngModelChange)="minChange($event, 'from')">
+        </div>
+      </div>
+      <div class="range-title">To:</div>
+      <div class="picker-panel-main">
+        <div>
+          <input class="nk-input" type="number" min="0" max="23" [ngModel]="innerDateRange.to.innerHours" (ngModelChange)="hourChange($event, 'to')">
+        </div>
+        <div class="split-char">
+          <strong>:</strong>
+        </div>
+        <div>
+          <input class="nk-input" type="number" min="0" max="59" [ngModel]="innerDateRange.to.innerMins" (ngModelChange)="minChange($event, 'to')">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

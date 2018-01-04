@@ -7,6 +7,7 @@ import { CheckboxDemoComponent } from './checkbox-demo/checkbox-demo.component';
 import { CheckboxGroupDemoComponent } from './checkbox-group-demo/checkbox-group-demo.component';
 import { CollapseBoxDemoComponent } from './collapse-box-demo/collapse-box-demo.component';
 import { DatePickerDemoComponent } from './date-picker-demo/date-picker-demo.component';
+import { DateRangePickerDemoComponent } from './daterange-picker-demo/daterange-picker-demo.page';
 import { DemoContainerComponent } from './demo-container/demo-container.component';
 import { FixbarDemoComponent } from './fixbar-demo/fixbar-demo.component';
 import { FormDemoComponent } from './form-demo/form-demo.component';
@@ -30,6 +31,8 @@ import { SwitchDemoComponent } from './switch-demo/switch-demo.component';
 import { TabsetDemoComponent } from './tabset-demo/tabset-demo.component';
 import { TooltipDemoComponent } from './tooltip-demo/tooltip-demo.component';
 import { WidgetDemoComponent } from './widget-demo/widget-demo.component';
+import { TimePickerDemoComponent } from './timepicker-demo/timepicker-demo.page';
+import { TimeRangePickerDemoComponent } from './timerange-picker-demo/time-rangepicker-demo.page';
 
 export {
   AppComponent,
@@ -55,6 +58,9 @@ export {
   CheckboxDemoComponent,
   CheckboxGroupDemoComponent,
   DatePickerDemoComponent,
+  DateRangePickerDemoComponent,
+  TimePickerDemoComponent,
+  TimeRangePickerDemoComponent,
   InputDemoComponent,
   InputGroupDemoComponent,
   FormDemoComponent,
@@ -63,7 +69,7 @@ export {
   RadioGroupDemoComponent,
   RatingDemoComponent,
   SelectDemoComponent,
-  SwitchDemoComponent,
+  SwitchDemoComponent,  
   // Directives
   PopoverDemoComponent,
   TooltipDemoComponent
@@ -95,6 +101,9 @@ export const PAGE_COMPONENTS = [
   CheckboxDemoComponent,
   CheckboxGroupDemoComponent,
   DatePickerDemoComponent,
+  DateRangePickerDemoComponent,
+  TimePickerDemoComponent,
+  TimeRangePickerDemoComponent,
   InputDemoComponent,
   InputGroupDemoComponent,
   FormDemoComponent,
@@ -104,7 +113,7 @@ export const PAGE_COMPONENTS = [
   RatingDemoComponent,
   SelectDemoComponent,
   SwitchDemoComponent,
-
+  
   // Directives
   PopoverDemoComponent,
   TooltipDemoComponent
