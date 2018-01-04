@@ -12,7 +12,7 @@ export class DateRangePickerDemoComponent implements OnInit {
     // to: new Date(new Date().valueOf() + (2*24*60*60*1000))
   };
 
-  maxDate: new Date(new Date().valueOf() + (7 * 24 * 60 * 60 * 1000))
+  maxDate = new Date(new Date().valueOf() + (7 * 24 * 60 * 60 * 1000))
 
   constructor() {
 

@@ -77,7 +77,7 @@ export class DateRangePickerComponent implements ControlValueAccessor {
       console.log(this.maxDate)
       opt.maxDate = new SaDate(this.maxDate).format('MM/dd/yyyy');
     }
-    $(this.dateRangeInput.nativeElement)
+    window['jQuery'](this.dateRangeInput.nativeElement)
       .daterangepicker(opt)
       .on('show.daterangepicker', (ev: any) => {
         this.pickerShown = true;
