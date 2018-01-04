@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.2.0-beta1 (2018.01.04)
+
+- 调整控件样式，修复Bug
+
 ## v0.1.8 (2017.11.29)
 
 - 修复 `nk-tabset` 不卸载TabItem的bug

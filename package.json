@@ -1,6 +1,6 @@
 {
   "name": "@newkit/kubi-ui",
-  "version": "0.1.9",
+  "version": "0.2.0-beta1",
   "description": "The compact ui component lib for newegg central2.",
   "main": "lib/kubi-ui.js",
   "types": "types",
@@ -17,7 +17,8 @@
     "lib": "npm run cleanlib && webpack --config build/webpack.lib.conf.js",
     "build": "webpack --config build/webpack.prod.conf.js",
     "build:aot": "ngc -p tsconfig-demo-aot.json && webpack --config build/webpack.aot.conf.js",
-    "test": "test"
+    "test": "test",
+    "push": "npm publish --registry=http://10.16.75.27:7001"
   },
   "repository": {
     "type": "git",
