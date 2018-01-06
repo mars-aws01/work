@@ -2,6 +2,7 @@ import './checkbox.component.styl';
 
 import { Component, Host, Input, OnInit, Optional, SimpleChanges, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { CheckboxGroupComponent } from '../checkbox-group/checkbox-group.component';
 
@@ -26,8 +27,15 @@ export class CheckboxComponent implements OnInit, ControlValueAccessor {
 
   @Input() value: any;
   @Input() disabled: boolean = false;
+  @Input('style') contentStyle: string = '';
 
-  constructor( @Optional() @Host() private checkboxGroup: CheckboxGroupComponent) {
+  get _inlineStyle() {
+    return this._domSanitizer.bypassSecurityTrustStyle(this.contentStyle);
+  }
+
+  constructor(
+    @Optional() @Host() private checkboxGroup: CheckboxGroupComponent,
+    private _domSanitizer: DomSanitizer) {
   }
 
   ngOnInit() {

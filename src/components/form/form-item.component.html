@@ -5,5 +5,7 @@
   <div class="nk-form-item-content" [ngStyle]="contentStyle">
     <ng-content></ng-content>
   </div>
-  <nk-validator [control]="control" [left]="labelWidth" [errorMsg]="errorMsg"></nk-validator>
+  <ng-container *ngIf="innerForm?.form?.submitted">
+    <nk-validator [control]="control" [left]="labelWidth" [errorMsg]="errorMsg" [fireOnDirty]="false"></nk-validator>
+  </ng-container>
 </div>

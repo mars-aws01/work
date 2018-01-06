@@ -18,6 +18,7 @@ export class ValidatorComponent implements OnInit {
   @Input() control: NgModel | FormControl;
   @Input() left: string | number;
   @Input() errorMsg: any = {};
+  @Input() fireOnDirty: boolean = true;
 
   public get validatorStyle() {
     return {

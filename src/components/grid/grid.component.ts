@@ -136,6 +136,11 @@ export class GridComponent implements OnInit, OnChanges {
     });
   }
 
+  dataRowRepeatDone() {
+    this.updateFixedHeaderWidth();
+    this.updateFixedHeaderPos();
+  }
+
   updateFixedHeaderWidth() {
     if (!this.tableHeader || !this.tableBody) return;
     let tableHeader = this.tableHeader.nativeElement;
@@ -254,6 +259,6 @@ export class GridComponent implements OnInit, OnChanges {
       this.dataItems = result;
     } else {
       this.dataItems = this.data;
-    }    
+    }
   }
 }

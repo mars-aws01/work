@@ -18,7 +18,7 @@
                     <div class="nk-form-item-content">
                       <nk-input type="text" name="Company" [(ngModel)]="data1.Company" #comCtrl="ngModel" required minlength="2"></nk-input>
                       <ng-container *ngIf="form.submitted">
-                        <nk-validator [control]="comCtrl" [errorMsg]="{required: 'Company is required', minlength: 'The company length cannot be less then {0}'}"></nk-validator>
+                        <nk-validator [fireOnDirty]="false" [control]="comCtrl" [errorMsg]="{required: 'Company is required', minlength: 'The company length cannot be less then {0}'}"></nk-validator>
                       </ng-container>
                     </div>
                   </div>
@@ -29,7 +29,7 @@
                     <div class="nk-form-item-content">
                       <nk-input type="text" name="Name" [(ngModel)]="data1.Name" #nameCtrl="ngModel" required maxlength="5"></nk-input>
                       <ng-container *ngIf="form.submitted">
-                        <nk-validator [control]="nameCtrl" [errorMsg]="{required: 'Name is required', maxlength: 'Name cannot be more then {0}'}"></nk-validator>
+                        <nk-validator [fireOnDirty]="false" [control]="nameCtrl" [errorMsg]="{required: 'Name is required', maxlength: 'Name cannot be more then {0}'}"></nk-validator>
                       </ng-container>
                     </div>
                   </div>
@@ -40,7 +40,7 @@
                 <div class="nk-form-item-content">
                   <nk-input type="text" name="Address" [(ngModel)]="data1.Address" #addCtrl="ngModel" required minlength="2"></nk-input>
                   <ng-container *ngIf="form.submitted">
-                    <nk-validator [control]="addCtrl" [errorMsg]="{required: 'Address is required', minlength: 'Address cannot be less then {0}'}"></nk-validator>
+                    <nk-validator [fireOnDirty]="false" [control]="addCtrl" [errorMsg]="{required: 'Address is required', minlength: 'Address cannot be less then {0}'}"></nk-validator>
                   </ng-container>
                 </div>
               </div>
@@ -67,7 +67,7 @@
                 <div class="nk-form-item-content">
                   <nk-input type="text" name="Company" [(ngModel)]="data2.Company" #com2Ctrl="ngModel" required minlength="2"></nk-input>
                   <ng-container *ngIf="form2.submitted">
-                    <nk-validator [control]="com2Ctrl" [errorMsg]="{required: 'Company is required', minlength: 'The company length cannot be less then {0}'}"></nk-validator>
+                    <nk-validator [fireOnDirty]="false" [control]="com2Ctrl" [errorMsg]="{required: 'Company is required', minlength: 'The company length cannot be less then {0}'}"></nk-validator>
                   </ng-container>
                 </div>
               </div>
@@ -76,7 +76,7 @@
                 <div class="nk-form-item-content">
                   <nk-input type="text" name="Name" [(ngModel)]="data2.Name" #name2Ctrl="ngModel" required maxlength="5"></nk-input>
                   <ng-container *ngIf="form2.submitted">
-                    <nk-validator [control]="name2Ctrl" [errorMsg]="{required: 'Name is required', maxlength: 'Name cannot be more then {0}'}"></nk-validator>
+                    <nk-validator [fireOnDirty]="false" [control]="name2Ctrl" [errorMsg]="{required: 'Name is required', maxlength: 'Name cannot be more then {0}'}"></nk-validator>
                   </ng-container>
                 </div>
               </div>
@@ -85,7 +85,7 @@
                 <div class="nk-form-item-content">
                   <nk-input type="text" name="Address" [(ngModel)]="data2.Address" #add2Ctrl="ngModel" required minlength="2"></nk-input>
                   <ng-container *ngIf="form2.submitted">
-                    <nk-validator [control]="add2Ctrl" [errorMsg]="{required: 'Address is required', minlength: 'Address cannot be less then {0}'}"></nk-validator>
+                    <nk-validator [fireOnDirty]="false" [control]="add2Ctrl" [errorMsg]="{required: 'Address is required', minlength: 'Address cannot be less then {0}'}"></nk-validator>
                   </ng-container>
                 </div>
               </div>

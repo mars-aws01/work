@@ -27,8 +27,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let row of dataItems" (click)="rowClick(row, $event)">
-          <td *ngFor="let column of columns" [ngClass]="column.contentClass">
+        <tr *ngFor="let row of dataItems; let isLastRow = last;" (click)="rowClick(row, $event)">
+          <td *ngFor="let column of columns; let isLastColumn = last;" [ngClass]="column.contentClass">
+            <ng-for-event [isLast]="isLastRow && isLastColumn" (onLastDone)="dataRowRepeatDone($event)"></ng-for-event>
             <span *ngIf="!column.cellTemplate">{{row[column.field]}}</span>
             <ng-template [ngIf]="column.cellTemplate" [ngTemplateOutlet]="column.cellTemplate" [ngOutletContext]="{ item: row, column: column }"></ng-template>
           </td>

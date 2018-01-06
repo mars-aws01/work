@@ -10,7 +10,7 @@
     <div class="nk-form-item-content">
       <input type="text" name="Company" [(ngModel)]="data1.Company" #comCtrl="ngModel" required minlength="2" />
       <ng-container *ngIf="form.submitted">
-        <nk-validator [control]="comCtrl" [errorMsg]="{required: 'Company is required', minlength: 'The company length cannot be less then {0}'}"></nk-validator>
+        <nk-validator [control]="comCtrl" [errorMsg]="{required: 'Company is required', minlength: 'The company length cannot be less then {0}'}" [fireOnDirty]="false"></nk-validator>
       </ng-container>
     </div>
   </div>
