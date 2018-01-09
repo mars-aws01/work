@@ -48,7 +48,8 @@ export const menuData: Array<MenuItem> = [
       { text: 'Progress', url: '/progress' },
       { text: 'Steps', url: '/steps' },
       { text: 'TabSet', url: '/tabset' },
-      { text: 'Widget', url: '/widget' }
+      { text: 'Widget', url: '/widget' },
+      { text: 'Function Panel', url: '/function-panel' }
       // { text: 'Wizard', url: '/wizard' }
     ]
   },

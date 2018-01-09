@@ -32,7 +32,8 @@ import {
   SwitchDemoComponent,
   TabsetDemoComponent,
   TooltipDemoComponent,
-  WidgetDemoComponent
+  WidgetDemoComponent,
+  FunctionPanelDemoComponent
 } from './pages';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -56,6 +57,7 @@ const demoRoutes: Routes = [
   { path: 'steps', component: StepsDemoComponent },
   { path: 'tabset', component: TabsetDemoComponent },
   { path: 'widget', component: WidgetDemoComponent },
+  { path: 'function-panel', component: FunctionPanelDemoComponent },
   // Form Elements
   { path: 'checkbox', component: CheckboxDemoComponent },
   { path: 'checkbox-group', component: CheckboxGroupDemoComponent },

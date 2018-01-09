@@ -33,6 +33,7 @@ import { TooltipDemoComponent } from './tooltip-demo/tooltip-demo.component';
 import { WidgetDemoComponent } from './widget-demo/widget-demo.component';
 import { TimePickerDemoComponent } from './timepicker-demo/timepicker-demo.page';
 import { TimeRangePickerDemoComponent } from './timerange-picker-demo/time-rangepicker-demo.page';
+import { FunctionPanelDemoComponent } from './function-panel-demo/function-panel-demo.page';
 
 export {
   AppComponent,
@@ -54,6 +55,7 @@ export {
   StepsDemoComponent,
   TabsetDemoComponent,
   WidgetDemoComponent,
+  FunctionPanelDemoComponent,
   // Form Elements
   CheckboxDemoComponent,
   CheckboxGroupDemoComponent,
@@ -69,7 +71,7 @@ export {
   RadioGroupDemoComponent,
   RatingDemoComponent,
   SelectDemoComponent,
-  SwitchDemoComponent,  
+  SwitchDemoComponent,
   // Directives
   PopoverDemoComponent,
   TooltipDemoComponent
@@ -96,6 +98,7 @@ export const PAGE_COMPONENTS = [
   StepsDemoComponent,
   TabsetDemoComponent,
   WidgetDemoComponent,
+  FunctionPanelDemoComponent,
 
   // Form Elements
   CheckboxDemoComponent,
@@ -113,7 +116,7 @@ export const PAGE_COMPONENTS = [
   RatingDemoComponent,
   SelectDemoComponent,
   SwitchDemoComponent,
-  
+
   // Directives
   PopoverDemoComponent,
   TooltipDemoComponent
