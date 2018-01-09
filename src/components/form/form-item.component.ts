@@ -46,6 +46,7 @@ export class FormItemComponent implements OnInit {
   ngAfterViewInit() {
     if (this.ngModels.length > 0) {
       this.ngModels.toArray().forEach(x => {
+        if (!x.name) x.name = `nk_form_item_${Math.floor(Math.random() * 10000)}`;        
         this.form.form.addControl(x);
       })
     }

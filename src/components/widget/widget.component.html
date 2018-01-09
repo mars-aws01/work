@@ -2,7 +2,12 @@
   <div class="widget-heading">
     <div class="nk-widget-title">
       <i [hidden]="!icon" [attr.class]="icon"></i>
-      {{header}}
+      <ng-container *ngIf="!hasCustomHeader">
+        {{header}}
+      </ng-container>
+      <div #customHeader>
+        <ng-content select="[slot=header]"></ng-content>
+      </div>
     </div>
     <div class="widget-toolbar">
       <ng-content select="[slot=toolbar]"></ng-content>
