@@ -57,9 +57,20 @@ export class GridDemoComponent implements OnInit {
       date: new Date(),
       event: 'onPageSizeChanged',
       log: `Pagesize changed to ${JSON.stringify(val)}`
-    });    
+    });
     this.pageIndex = 1;
     this.setEventLogPos();
+  }
+
+  onRowClick(data: any) {
+    this.eventLog.push({
+      date: new Date(),
+      event: 'onRowClick',
+      log: `Data: ${JSON.stringify(data)}`
+    });
+    this.setEventLogPos();
+    
+    console.log(data);
   }
 
   setEventLogPos() {

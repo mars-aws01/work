@@ -1,7 +1,7 @@
 .nk-modal {
   .modal-content {
     border-radius: 4px;
-    border: none;    
+    border: none;
   }
 
   .modal-header {
@@ -49,6 +49,16 @@
   }
 
   &.nk-modal-drag {
+    &.nk-disable-backdrop {
+      .modal {
+        position: inital;
+      }
+
+      .modal-dialog {
+        position: fixed;
+      }
+    }
+
     .modal-dialog {
       position: absolute;
       top: 30px;

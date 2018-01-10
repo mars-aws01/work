@@ -83,6 +83,7 @@ export class ModalComponent implements OnInit, AfterViewInit {
   @Input() okText: string = 'Save';
   @Input() cancelText: string = 'Cancel';
   @Input() draggable: boolean = false;
+  @Input() disableBackdrop: boolean = false;
   @Input() options: { backdrop?: boolean | string, show?: boolean, keyboard?: boolean };
   @Output() onShown: EventEmitter<any> = new EventEmitter();
   @Output() onHidden: EventEmitter<any> = new EventEmitter();

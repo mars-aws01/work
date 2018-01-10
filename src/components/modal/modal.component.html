@@ -1,4 +1,4 @@
-<div class="nk-comp nk-modal" [ngClass]="{'nk-modal-drag': draggable}">
+<div class="nk-comp nk-modal" [ngClass]="{'nk-modal-drag': draggable, 'nk-disable-backdrop': disableBackdrop}">
   <div class="modal animated" [ngClass]="animate">
     <div class="modal-dialog" [ngClass]="modalSize" [style.width]="(width ? (width + 'px'): null)">
       <div class="modal-content">

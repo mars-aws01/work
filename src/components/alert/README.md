@@ -33,3 +33,17 @@
   vel scelerisque nisl consectetur et.
 </nk-alert>
 ```
+
+
+**Original Html**
+```html
+<div class="nk-comp nk-alert alert"> <!-- Class: nk-alert-info | nk-alert-success | nk-alert-warning | nk-alert-danger -->
+  <button class="alert-close close">×</button>
+  <span class="alert-title">    
+    <span>Custom Header</span>
+  </span>
+  <div>
+    This is alert content.
+  </div>
+</div>
+```

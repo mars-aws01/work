@@ -25,3 +25,11 @@
 <nk-button icon="fa fa-star">Send</nk-button>
 <nk-button icon="fa fa-star" width="150px">150px width</nk-button>
 ```
+
+**Original HTML**
+```html
+<button type="button" class="nk-button"> <!-- Class: nk-button-disabled | nk-button-primary | nk-button-danger -->
+  <i class="fa fa-plus"></i>
+  Add Product
+</button>
+```

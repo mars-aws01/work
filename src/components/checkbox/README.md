@@ -21,3 +21,15 @@
 <nk-checkbox [disabled]="true">Shipped</nk-checkbox>
 <nk-checkbox [(ngModel)]="checked">Shipped</nk-checkbox>
 ```
+
+**Original HTML**
+```html
+<label class="nk-comp nk-checkbox"> <!-- Class: nk-checkbox-disabled | nk-checkbox-checked -->
+  <span class="nk-checkbox-inner">
+    <input type="checkbox">
+  </span>
+  <span class="nk-checkbox-content">
+    Shipped
+  </span>
+</label>
+```

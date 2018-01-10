@@ -28,6 +28,7 @@
 | onSorting | Sort信息变化 | object => { field: string, header: string, sort: string(`asc`/`desc`)} |
 | onPaging | PageIndex变化 | object => { pageIndex: number } |
 | onPageSizeChanged | pageSize变化 | object => { pageSize: number } |
+| onRowClick | 行点击 | object => rowData |
 
 ## nk-grid-column
 
