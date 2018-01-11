@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.2.0-beta2 (2018.01.11)
+
+- 修复Bug
+
 ## v0.2.0-beta1 (2018.01.04)
 
 - 调整控件样式，修复Bug
