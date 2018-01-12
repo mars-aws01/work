@@ -1,11 +1,11 @@
 <div class="page-input-demo">
   <div class="flex-display" style="align-items: flex-start">
     <div class="flex-1">
-      <nk-input [(ngModel)]="inputValue" placeholder="placeholder"></nk-input>
+      <nk-input [(ngModel)]="inputValue" placeholder="placeholder" (onBlur)="onBlur($event)"></nk-input>
       <nk-input [(ngModel)]="inputValue2" placeholder="placeholder"></nk-input>
       <nk-input type="password" [(ngModel)]="inputValue3" placeholder="placeholder"></nk-input>
       <nk-input type="number" [(ngModel)]="inputValue4" placeholder="0"></nk-input>
-      <nk-input type="textarea" [(ngModel)]="inputValue2"></nk-input>
+      <nk-input type="textarea" [(ngModel)]="inputValue2" (onBlur)="onBlur($event)"></nk-input>
     </div>
     <div class="flex-1">
       <nk-input [(ngModel)]="inputValue" icon="fa fa-search" placeholder="placeholder" (iconClick)="handleIconClick($event)"></nk-input>

@@ -17,4 +17,8 @@ export class InputDemoComponent implements OnInit {
   public handleIconClick(evt: MouseEvent) {
     alert('icon clicked');
   }
+
+  onBlur(evt: any) {
+    console.log('onBlur fired');
+  }
 }

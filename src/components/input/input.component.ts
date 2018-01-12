@@ -29,8 +29,10 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() rows: number = 3;
   @Input() placeholder: string = '';
   @Input() icon: string;
+  @Input() enableIconClick: boolean = false;
 
   @Output() iconClick: EventEmitter<MouseEvent> = new EventEmitter();
+  @Output() onBlur: EventEmitter<any> = new EventEmitter();
 
   public get isTextarea() {
     return this.type === 'textarea';
@@ -57,9 +59,13 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   public handleIconClick(evt: MouseEvent) {
-    if (!this.disabled) {
+    if (!this.disabled || this.enableIconClick) {
       this.iconClick.emit(evt);
     }
+  }
+
+  innerBlur(evt: any) {
+    this.onBlur.emit(evt);
   }
 
   writeValue(obj: any): void {
