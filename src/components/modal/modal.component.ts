@@ -132,6 +132,9 @@ export class ModalComponent implements OnInit, AfterViewInit {
     header.removeEventListener('mousedown', this.onHeaderMouseDown);
     document.removeEventListener('mousemove', this.onDocumentMouseMove);
     document.removeEventListener('mouseup', this.onDocumentMouseUp);
+    if (this.$modal) {
+      this.hideModal()
+    }
   }
 
   private configModalOptions() {
