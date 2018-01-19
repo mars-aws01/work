@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.2.1 (2018.01.19)
+
+- 修复modal Destroy是遮罩未关闭
+
 ## v0.2.0-beta2 (2018.01.11)
 
 - 修复Bug
