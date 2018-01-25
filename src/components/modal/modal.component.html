@@ -6,7 +6,7 @@
           <ng-content select="[slot=modal-header]"></ng-content>
           <ng-template [ngIf]="!hasCustomHeader">
             <h4 class="modal-title">
-              {{header}}
+              {{header}} &nbsp;
             </h4>
           </ng-template>
           <button type="button" class="colse" (click)="hideModal()">

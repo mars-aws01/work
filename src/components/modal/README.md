@@ -11,6 +11,7 @@
 | cancelText | string | | 'Cancel' | 设置取消按钮的文本 |
 | draggable | boolean | | false | 是否允许弹出层可以拖拽 |
 | shown | boolean | Y | false | 控制弹出层的显示隐藏 |
+| options | any |  |  | modal 配置， 参考bootstrap |
 | disableBackdrop | boolean | | false | `draggable`为`true`时生效，完全禁用遮罩，非模态框，另外需设置`options`的`backdrop`属性为`false` |
  
 **Slots（ng-content占位符）**

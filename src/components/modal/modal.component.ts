@@ -1,3 +1,4 @@
+import './modal.extend.js';
 import './modal.component.styl';
 
 import {
@@ -90,11 +91,13 @@ export class ModalComponent implements OnInit, AfterViewInit {
   @Output() onCancel: EventEmitter<any> = new EventEmitter();
   @Output() onOk: EventEmitter<any> = new EventEmitter();
   @Input() set shown(val: boolean) {
-    if (!this.$modal || this.isShown === val) {
+    if (this.isShown === val) {
       return;
     }
     this.isShown = val;
-    this.isShown ? this.showModal() : this.hideModal();
+    if (this.$modal) {
+      this.isShown ? this.showModal() : this.hideModal();
+    }
   }
 
   @Output() shownChange = new EventEmitter();
@@ -123,7 +126,9 @@ export class ModalComponent implements OnInit, AfterViewInit {
     this.configModalOptions();
     this.configModalEvents();
     if (this.isShown) {
-      this.showModal();
+      setTimeout(() => {
+        this.showModal();
+      });
     }
   }
 
