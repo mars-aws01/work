@@ -10,6 +10,7 @@
 | okText | string | | 'Save' | 设置确认按钮的文本 |
 | cancelText | string | | 'Cancel' | 设置取消按钮的文本 |
 | draggable | boolean | | false | 是否允许弹出层可以拖拽 |
+| dragModalPos | { top: number, right: number, bottom: number, left } | | | 拖拽弹出层的初始位置 |
 | shown | boolean | Y | false | 控制弹出层的显示隐藏 |
 | options | any |  |  | modal 配置， 参考bootstrap |
 | disableBackdrop | boolean | | false | `draggable`为`true`时生效，完全禁用遮罩，非模态框，另外需设置`options`的`backdrop`属性为`false` |
@@ -45,5 +46,9 @@
   <div slot="modal-footer">
     <nk-button (click)="onOkBtnClick()">Click</nk-button>
   </div>
+</nk-modal>
+
+<nk-modal [(shown)]="modal5Shown" header="点我拖拽" [draggable]="true" [dragModalPos]="{ top: 250, left: 100 }">
+  一个可以被拖拽的弹出层
 </nk-modal>
 ```

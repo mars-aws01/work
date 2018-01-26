@@ -84,6 +84,7 @@ export class ModalComponent implements OnInit, AfterViewInit {
   @Input() okText: string = 'Save';
   @Input() cancelText: string = 'Cancel';
   @Input() draggable: boolean = false;
+  @Input() dragModalPos: any = {};
   @Input() disableBackdrop: boolean = false;
   @Input() options: { backdrop?: boolean | string, show?: boolean, keyboard?: boolean };
   @Output() onShown: EventEmitter<any> = new EventEmitter();
@@ -197,10 +198,29 @@ export class ModalComponent implements OnInit, AfterViewInit {
   }
 
   private initModalPosition() {
-    this.modalDialog.style.top = '-1000px';
-    setTimeout(() => {
+    this.modalDialog.style = null;
+    let hasInitPos = false;
+    if (this.dragModalPos.top !== undefined) {
+      hasInitPos = true;
+      this.modalDialog.style.top = `${this.dragModalPos.top}px`;
+    }
+    if (this.dragModalPos.right !== undefined) {
+      hasInitPos = true;
+      this.modalDialog.style.right = `${this.dragModalPos.right}px`;
+    }
+    if (this.dragModalPos.bottom !== undefined) {
+      hasInitPos = true;
+      this.modalDialog.style.bottom = `${this.dragModalPos.bottom}px`;
+    }
+    if (this.dragModalPos.left !== undefined) {
+      hasInitPos = true;
+      this.modalDialog.style.left = `${this.dragModalPos.left}px`;
+    }
+    if (!hasInitPos) {
       this.modalDialog.style.top = '30px';
-      this.modalDialog.style.left = `${(window.innerWidth - this.modalDialog.clientWidth) / 2}px`;
-    }, 300);
+      setTimeout(() => {
+        this.modalDialog.style.left = `${(window.innerWidth - this.modalDialog.clientWidth) / 2}px`;
+      }, 200);
+    }
   }
 }
