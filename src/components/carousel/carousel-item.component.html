@@ -1,6 +1,6 @@
 <div class="nk-comp nk-carousel-item item" [ngClass]="{active: active, 'first-item': isFirstItem}">
-  <img [src]="imgUrl" alt="">
+  <img [src]="imgUrl" alt="" (error)="loadError($event)" (load)="loaded($event)" #imgEle>
   <div class="carousel-caption caption-right">
     <ng-content></ng-content>
-  </div>
+  </div>  
 </div>

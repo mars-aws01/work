@@ -8,10 +8,17 @@
     clear: both;
   }
 
+  &.hide-body {
+    .section-heading, .widget-heading {
+        border-bottom-color: transparent;
+      }
+    }
+
   .section-heading, .widget-heading {
     border-radius: 4px 4px 0 0;
-    padding: 8px;
+    padding: 8px 8px 7px 8px;
     display: flex;
+    border-bottom: 1px solid #eaeaea;
 
     .nk-section-title, .nk-widget-title {
       font-size: 14px;
@@ -34,13 +41,13 @@
       align-items: center;
 
       div[slot='toolbar'] {
-        margin-right: 8px;
+        margin-right: 4px;
       }
     }
   }
 
   .nk-section-body, .widget-body {
-    padding: 0 8px 8px 8px;
+    padding: 8px;
     border-radius: 0 0 4px 4px;
   }
 }

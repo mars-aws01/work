@@ -33,9 +33,25 @@ export class CarouselComponent implements OnInit {
     return this.items.length <= 1;
   }
 
-  constructor(private renderer: Renderer2) {}
+  private _maxHeight: any;
+  public get maxHeight() {
+    let items = this.items.toArray();
+    let allLoaded = !!items.find(x => !x.imgLoaded);
+    if (allLoaded && this._maxHeight) {
+      return this._maxHeight;
+    }
+    let itemWidth = items.map(x => x.rootDiv.offsetWidth).find(x => x > 0);
+    let maxHeight = Math.max(...items.map(x => {
+      if (x.imgWidth === 0) return 0;
+      return (itemWidth / x.imgWidth) * x.imgHeight;
+    }));
+    this._maxHeight = Math.floor(maxHeight || 0);
+    return this._maxHeight;
+  }
 
-  ngOnInit() {}
+  constructor(private renderer: Renderer2) { }
+
+  ngOnInit() { }
 
   ngOnChange(changes: SimpleChanges) {
     if (changes.autoplay || changes.interval) {
