@@ -1,3 +1,4 @@
-<form class="nk-comp nk-form form-horizontal" novalidate #nkForm="ngForm" [class.ng-submitted]="nkForm.submitted">
+<form class="nk-comp nk-form form-horizontal" novalidate #nkForm="ngForm" [class.ng-submitted]="nkForm.submitted" (ngSubmit)="_innerSubmit()">
   <ng-content></ng-content>
+  <button type="submit" class="hide" #submitBtn></button>
 </form>

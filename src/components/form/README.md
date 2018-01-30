@@ -2,6 +2,10 @@
 
 `Please follow the demo code to build your form, include the html class and the structure`
 
+**OutPut**
+| Name| Data Type | Two-way | Default Value | Description |
+| onSubmit | NgForm | | | form submit 事件 |
+
 **Usage**
 ```html
 <form novalidate class="nk-form" #form="ngForm" (ngSubmit)="submitForm(form)" [class.ng-submitted]="form.submitted">

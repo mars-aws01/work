@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.2.2 (2018.01.30)
+
+- 常规Bug修复, [#194](http://trgit2/newkit/central-platform/issues/194), [#195](http://trgit2/newkit/central-platform/issues/195)
+
 ## v0.2.1 (2018.01.19)
 
 - 修复modal Destroy是遮罩未关闭

@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'nk-carousel-item',
@@ -20,6 +20,8 @@ export class CarouselItemComponent implements OnInit {
   @Input()
   public imgUrl: string = '';
 
+  public loadImgDone = new EventEmitter<any>();
+
   constructor(public elementRef: ElementRef) {
 
   }
@@ -32,9 +34,11 @@ export class CarouselItemComponent implements OnInit {
     this.imgWidth = this.imgEle.nativeElement.width;
     this.imgHeight = this.imgEle.nativeElement.height;
     this.imgLoaded = true;
+    this.loadImgDone.emit(true);
   }
 
   loadError(evt: any) {
     this.imgLoaded = true;
+    this.loadImgDone.emit(true);
   }
 }

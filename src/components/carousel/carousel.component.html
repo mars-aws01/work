@@ -1,4 +1,4 @@
-<div class="nk-carousel carousel" [ngClass]="animateType" (mouseenter)="handleMouseEnter()" (mouseleave)="handleMouseLeave()" [style.height.px]="maxHeight">
+<div class="nk-carousel carousel" [ngClass]="animateType" (mouseenter)="handleMouseEnter()" (mouseleave)="handleMouseLeave()" #nkCarouselContainer>
   <ol class="carousel-indicators" [hidden]="onlyOneItem">
     <li *ngFor="let item of items;let idx = index" [ngClass]="{active: idx === innerIndex}" (click)="slide(idx)"></li>
   </ol>

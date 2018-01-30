@@ -9,7 +9,9 @@ import {
   Output,
   QueryList,
   Renderer2,
-  SimpleChanges
+  SimpleChanges,
+  ViewChild,
+  ElementRef
 } from '@angular/core';
 
 import { CarouselItemComponent } from './carousel-item.component';
@@ -19,6 +21,10 @@ import { CarouselItemComponent } from './carousel-item.component';
   templateUrl: 'carousel.component.html'
 })
 export class CarouselComponent implements OnInit {
+
+  @ViewChild('nkCarouselContainer')
+  nkCarouselContainer: ElementRef;
+
   private intervalId: any;
   public innerIndex: number = 0;
   private pause: boolean = false; // 是否暂停播放
@@ -33,21 +39,8 @@ export class CarouselComponent implements OnInit {
     return this.items.length <= 1;
   }
 
-  private _maxHeight: any;
-  public get maxHeight() {
-    let items = this.items.toArray();
-    let allLoaded = !!items.find(x => !x.imgLoaded);
-    if (allLoaded && this._maxHeight) {
-      return this._maxHeight;
-    }
-    let itemWidth = items.map(x => x.rootDiv.offsetWidth).find(x => x > 0);
-    let maxHeight = Math.max(...items.map(x => {
-      if (x.imgWidth === 0) return 0;
-      return (itemWidth / x.imgWidth) * x.imgHeight;
-    }));
-    this._maxHeight = Math.floor(maxHeight || 0);
-    return this._maxHeight;
-  }
+  private _carouselItemSubs: any = [];
+  private _carouselQuerySub: any;
 
   constructor(private renderer: Renderer2) { }
 
@@ -60,6 +53,20 @@ export class CarouselComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+    this.initFisrtImg();
+    this.initCarouselItemSubs();
+    this._carouselQuerySub = this.items.changes.subscribe(data => {
+      this.initCarouselItemSubs();
+      this.initFisrtImg();
+    });
+  }
+
+  ngOnDestroy() {
+    this._carouselItemSubs.forEach((x: any) => x.unsubscribe());
+    this._carouselQuerySub && this._carouselQuerySub.unsubscribe();
+  }
+
+  initFisrtImg() {
     setTimeout(() => {
       let firstItem = this.items.toArray()[0];
       if (firstItem) {
@@ -68,6 +75,30 @@ export class CarouselComponent implements OnInit {
       }
       this.setAutoplay();
     });
+  }
+
+  initCarouselItemSubs() {
+    this._carouselItemSubs.forEach((x: any) => x.unsubscribe());
+    this._carouselItemSubs = [];
+    this.items.toArray().forEach(x => {
+      let tempSubscriber = x.loadImgDone.subscribe((data: any) => {
+        setTimeout(() => {
+          this.resetHeight();
+        })
+      });
+      this._carouselItemSubs.push(tempSubscriber);
+    });
+  }
+
+  resetHeight() {
+    let items = this.items.toArray();
+    let itemWidth = items.map(x => x.rootDiv.offsetWidth).find(x => x > 0);
+    let maxHeight = Math.max(...items.map(x => {
+      if (x.imgWidth === 0) return 0;
+      return (itemWidth / x.imgWidth) * x.imgHeight;
+    }));
+    maxHeight = Math.floor(maxHeight || 0);
+    this.renderer.setStyle(this.nkCarouselContainer.nativeElement, 'height', maxHeight > 0 ? `${maxHeight}px` : 'auto');
   }
 
   public handleMouseEnter() {
