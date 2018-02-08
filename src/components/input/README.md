@@ -10,6 +10,7 @@
 | disabled | boolean | |false |设置是否为禁用状态 | 
 | rows  | number | |3 |设置textarea高度，仅当type=textarea时生效| 
 | icon  | string | | | 图标样式 |
+| maxlength | number | | | |
 | ngModel  | boolean | Y | - |指定当前是否选中| 
 
 **Output**

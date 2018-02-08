@@ -127,13 +127,17 @@ export class GridComponent implements OnInit, OnChanges {
 
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.updateFixedHeaderPos = this.updateFixedHeaderPos.bind(this);
+  }
 
   ngAfterViewInit() {
     this.updateFixedHeaderWidth();
-    this.renderer.listen(this.tableBody.nativeElement.parentElement, 'scroll', (event) => {
-      this.updateFixedHeaderPos();
-    });
+    this.tableBody.nativeElement.parentElement.addEventListener('scroll', this.updateFixedHeaderPos);
+  }
+
+  ngOnDestroy() {
+    this.tableBody.nativeElement.parentElement.removeEventListener('scroll', this.updateFixedHeaderPos);
   }
 
   dataRowRepeatDone() {

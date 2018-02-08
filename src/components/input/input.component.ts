@@ -30,6 +30,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder: string = '';
   @Input() icon: string;
   @Input() enableIconClick: boolean = false;
+  @Input() maxlength: number = -1;
 
   @Output() iconClick: EventEmitter<MouseEvent> = new EventEmitter();
   @Output() onBlur: EventEmitter<any> = new EventEmitter();

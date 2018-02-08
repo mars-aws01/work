@@ -1,4 +1,4 @@
-<button type="{{mode}}" class="nk-comp nk-button" [disabled]="disabled" [ngClass]="buttonClass" [ngStyle]="buttonStyle">
+<button type="{{mode}}" class="nk-comp nk-button" [disabled]="disabled" [ngClass]="buttonClass" #buttonEle>
   <i [class]="icon" *ngIf="!!icon"></i>
   <ng-content></ng-content>
 </button>

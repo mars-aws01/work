@@ -1,6 +1,6 @@
 import './date-picker.component.styl';
 
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation, forwardRef, ElementRef, Renderer2 } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation, forwardRef, ElementRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { SaDate } from './SaDate';
@@ -116,9 +116,7 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
   @Input() maxDate: Date;
   @Input() format: string = 'yyyy/MM/dd';
 
-  constructor(
-    private renderer2: Renderer2,
-    private elementRef: ElementRef) {
+  constructor(private elementRef: ElementRef) {
 
   }
 
@@ -128,12 +126,8 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
     this.currentYear = new Date().getFullYear();
     this._buildYearList();
     this._initMonthPanel();
-
-    this.renderer2.listen('document', 'click', (event: any) => {
-      if (event.path && event.path.indexOf(this.elementRef.nativeElement) === -1 && this.pickerShown) {
-        this.pickerShown = false;
-      }
-    });
+    this._documentClick = this._documentClick.bind(this);
+    document.addEventListener('click', this._documentClick);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -144,6 +138,16 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
     }
     if (changes.mode) {
       this.currentMode = this.mode;
+    }
+  }
+
+  ngOnDestroy() {
+    document.removeEventListener('click', this._documentClick);
+  }
+
+  private _documentClick(event: any) {
+    if (event.path && event.path.indexOf(this.elementRef.nativeElement) === -1 && this.pickerShown) {
+      this.pickerShown = false;
     }
   }
 

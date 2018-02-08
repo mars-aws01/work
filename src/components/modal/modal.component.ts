@@ -115,6 +115,8 @@ export class ModalComponent implements OnInit, AfterViewInit {
     this.modalDialog = this.$el.querySelector('.modal-dialog');
     this.hasCustomHeader = !!this.modalHeader.nativeElement.querySelector('[slot=modal-header]');
     this.hasCustomFooter = !!this.modalFooter.nativeElement.querySelector('[slot=modal-footer]');
+    this._onModalHidden = this._onModalHidden.bind(this);
+    this._onModalShown = this._onModalShown.bind(this);
   }
 
   ngOnChanges(changesObj: SimpleChanges) {
@@ -139,7 +141,12 @@ export class ModalComponent implements OnInit, AfterViewInit {
     document.removeEventListener('mousemove', this.onDocumentMouseMove);
     document.removeEventListener('mouseup', this.onDocumentMouseUp);
     if (this.$modal) {
-      this.hideModal()
+      this.hideModal();
+      setTimeout(() => {
+        this.$modal.off('hidden.bs.modal', this._onModalHidden);
+        this.$modal.off('shown.bs.modal', this._onModalShown);
+        this.$modal.data('bs.modal', null);
+      });
     }
   }
 
@@ -149,18 +156,22 @@ export class ModalComponent implements OnInit, AfterViewInit {
   }
 
   private configModalEvents() {
-    this.$modal.on('hidden.bs.modal', (e: Event) => {
-      if (e.target === this.$el.querySelector('.modal')) {
-        this.shownChange.emit(false);
-        this.onHidden.emit(e);
-      }
-    });
-    this.$modal.on('shown.bs.modal', (e: Event) => {
-      if (e.target === this.$el.querySelector('.modal')) {
-        this.shownChange.emit(true);
-        this.onShown.emit(e);
-      }
-    });
+    this.$modal.on('hidden.bs.modal', this._onModalHidden);
+    this.$modal.on('shown.bs.modal', this._onModalShown);
+  }
+
+  private _onModalHidden(e: Event) {
+    if (e.target === this.$el.querySelector('.modal')) {
+      this.shownChange.emit(false);
+      this.onHidden.emit(e);
+    }
+  }
+
+  private _onModalShown(e: Event) {
+    if (e.target === this.$el.querySelector('.modal')) {
+      this.shownChange.emit(true);
+      this.onShown.emit(e);
+    }
   }
 
   private initDrag() {

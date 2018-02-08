@@ -94,6 +94,10 @@ export class DateRangePickerComponent implements ControlValueAccessor {
     this._dataRangePicker = $(this.dateRangeInput.nativeElement).data('daterangepicker');
   }
 
+  ngOnDestroy() {
+    window['jQuery'](this.dateRangeInput.nativeElement).data('daterangepicker').remove();
+  }
+
   writeValue(obj: any): void {
     let tempObj: any = {
       from: null,
