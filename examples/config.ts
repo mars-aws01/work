@@ -49,7 +49,8 @@ export const menuData: Array<MenuItem> = [
       { text: 'Steps', url: '/steps' },
       { text: 'TabSet', url: '/tabset' },
       { text: 'Widget', url: '/widget' },
-      { text: 'Function Panel', url: '/function-panel' }
+      { text: 'Function Panel', url: '/function-panel' },
+      { text: 'Credit Card', url: '/credit-card' }
       // { text: 'Wizard', url: '/wizard' }
     ]
   },

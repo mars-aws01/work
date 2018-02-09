@@ -4,9 +4,3 @@
 <textarea *ngIf="isTextarea" [ngClass]="inputClass" [rows]="rows" [readonly]="readonly" [disabled]="disabled" [placeholder]="placeholder"
   [ngModel]="innerValue" (ngModelChange)="handleModelChange($event)" (blur)="innerBlur($event)" [attr.maxlength]="maxlength > 0 ? maxlength : null">
 </textarea>
-<!-- <ng-container *ngIf="type == 'number'">
-  <div class="spinner-button">
-    <div class="inc-button">+</div>
-    <div class="dec-button">-</div>
-  </div>
-</ng-container> -->

@@ -41,6 +41,7 @@ import { TabsetComponent } from './tabset/tabset.component';
 import { TooltipDirective } from './tooltip/tooltip.directive';
 import { ValidatorComponent } from './validator/validator.component';
 import { WidgetComponent } from './widget/widget.component';
+import { CreditCardComponent } from './credit-card/credit-card.component';
 
 export const ENTRY_COMPONENTS = [PopoverContentComponent];
 
@@ -95,5 +96,6 @@ export const ALL_COMPONENTS = [
   SelectComponent,
   SelectOptionComponent,
   SwitchComponent,
-  ValidatorComponent
+  ValidatorComponent,
+  CreditCardComponent
 ];

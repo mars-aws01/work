@@ -1,0 +1,35 @@
+<div>
+  <div class="flex-display">
+    <div style="width: 180px">
+      <nk-credit-card [(ngModel)]="cardNumber"></nk-credit-card>
+    </div>
+    <div>
+      Value: {{ cardNumber }}
+    </div>
+  </div>
+  <div class="flex-display">
+    <div style="width: 180px">
+      <nk-credit-card [(ngModel)]="cardNumber2" [readonly]="true"></nk-credit-card>
+    </div>
+    <div>
+      Value: {{ cardNumber2 }}
+    </div>
+  </div>
+  <div class="flex-display">
+    <div style="width: 180px">
+      <nk-credit-card [(ngModel)]="cardNumber3" customMask="0000000 000000" [disabled]="true"></nk-credit-card>
+    </div>
+    <div>
+      Value: {{ cardNumber3 }}
+    </div>
+  </div>
+
+  <div class="flex-display">
+    <div style="width: 180px">
+      <nk-credit-card [ngModel]="'4322 3323 3234 2322'" customMask="0000 xxxx xxxx 0000" [readonly]="true"></nk-credit-card>
+    </div>
+    <div>
+      Custom Mask With '0000 xxxx xxxx 0000'
+    </div>
+  </div>
+</div>

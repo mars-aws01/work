@@ -1,0 +1,52 @@
+.nk-credit-card {
+  position: relative;
+}
+
+.nk-credit-card .wj-control.wj-inputmask {
+  padding: 0;
+}
+
+.nk-credit-card .wj-control.wj-inputmask.wj-state-focused:not(.wj-state-readonly) {
+  border-color: #0077c7;
+  box-shadow: 0px 0px 4px #0077c7;
+}
+
+.nk-credit-card .wj-control.wj-inputmask.wj-state-focused:not(.wj-state-readonly)+.card-icon i.fa {
+  color: #0077c7;
+}
+
+.nk-credit-card .wj-control.wj-inputmask .wj-input-group {
+  min-height: 22px;
+}
+
+.nk-credit-card input[wj-part="input"] {
+  padding-right: 25px;
+  min-height: 22px;
+}
+
+.nk-credit-card .card-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+}
+
+.nk-credit-card.invalid .wj-control.wj-inputmask {
+  border: 1px solid #f43f3f;
+}
+
+.nk-credit-card.invalid .card-icon i.fa {
+  color: #f43f3f;
+}
+
+.nk-credit-card .wj-control.wj-inputmask.wj-state-readonly,
+.nk-credit-card .wj-control[disabled] {
+  background: #fcfcfc;
+  border: 1px solid #eaeaea !important;
+  box-shadow: none !important;
+  opacity: 0.8;
+}

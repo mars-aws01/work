@@ -34,6 +34,7 @@ import { WidgetDemoComponent } from './widget-demo/widget-demo.component';
 import { TimePickerDemoComponent } from './timepicker-demo/timepicker-demo.page';
 import { TimeRangePickerDemoComponent } from './timerange-picker-demo/time-rangepicker-demo.page';
 import { FunctionPanelDemoComponent } from './function-panel-demo/function-panel-demo.page';
+import { CreditCardDemoPage } from './credit-card-demo/credit-card-demo.page';
 
 export {
   AppComponent,
@@ -72,6 +73,7 @@ export {
   RatingDemoComponent,
   SelectDemoComponent,
   SwitchDemoComponent,
+  CreditCardDemoPage,
   // Directives
   PopoverDemoComponent,
   TooltipDemoComponent
@@ -116,6 +118,7 @@ export const PAGE_COMPONENTS = [
   RatingDemoComponent,
   SelectDemoComponent,
   SwitchDemoComponent,
+  CreditCardDemoPage,
 
   // Directives
   PopoverDemoComponent,

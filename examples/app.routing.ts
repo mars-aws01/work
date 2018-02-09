@@ -33,7 +33,8 @@ import {
   TabsetDemoComponent,
   TooltipDemoComponent,
   WidgetDemoComponent,
-  FunctionPanelDemoComponent
+  FunctionPanelDemoComponent,
+  CreditCardDemoPage
 } from './pages';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -62,7 +63,7 @@ const demoRoutes: Routes = [
   { path: 'checkbox', component: CheckboxDemoComponent },
   { path: 'checkbox-group', component: CheckboxGroupDemoComponent },
   { path: 'date-picker', component: DatePickerDemoComponent },
-  { path: 'date-range-picker',component: DateRangePickerDemoComponent},
+  { path: 'date-range-picker', component: DateRangePickerDemoComponent },
   { path: 'time-picker', component: TimePickerDemoComponent },
   { path: 'time-range-picker', component: TimeRangePickerDemoComponent },
   { path: 'input', component: InputDemoComponent },
@@ -74,6 +75,7 @@ const demoRoutes: Routes = [
   { path: 'rating', component: RatingDemoComponent },
   { path: 'select', component: SelectDemoComponent },
   { path: 'switch', component: SwitchDemoComponent },
+  { path: 'credit-card', component: CreditCardDemoPage },
 
   // Directives
   { path: 'popover', component: PopoverDemoComponent },

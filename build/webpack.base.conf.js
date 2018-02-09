@@ -12,7 +12,20 @@ module.exports = {
     ignored: /node_modules/
   },
   stats: 'minimal',
-  externals: [],
+  externals: [
+    {
+      'rxjs': 'Rx',
+      '@angular/common': 'ng.common',
+      '@angular/compiler': 'ng.compiler',
+      '@angular/core': 'ng.core',
+      '@angular/http': 'ng.http',
+      '@angular/platform-browser': 'ng.platformBrowser',
+      '@angular/platform-browser-dynamic': 'ng.platformBrowserDynamic',
+      '@angular/router': 'ng.router',
+      '@angular/forms': 'ng.forms',
+      '@angular/animations': 'ng.animations',
+    }
+  ],
   module: {
     rules: [
       { test: /\.ts$/, use: ['awesome-typescript-loader', 'angular2-template-loader'], exclude: /node_modules/ },
