@@ -27,7 +27,8 @@ export const menuData: Array<MenuItem> = [
       { text: 'Radio Group', url: '/radio-group' },
       { text: 'Rating', url: '/rating' },
       { text: 'Select', url: '/select' },
-      { text: 'Switch', url: '/switch' }
+      { text: 'Switch', url: '/switch' },
+      { text: 'Credit Card', url: '/credit-card' }
       // { text: 'Time Picker', url: '/time-picker' }
     ]
   },
@@ -49,8 +50,7 @@ export const menuData: Array<MenuItem> = [
       { text: 'Steps', url: '/steps' },
       { text: 'TabSet', url: '/tabset' },
       { text: 'Widget', url: '/widget' },
-      { text: 'Function Panel', url: '/function-panel' },
-      { text: 'Credit Card', url: '/credit-card' }
+      { text: 'Function Panel', url: '/function-panel' }      
       // { text: 'Wizard', url: '/wizard' }
     ]
   },

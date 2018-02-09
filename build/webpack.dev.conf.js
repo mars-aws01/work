@@ -9,6 +9,20 @@ module.exports = webpackMerge(baseConfig, {
   entry: {
     build: './examples/main.ts'
   },
+  externals: [
+    {
+      'rxjs': 'Rx',
+      '@angular/common': 'ng.common',
+      '@angular/compiler': 'ng.compiler',
+      '@angular/core': 'ng.core',
+      '@angular/http': 'ng.http',
+      '@angular/platform-browser': 'ng.platformBrowser',
+      '@angular/platform-browser-dynamic': 'ng.platformBrowserDynamic',
+      '@angular/router': 'ng.router',
+      '@angular/forms': 'ng.forms',
+      '@angular/animations': 'ng.animations',
+    }
+  ],
   output: {
     path: util.root('dist'),
     filename: '[name].js',
