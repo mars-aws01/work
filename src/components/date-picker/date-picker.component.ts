@@ -115,6 +115,7 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
   @Input() minDate: Date;
   @Input() maxDate: Date;
   @Input() format: string = 'yyyy/MM/dd';
+  @Input() allowClear: boolean = false;
 
   constructor(private elementRef: ElementRef) {
 
@@ -153,6 +154,13 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
 
   public toggleDatePicker() {
     this.pickerShown = !this.pickerShown;
+  }
+
+  public clearDate() {
+    if (this.allowClear && !this.disabled) {
+      this.innerDate = null;
+      this.onChange(null);
+    }
   }
 
   public handleFooterClick() {
@@ -305,9 +313,11 @@ export class DatePickerComponent implements OnInit, OnChanges, ControlValueAcces
   writeValue(obj: any): void {
     if (obj) {
       this.innerDate = (obj instanceof Date) ? obj : new Date(obj);
-      this.showDate = this.innerDate;
-      this._initMonthPanel(this.showDate);
+    } else {
+      this.innerDate = null
     }
+    this.showDate = this.innerDate;
+    this._initMonthPanel(this.showDate);
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;

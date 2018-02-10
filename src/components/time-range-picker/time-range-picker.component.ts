@@ -23,6 +23,7 @@ export class TimeRangePickerComponent implements ControlValueAccessor {
 
   @Input() placeholder: string;
   @Input() disabled: boolean = false;
+  @Input() allowClear: boolean = false;
 
   get innerDateString(): string {
     if (this.innerDateRange && this.innerDateRange.from.date && this.innerDateRange.to.date) {
@@ -110,6 +111,13 @@ export class TimeRangePickerComponent implements ControlValueAccessor {
       this.innerDateRange.to.innerMins = this.innerDateRange.to.date ? this.innerDateRange.to.date.getMinutes() : null;
     }
     this.pickerShown = !this.pickerShown;
+  }
+
+  clearTime() {
+    if (this.allowClear && !this.disabled) {
+      this.innerDateRange = null;
+      this.onChange(null);
+    }
   }
 
   writeValue(obj: any): void {

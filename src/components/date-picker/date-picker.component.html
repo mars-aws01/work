@@ -1,11 +1,11 @@
-<div class="sa-date-picker" [class.show-picker]="pickerShown" [class.disabled]="disabled">
+<div class="sa-date-picker" [class.show-picker]="pickerShown" [class.disabled]="disabled" [class.allow-clear]="allowClear && !disabled && innerDateString">
   <input class="nk-input" (click)="toggleDatePicker()" readonly [ngModel]="innerDateString" [attr.placeholder]="placeholder">
+  <span class="input-icon clear-icon" (click)="clearDate()" *ngIf="allowClear && !disabled && innerDateString">
+    <i class="fa fa-remove"></i>
+  </span>
   <span class="input-icon" (click)="toggleDatePicker()">
     <i class="fa fa-calendar"></i>
   </span>
-  <!-- <span class="input-icon">
-    <i class="fa fa-close" [hidden]="true"></i>
-  </span> -->
   <div class="picker-panel" [hidden]="!pickerShown">
     <div class="picker-panel-main">
       <div class="picker-panel-header" [class.year-mode]="currentMode == 'year'">

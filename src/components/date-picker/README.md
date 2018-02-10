@@ -11,6 +11,7 @@
 | minDate | Date | | - | 最小可选日期 |
 | maxDate | Date | | - | 最大可选日期 |
 | format | string | | yyyy/MM/dd | 日期格式 |
+| allowClear | boolean | | false | 是否允许清空日期 |
 | ngModel | Date | Y | - | 当前选中日期 |
  
 **Usage**

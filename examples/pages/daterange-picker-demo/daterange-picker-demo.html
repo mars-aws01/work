@@ -1,7 +1,7 @@
 <div>
   <div class="flex-display">
     <div>
-      <nk-date-range [(ngModel)]="range" placeholder="Select Date Range" [maxDate]="maxDate"></nk-date-range>
+      <nk-date-range [(ngModel)]="range" placeholder="Select Date Range" [maxDate]="maxDate" [allowClear]="true"></nk-date-range>
     </div>
     <div>
       <nk-date-range [(ngModel)]="range" [disabled]="true"></nk-date-range>
@@ -9,6 +9,9 @@
   </div>
 
   <hr>
+  <p>
+    {{ range | json }}
+  </p>
   <p>From: {{ range?.from }}</p>
   <p>To: {{ range?.to }}</p>
 </div>

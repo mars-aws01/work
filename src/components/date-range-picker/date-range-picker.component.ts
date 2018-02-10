@@ -29,18 +29,16 @@ export class DateRangePickerComponent implements ControlValueAccessor {
   @Input() minDate: Date;
   @Input() maxDate: Date;
   // @Input() format: string = 'yyyy/MM/dd';
+  @Input() allowClear: boolean = false;
 
   pickerShown: boolean = false;
 
-  private _innerDateRange: any = {
-    from: null,
-    to: null
-  };
+  private _innerDateRange: any = null;
   private _dataRangePicker: any;
 
   get innerDateString(): string {
     let range = '';
-    if (this._innerDateRange.from && this._innerDateRange.to) {
+    if (this._innerDateRange && this._innerDateRange.from && this._innerDateRange.to) {
       range = `${new SaDate(this._innerDateRange.from).format('yyyy-MM-dd')} ~ ${new SaDate(this._innerDateRange.to).format('yyyy-MM-dd')}`;
     }
     return range;
@@ -64,17 +62,18 @@ export class DateRangePickerComponent implements ControlValueAccessor {
         '</div>' +
         '</div>'
     };
-    if (this._innerDateRange.from) {
-      opt.startDate = new SaDate(this._innerDateRange.from).format('MM/dd/yyyy');
-    }
-    if (this._innerDateRange.to) {
-      opt.endDate = new SaDate(this._innerDateRange.to).format('MM/dd/yyyy');
+    if (this._innerDateRange) {
+      if (this._innerDateRange.from) {
+        opt.startDate = new SaDate(this._innerDateRange.from).format('MM/dd/yyyy');
+      }
+      if (this._innerDateRange.to) {
+        opt.endDate = new SaDate(this._innerDateRange.to).format('MM/dd/yyyy');
+      }
     }
     if (this.minDate) {
       opt.minDate = new SaDate(this.minDate).format('MM/dd/yyyy');
     }
     if (this.maxDate) {
-      console.log(this.maxDate)
       opt.maxDate = new SaDate(this.maxDate).format('MM/dd/yyyy');
     }
     window['jQuery'](this.dateRangeInput.nativeElement)
@@ -86,9 +85,12 @@ export class DateRangePickerComponent implements ControlValueAccessor {
         this.pickerShown = false;
       })
       .on('apply.daterangepicker', (ev: any, picker: any) => {
-        this._innerDateRange.from = picker.startDate.toDate();
-        this._innerDateRange.to = picker.endDate.toDate();
-        this.onChange(this._innerDateRange);
+        let tempRange = {
+          from: picker.startDate.toDate(),
+          to: picker.endDate.toDate()
+        };
+        this._innerDateRange = tempRange;
+        this.onChange(tempRange);
       });
 
     this._dataRangePicker = $(this.dateRangeInput.nativeElement).data('daterangepicker');
@@ -98,12 +100,19 @@ export class DateRangePickerComponent implements ControlValueAccessor {
     window['jQuery'](this.dateRangeInput.nativeElement).data('daterangepicker').remove();
   }
 
-  writeValue(obj: any): void {
-    let tempObj: any = {
-      from: null,
-      to: null
+  clearDate() {
+    if (this.allowClear && !this.disabled && this._dataRangePicker) {
+      this._innerDateRange = null;
+      this.onChange(this._innerDateRange);
+      this._dataRangePicker.setStartDate(new Date());
+      this._dataRangePicker.setEndDate(new Date());
     }
+  }
+
+  writeValue(obj: any): void {
+    let tempObj: any = null;
     if (obj && obj.from && obj.to) {
+      tempObj = {};
       tempObj.from = obj.from;
       tempObj.to = obj.to;
     } else {
@@ -113,8 +122,10 @@ export class DateRangePickerComponent implements ControlValueAccessor {
     }
     this._innerDateRange = tempObj;
     if (this._dataRangePicker) {
-      this._dataRangePicker.setStartDate(this._innerDateRange.from || new Date());
-      this._dataRangePicker.setEndDate(this._innerDateRange.to || new Date());
+      let form = (this._innerDateRange && this._innerDateRange.form) || new Date();
+      let to = (this._innerDateRange && this._innerDateRange.to) || new Date();
+      this._dataRangePicker.setStartDate(form);
+      this._dataRangePicker.setEndDate(to);
     }
   }
   registerOnChange(fn: any): void {

@@ -25,6 +25,7 @@ export class TimePickerComponent implements ControlValueAccessor {
 
   @Input() placeholder: string;
   @Input() disabled: boolean = false;
+  @Input() allowClear: boolean = false;
 
   constructor() { }
 
@@ -82,6 +83,13 @@ export class TimePickerComponent implements ControlValueAccessor {
       this.innerMins = this.innerDate ? this.innerDate.getMinutes() : null;
     }
     this.pickerShown = !this.pickerShown;
+  }
+
+  clearTime() {
+    if (this.allowClear && !this.disabled) {
+      this.innerDate = null;
+      this.onChange(null);
+    }
   }
 
   writeValue(obj: any): void {
