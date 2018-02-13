@@ -6,7 +6,7 @@ import { TabsetComponent } from './tabset.component';
   selector: 'nk-tab-item',
   template: `<ng-content></ng-content>`
 })
-export class TabItemComponent implements OnInit, OnChanges {
+export class TabItemComponent {
 
   public innerName: string;
   private _active: boolean = false;
@@ -17,7 +17,9 @@ export class TabItemComponent implements OnInit, OnChanges {
   }
 
   @Input()
-  public name: string;
+  public set name(val: string) {
+    this.innerName = val;
+  };
 
   @Input()
   public header: string;
@@ -36,13 +38,7 @@ export class TabItemComponent implements OnInit, OnChanges {
     this.tabset.addTab(this);
     this.elementRef.nativeElement.className = 'nk-tab-item';
   }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.name) {
-      this.innerName = name;
-    }
-  }
-
+  
   ngOnDestroy() {
     this.tabset.removeTab(this);
   }

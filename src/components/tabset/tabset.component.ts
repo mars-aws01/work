@@ -8,7 +8,7 @@ import { TabItemComponent } from './tab-item.component';
   selector: 'nk-tabset',
   templateUrl: 'tabset.component.html'
 })
-export class TabsetComponent implements OnInit, AfterViewInit, OnChanges {
+export class TabsetComponent implements OnInit, AfterViewInit {
   private _currentTabItem: TabItemComponent;
   public tabItems: TabItemComponent[] = [];
   private isDestroyed = false;
@@ -32,7 +32,7 @@ export class TabsetComponent implements OnInit, AfterViewInit, OnChanges {
   ngOnInit() { }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.selected) {
+    if (changes.selected) {      
       this._processSelectedChange(this.selected);
     }
   }
@@ -64,7 +64,9 @@ export class TabsetComponent implements OnInit, AfterViewInit, OnChanges {
     if (!tab.innerName) {
       tab.innerName = `tabpane-${this.tabItems.length - 1}`;
     }
-    tab.active = this.tabItems.length === 1 && !tab.active;
+    if (!this.selected) {
+      tab.active = this.tabItems.length === 1 && !tab.active;
+    }    
     if (tab.active) {
       setTimeout(() => {
         this.setActiveItem(tab);
@@ -86,7 +88,7 @@ export class TabsetComponent implements OnInit, AfterViewInit, OnChanges {
     }
   }
 
-  private _processSelectedChange(name: string) {
+  private _processSelectedChange(name: string) {    
     let findTabItem = this.tabItems.find(x => x.innerName === name) || this.tabItems[0];
     if (findTabItem) {
       this.setActiveItem(findTabItem);
