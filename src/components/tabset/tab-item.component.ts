@@ -19,6 +19,9 @@ export class TabItemComponent {
   @Input()
   public set name(val: string) {
     this.innerName = val;
+    if (this.elementRef && this.elementRef.nativeElement) {
+      this.renderer.setAttribute(this.elementRef.nativeElement, 'data-inner-name', val);
+    }
   };
 
   @Input()
@@ -38,7 +41,7 @@ export class TabItemComponent {
     this.tabset.addTab(this);
     this.elementRef.nativeElement.className = 'nk-tab-item';
   }
-  
+
   ngOnDestroy() {
     this.tabset.removeTab(this);
   }

@@ -43,7 +43,7 @@
   <div class="row">
     <div class="col-xs-6">
       <nk-tabset (selectedChange)="consoleChangeEvent($event)">
-        <nk-tab-item [header]="tab.header" *ngFor="let tab of tabs">
+        <nk-tab-item [header]="tab.header" [name]="tab.header" *ngFor="let tab of tabs;">
           我是第一个Tab的内容-Header = {{tab.header}}
         </nk-tab-item>
       </nk-tabset>
@@ -57,6 +57,19 @@
           <nk-button [disabled]="tabs.length == 1" (click)="removeTab()">Remove</nk-button>
         </div>
       </div>
+    </div>
+    <div class="col-xs-6">
+      <nk-tabset [tabsLeft]="true">
+        <nk-tab-item header="Test1">
+          <ng-container>
+            <nk-tabset>
+              <nk-tab-item header="Test3"></nk-tab-item>
+              <nk-tab-item header="Test4"></nk-tab-item>
+            </nk-tabset>
+          </ng-container>
+        </nk-tab-item>
+        <nk-tab-item header="Test2"></nk-tab-item>
+      </nk-tabset>
     </div>
   </div>
 </div>

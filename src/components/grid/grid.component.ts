@@ -66,7 +66,18 @@ export class GridComponent implements OnInit, OnChanges {
   sortField: string;
   sortOrder: string = 'asc';
 
-  @Input() data: Array<any> = [];
+  @Input()
+  get data(): Array<any> {
+    return this.innerData;
+  };
+  set data(val: Array<any>) {
+    this.innerData = val ? window['_'].cloneDeep(val) : [];
+    setTimeout(() => {      
+      this.updateFixedHeaderWidth();
+    }, 200);
+  }
+  private innerData: Array<any> = [];
+
   @Input() pageable: boolean = false;
   @Input() pageSizeList = [10, 20, 50];
   @Input() showPageSizeList: boolean = true;

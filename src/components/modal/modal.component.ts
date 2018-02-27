@@ -171,6 +171,9 @@ export class ModalComponent implements OnInit, AfterViewInit {
     if (e.target === this.$el.querySelector('.modal')) {
       this.shownChange.emit(true);
       this.onShown.emit(e);
+      if (this.draggable) {
+        this.initModalPosition();
+      }
     }
   }
 
@@ -188,9 +191,6 @@ export class ModalComponent implements OnInit, AfterViewInit {
   }
 
   showModal() {
-    if (this.draggable) {
-      this.initModalPosition();
-    }
     let opt = Object.assign({}, defaults, this.options);
     this.$modal.modal(opt).modal('show');
   }
@@ -228,9 +228,10 @@ export class ModalComponent implements OnInit, AfterViewInit {
       this.modalDialog.style.left = `${this.dragModalPos.left}px`;
     }
     if (!hasInitPos) {
-      this.modalDialog.style.top = '30px';
       setTimeout(() => {
-        this.modalDialog.style.left = `${(window.innerWidth - this.modalDialog.clientWidth) / 2}px`;
+        this.modalDialog.style.top = `${this.modalDialog.offsetTop}px`;
+        this.modalDialog.style.left = `${this.modalDialog.offsetLeft}px`;
+        this.modalDialog.style.position = 'absolute';
       }, 200);
     }
   }

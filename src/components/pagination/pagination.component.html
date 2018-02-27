@@ -13,7 +13,7 @@
       </nk-select>
     </div>
     <div *ngIf="pages?.length > 0">
-      <span>Page:</span>      
+      <span>Page:</span>
       <nk-select [allowSearch]="true" [ngModel]="pageIndex" (ngModelChange)="pageClick($event)">
         <ng-container *ngFor="let item of pages">
           <nk-option [value]="item" [label]="item"></nk-option>

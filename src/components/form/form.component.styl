@@ -1,3 +1,11 @@
+$nk-control-label {
+  line-height: 24px;
+  font-weight: normal;
+  margin-bottom: 0;
+  color: #7a7a7a;
+  margin-right: 4px;
+}
+
 .nk-form-item {
   position: relative;
   margin-bottom: 4px;
@@ -10,11 +18,7 @@
   }
 
   .nk-form-item-label {
-    line-height: 24px;
-    font-weight: normal;
-    margin-bottom: 0;
-    color: #7a7a7a;
-    margin-right: 4px;
+    @extend $nk-control-label;
   }
 
   .nk-form-item-content {
@@ -34,4 +38,8 @@
       position: relative;
     }
   }
+}
+
+.nk-control-label {
+  @extend $nk-control-label;
 }

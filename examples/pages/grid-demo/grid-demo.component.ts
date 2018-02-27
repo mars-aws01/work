@@ -31,6 +31,21 @@ export class GridDemoComponent implements OnInit {
       });
       this.itemList = window['_'].orderBy(this.itemList, ['UnitPrice']);
     }
+
+    setTimeout(() => {
+      this.itemList = [{
+        ItemNo: `80-102-31${1}`,
+        Description: `Description Test ${1}`,
+        Qty: Math.floor(Math.random() * 10),
+        UnitPrice: (Math.random() * 10).toFixed(2),
+        ExtPrice: '0.00',
+        Charge: (Math.random() * 10).toFixed(2),
+        WH: Math.random() > 0.5 ? '02' : '01',
+        Margin: Math.floor(Math.random() * 1000),
+        Margin_: '100%',
+        Weight: Math.floor(Math.random() * 25)
+      }]
+    }, 5000);
   }
 
   onSorting(sortInfo: any) {
@@ -69,7 +84,7 @@ export class GridDemoComponent implements OnInit {
       log: `Data: ${JSON.stringify(data)}`
     });
     this.setEventLogPos();
-    
+
     console.log(data);
   }
 

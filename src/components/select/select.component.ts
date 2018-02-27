@@ -61,7 +61,7 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
       data: this.dataSource,
       minimumResultsForSearch: this.allowSearch ? 0 : -1
     }).on('select2:select', (e: any) => {
-      let data = e.params.data.data;      
+      let data = e.params.data.data;
       this.onChange(data);
     });
     this.updateDataSource();
@@ -72,6 +72,21 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     this._select2Ctrl.select2('destroy');
   }
 
+  initSelect2() {
+    if (!this._select2Ctrl) return;
+    if (this._select2Ctrl.hasClass('select2-hidden-accessible') == true) {
+      this._select2Ctrl.select2('destroy');
+      this.renderer.setProperty(this.select2Ctrl.nativeElement, 'innerHTML', '');
+    }
+
+    let options: any = {
+      data: this.dataSource
+    };
+    Object.assign(options, this.options);
+    this._select2Ctrl.select2(options);
+    this.updateSelect2Value();
+  }
+
   updateSelect2Value() {
     if (this._select2Ctrl) {
       this._select2Ctrl.val(this.selectedValue);
@@ -79,20 +94,24 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     }
   }
 
+  private _updateDataSourceTimmer: any;
   updateDataSource() {
-    let data: any = [];    
-    if (this.options) {
-      data = this.options.map(o => {
-        return {
-          id: o.value,
-          text: o.label,
-          disabled: o.disabled,
-          data: o.value
-        }
-      })
-    }
-    this.dataSource = data;
-    this._select2Ctrl && this._select2Ctrl.select2({ data: data });
+    if (this._updateDataSourceTimmer) clearTimeout(this._updateDataSourceTimmer);
+    this._updateDataSourceTimmer = setTimeout(() => {
+      let data: any = [];
+      if (this.options) {
+        data = this.options.map(o => {
+          return {
+            id: o.value,
+            text: o.label,
+            disabled: o.disabled,
+            data: o.value
+          }
+        })
+      }
+      this.dataSource = data;
+      this.initSelect2();
+    }, 100);
   }
 
   public addOption(option: SelectOptionComponent) {
