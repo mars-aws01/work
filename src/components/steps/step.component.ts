@@ -6,8 +6,7 @@ import { removeAngularTag } from '../../core/utils';
 
 @Component({
   selector: 'nk-step',
-  templateUrl: 'step.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: 'step.component.html'
 })
 
 export class StepComponent implements OnInit {
@@ -18,36 +17,17 @@ export class StepComponent implements OnInit {
   @Input() icon: string
   @Input() status: string
 
+  isSimple: boolean;
+  isLast: boolean;
+  direction: string;
+  currentStatus: string;
   index: number = 1;
   mainOffset: string = '0px';
 
-  constructor( @Optional() public parent: StepsComponent, private el: ElementRef, private sanitizer: DomSanitizer) {
+  constructor() {
   }
 
-  currentStatus(): string {
-    if (this.parent.active > this.index) {
-      return this.parent.finishStatus
-    }
-    if (this.parent.active === this.index) {
-      return this.parent.processStatus
-    }
-    return 'wait'
-  }
+  ngOnInit() {
 
-  isLast(): boolean {
-    return this.parent.stepsLength - 1 === this.index
-  }
-
-  isVertical(): boolean {
-    return this.parent.direction === 'vertical'
-  }
-
-  ngOnInit(): void {
-    this.index = + this.el.nativeElement.getAttribute('nk-index');
-    if (this.parent.direction === 'horizontal' && this.parent.alignCenter) {
-      const width: number = this.titleRef.nativeElement.getBoundingClientRect().width;
-      this.mainOffset = width / 2 + 16 + 'px';
-    }
-    removeAngularTag(this.el.nativeElement);
   }
 }

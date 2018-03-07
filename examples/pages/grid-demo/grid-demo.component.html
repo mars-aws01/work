@@ -1,8 +1,8 @@
 <div class="page-grid-demo">
   <div>
     <nk-grid [data]="itemList" [(pageIndex)]="pageIndex" [pageSizeList]="pageSizeList" (onSorting)="onSorting($event)" (onPaging)="onPaging($event)"
-      (onPageSizeChanged)="onPageSizeChanged($event)" (onRowClick)="onRowClick($event)" [pageable]="true" [showPageSizeList]="true" [defaultSortField]="'UnitPrice'"
-      [maxHeight]="200">
+      (onPageSizeChanged)="onPageSizeChanged($event)" (onRowClick)="onRowClick($event)" [pageable]="true" [showPageSizeList]="true"
+      [defaultSortField]="'UnitPrice'" [maxHeight]="200">
       <nk-grid-column header="Action" class="content-class" headerClass="header-class">
         <ng-template nkGridCellTemplate let-item="item">
           <a href="javascript: void(0)" class="nk-link">

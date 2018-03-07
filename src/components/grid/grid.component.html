@@ -4,14 +4,15 @@
     <table class="nk-comp nk-grid table table-striped table-bordered table-hover dataTable m-b-none" #tableHeader>
       <thead>
         <tr>
-          <th [style.cursor]="column.sortable ? 'pointer' : null" *ngFor="let column of columns" [style.width]="column.styleWidth"
-            (click)="onHeaderClick(column)">
-            {{column.header}}
-            <ng-container *ngIf="column.sortable && sortField == column.field">
-              <i class="fa fa-caret-up" *ngIf="sortOrder == 'asc'"></i>
-              <i class="fa fa-caret-down" *ngIf="sortOrder == 'desc'"></i>
-            </ng-container>
-          </th>
+          <ng-container *ngFor="let column of columns">
+            <th [style.cursor]="column.sortable ? 'pointer' : null" [style.width]="column.styleWidth" (click)="onHeaderClick(column)">
+              {{column.header}}
+              <ng-container *ngIf="column.sortable && sortField == column.field">
+                <i class="fa fa-caret-up" *ngIf="sortOrder == 'asc'"></i>
+                <i class="fa fa-caret-down" *ngIf="sortOrder == 'desc'"></i>
+              </ng-container>
+            </th>
+          </ng-container>
         </tr>
       </thead>
     </table>
@@ -21,7 +22,7 @@
     <table class="nk-comp nk-grid table table-striped table-bordered table-hover dataTable m-b-none" #tableBody>
       <thead style="visibility: collapse">
         <tr>
-          <th *ngFor="let column of columns" [style.width]="column.styleWidth">
+          <th *ngFor="let column of columns" [attr.data-width]="column.styleWidth" [style.width]="column.styleWidth">
             {{column.header}}
           </th>
         </tr>

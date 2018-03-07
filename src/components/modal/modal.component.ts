@@ -151,7 +151,10 @@ export class ModalComponent implements OnInit, AfterViewInit {
   }
 
   private configModalOptions() {
-    let opt = Object.assign({}, defaults, this.options);
+    let opt: any = Object.assign({}, defaults, this.options);
+    if (this.draggable && this.disableBackdrop) {
+      opt.backdrop = false;
+    }
     this.$modal.modal(opt);
   }
 
@@ -162,6 +165,9 @@ export class ModalComponent implements OnInit, AfterViewInit {
 
   private _onModalHidden(e: Event) {
     if (e.target === this.$el.querySelector('.modal')) {
+      if (this.draggable) {
+        this.modalDialog.style = null;
+      }
       this.shownChange.emit(false);
       this.onHidden.emit(e);
     }
@@ -231,7 +237,7 @@ export class ModalComponent implements OnInit, AfterViewInit {
       setTimeout(() => {
         this.modalDialog.style.top = `${this.modalDialog.offsetTop}px`;
         this.modalDialog.style.left = `${this.modalDialog.offsetLeft}px`;
-        this.modalDialog.style.position = 'absolute';
+        this.modalDialog.style.position = 'fixed';
       }, 200);
     }
   }

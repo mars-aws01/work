@@ -1,24 +1,36 @@
 import './steps.component.styl';
 
-import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, Renderer2, ContentChild, QueryList, forwardRef, ViewChildren, ContentChildren } from '@angular/core';
+import { StepComponent } from './step.component';
 
 @Component({
   selector: 'nk-steps',
-  templateUrl: 'steps.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: 'steps.component.html'
 })
 
 export class StepsComponent implements OnInit {
 
+  @ContentChildren(StepComponent)
+  stepsCtrl: QueryList<StepComponent>;
+
   @Input()
   get space(): string | number {
     return null;
-  }//  ex: 10px, 50%
+  }
   set space(value: string | number) {
     console.warn("[nk-steps] 'space' property has expired");
   }
-  @Input() direction: string = 'horizontal'     // enum: vertical/horizontal
-  @Input() active: number = 0
+  @Input() direction: string = 'horizontal'
+  @Input()
+  get active(): number {
+    return this._active;
+  }
+  set active(val: number) {
+    if (val < 0) val = 0;
+    this._active = val;
+    this._initStep();
+  }
+  private _active: number = 0
   @Input()
   get simple(): boolean {
     return false;
@@ -47,12 +59,11 @@ export class StepsComponent implements OnInit {
   }
 
   offset: number = 0;
-  stepsLength: number = 0;
 
   public get stepsClass() {
     const c = {
-      [`nk-steps--${this.direction}`]: !this.simple      
-    };    
+      [`nk-steps--${this.direction}`]: !this.simple
+    };
     return c;
   }
 
@@ -61,13 +72,35 @@ export class StepsComponent implements OnInit {
   }
 
   ngOnInit() {
-    const children = this.elementRef.nativeElement.querySelectorAll('nk-step')
-    if (!children || !children.length) {
-      return console.warn('steps components required children')
-    }
-    children.forEach((el: HTMLElement, index: number) => {
-      this.renderer.setAttribute(el, 'nk-index', String(index))
-    })
-    this.stepsLength = children.length
+  }
+
+  private _stepSubscriber: any;
+  ngAfterContentInit() {
+    this._stepSubscriber = this.stepsCtrl.changes.subscribe(() => {
+      setTimeout(() => {
+        this._initStep();
+      });
+    });
+    this._initStep();
+  }
+
+  ngOnDestroy() {
+    this._stepSubscriber && this._stepSubscriber.unsubscribe();
+  }
+
+  private _initStep() {
+    if (!this.stepsCtrl) return;
+    this.stepsCtrl.toArray().forEach((x, i) => {
+      x.isSimple = this.simple;
+      x.direction = this.direction;
+      x.index = i;
+      let _currentStatus = 'wait';
+      if (this.active > i) {
+        _currentStatus = this.finishStatus;
+      } else if (this.active === i) {
+        _currentStatus = this.processStatus;
+      }
+      x.currentStatus = _currentStatus;
+    });
   }
 }

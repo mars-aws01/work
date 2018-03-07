@@ -18,6 +18,7 @@
 
 | Name | Paramters | Description |
 | --- | --- | --- |
+| selectedChange | tabName |  |
 
 ## nk-tab-item
 

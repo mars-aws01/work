@@ -4,10 +4,11 @@
 
 | Name| Data Type | Two-way | Default Value | Description |
 | --- | --- | --- | --- | --- |
-| type | string | | `normal` | 设置按钮类型，可选值为 `normal`、`primary`、`danger` |
+| type | string | | `normal` | 可选值为 `normal`、`primary`、`danger` |
 | icon | string | | - | 设置按钮icon，宿主元素为i，推荐使用font-awesome，fa前缀也要填写 |
 | disabled | boolean | | `false` | 设置按钮是否被禁用 |
 | width | string/number | | - | 设置按钮宽度，默认自适应，设置方式 `width="80px"`、`[width]="80"`、`width="80%`、`[width]="'80%'"` |
+| mode | string | | button | 可选值为 `button`、`submit` |
  
 **Slots（ng-content占位符）**
 

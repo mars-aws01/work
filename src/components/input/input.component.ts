@@ -67,6 +67,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   innerBlur(evt: any) {
     this.onBlur.emit(evt);
+    this.onTouched();
   }
 
   writeValue(obj: any): void {

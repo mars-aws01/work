@@ -1,13 +1,13 @@
 <div class="nk-comp nk-step">
-  <div [class]="'nk-step__head is-' + currentStatus()">
+  <div [class]="'nk-step__head is-' + currentStatus">
     <div class="nk-step__icon is-text">
-      <ng-container *ngIf="currentStatus() !== 'finish'">
-        <div *ngIf="!parent.simple" class="nk-step__icon-inner">{{ index + 1 }}</div>
-      </ng-container>      
-      <i *ngIf="currentStatus() === 'finish'" [class]="'fa fa-check nk-step__icon-inner is-status'">
+      <ng-container *ngIf="currentStatus !== 'finish'">
+        <div *ngIf="!isSimple" class="nk-step__icon-inner">{{ index + 1 }}</div>
+      </ng-container>
+      <i *ngIf="currentStatus === 'finish'" [class]="'fa fa-check nk-step__icon-inner is-status'">
       </i>
     </div>
-    <div [class]="'nk-step__title ' + 'is-' + currentStatus()" #titleRef>
+    <div [class]="'nk-step__title ' + 'is-' + currentStatus" #titleRef>
       {{ title || 'Step' + (index + 1) }}
     </div>
   </div>

@@ -72,7 +72,7 @@ export class GridComponent implements OnInit, OnChanges {
   };
   set data(val: Array<any>) {
     this.innerData = val ? window['_'].cloneDeep(val) : [];
-    setTimeout(() => {      
+    setTimeout(() => {
       this.updateFixedHeaderWidth();
     }, 200);
   }
@@ -133,7 +133,11 @@ export class GridComponent implements OnInit, OnChanges {
     this.updateFixedHeaderWidth();
   }
 
+  private _intervalId: any;
+  private _isVisible: boolean;
+
   constructor(
+    private el: ElementRef,
     private renderer: Renderer2) {
 
   }
@@ -145,10 +149,24 @@ export class GridComponent implements OnInit, OnChanges {
   ngAfterViewInit() {
     this.updateFixedHeaderWidth();
     this.tableBody.nativeElement.parentElement.addEventListener('scroll', this.updateFixedHeaderPos);
+
+    this._intervalId = setInterval(() => {
+      let elem = this.el.nativeElement;
+      let isVisible = !!(elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length);
+      if (this._isVisible !== isVisible) {
+        this._isVisible = isVisible;
+        if (isVisible) {
+          setTimeout(() => {
+            this.updateFixedHeaderWidth();
+          }, 200);
+        }
+      }
+    }, 1000);
   }
 
   ngOnDestroy() {
     this.tableBody.nativeElement.parentElement.removeEventListener('scroll', this.updateFixedHeaderPos);
+    clearInterval(this._intervalId);
   }
 
   dataRowRepeatDone() {
@@ -165,12 +183,16 @@ export class GridComponent implements OnInit, OnChanges {
     if (fixedThs.length !== originalThs.length) return;
     let len = originalThs.length;
     for (let i = 0; i < len; i++) {
-      fixedThs[i].style.width = originalThs[i].offsetWidth + 'px';
+      let width = originalThs[i].dataset.width || 'auto';
+      if (originalThs[i].offsetWidth > 0) {
+        width = originalThs[i].offsetWidth + 'px';
+      }
+      this.renderer.setStyle(fixedThs[i], 'width', width);
     }
     let scrollbarWidth = tableBody.parentElement.offsetWidth - tableBody.parentElement.clientWidth;
     if (scrollbarWidth > 0) {
       let last = len - 1;
-      fixedThs[last].style.width = originalThs[last].offsetWidth + scrollbarWidth + 'px';
+      this.renderer.setStyle(fixedThs[last], 'width', originalThs[last].offsetWidth + scrollbarWidth + 'px');
     }
     this.updateFixedHeaderPos();
   }
