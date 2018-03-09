@@ -1,0 +1,37 @@
+settings:
+  environment_header: "PRDTesting"
+  app_secure_key: "NTQ3MDliYmQtMWU0OC00NzA4LTk4OTMtODRlODI0MGE1ZTRh"
+  app_root_dir: "/usr/local/ngas2"
+  app_monitor_interval: 900
+  app_monitor_per_count: 3
+
+  message_publish_url: "http://sandboxapis.newegg.org/framework/v1/enterprise-messaging/message"
+
+  cloud_data_base_url: "http://sandboxapis.newegg.org/datastore/v1"
+  cloud_data_store_name: "ngas2"
+  cloud_data_store_pwd: "4ediuse0nly"
+
+  dfs_upload_base_url: "http://neg-app-dfis:8200"
+  dfs_download_base_url: "http://neg-app-img:80"
+  dfs_group: "EaaS"
+  dfs_type: "Message"
+
+  log_handler: "CONSOLE|NLOG"
+  log_formatter: "[%(levelname)s] %(asctime)s %(name)s  %(funcName)s [%(lineno)d] %(message)s"
+  log_level: "INFO"
+  nlog_url: "http://sandboxapis.newegg.org/framework/v1/log-entry"
+
+  inbound_message_queue:
+    queue_name: "NgAS2_Inbound_Message"
+    password: "4ediuse0nly"
+    serialization_match_tag: True
+
+  inbound_async_mdn_queue:
+    queue_name: "NgAS2_Inbound_Async_MDN"
+    password: "4ediuse0nly"
+    serialization_match_tag: True
+
+  outbound_message_queue:
+    queue_name: "NgAS2_Outbound_Message"
+    password: "4ediuse0nly"
+    serialization_match_tag: True

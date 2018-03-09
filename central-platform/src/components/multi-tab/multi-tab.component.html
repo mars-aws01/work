@@ -1,0 +1,8 @@
+<div class="nk-multi-tab nav-tabs-custom">
+  <div class="tab-content">
+    <nk-multi-tab-item *ngFor="let p of data; let index = index;" [comp]="p.comp" [name]="p.path" [closable]="p.closable"
+      [fullUrl]="p.fullUrl" [index]="index">
+
+    </nk-multi-tab-item>
+  </div>
+</div>

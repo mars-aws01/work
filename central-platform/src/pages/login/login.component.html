@@ -1,0 +1,64 @@
+<div class="page-shell-login">
+  <div id="loading-target" style="display:block;" *ngIf="!useLoginPage">
+    <div class="sk-circle">
+      <div class="sk-circle1 sk-child"></div>
+      <div class="sk-circle2 sk-child"></div>
+      <div class="sk-circle3 sk-child"></div>
+      <div class="sk-circle4 sk-child"></div>
+      <div class="sk-circle5 sk-child"></div>
+      <div class="sk-circle6 sk-child"></div>
+      <div class="sk-circle7 sk-child"></div>
+      <div class="sk-circle8 sk-child"></div>
+      <div class="sk-circle9 sk-child"></div>
+      <div class="sk-circle10 sk-child"></div>
+      <div class="sk-circle11 sk-child"></div>
+      <div class="sk-circle12 sk-child"></div>
+    </div>
+  </div>
+  <div class="login-container" *ngIf="useLoginPage">
+    <div id="main" role="main">
+      <!-- MAIN CONTENT -->
+      <div id="content" class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-offset-4 col-lg-4">
+            <div class="well no-padding">
+              <form class="smart-form client-form" novalidate="novalidate" #loginForm="ngForm" (submit)="doUserLogin($event)">
+                <header>
+                  {{ 'central.login.formTitle' | translate }}
+                </header>
+                <fieldset>
+                  <section>
+                    <input type="text" name="username" [hidden]="true">
+                    <label class="label">{{ 'central.login.userLabel' | translate }}</label>
+                    <label class="input"> <i class="icon-append fa fa-user"></i>
+											<input type="text" name="username" [placeholder]="'central.login.userTip' | translate" [(ngModel)]="userModel.UserName" #username="ngModel" required minlength="4" maxlength="30">
+											<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> {{ 'central.login.userTip' | translate }}</b>
+                    </label>
+                    <nk-validator [control]="username"></nk-validator>
+                  </section>
+                  <section>
+                    <label class="label">{{ 'central.login.passwordLabel' | translate }}</label>
+                    <label class="input"> <i class="icon-append fa fa-lock"></i>
+											<input type="password" name="password" [placeholder]="'central.login.passwordTip' | translate" [(ngModel)]="userModel.Password" #password="ngModel" required minlength="4" maxlength="30">
+											<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> {{ 'central.login.passwordTip' | translate }}</b>
+                    </label>
+                    <nk-validator [control]="password"></nk-validator>
+                  </section>
+                  <section>
+                    <nk-checkbox name="remember" [(ngModel)]="userModel.RememberMe">{{ 'central.login.rememberText' | translate }}</nk-checkbox>
+                  </section>
+                </fieldset>
+                <footer>
+                  <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">
+									  {{ 'central.login.loginBtnText' | translate }}
+									</button>
+                </footer>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

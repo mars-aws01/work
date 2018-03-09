@@ -1,0 +1,45 @@
+﻿<ns0:X12_997_Root IsGeneratedAck="true" xmlns:ns0="http://schemas.microsoft.com/Edi/X12">
+  <ns0:ST>
+    <ST01>997</ST01>
+    <ST02>500000024</ST02>
+  </ns0:ST>
+  <AK1>
+    <AK101>SH</AK101>
+    <AK102>000002033</AK102>
+  </AK1>
+  <AK2Loop>
+    <AK2>
+      <AK201>856</AK201>
+      <AK202>0001</AK202>
+    </AK2>
+    <AK2AK3Loop>
+      <AK3>
+        <AK301>HL</AK301>
+        <AK302>3</AK302>
+        <AK304>8</AK304>
+      </AK3>
+      <AK4>
+        <AK41>
+          <AK41.1>3</AK41.1>
+        </AK41>
+        <AK42 />
+        <AK43>7</AK43>
+        <AK44>ZZZ</AK44>
+      </AK4>
+    </AK2AK3Loop>
+    <AK5>
+      <AK501>R</AK501>
+      <AK502>5</AK502>
+    </AK5>
+  </AK2Loop>
+  <AK9>
+    <AK901>R</AK901>
+    <AK902>1</AK902>
+    <AK903>1</AK903>
+    <AK904>0</AK904>
+  </AK9>
+  <ns0:SE>
+    <SE01>8</SE01>
+    <SE02>500000024</SE02>
+  </ns0:SE>
+</ns0:X12_997_Root>

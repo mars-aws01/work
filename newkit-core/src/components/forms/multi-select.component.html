@@ -1,0 +1,5 @@
+<div class="nk-multi-select">
+  <select multiple style="width:100%" class="select2">
+    <option *ngFor="let item of innerDataSource" [value]="item[valueField]">{{item[textField]}}</option>
+  </select>
+</div>

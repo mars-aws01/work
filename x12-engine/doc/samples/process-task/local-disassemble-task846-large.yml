@@ -1,0 +1,9 @@
+taskId: Sample_Local_Task
+taskType: Disassemble
+sourceFileLocation: ./doc/samples/x12/31283_846_EaaS.dat #D:/Temp/B2BF/B2BF.846
+sourceFileEncoding: #UTF-8
+localSchemaStore: ./doc/schemas
+outputLocation: d:/temp/x12engine/output
+generateFunctionalAck: true
+ediSchemaValidationEnabled: true
+forceDisableOutput: false  # Set this option to true will not generate any output data file (EDI XML or EDI X12)

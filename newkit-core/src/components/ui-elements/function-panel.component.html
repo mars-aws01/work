@@ -1,0 +1,12 @@
+<div class="nk-bottom-navbar container-fluid" style="z-index: 102; opacity: 1;" [@sysFuncPanelState]="expandFuncPanel ? 'show' : 'hide'">
+  <div class="nav-panel" style="align-items: flex-start">
+    <div class="function-panel" [class.hide-divider]="!expandFuncPanel">
+      <ng-content></ng-content>
+    </div>
+    <div class="common-tools" style="align-self: flex-start;">
+      <div class="collspan-btn" (click)="toggleFuncPanel()">
+        <i class="fa" [class.fa-angle-double-down]="expandFuncPanel" [class.fa-angle-double-up]="!expandFuncPanel"></i>
+      </div>
+    </div>
+  </div>
+</div>

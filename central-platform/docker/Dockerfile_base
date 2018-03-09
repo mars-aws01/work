@@ -1,0 +1,7 @@
+FROM docker.neg/nginx:stable-alpine
+
+MAINTAINER jh3r jay.m.hu@newegg.com
+
+RUN apk update
+
+RUN apk add bash

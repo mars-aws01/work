@@ -1,0 +1,6 @@
+<div class="nk-tag-input bootstrap-tagsinput" (keypress)="addTag($event)">
+  <span class="tag label label-info" *ngFor="let tag of tags, let idx = index">{{tag}}
+    <span data-role="remove" (click)="removeTag(idx)"></span>
+  </span>
+  <input type="text" [placeholder]="placeholder" [(ngModel)]="inputValue" [attr.size]="inputSize">
+</div>

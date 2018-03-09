@@ -1,0 +1,65 @@
+<div class="page-home">
+  <div class="text-right m-b-sm">
+    <nk-button (click)="showWidgetSettingModal()">
+      <i class="fa fa-plus"></i> Add Widget
+    </nk-button>
+  </div>
+  <div class="row">
+    <div class="widget-container col-md-12 edit-mode">
+      <div class="row">
+        <div *ngFor="let widget of widgetList, let idx = index" [ngClass]="widget.size" class="widget-container" [id]="'widget'+idx">
+          <nk-widget [header]="widget.header">
+            <div slot="toolbar" class="jarviswidget-ctrls">
+              <a class="button-icon jarviswidget-toggle-btn" title="Delete widget" href="javascript:;" (click)="confirmDeleteWidget(widget)">
+                <i class="fa fa-close"></i>
+              </a>
+              <a class="button-icon jarviswidget-toggle-btn" title="Config widget" href="javascript:;" (click)="showWidgetSettingModal(widget, idx)">
+                <i class="fa fa-cog"></i>
+              </a>
+            </div>
+            <widget-box [widgetName]="widget.widgetName"></widget-box>
+          </nk-widget>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nk-modal [(shown)]="widgetModal.shown" [header]="widgetModal.header" (onOk)="saveWidgetBox()">
+    <form novalidate class="nk-form" #form="ngForm" (ngSubmit)="submitForm(form)" [class.ng-submitted]="form.submitted">
+      <div class="nk-form-item">
+        <label class="nk-form-item-label width-60">Header</label>
+        <div class="nk-form-item-content">
+          <nk-input type="text" name="header" [(ngModel)]="selectedWidget.header" #comCtrl="ngModel"></nk-input>
+        </div>
+      </div>
+      <div class="nk-form-item">
+        <label class="nk-form-item-label width-60">Size</label>
+        <div class="nk-form-item-content">
+          <div class="inline-group">
+            <nk-radio value="col-md-3" name="size" [(ngModel)]="selectedWidget.size">1/4 width</nk-radio>
+            <nk-radio value="col-md-6" name="size" [(ngModel)]="selectedWidget.size">half width</nk-radio>
+            <nk-radio value="col-md-9" name="size" [(ngModel)]="selectedWidget.size">3/4 width</nk-radio>
+            <nk-radio value="col-md-12" name="size" [(ngModel)]="selectedWidget.size">full width</nk-radio>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="nk-form-item">
+        <label class="nk-form-item-label width-60">Header Color</label>
+        <div class="nk-form-item-content">
+          <select name="headerColor" class="form-control" [(ngModel)]="selectedWidget.headerColor">
+            <option [value]="c" *ngFor="let c of headerColors">{{c}}</option>
+          </select>
+        </div>
+      </div> -->
+      <div class="nk-form-item">
+        <label class="nk-form-item-label">Select Widget</label>
+      </div>
+      <kendo-grid [data]="widgetGridDataSource" [selectable]="true" [height]="300" (selectionChange)="onGridSelectionChange($event)">
+        <!-- <kendo-grid-checkbox-column></kendo-grid-checkbox-column> -->
+        <kendo-grid-column field="Name" title="Name" width="200">
+        </kendo-grid-column>
+        <kendo-grid-column field="Description" title="Description">
+        </kendo-grid-column>
+      </kendo-grid>
+    </form>
+  </nk-modal>
+</div>

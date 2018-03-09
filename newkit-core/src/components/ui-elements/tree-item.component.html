@@ -1,0 +1,15 @@
+<ng-template [ngIf]="!treeItem.hasChildren">
+  <span class="tree-label"><i [ngClass]="treeItem.icon" *ngIf="treeOpt.showIcon"></i> {{treeItem.text}}</span>
+</ng-template>
+
+<!-- 有子集的场景 -->
+<ng-template [ngIf]="treeItem.hasChildren">
+  <span class="tree-branch-name">
+      <i class="fa" [ngClass]="{'fa-minus-circle': treeItem.open, 'fa-plus-circle': !treeItem.open}"></i>
+      {{treeItem.text}}
+  </span>
+  <ul [ngClass]="{hidden: !treeItem.open}">
+    <li *ngFor="let item of treeItem.children" [nk-tree-item]="item" (click)="onChildItemClick($event, item)" (itemClick)="onChildItemClick(null, $event)"
+      [treeOpt]="treeOpt" [ngClass]="{'parent_li': item.hasChildren, 'tree-selected': !item.hasChildren && item.selected, 'tree-open': item.hasChildren && item.open}">
+  </ul>
+</ng-template>

@@ -1,0 +1,20 @@
+.page-logout {
+  text-align: center;
+  width: 50%;
+  height: 400px;
+  margin: 0 auto;
+  margin-top: 10%;
+  .hr {
+    height: 0;
+    overflow: hidden;
+    font-size: 0;
+    border-width: 1px 0 0;
+    border-top: 1px solid #E3E3E3;
+    margin: 12px 0;
+    border-top-color: rgba(0, 0, 0, .11);
+  }
+  h3>a {
+    font-size: inherit;
+    line-height: inherit;
+  }
+}

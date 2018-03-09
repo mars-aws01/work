@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-md-6">
+    <!-- TotalMessagePieChart -->
+        <div class="col-xs-5" *ngIf="totalProcessMessage && totalProcessMessage.MessageProcessedList">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr *ngFor="let message of totalProcessMessage.MessageProcessedList">
+                        <th scope="row" [ngStyle]="{'background':message.MessageType | messageColor}">{{message.MessageTypeName}}</th>
+                        <td scope="row">{{message.SuccessCount}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-xs-7">
+            <canvas baseChart
+              [datasets]="pieChartData"
+              [labels]="pieChartLabels"
+              [chartType]="pieChartType"
+              [options]="pieChartOptions"></canvas>
+        </div>
+    </div>
+    <div class="col-md-6">
+    <!-- TrendMessageLineChart -->
+    <canvas baseChart
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [chartType]="lineChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+    </div>
+</div>

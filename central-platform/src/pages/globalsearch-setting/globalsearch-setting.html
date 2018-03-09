@@ -1,0 +1,65 @@
+<div style="margin-bottom:8px">
+  <nk-button type="primary" (click)="showEditModal()">
+    <i class="fa fa-plus"></i> Add GlobalSearch Item
+  </nk-button>
+</div>
+<kendo-grid [data]="globalSearchList" [filterable]="false" [pageable]="false">
+  <kendo-grid-column title="Name" field="SearchName" [width]="120"></kendo-grid-column>
+  <kendo-grid-column title="Tip Info" field="TipInfo"></kendo-grid-column>
+  <kendo-grid-column title="Url Template" field="UrlTemplate"></kendo-grid-column>
+  <kendo-grid-column title="Operate" [width]="60">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <a href="javascript:;" title="Edit" (click)="showEditModal(dataItem)">
+        <i class="fa fa-edit"></i>
+      </a>&nbsp;&nbsp;
+      <a href="javascript:;" title="Delete" (click)="deleteItem(dataItem)">
+        <i class="fa fa-minus"></i>
+      </a>
+    </ng-template>
+  </kendo-grid-column>
+</kendo-grid>
+
+<!-- Modal Define Begin -->
+
+<nk-modal class="plugin-edit-modal" [(shown)]="editModal.shown" [header]="editModal.header" (onOk)="save(editForm, true)">
+  <nk-form labelWidth="80px" #editForm="nkForm" (onSubmit)="save(editForm)">
+    <ng-container *ngIf="selectedItem">
+      <nk-form-item label="Search Name">
+        <div class="input-group" style="margin-bottom: 4px;">
+          <span class="input-group-addon" style="min-width: 81px;">English</span>
+          <nk-input [(ngModel)]="selectedItem.SearchName" required maxlength="50" #searchNameCtrl="ngModel"></nk-input>
+        </div>
+        <div class="input-group" style="margin-bottom: 4px;">
+          <span class="input-group-addon" style="min-width: 81px;">简体中文</span>
+          <input type="text" class="form-control" name="SearchNameCn" [(ngModel)]="selectedItem.SearchNameCn">
+        </div>
+        <div class="input-group" style="margin-bottom: 4px;">
+          <span class="input-group-addon" style="min-width: 81px;">繁體中文</span>
+          <input type="text" class="form-control" name="SearchNameTw" [(ngModel)]="selectedItem.SearchNameTw">
+        </div>
+        <ng-container *ngIf="editForm.submitted">
+          <nk-validator [fireOnDirty]="false" [control]="searchNameCtrl" [errorMsg]="{required: 'Name is required', maxlength: 'The name length cannot be more then {0}'}"></nk-validator>
+        </ng-container>
+      </nk-form-item>
+      <nk-form-item label="Tip Info">
+        <div class="input-group" style="margin-bottom: 4px;">
+          <span class="input-group-addon" style="min-width: 81px;">English</span>
+          <nk-input [(ngModel)]="selectedItem.TipInfo" name="TipInfo"></nk-input>
+        </div>
+        <div class="input-group" style="margin-bottom: 4px;">
+          <span class="input-group-addon" style="min-width: 81px;">简体中文</span>
+          <nk-input [(ngModel)]="selectedItem.TipInfoCn" name="TipInfoCn"></nk-input>
+        </div>
+        <div class="input-group" style="margin-bottom: 4px;">
+          <span class="input-group-addon" style="min-width: 81px;">繁體中文</span>
+          <nk-input [(ngModel)]="selectedItem.TipInfoTw" name="TipInfoTw"></nk-input>
+        </div>
+      </nk-form-item>
+      <nk-form-item label="Url Template">
+        <nk-input [(ngModel)]="selectedItem.UrlTemplate" name="UrlTemplate"></nk-input>
+      </nk-form-item>
+    </ng-container>
+  </nk-form>
+</nk-modal>
+
+<!-- Modal Define End -->

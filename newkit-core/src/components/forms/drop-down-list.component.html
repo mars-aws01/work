@@ -1,0 +1,11 @@
+<div class="nk-drop-down-list smart-form" style="position: relative;">
+  <label class="input">
+		<input type="text" readonly [ngModel]="innerText">
+    <ul class="drop-down-list-popup-panel" [style.display]="showPopupPanel ? 'block': 'none'">
+      <li *ngFor="let item of dataSource" (click)="dropdownItemClick(item, $event)" [ngClass]="{checked: item.checked}">
+        <nk-checkbox *ngIf="multi" [(ngModel)]="item.checked">{{item.text}}</nk-checkbox>
+        <span *ngIf="!multi">{{item.text}}</span>
+      </li>
+    </ul>
+  </label>
+</div>

@@ -1,0 +1,12 @@
+.user-access-logs {
+  form {
+    .nk-button,
+    .nk-form-item {
+      margin-bottom: 0;
+    }
+  }
+  kendo-grid {
+    min-height: 400xp;
+    height: calc(100vh - 200px);
+  }
+}

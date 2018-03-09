@@ -1,0 +1,13 @@
+import { DateValidator } from './date.validator';
+import { EmailGroupValidator } from './email-group.validator';
+import { EmailValidator } from './email.validator';
+import { EqualToValidator } from './equal-to.validator';
+import { EqualValidator } from './equal.validator';
+import { IntegerValidator } from './integer.validator';
+import { IpValidator } from './ip.validator';
+import { MinValidator } from './min.validator';
+import { MaxValidator } from './max.validator';
+import { NumberValidator } from './number.validator';
+import { UrlValidator } from './url.validator';
+import { ValidateFnValidator } from './validate-fn.validator';
+export declare const ALL_VALIDATORS: (typeof DateValidator | typeof EmailGroupValidator | typeof EmailValidator | typeof EqualToValidator | typeof EqualValidator | typeof IntegerValidator | typeof IpValidator | typeof MinValidator | typeof MaxValidator | typeof NumberValidator | typeof UrlValidator | typeof ValidateFnValidator)[];

@@ -1,0 +1,219 @@
+$left-width = 180px;
+$nav-height = 36px;
+
+$normal-font {
+  font-size: 12px;
+  line-height: 14px;
+}
+
+$strong-font {
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.compact-theme {
+  background: #f5f5f5;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+
+  #header {
+    height: $nav-height;
+
+    >div {
+      height: auto;
+    }
+
+    #logo-group {
+      width: $left-width;
+      height: $nav-height;
+    }
+
+    #logo {
+      margin-top: 3px;
+      height: auto;
+    }
+
+    .btn-header {
+      a {
+        margin-top: 3px;
+        border: none;
+        box-shadow: none;
+        background: transparent;
+      }
+    }
+
+    .header-search {
+      #search-fld {
+        margin-top: 7px;
+        height: 24px;
+      }
+
+      button {
+        top: 5.5px;
+        height: 24px;
+        line-height: 24px;
+      }
+    }
+
+    .nav-left-panel {
+      .btn-header {
+        margin-right: 8px;
+      }
+    }
+
+    .header-dropdown-list {
+      .dropdown-toggle {
+        margin-top: 9px;
+      }
+    }
+
+    .activity-dropdown {
+      margin-top: 3px;
+      margin-left: 8px;
+      padding-right: 5px;
+    }
+
+    #activity {
+      width: auto !important;
+      background: transparent !important;
+
+      a {
+        line-height: 28px;
+      }
+
+      img {
+        border-radius: 50%;
+      }
+    }
+  }
+
+  #left-panel {
+    width: $left-width;
+    padding-top: $nav-height;
+
+    .login-info {
+      height: auto;
+    }
+
+    .menu-search >div {
+      margin: 2.5px;
+    }
+  }
+
+  &.fixed-header {
+    #main {
+      margin-top: $nav-height;
+    }
+  }
+
+  &.fixed-ribbon {
+    #ribbon {
+      left: $left-width;
+      top: $nav-height;
+    }
+
+    #content {
+      padding-top: 43px;
+    }
+  }
+
+  &.hidden-menu {
+    #hide-menu a {
+      color: orange;
+    }
+
+    #left-panel {
+      left: -($left-width) + 5;
+
+      &:hover {
+        left: 0;
+      }
+    }
+
+    #main {
+      margin-left: 0;
+    }
+
+    #ribbon {
+      left: 0;
+    }
+  }
+
+  &.full-screen {
+    #fullscreen a {
+      color: orange;
+    }
+  }
+
+  #main {
+    margin-left: $left-width;
+    min-height: 'calc(100vh - %s)' % $nav-height;
+  }
+
+  #ribbon {
+    height: $nav-height - 5;
+    min-height: auto;
+
+    .breadcrumb {
+      padding: 7px 34px 7px 0 !important;
+    }
+  }
+
+  #content {
+    padding: 12px;
+  }
+
+  .input-file {
+    .button {
+      top: 2px;
+      right: 2px;
+      line-height: 20px;
+      height: 20px;
+    }
+  }
+
+  // 组件样式
+  .nk-menu {
+    i {
+      float: left;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+    }
+
+    nav > ul > li > a b {
+      top: auto;
+    }
+
+    a {
+      padding-top: 6px;
+      padding-bottom: 6px;
+      @extend $strong-font;
+      color: #ccc !important;
+      height: 30px;
+    }
+
+    ul {
+      padding: 0;
+    }
+
+    b {
+      margin-top: 0;
+    }
+
+    span {
+      display: inline-block;
+      width: 110px;
+      overflow: hidden;
+      word-wrap: break-word;
+      white-space: nowrap;
+      word-break: break-all;
+      text-overflow: ellipsis;
+      vertical-align: middle;
+    }
+
+    .active > a {
+      color: #3795db !important;
+    }
+  }
+}

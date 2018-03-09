@@ -1,0 +1,9 @@
+taskId: Sample_Local_Task
+taskType: Disassemble
+sourceFileLocation: ./doc/samples/x12/30886_846_X12.txt
+sourceFileEncoding: #UTF-8
+localSchemaStore: ./doc/schemas
+outputLocation: d:/temp/x12engine/output
+generateFunctionalAck: true
+ediSchemaValidationEnabled: true
+forceDisableOutput: false

@@ -1,0 +1,99 @@
+@import './newkit-theme/newkit-theme.styl';
+
+$scrollbar {
+  /* 设置滚动条的样式 */
+  &::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+    float: right;
+  }
+
+  /* 滚动槽 */
+  ::-webkit-scrollbar-corner, ::-webkit-scrollbar-track {
+    background-color: #e2e2e2;
+  }
+
+  /* 滚动条滑块 */
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+
+    &:vertical:hover {
+      background-color: rgba(0, 0, 0, 0.35);
+    }
+
+    &:vertical:active {
+      background-color: rgba(0, 0, 0, 0.38);
+    }
+  }
+
+  &::-webkit-scrollbar-button:vertical {
+    display: none;
+  }
+
+  -ms-overflow-style: scrollbar !important;
+}
+
+.nk-left-sidebar, .nk-main-content, body {
+  @extend $scrollbar;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #272727;
+}
+
+h1 {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+h2 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+h3 {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+h4 {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+h5 {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+h6 {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+a {
+  font-size: 12px;
+  color: #0077c7;
+  line-height: 16px;
+
+  &:hover {
+    color: #0077c7;
+  }
+}
+
+.nk-validator {
+  z-index: 111;
+}

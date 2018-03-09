@@ -1,0 +1,143 @@
+.nk-function-panel {
+  border: 1px solid gray;
+  height: 50px;
+  position: fixed;
+  z-index: 9998;
+  right: 15px;
+  bottom: 0;
+  background: #808080;
+  left: 190px;
+
+  .hidden-menu & {
+    left: 10px;
+  }
+
+  .fixed-page-footer & {
+    bottom: 52px;
+  }
+}
+
+.nk-tree {
+  &::before {
+    top: 15px;
+  }
+
+  .tree-selected .tree-label {
+    background: lightgoldenrodyellow;
+  }
+}
+
+.nk-breadcrumb-toolbar {
+  position: absolute;
+  top: -40px;
+  height: 40px;
+  right: 15px;
+  z-index: 902;
+
+  .menu-on-top & {
+    top: 118px;
+  }
+
+  .fixed-header & {
+    position: fixed;
+    top: 49px;
+  }
+}
+
+.nk-message-box-warpper {
+  z-index: 1000200;
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  margin-left: -250px;
+  width: 500px;
+
+  .nk-message-box {
+    background: #ffffff;
+    box-shadow: 0 0 20px 0 #d8d8d8;
+    border-radius: 4px;
+    min-width: 300px;
+    max-width: 500px;
+    padding: 16px;
+    margin-bottom: 12px;
+
+    &.success {
+      .box-title {
+        color: #00c78d;
+      }
+    }
+
+    &.info {
+      .box-title {
+        color: #0077c7;
+      }
+    }
+
+    &.warn {
+      .box-title {
+        color: #f09000;
+      }
+    }
+
+    &.error {
+      .box-title {
+        color: #f43f3f;
+      }
+    }
+
+    .box-title {
+      font-size: 14px;
+      line-height: 16px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+
+      .header {
+        flex: 1;
+      }
+
+      .close-btn {
+        font-size: 12px;
+        color: #c0bfc0;
+        line-height: 16px;
+        width: 16px;
+        text-align: center;
+        cursor: pointer;
+
+        &:hover {
+          font-size: 13px;
+        }
+      }
+    }
+
+    .box-content {
+      font-size: 12px;
+      color: #222222;
+      line-height: 16px;
+    }
+
+    .box-footer {
+      margin-top: 8px;
+      text-align: right;
+
+      .nk-button {
+        margin-bottom: 0;
+
+        &:last-child {
+          margin-left: 4px;
+        }
+      }
+    }
+  }
+}
+
+body.modal-open {
+  #loading-target {
+    background-color: rgba(0,0,0,0.4);
+
+    .sk-circle .sk-child:before {
+      background-color: #ffffff;
+    }
+  }
+}

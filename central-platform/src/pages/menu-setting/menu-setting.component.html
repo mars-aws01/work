@@ -1,0 +1,88 @@
+<div class="menu-setting">
+  <nk-collapse-box header="Menu Operate">
+    <nk-button type="primary" (click)="addRootMenu()">Add Root Menu</nk-button>
+  </nk-collapse-box>
+  <nk-collapse-box header="Menu List">
+    <nk-grid [data]="menuData" [pageSize]="1000000">
+      <nk-grid-column header="Menu" [width]="300">
+        <ng-template nkGridCellTemplate let-item="item">
+          <span [ngClass]="'level'+ item.Level">
+            {{item | menuTranslate}}
+          </span>
+        </ng-template>
+      </nk-grid-column>
+      <nk-grid-column header="Url" field="Url"></nk-grid-column>
+      <nk-grid-column header="Is Active" width="75">
+        <ng-template nkGridCellTemplate let-item="item">
+          <div class="text-center">
+            <i class="fa fa-check" *ngIf="item.isActived"></i>
+          </div>
+        </ng-template>
+      </nk-grid-column>
+      <nk-grid-column header="Auth Type" field="AuthorizeType"> </nk-grid-column>
+      <nk-grid-column header="Sort" field="Sort" width="60"> </nk-grid-column>
+      <nk-grid-column header="Operate" width="80" style="padding: 5px;">
+        <ng-template nkGridCellTemplate let-item="item">
+          <div class="btn-group btn-group-xs">
+            <a href="javascript:;" title="Edit Menu" (click)="doMenuOperate($event, 'edit', item)">
+              <i class="fa fa-edit"></i>
+            </a> &nbsp;
+            <a href="javascript:;" title="Delete Menu" (click)="doMenuOperate($event, 'delete', item)">
+              <i class="fa fa-minus"></i>
+            </a> &nbsp;
+            <a href="javascript:;" title="Add Child Menu" *ngIf="item.Level < 2" (click)="doMenuOperate($event, 'addChild', item)">
+              <i class="fa fa-plus"></i>
+            </a>
+          </div>
+        </ng-template>
+      </nk-grid-column>
+    </nk-grid>
+  </nk-collapse-box>
+  <nk-modal [header]="menuModalTitle" [(shown)]="isModalShown" (onOk)="saveMenu()" (onHidden)="editMenuHide()">
+    <nk-form class="menu-form" labelWidth="110px" [inline]="true" *ngIf="currentMenu">
+      <nk-form-item label="Menu Name" class="language-config">
+        <div class="input-group">
+          <span class="input-group-addon" style="min-width: 81px;">English</span>
+          <input type="text" class="form-control" name="menuEn" [(ngModel)]="currentMenu.MenuName">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">简体中文</span>
+          <input type="text" class="form-control" name="menuZh" [(ngModel)]="currentMenu.MenuNameCn">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">繁體中文</span>
+          <input type="text" class="form-control" name="menuTw" [(ngModel)]="currentMenu.MenuNameTw">
+        </div>
+      </nk-form-item>
+      <nk-form-item label="Url">
+        <nk-input name="Url" [(ngModel)]="currentMenu.Url"></nk-input>
+      </nk-form-item>
+      <nk-form-item label="Status">
+        <nk-checkbox name="isActived" [(ngModel)]="currentMenu.IsActived">Is Actived</nk-checkbox>
+      </nk-form-item>
+      <nk-form-item label="Sort">
+        <nk-input type="number" name="Sort" [(ngModel)]="currentMenu.Sort"></nk-input>
+      </nk-form-item>
+      <nk-form-item label="Description">
+        <nk-input type="textarea" name="Description" [(ngModel)]="currentMenu.Description"></nk-input>
+      </nk-form-item>
+      <nk-form-item label="Authorization Type">
+        <nk-radio-group name="AuthorizeType" [(ngModel)]="currentMenu.AuthorizeType">
+          <nk-radio [value]="'public'">Public</nk-radio>
+          <nk-radio [value]="'keystone'">Keystone</nk-radio>
+        </nk-radio-group>
+      </nk-form-item>
+      <ng-container *ngIf="currentMenu.AuthorizeType === 'keystone'">
+        <nk-form-item label="Application">
+          <select class="form-control" name="applicationId" [(ngModel)]="currentMenu.ApplicationId">
+            <option *ngFor="let app of applications" [value]="app.id">{{app.name}}</option>
+          </select>
+        </nk-form-item>
+        <nk-form-item label="Function Name">
+          <nk-input name="FunctionName" [(ngModel)]="currentMenu.FunctionName"></nk-input>
+        </nk-form-item>
+      </ng-container>
+    </nk-form>
+    <div class="clearfix"></div>
+  </nk-modal>
+</div>

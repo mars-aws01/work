@@ -1,0 +1,38 @@
+import { OnInit, ElementRef } from '@angular/core';
+import { ComponentBase } from './../ComponentBase';
+export declare const AUTOCOMPLETE_VALUE_ACCESSOR: any;
+export declare class AutoCompleteComponent extends ComponentBase implements OnInit {
+    private elementRef;
+    private textField;
+    private valueField;
+    private minLength;
+    private maxItems;
+    private delay;
+    private disabled;
+    private placeholder;
+    private source;
+    private candidateData;
+    private filterKey;
+    private filterChanged;
+    private filterTimeout;
+    private focusedIndex;
+    private inputFocused;
+    private searching;
+    private innerValue;
+    onChange: any;
+    onTouched: any;
+    constructor(elementRef: ElementRef);
+    ngOnInit(): void;
+    writeValue(value: any): void;
+    registerOnChange(fn: (_: any) => {}): void;
+    registerOnTouched(fn: () => {}): void;
+    private inputFocus();
+    private inputBlur();
+    private inputKeyDown(event);
+    private _calcScrollTop();
+    private inputValueChanged(value);
+    private filter(key, datas, maxItems, needProcess?);
+    private setFocusIndex(index);
+    private itemMouseDown(event);
+    private itemSelect(item);
+}

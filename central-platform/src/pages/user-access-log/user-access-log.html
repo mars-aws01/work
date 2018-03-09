@@ -1,0 +1,65 @@
+<div class="user-access-logs">
+  <nk-collapse-box header="Search">
+    <form novalidate class="nk-form" #form="ngForm" (ngSubmit)="submitForm(form)" [class.ng-submitted]="form.submitted">
+      <nk-row [gutter]="16">
+        <nk-col [span]="4">
+          <div class="nk-form-item">
+            <label class="nk-form-item-label width-60">UserID:</label>
+            <div class="nk-form-item-content">
+              <nk-input type="text" name="UserID" [(ngModel)]="searchInfo.UserID" #userIdCtrl="ngModel" minlength="2" maxlength="10"></nk-input>
+              <ng-container *ngIf="form.submitted">
+                <nk-validator [fireOnDirty]="false" [control]="userIdCtrl" [errorMsg]="{minlength: 'The userid cannot be less then {0}'}"></nk-validator>
+              </ng-container>
+            </div>
+          </div>
+        </nk-col>
+        <nk-col [span]="4">
+          <div class="nk-form-item">
+            <label class="nk-form-item-label">Page:</label>
+            <div class="nk-form-item-content">
+              <nk-input type="text" name="Page" [(ngModel)]="searchInfo.Page" maxlength="100"></nk-input>
+            </div>
+          </div>
+        </nk-col>
+        <nk-col [span]="4">
+          <div class="nk-form-item">
+            <label class="nk-form-item-label">Action:</label>
+            <div class="nk-form-item-content">
+              <nk-input type="text" name="Action" [(ngModel)]="searchInfo.Action" maxlength="100"></nk-input>
+            </div>
+          </div>
+        </nk-col>
+        <nk-col [span]="4">
+          <div class="nk-form-item">
+            <div class="nk-form-item-content">
+              <nk-button mode="submit">
+                <i class="fa fa-search"></i> Search
+              </nk-button>
+            </div>
+          </div>
+        </nk-col>
+      </nk-row>
+    </form>
+  </nk-collapse-box>
+  <nk-collapse-box header="Search Result">
+    <div>
+      <kendo-grid [data]="eventLogs" [pageable]="true" [pageSize]="pageSize" [skip]="skip" (pageChange)="pageChange($event)">
+        <kendo-grid-column field="UserId" title="UserID" width="80">
+        </kendo-grid-column>
+        <kendo-grid-column field="ClientIp" title="IP">
+        </kendo-grid-column>
+        <kendo-grid-column field="Url" title="Url">
+        </kendo-grid-column>
+        <kendo-grid-column field="Action" title="Action">
+        </kendo-grid-column>
+        <kendo-grid-column field="Label" title="Label">
+        </kendo-grid-column>
+        <!-- <kendo-grid-column field="Discontinued" title="Discontinued" width="120">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <input type="checkbox" [checked]="dataItem.Discontinued" disabled/>
+        </ng-template>
+      </kendo-grid-column> -->
+      </kendo-grid>
+    </div>
+  </nk-collapse-box>
+</div>

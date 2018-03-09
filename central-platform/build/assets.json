@@ -1,0 +1,77 @@
+{
+  "vendor.js": [
+    "./static/vendor/polyfills/Blob.js",
+    "./static/vendor/polyfills/classList.js",
+    "./static/vendor/polyfills/formdata.js",
+    "./static/vendor/polyfills/Intl.js",
+    "./static/vendor/polyfills/typedarray.js",
+    "./node_modules/core-js/client/shim.js",
+    "./node_modules/jquery/dist/jquery.js",
+    "./node_modules/nprogress/nprogress.js",
+    "./node_modules/lodash/lodash.js",
+    "./node_modules/moment/moment.js",
+    "./node_modules/moment-timezone/builds/moment-timezone-with-data.js",
+    "./node_modules/jszip/dist/jszip.js",
+    "./node_modules/echarts/dist/echarts.js",
+    "./static/vendor/html2canvas.min.js",
+    "./static/vendor/neg-feedback.min.js",
+    "./static/vendor/uuid.min.js",
+    "./static/vendor/select2/js/select2.full.js",
+    "./static/jquery.nicescroll/jquery.nicescroll.js",
+    "./node_modules/bootstrap/dist/js/bootstrap.js",
+    "./static/vendor/daterangepicker/daterangepicker.js"
+  ],
+  "vendor.js.min": [
+    "./static/vendor/polyfills/Blob.min.js",
+    "./static/vendor/polyfills/classList.min.js",
+    "./static/vendor/polyfills/formdata.min.js",
+    "./static/vendor/polyfills/Intl.min.js",
+    "./static/vendor/polyfills/typedarray.min.js",
+    "./node_modules/core-js/client/shim.min.js",
+    "./node_modules/jquery/dist/jquery.min.js",
+    "./node_modules/nprogress/nprogress.js",
+    "./node_modules/lodash/lodash.min.js",
+    "./node_modules/moment/min/moment.min.js",
+    "./node_modules/moment-timezone/builds/moment-timezone-with-data.min.js",
+    "./node_modules/jszip/dist/jszip.min.js",
+    "./node_modules/echarts/dist/echarts.min.js",
+    "./static/vendor/html2canvas.min.js",
+    "./static/vendor/neg-feedback.min.js",
+    "./static/vendor/uuid.min.js",
+    "./static/vendor/select2/js/select2.full.min.js",
+    "./static/jquery.nicescroll/jquery.nicescroll.min.js",
+    "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+    "./static/vendor/daterangepicker/daterangepicker.js"
+  ],
+  "vendor.css": [
+    "./node_modules/font-awesome/css/font-awesome.css",
+    "./node_modules/animate.css/animate.css",
+    "./node_modules/loaders.css/loaders.css",
+    "./node_modules/nprogress/nprogress.css",
+    "./static/material-icons/css/material-icons.css",
+    "./node_modules/bootstrap/dist/css/bootstrap.css",
+    "./static/vendor/select2/css/select2.css",
+    "./static/vendor/daterangepicker/daterangepicker.css"
+  ],
+  "vendor.css.min": [
+    "./node_modules/font-awesome/css/font-awesome.min.css",
+    "./node_modules/animate.css/animate.min.css",
+    "./node_modules/loaders.css/loaders.min.css",
+    "./node_modules/nprogress/nprogress.css",
+    "./static/material-icons/css/material-icons.css",
+    "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+    "./static/vendor/select2/css/select2.min.css",
+    "./static/vendor/daterangepicker/daterangepicker.css"
+  ],
+  "vendor.cssStatic": [
+    "./static/kendo2/css/**/*"
+  ],
+  "vendor.fonts": [
+    "./node_modules/font-awesome/fonts/*.*",
+    "./static/material-icons/fonts/*.*",
+    "./node_modules/bootstrap/dist/fonts/*.*"
+  ],
+  "vendor.static": [
+    "./static/not-used/**/*"
+  ]
+}

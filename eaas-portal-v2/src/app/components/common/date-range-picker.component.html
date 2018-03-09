@@ -1,0 +1,23 @@
+<div class="col-sm-12 no-padding">
+    <div class=" col-sm-5 no-padding">
+        <div class="input-group">
+            <input class="form-control  input-disable no-border-radius no-padding-right" bsDatepicker [(ngModel)]="startDate" #dp="bsDatepicker" [bsConfig]="bsConfig"
+                [maxDate]="endDate" readonly>
+            <div class="input-group-addon no-border-radius padding-left-2 padding-right-2" (click)="dp.show()">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </div>
+        </div>
+    </div>
+
+    <i class="fa fa-minus col-sm-2 padding-top-6 icon-center"  aria-hidden="true"></i>
+
+    <div class=" col-sm-5 no-padding">
+        <div class="input-group">
+            <input class="form-control  input-disable no-border-radius no-padding-right " bsDatepicker [(ngModel)]="endDate" #dpr="bsDatepicker" [bsConfig]="bsConfig"
+                [minDate]="startDate" readonly>
+            <div class="input-group-addon no-border-radius padding-left-2 padding-right-2" (click)="dpr.show()">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </div>
+        </div>
+    </div>
+</div>

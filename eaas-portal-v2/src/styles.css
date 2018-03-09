@@ -1,0 +1,80 @@
+/* You can add global styles to this file, and also import other style files */
+.messager-center{
+    position:fixed;
+    z-index:1;
+    margin-top:20px;
+    /* left:25%; */
+    width:100%;
+    border-radius:20%;
+    border-width: 0;
+}
+
+.messager-info {
+    color: #d9edf7;
+}
+
+.messager-success {
+    color: #60bd60;
+}
+
+.messager-error {
+    color: #dc5d5d;
+}
+
+.messager-warning {
+    color: #dede37;
+}
+
+.messager-head {
+    background-color: #292929;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.messager-body {
+    background-color: #404040;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-right: 0;
+}
+
+.messager-close {
+    color: #bbbbbb;
+}
+
+.no-padding {
+    padding-top: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+}
+
+.no-padding-top {
+    padding-top: 0 !important;
+}
+
+.no-padding-right {
+    padding-right: 0 !important;
+}
+
+.no-padding-bottom {
+    padding-bottom: 0 !important;
+}
+
+.no-padding-left {
+    padding-left: 0 !important;
+}
+
+.border-right-radius {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.color-father {
+    background-color: inherit;
+}
+

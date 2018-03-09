@@ -1,0 +1,59 @@
+<div class="global-configuration">
+  <nk-collapse-box [header]="'central.globalConfig.title' | translate">
+    <wj-flex-grid #grid1 [itemsSource]="gridView" selectionMode="Row" style="height:400px" (selectionChanged)="selectionChange($event)">
+      <wj-flex-grid-filter #filter></wj-flex-grid-filter>
+      <wj-flex-grid-column header="Domain" [binding]="'Domain'" [isReadOnly]="true"></wj-flex-grid-column>
+      <wj-flex-grid-column [header]="'Key'" [binding]="'Key'" [isReadOnly]="true"></wj-flex-grid-column>
+      <wj-flex-grid-column [header]="'Value'" [binding]="'Value'" [isReadOnly]="true" width="*"></wj-flex-grid-column>
+      <wj-flex-grid-column [header]="'In User'" [binding]="'InUser'" [isReadOnly]="true"></wj-flex-grid-column>
+      <wj-flex-grid-column [header]="'In Date'" [binding]="'InDate'" [isReadOnly]="true"></wj-flex-grid-column>
+      <wj-flex-grid-column [header]="'Edit User'" [binding]="'EditUser'" [isReadOnly]="true"></wj-flex-grid-column>
+      <wj-flex-grid-column [header]="'Edit Date'" [binding]="'EditDate'" [isReadOnly]="true"></wj-flex-grid-column>
+    </wj-flex-grid>
+    <wj-collection-view-navigator [cv]="grid1?.collectionView">
+    </wj-collection-view-navigator>
+    <button class="btn btn-danger" (click)="exportExcel(grid1)" [hidden]="true">Export Excel</button>
+    <hr>
+    <nk-form labelWidth="80px" #f1="nkForm">
+      <nk-row [gutter]="16">
+        <nk-col [span]="12">
+          <nk-form-item label="Domain" [control]="domain">
+            <nk-input name="Domain" placeholder="Domain name" #domain="ngModel" [(ngModel)]="configEntity.Domain" required [readonly]="configEntity.ApplicationId"></nk-input>
+          </nk-form-item>
+        </nk-col>
+        <nk-col [span]="12">
+          <nk-form-item label="Key" [control]="key">
+            <nk-input name="Key" placeholder="Key" #key="ngModel" [(ngModel)]="configEntity.Key" required [readonly]="configEntity.ApplicationId"></nk-input>
+          </nk-form-item>
+        </nk-col>
+      </nk-row>
+      <nk-row [gutter]="16">
+        <nk-col [span]="12">
+          <nk-form-item label="Value" [control]="value">
+            <nk-input name="Value" type="textarea" #value="ngModel" placeholder="Value" rows="5" [(ngModel)]="configEntity.Value" required></nk-input>
+          </nk-form-item>
+        </nk-col>
+        <nk-col [span]="12">
+          <nk-form-item label="Description">
+            <nk-input type="textarea" placeholder="Description" rows="5" [(ngModel)]="configEntity.Description"></nk-input>
+          </nk-form-item>
+        </nk-col>
+      </nk-row>
+      <nk-row>
+        <nk-col>
+          <div class="text-center">
+            <nk-button icon="fa fa-plus" (click)="newConfiguration()">
+              Create New
+            </nk-button>
+            <nk-button type="primary" icon="fa fa-save" [disabled]="disabledSave" (click)="saveConfiguration()">
+              Save Configuration
+            </nk-button>
+            <nk-button icon="fa fa-trash" (click)="remove()">
+              Delete Configuration
+            </nk-button>
+          </div>
+        </nk-col>
+      </nk-row>
+    </nk-form>
+  </nk-collapse-box>
+</div>

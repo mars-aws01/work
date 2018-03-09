@@ -1,0 +1,64 @@
+.nk-autocomplete {
+  position: relative;
+  width: 100%;
+
+  .datalist-warpper {
+    position: relative;
+    width: 100%;
+
+    .ui-autocomplete {
+      width: calc(100% - 2px);
+    }
+  }
+
+  .icon-append {
+    padding-left: 0;
+    border-left: none;
+  }
+}
+
+.nk-drop-down-list {
+  .drop-down-list-popup-panel {
+    padding: 0;
+    position: absolute;
+    right: 0;
+    left: 0;
+    background: #fff;
+    border: 1px solid lightgray;
+    border-top: none;
+
+    li {
+      list-style: none;
+      padding: 5px 7px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f1f8fd;
+        color: #2b7dbc;
+      }
+
+      &.checked {
+        background-color: #eef4f9;
+        color: #2b7dbc;
+      }
+    }
+  }
+}
+
+.nk-drop-down-grid {
+  position: relative;
+
+  .nk-drop-down-grid-panel {
+    padding: 0;
+    position: absolute;
+    right: 0;
+    left: 0;
+    background: #fff;
+    border: 1px solid lightgray;
+    border-top: none;
+
+    .nk-grid {
+      margin: 0 !important;
+    }
+  }
+}

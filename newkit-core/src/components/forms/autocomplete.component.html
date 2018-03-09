@@ -1,0 +1,17 @@
+<div class="nk-autocomplete autocomplete-warpper">
+  <label class="input">
+    <i class="icon-append fa fa-circle-o-notch fa-spin" *ngIf="searching"></i>
+    <input type="text" class="autocomplete-input" [placeholder]="placeholder" [disabled]="disabled" 
+    (focus)="inputFocus()" (blur)="inputBlur()" (keydown)="inputKeyDown($event)"
+    (ngModelChange)="inputValueChanged($event)" [ngModel]="filterKey" [ngModelOptions]="{standalone: true}" #autocompleteInput>
+  </label>  
+  <div class="datalist-warpper" [class.hide]="!filterKey?.length || !inputFocused || !filterChanged || !candidateData.length">
+    <ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all">
+      <li class="ui-menu-item" *ngFor="let item of candidateData; let i = index;">
+        <a href="javascript:void(0)" class="ui-corner-all" [class.ui-state-focus]="focusedIndex == i" (mouseenter)="setFocusIndex(i)" (mousedown)="itemMouseDown($event)" (click)="itemSelect(item)">
+          {{ textField ? item[textField] : item }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

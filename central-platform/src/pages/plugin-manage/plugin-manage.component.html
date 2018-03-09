@@ -1,0 +1,146 @@
+<div class="page-plugin-manage">
+  <nk-collapse-box header="Search Options">
+    <nk-form [inline]="true" labelWidth="80px">
+      <nk-row [gutter]="16">
+        <nk-col [span]="10">
+          <nk-form-item label="Plugin Type">
+            <nk-checkbox-group [(ngModel)]="pluginSearch.PluginTypes">
+              <nk-checkbox name="type" value="module">Module</nk-checkbox>
+              <nk-checkbox name="type" value="widget">Widget</nk-checkbox>
+            </nk-checkbox-group>
+          </nk-form-item>
+        </nk-col>
+        <nk-col [span]="8">
+          <nk-form-item label="Plugin Name">
+            <nk-input placeholder="Plugin name" [(ngModel)]="pluginSearch.Name"> </nk-input>
+          </nk-form-item>
+        </nk-col>
+        <nk-col [span]="6">
+          <nk-button mode="submit" icon="fa fa-search" (click)="searchPlugin()">Search</nk-button>
+          <nk-button type="primary" icon="fa fa-plus" (click)="showInstallModal()">Install Plugin</nk-button>
+        </nk-col>
+      </nk-row>
+    </nk-form>
+  </nk-collapse-box>
+  <nk-collapse-box header="Plugin List" icon="fa fa-list">
+    <kendo-grid [data]="pluginList" [sortable]="true" [sort]="gridState.sort" [filterable]="false" [pageable]="true" [pageSize]="gridState.take"
+      [skip]="gridState.skip" [selectable]="true" (dataStateChange)="gridStateChange($event)">
+      <kendo-grid-column title="Plugin Type" field="PluginType" [width]="120"></kendo-grid-column>
+      <kendo-grid-column title="Plugin Name" field="Name" [width]="150"></kendo-grid-column>
+      <kendo-grid-column title="Plugin Description" field="PluginDescription" [sortable]="false"></kendo-grid-column>
+      <kendo-grid-column title="Current Tag" field="Tag" [width]="200" [sortable]="false">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <strong>{{dataItem.Tag}}</strong> ({{dataItem.TagInDate | date:'yyyy/MM/dd HH:mm'}})
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column title="Operate" [width]="100" [sortable]="false">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <a href="javascript:;" title="Show Plugin History" (click)="showPluginVersionModal(dataItem)">
+            <i class="fa fa-list"></i>
+          </a>&nbsp;&nbsp;
+          <a href="javascript:;" title="Edit Plugin" (click)="showPluginEditModal(dataItem)">
+            <i class="fa fa-edit"></i>
+          </a>&nbsp;&nbsp;
+          <a href="javascript:;" title="Uninstall Plugin" (click)="confirmUninstallPlugin(dataItem)">
+            <i class="fa fa-minus"></i>
+          </a>
+        </ng-template>
+      </kendo-grid-column>
+    </kendo-grid>
+  </nk-collapse-box>
+  <nk-modal class="plugin-version-modal" [width]="700" [(shown)]="pluginVersionModal.shown" [header]="pluginVersionModal.header">
+    <kendo-grid [data]="pluginVersions" [selectable]="true" [height]="300">
+      <kendo-grid-column field="Tag" title="Tag" width="200">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <strong>{{dataItem.Tag}}</strong> ({{dataItem.InDate | date:'yy/MM/dd HH:mm'}})
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="Description" title="Description">
+      </kendo-grid-column>
+      <kendo-grid-column field="Description" title="Current" width="60">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          {{dataItem.Id === selectedPlugin.PluginVersionId ? 'Yes':''}}
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column title="Operate" width="180">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <button class="btn btn-primary btn-xs" title="Reduction to current version" (click)="confirmReductionPlugin(dataItem)">Reduction</button>
+          <button class="btn btn-primary btn-xs" title="Download plugin package" (click)="downloadPackage(dataItem)">Download</button>
+        </ng-template>
+      </kendo-grid-column>
+    </kendo-grid>
+    <div slot="modal-footer" style="margin-top: 16px;">
+      <button class="nk-button" type="button" (click)="pluginVersionModal.shown = false;">Close</button>
+    </div>
+  </nk-modal>
+  <nk-modal class="plugin-edit-modal" [(shown)]="pluginEditModal.shown" [header]="pluginEditModal.header" (onOk)="savePluginInfo(editPluginForm, true)">
+    <nk-form labelWidth="80px" #editPluginForm="nkForm" (onSubmit)="savePluginInfo(editPluginForm)">
+      <nk-row>
+        <nk-col>
+          <nk-form-item label="Plugin Name">
+            <nk-input [(ngModel)]="selectedPlugin.Name" required maxlength="50" #editNameCtrl="ngModel"></nk-input>
+            <ng-container *ngIf="editPluginForm.submitted">
+              <nk-validator [fireOnDirty]="false" [control]="editNameCtrl" [errorMsg]="{required: 'Name is required', maxlength: 'The name length cannot be more then {0}'}"></nk-validator>
+            </ng-container>
+          </nk-form-item>
+        </nk-col>
+      </nk-row>
+      <nk-row>
+        <nk-col>
+          <nk-form-item label="Description">
+            <nk-input type="textarea" rows="5" name="desc" [(ngModel)]="selectedPlugin.PluginDescription"></nk-input>
+          </nk-form-item>
+        </nk-col>
+      </nk-row>
+    </nk-form>
+  </nk-modal>
+  <nk-modal class="install-modal" [(shown)]="installModal.shown" header="Install Plugin" (onOk)="installPlugin()">
+    <nk-tabset>
+      <nk-tab-item header="Upload And Install Plugin">
+        <div style="padding: 15px;">
+          <nk-form labelWidth="120px">
+            <nk-row>
+              <nk-col>
+                <nk-form-item label="Plugin Name">
+                  <nk-input [(ngModel)]="selectedPlugin.Name"></nk-input>
+                </nk-form-item>
+              </nk-col>
+            </nk-row>
+            <nk-row>
+              <nk-col>
+                <nk-form-item label="Plugin Type">
+                  <nk-radio name="type" value="Module" [(ngModel)]="selectedPlugin.PluginType">Module</nk-radio>
+                  <nk-radio name="type" value="Widget" [(ngModel)]="selectedPlugin.PluginType">Widget</nk-radio>
+                </nk-form-item>
+              </nk-col>
+            </nk-row>
+            <nk-row>
+              <nk-col>
+                <nk-form-item label="Plugin Tag(Version)">
+                  <nk-input [(ngModel)]="selectedPlugin.Tag"></nk-input>
+                </nk-form-item>
+              </nk-col>
+            </nk-row>
+            <nk-row>
+              <nk-col>
+                <nk-form-item label="Description">
+                  <nk-input type="textarea" rows="3" [(ngModel)]="selectedPlugin.Description"></nk-input>
+                </nk-form-item>
+              </nk-col>
+            </nk-row>
+            <nk-row>
+              <nk-col>
+                <nk-form-item label="Plugin File(.tar)">
+                  <input type="file" name="file" #f1 (change)="selectFile($event)">
+                </nk-form-item>
+              </nk-col>
+            </nk-row>
+          </nk-form>
+        </div>
+      </nk-tab-item>
+      <nk-tab-item header="Install From Plugin Center">
+        Come sooning...
+      </nk-tab-item>
+    </nk-tabset>
+  </nk-modal>
+</div>

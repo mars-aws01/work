@@ -1,0 +1,11 @@
+<div class="nk-drop-down-grid smart-form">
+  <label class="input">
+    <input type="text" readonly [ngModel]="innerValue">
+  </label>
+  <div class="nk-drop-down-grid-panel" [style.display]="showPopupPanel ? 'block': 'none'">
+    <nk-grid [data]="dataSource" (onRowClick)="onRowClick($event)">
+      <nk-grid-column *ngFor="let c of columns" [header]="c.header" [field]="c.field" [width]="c.width">
+      </nk-grid-column>
+    </nk-grid>
+  </div>
+</div>

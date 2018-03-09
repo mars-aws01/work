@@ -1,0 +1,33 @@
+<div class="nk-drop-list nk-autocomplete autocomplete-warpper">
+  <label class="input">
+    <i class="icon-append fa fa-circle-o-notch fa-spin" *ngIf="searching"></i>
+    <input id="dropListInput" type="text" class="autocomplete-input" [disabled]="disabled" 
+    (click)="inputFocus()" (blur)="inputBlur($event)" (keydown)="inputKeyDown($event)"
+    [ngModel]="filterKey">
+  </label>
+  <div class="datalist-warpper" [class.hide]="!inputFocused">
+    <ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all">
+      <li class="ui-menu-item" *ngFor="let item of innerDataSource; let i = index;">
+        <a href="javascript:void(0)" class="ui-corner-all" [class.ui-state-focus]="focusedIndex == i" (mouseenter)="setFocusIndex(i)"
+          (mousedown)="itemMouseDown($event)" (click)="itemSelect(item)">
+          {{ item }}
+        </a>
+      </li>
+      <br>
+      <li style="text-align: center;">
+      <ul class="nk-pagination pagination pagination-sm" [ngClass]="paginationClass">
+        <li [ngClass]="{disabled: pageIndex <= 1}" (mousedown)="pageClick($event, pageIndex - 1)">
+          <a href="javascript:;"><i class="fa fa-chevron-left"></i></a>
+        </li>
+        <li *ngFor="let p of pages" [ngClass]="{'active': pageIndex === p.value}" (mousedown)="pageClick($event, p.value)">
+          <a href="javascript:void(0);">{{p.text}}</a>
+        </li>
+        <li [ngClass]="{disabled: pageIndex >= pageCount}" (mousedown)="pageClick($event, pageIndex + 1)">
+          <a href="javascript:void(0);"><i class="fa fa-chevron-right"></i></a>
+        </li>
+      </ul>
+
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+variables:
+  CI_NGAS2_CI_IMAGE_LATEST: "docker.neg/edi/ngas2-ci-ubuntu:1.0.9"
+  CI_NGAS2_CI_CONTAINER_PREFIX: "ngas2-ci-ubuntu"
+  CI_NGAS2_APP_IMAGE_PREFIX: "docker.neg/edi/ngas2-app-ubuntu:1.0"
+  CI_NGAS2_SONARQUBEPROJECTKEY: "05d0830c78a943969cebd9b78f3dee19"
+
+before_script:
+  # output environment variables (usefull for debugging, propably not what you want to do if your ci server is public)
+  - env
+
+stages:
+  - unit_test
+  - deploy
+
+unit-test:
+  stage: unit_test
+  script:
+  - 'docker pull $CI_NGAS2_CI_IMAGE_LATEST'
+  - 'git clone http://trgit2/edi/ci.git'
+  - 'chmod +x .gitlab-ci-build.sh'
+  - 'ngas2_ci_container_version=$CI_NGAS2_CI_CONTAINER_PREFIX-$CI_BUILD_ID'
+  - 'docker run --name $ngas2_ci_container_version -v $(pwd):/build --rm $CI_NGAS2_CI_IMAGE_LATEST /build/.gitlab-ci-build.sh'
+  - 'python ci/check-test-result.py nosetests.xml'
+  - 'rm -rf ci'
+  - 'sonar-scanner -Dsonar.projectKey=$CI_NGAS2_SONARQUBEPROJECTKEY -Dsonar.sources=. '
+
+Deploy_GDEV:
+  stage: deploy
+  environment:
+    name: GDEV
+  script:
+  - 'cp configuration/config.GDEV.yml configuration/config.yml'
+  - 'ngas2_app_image_version=$CI_NGAS2_APP_IMAGE_PREFIX.$CI_BUILD_ID.gdev'
+  - 'echo $ngas2_app_image_version'
+  - 'docker build --no-cache=true --rm --tag $ngas2_app_image_version .'
+  - 'docker push $ngas2_app_image_version'
+  - 'docker rmi $ngas2_app_image_version'
+  when: manual
+  only:
+  - branches
+
+Deploy_GQC:
+  stage: deploy
+  environment:
+    name: GQC
+  script:
+  - 'cp configuration/config.GQC.yml configuration/config.yml'
+  - 'ngas2_app_image_version=$CI_NGAS2_APP_IMAGE_PREFIX.$CI_BUILD_ID.gqc'
+  - 'echo $ngas2_app_image_version'
+  - 'docker build --no-cache=true --rm --tag $ngas2_app_image_version .'
+  - 'docker push $ngas2_app_image_version'
+  - 'docker rmi $ngas2_app_image_version'
+  when: manual
+  only:
+  - branches
+
+Deploy_GQC_AutoTest:
+  stage: deploy
+  environment:
+    name: GQC_AutoTest
+  script:
+  - 'cp configuration/config.GQC.AutoTest.yml configuration/config.yml'
+  - 'ngas2_app_image_version=$CI_NGAS2_APP_IMAGE_PREFIX.$CI_BUILD_ID.at'
+  - 'echo $ngas2_app_image_version'
+  - 'docker build --no-cache=true --rm --tag $ngas2_app_image_version .'
+  - 'docker push $ngas2_app_image_version'
+  - 'docker rmi $ngas2_app_image_version'
+  when: manual
+  only:
+  - branches
+
+Deploy_PRDTesting:
+  stage: deploy
+  environment:
+    name: PRDTesting
+  script:
+  - 'cp configuration/config.PRDTesting.yml configuration/config.yml'
+  - 'ngas2_app_image_version=$CI_NGAS2_APP_IMAGE_PREFIX.$CI_BUILD_ID.pre'
+  - 'echo $ngas2_app_image_version'
+  - 'docker build --no-cache=true --rm --tag $ngas2_app_image_version .'
+  - 'docker push $ngas2_app_image_version'
+  - 'docker rmi $ngas2_app_image_version'
+  when: manual
+  only:
+  - branches
+  - develop
+
+Deploy_PRD:
+  stage: deploy
+  environment:
+    name: PRD
+  script:
+  - 'cp configuration/config.PRD.yml configuration/config.yml'
+  - 'ngas2_app_image_version=$CI_NGAS2_APP_IMAGE_PREFIX.$CI_BUILD_ID.prd'
+  - 'echo $ngas2_app_image_version'
+  - 'docker build --no-cache=true --rm --tag $ngas2_app_image_version .'
+  - 'docker push $ngas2_app_image_version'
+  - 'docker rmi $ngas2_app_image_version'
+  when: manual
+  only:
+  - develop
+  - master
+

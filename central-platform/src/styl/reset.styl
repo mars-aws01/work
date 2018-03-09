@@ -1,0 +1,73 @@
+textarea {
+  resize: none;
+}
+
+$scrollbar {
+  /* 设置滚动条的样式 */
+  &::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  /* 滚动槽 */
+  ::-webkit-scrollbar-corner, ::-webkit-scrollbar-track {
+    background-color: #e2e2e2;
+  }
+
+  /* 滚动条滑块 */
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+
+    &:vertical:hover {
+      background-color: rgba(0, 0, 0, 0.35);
+    }
+
+    &:vertical:active {
+      background-color: rgba(0, 0, 0, 0.38);
+    }
+  }
+
+  &::-webkit-scrollbar-button:vertical {
+    display: none;
+  }
+}
+
+body {
+  font-family: Arial;
+}
+
+.nk-row {
+  width: 100%;
+}
+
+ul.messenger.messenger-fixed {
+  z-index: 10102;
+}
+
+nav {
+  @extend $scrollbar;
+}
+
+/* Messanger Style */
+.messenger .messenger-actions>span[data-action]>a {
+  min-width: 60px;
+  text-align: center;
+}
+
+ul.messenger-theme-flat .messenger-message.alert-warn .messenger-message-inner:before {
+  background: #faebcc;
+}
+
+body.full-screen {
+  overflow: auto !important;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.input-group-addon {
+  padding: 4px 8px;
+  border-radius: 0;
+}

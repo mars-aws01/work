@@ -1,0 +1,49 @@
+<div class="modal fade nk-feedback-modal" tabindex="-1" role="dialog" data-html2canvas-ignore="true" #feedbackModal>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form novalidate #feedbackForm="ngForm" (ngSubmit)="sendFeedback(feedbackForm)" autocomplete="off" *ngIf="feedbackInfo">
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Feedback</h4>
+          <button type="button" class="close pull-right" aria-label="Close" [disabled]="screenshoting" (click)="hideFeedbackModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group" [class.has-error]="feedbackSubmitted && feedbackForm.controls.Feedback.invalid">
+            <textarea class="form-control" placeholder="Describe your issue or share your ideas" name="Feedback" rows="6" [(ngModel)]="feedbackInfo.Feedback"
+              required maxlength="4000"></textarea>
+            <div class="help-block" *ngIf="feedbackSubmitted && feedbackForm.controls.Feedback.invalid">
+              <span *ngIf="feedbackForm.controls.Feedback.errors.required">Feedback content is required</span>
+              <span *ngIf="feedbackForm.controls.Feedback.errors.maxlength">Feedback content cannot more than 4000 characters</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="checkbox checkbox-success">
+              <input id="__IncludeScreenshot" type="checkbox" name="IncludeScreenshot" [(ngModel)]="feedbackInfo.IncludeScreenshot">
+              <label for="__IncludeScreenshot">
+                <strong>Include screenshot</strong>
+              </label>
+            </div>
+          </div>
+          <div class="screenshot" [class.hide]="!feedbackInfo.IncludeScreenshot">
+            <div class="screenshoting" *ngIf="screenshoting">
+              <i class="fa fa-spinner fa-spin m-r-xs"></i> Screenshotting...
+            </div>
+            <img id="feedback_screenshot" src="{{ feedbackInfo.Screenshot }}" style="max-width: 100%">
+          </div>
+          <div class="m-t-xs">
+            <p>Thank you for taking the time to send us feedback! We will make sure respond to each piece of feedback.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default cancel-btn" [disabled]="screenshoting" (click)="hideFeedbackModal()">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-primary send-btn" [disabled]="screenshoting">
+            <i class="fa fa-send"></i> Send
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

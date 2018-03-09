@@ -1,0 +1,133 @@
+<div class="main-menu-panel" [@menuPanelState]="shown ? 'show' : 'hide'">
+  <div class="dimmer" (click)="hideMenu()"></div>
+  <aside class="nk-left-sidebar" #niceScrollTarget>
+    <div class="main-content">
+      <div class="logo">
+        <img src="//cdn.newegg.org/newkit/1.9.0-beta1/central/resources/images/logo_white_small.png">
+      </div>
+      <div class="auth-info">
+        <div class="user-name">
+          <span>Hi!</span>
+          {{userInfo?.FullName}}
+        </div>
+        <div class="logout-btn">
+          <a href="javascript: void(0)" (click)="doLogout()">
+            {{ 'central.layout.signOut' | translate }}
+          </a>
+        </div>
+      </div>
+      <div class="search-panel">
+        <input type="text" class="form-control" placeholder="Search Menu" [ngModel]="menuSearchText" (ngModelChange)="menuFilterChange($event)">
+        <i class="fa fa-search" *ngIf="!menuSearchText"></i>
+        <i class="fa fa-remove" *ngIf="menuSearchText" (click)="clearMenuSearch()"></i>
+      </div>
+      <div [class.hide]="menuSearchText">
+        <div class="large-menu-item all-categories active" [class.active]="!quickLinksActived">
+          <span class="menu-name">All Categories</span>
+          <i class="fa fa-caret-right"></i>
+        </div>
+        <div class="large-menu-item quick-links" [class.active]="quickLinksActived" (mouseenter)="quickLinksMouseEnter($event)" (mouseleave)="quickLinksMouseLeave($event)">
+          <span class="menu-name">Quick Links</span>
+          <i class="fa fa-caret-right"></i>
+        </div>
+        <div class="most-used-panel">
+          <p class="title">Top 10 Most Used</p>
+          <div class="items">
+            <ng-container *ngFor="let item of mostUsedMenus; let index = index">
+              <div class="menu-item" *ngIf="index < 10">
+                <a href="{{item.Url}}" (click)="menuClick($event, item)">
+                  {{ item | menuTranslate }}
+                </a>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <ng-container *ngIf="menuSearchText">
+        <div class="most-used-panel">
+          <p class="title">Search Result</p>
+          <div class="items">
+            <div class="menu-item" *ngFor="let item of filteredMenuData">
+              <a href="{{item.Url}}" (click)="menuClick($event, item)">
+                {{ item | menuTranslate }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div class="bottom-tools-panel">
+        <div class="menu-item langeage">
+          <span class="a-link" (click)="toggleLangMenu()">{{ 'central.layout.language' | translate }}</span>
+          <div class="language-select-panel" [@langMenuState]="showLangMenu ? 'show' : 'hide'">
+            <div class="select-item" *ngFor="let lang of langs" (click)="changeLanguage(lang.name)">
+              <span *ngIf="currentLang == lang.name">
+                <i class="fa fa-check"></i>
+              </span>
+              <span>{{lang.text}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div [class.hide]="menuSearchText">
+
+    <div class="categories-panel" [@categoryPanelState]="quickLinksActived ? 'hide' : 'show'">
+      <div class="level level-1" #niceScrollTarget>
+        <ng-container *ngFor="let m1 of menuData">
+          <div class="large-menu-item" (click)="menuClick($event, m1)" (click)="changeCategory(m1, $event)" [class.active]="m1 == selectedCategory">
+            <ng-container *ngIf="m1.subMenus && m1.subMenus.length > 0; else menuLink">
+              <span class="menu-name" title="{{ m1 | menuTranslate }}">{{ m1 | menuTranslate }}</span>
+            </ng-container>
+            <ng-template #menuLink>
+              <a href="{{m1.Url}}" title="{{ m1 | menuTranslate }}" class="menu-name">{{ m1 | menuTranslate }}</a>
+            </ng-template>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="level level-2" #niceScrollTarget>
+        <ng-container *ngFor="let m2 of selectedCategory?.subMenus">
+          <div class="large-menu-item" (click)="menuClick($event, m2, selectedCategory)" (click)="changeSubCategory(m2, $event)" [class.active]="m2 == selectedSubCategory">
+            <ng-container *ngIf="m2?.subMenus?.length > 0; else menuLink">
+              <span class="menu-name" title="{{ m2 | menuTranslate }}">{{ m2 | menuTranslate }}</span>
+            </ng-container>
+            <ng-template #menuLink>
+              <a href="{{m2.Url}}" title="{{ m2 | menuTranslate }}" class="menu-name">{{ m2 | menuTranslate }}</a>
+            </ng-template>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="level level-3" #niceScrollTarget>
+        <ng-container *ngFor="let m3 of selectedSubCategory?.subMenus">
+          <div class="large-menu-item" (click)="menuClick($event,m3, selectedSubCategory, selectedCategory)">
+            <a href="{{m3.Url}}" class="menu-name" title="{{ m3 | menuTranslate }}">{{ m3 | menuTranslate }}</a>
+          </div>
+        </ng-container>
+      </div>
+
+    </div>
+
+    <div class="quick-links-panel" [@quickLinksPanelState]="quickLinksActived ? 'show' : 'hide'" (mouseenter)="quickLinksMouseEnter($event)" (mouseleave)="quickLinksMouseLeave($event)">
+      <ng-container *ngFor="let m1 of favoriteMenus">
+        <div class="menu-item category-name">{{ m1 | menuTranslate }}</div>
+
+        <ng-container *ngIf="m1?.subMenus?.length > 0">
+          <ng-container *ngFor="let m2 of m1.subMenus">
+            <div class="menu-item menu-link" *ngIf="m2?.subMenus?.length == 0">
+              <a href="{{m2.Url}}" (click)="menuClick($event, m2, m1)">{{ m2 | menuTranslate }}</a>
+            </div>
+
+            <ng-container *ngIf="m2?.subMenus?.length > 0">
+              <div class="menu-item menu-link" *ngFor="let m3 of m2.subMenus">
+                <a href="{{m3.Url}}" (click)="menuClick($event, m3, m2, m1)">{{ m3 | menuTranslate }}</a>
+              </div>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,164 @@
+/* kendo grid reset */
+.k-grid {
+  .k-grid-aria-root[role="grid"] {
+    height: 100%;
+  }
+
+  .k-header {
+    padding: 4px;
+    background-color: #f9f9f9;
+    font-size: 12px;
+    color: #777677;
+    line-height: 16px;
+    border-bottom: none;
+  }
+
+  [kendogridcell] {
+    padding: 8px;
+    line-height: 16px;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #272727;
+  }
+
+  .k-pager-wrap {
+    padding: 2px;
+    border-top: 1px solid #ccc;
+  }
+
+  .k-pager-nav {
+    padding: 0;
+  }
+
+  .k-pager-numbers {
+    margin-top: -1px;
+
+    a.k-link {
+      padding: 0;
+      border-right: none;
+    }
+  }
+
+  .k-grid-header {
+    border-color: #e1e1e1;
+    background: #ededed;
+    color: #6e6e6e;
+
+    .k-header>.k-link>.k-icon {
+      margin: 0 4px;
+    }
+  }
+
+  .k-header {
+    border-color: #e1e1e1;
+  }
+
+  .k-grid-header-wrap {
+    background: #ededed;
+    color: #6e6e6e;
+
+    .k-header {
+      border-color: #e1e1e1;
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    a:focus {
+      color: inherit;
+    }
+  }
+
+  .nk-widget & {
+    border: none;
+  }
+
+  .k-grid-pager {
+    padding: 8px;
+
+    kendo-pager-numeric-buttons {
+      height: 24px;
+    }
+
+    .k-pager-numbers {
+      margin-top: 0;
+
+      li {
+        a.k-link {
+          margin: 0;
+        }
+
+        &:last-child a.k-link {
+          border-right: 1px solid #c0bfc0;
+        }
+      }
+    }
+
+    .k-link {
+      color: #272727;
+      background: #ffffff;
+      border: 1px solid #c0bfc0;
+      border-radius: 2px;
+      height: 22px;
+      width: 22px;
+      line-height: 22px;
+      margin: 0 2px;
+
+      &.k-state-selected, &:hover {
+        background-color: #0077c7;
+        color: #ffffff !important;
+
+        .k-icon:before {
+          color: #ffffff !important;
+        }
+      }
+
+      &.k-pager-nav {
+        min-width: 22px;
+        width: auto;
+      }
+
+      &.k-pager-nav {
+        span.k-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &:before {
+            font: normal normal normal 14px / 1 FontAwesome;
+            font-size: 12px;
+            color: #272727;
+          }
+
+          &.k-i-seek-w:before {
+            content: '\f100';
+          }
+
+          &.k-i-arrow-w {
+            width: 39px;
+
+            &:before {
+              content: 'Prev';
+            }
+          }
+
+          &.k-i-arrow-e {
+            width: 39px;
+
+            &:before {
+              content: 'Next';
+            }
+          }
+
+          &.k-i-seek-e:before {
+            content: '\f101';
+          }
+        }
+      }
+    }
+  }
+}

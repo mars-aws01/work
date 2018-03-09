@@ -1,0 +1,7 @@
+taskId: Sample_Local_Task
+taskType: Disassemble
+sourceFileLocation: ./doc/samples/x12/30025_856_VFBizTalk.txt
+sourceFileEncoding: utf-8
+localSchemaStore: ./doc/schemas
+generateFunctionalAck: true
+outputLocation: d:/temp/x12engine/output

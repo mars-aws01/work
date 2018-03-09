@@ -1,0 +1,177 @@
+<nk-menu [(shown)]="showMenu" [menuData]="menuData" [menuMap]="menuMap"></nk-menu>
+
+<section class="top-tabs-nav" #topNavbar>
+  <div class="top-tabs-panel">
+    <div class="tab-headers">
+      <div class="tabs">
+        <div class="tab-item menu-control" (click)="toggleMenuStatus()">
+          <div class="header-name">
+            <i class="fa fa-reorder"></i> Menu
+          </div>
+        </div>
+        <div class="tab-item menu-control" (click)="setTabPage('/')" style="margin-right: 20px">
+          <div class="header-name">
+            Home
+          </div>
+        </div>
+        <ng-container *ngFor="let page of pageList; let i = index">
+          <div class="tab-item" [class.active]="selectedPage == page.path" (click)="setTabPage(page)">
+            <div class="header-name" title="{{ page.menuInfo | menuTranslate }}">{{ page.menuInfo | menuTranslate }}</div>
+            <div class="close-btn" (click)="closeTab(true, i, $event)" [hidden]="pageList.length == 1 && page.path == '/'">
+              <i class="fa fa-remove"></i>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <div class="tab-nav-tool">
+        <span class="nav-btn" (click)="actLeftTab()">
+          <i class="fa fa-angle-left"></i>
+        </span>
+        <span class="nav-btn" (click)="actRightTab()">
+          <i class="fa fa-angle-right"></i>
+        </span>
+      </div>
+      <div class="global-search" *ngIf="globalSearchSettings?.length > 0">
+        <form novalidate (ngSubmit)="doGlobalSearch()" autocomplete="off">
+          <select class="form-control" name="selectedGlobalSearchUrl" [ngModel]="selectedGlobalSearchUrl" (ngModelChange)="globalSearchChanged($event)">
+            <ng-container *ngFor="let item of globalSearchSettings">
+              <option value="{{item.UrlTemplate}}">{{ item | prefixTranslate:'SearchName' }}</option>
+            </ng-container>
+          </select>
+          <div class="input-panel">
+            <input type="text" class="form-control" placeholder="{{selectedGlobalSearchItem | prefixTranslate:'TipInfo'}}" name="globalSearchText"
+              [(ngModel)]="globalSearchText">
+            <i class="fa fa-search"></i>
+          </div>
+          <button type="submit" class="hide"></button>
+        </form>
+      </div>
+    </div>
+    <div class="tab-tools-panel" #tabToolsPanel>
+      <div class="tab-breadcrumbs">
+        <ul>
+          <ng-container *ngFor="let item of breadcrumbs; let isLast = last">
+            <li>
+              <span>{{item | menuTranslate}}</span>
+            </li>
+            <li class="divider" *ngIf="!isLast">
+              <i class="fa fa-angle-right"></i>
+            </li>
+          </ng-container>
+          <li class="divider" *ngIf="breadcrumbs?.length == 1">
+            |
+          </li>
+        </ul>
+      </div>
+      <div class="tools">
+
+      </div>
+      <div class="tab-self-tool">
+        <div class="tool-item tab-dropdown-btn">
+          <div class="tab-header" (mouseenter)="optionsMouseEnter($event, tabDropdownPanel)">Options</div>
+          <div class="dropdown-panel" #tabDropdownPanel>
+            <ul (click)="tabDropdownPanelClick($event, tabDropdownPanel)">
+              <li (click)="refreshTab()">
+                <span>Refresh </span>
+                <span class="hot-key">(Ctrl+Alt+R)</span>
+              </li>
+              <li (click)="toggleQuickLink()">
+                <span>{{ isPageStared ? 'Remove from Quick Links' : 'Add to Quick Links' }}</span>
+                <span class="hot-key">(Ctrl+Alt+L)</span>
+              </li>
+
+              <li class="divider"></li>
+              <li class="recent-pages">
+                <span>Go To</span>
+                <i class="fa fa-caret-right"></i>
+                <div class="recent-pages-panel dropdown-panel">
+                  <ul>
+                    <li (click)="goToTab('/')">
+                      <span>Home</span>
+                    </li>
+                    <ng-container *ngFor="let page of pageList">
+                      <li (click)="goToTab(page)" *ngIf="page.path != '/'">
+                        <span>{{ page.menuInfo | menuTranslate }} </span>
+                      </li>
+                    </ng-container>
+                  </ul>
+                </div>
+              </li>
+              <li class="recent-pages" *ngIf="recentClosedPages?.length > 0">
+                <span>Open Recent</span>
+                <span class="hot-key">(Ctrl+Alt+O)</span>
+                <i class="fa fa-caret-right"></i>
+                <div class="recent-pages-panel dropdown-panel">
+                  <ul>
+                    <li (click)="goToTab(page)" *ngFor="let page of recentClosedPages">
+                      <span>{{ page.menuInfo | menuTranslate }} </span>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="divider"></li>
+              <li (click)="closeTab(false)">
+                <span>Close</span>
+                <span class="hot-key">(Ctrl+Alt+C)</span>
+              </li>
+              <li (click)="closeOtherTabs()">
+                <span>Close other tabs</span>
+                <span class="hot-key">(Ctrl+Alt+X)</span>
+              </li>
+              <li (click)="closeAllTabs()">
+                <span>Close all tabs</span>
+                <span class="hot-key">(Ctrl+Alt+A)</span>
+              </li>
+              <li class="divider"></li>
+              <li (click)="lockScreen()">
+                <span>Lock Screen</span>
+                <span>(Shift+L)</span>
+              </li>
+              <li (click)="showFeedback()">
+                <span>Send Feedbacks</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="nk-wrap-view container-fluid" [style.paddingTop]="topNavbar?.offsetHeight + 'px'" #warpperView>
+  <div class="nk-main-view">
+    <nk-multi-tab #multiTabCtrl="multi-tab" [selected]="selectedPage" (selectedChange)="onSelectedPageChange($event)" [data]="pageList"
+      (dataChange)="pageListChanged($event)"></nk-multi-tab>
+  </div>
+</section>
+
+<ng-container *ngIf="feedbackModalShown">
+  <nk-feedback [(shown)]="feedbackModalShown"></nk-feedback>
+</ng-container>
+
+<div class="sys-lock-screen" *ngIf="isLockedScreen">
+  <div class="lock-word">
+    <span class="first-word">LOCKED</span>
+    <span>SCREEN</span>
+  </div>
+  <div class="middle-box">
+    <div>
+      <div class="user-avatar">
+        <img src="{{userInfo?.Avatar}}">
+      </div>
+      <h3>{{userInfo?.FullName}}</h3>
+      <p>Your are in lock screen. You need to enter your passwor to go back to Newegg Central.</p>
+      <form novalidate #lockScreenForm="ngForm" (ngSubmit)="login(lockScreenForm)">
+        <div class="fome-group">
+          <input type="password" autofocus="autofocus" class="form-control" name="LockPass" [(ngModel)]="lockPass" placeholder="Enter your password"
+            required maxlength="50">
+        </div>
+        <button type="submit" class="btn btn-warning" [disabled]="isValidatingPass">
+          <i class="fa fa-spinner fa-spin" *ngIf="isValidatingPass"></i>
+          {{ isValidatingPass ? 'Validating Password' : 'Unlock' }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

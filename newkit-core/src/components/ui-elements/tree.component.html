@@ -1,0 +1,4 @@
+<ul class="tree nk-tree">
+  <li *ngFor="let item of treeData" [nk-tree-item]="item" (click)="onItemClick(item)" (itemClick)="onItemClick($event)" [treeOpt]="{showIcon: showIcon, showCheckbox: showCheckbox}"
+   [ngClass]="{'tree-item': !item.hasChildren, 'parent_li': item.hasChildren, 'tree-selected': !item.hasChildren && item.selected, 'tree-open': item.hasChildren && item.open}">
+</ul>

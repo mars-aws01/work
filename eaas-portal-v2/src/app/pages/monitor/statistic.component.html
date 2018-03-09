@@ -1,0 +1,272 @@
+<div class="eaas-row page-content no-padding-left no-padding-right">
+    <div class="alert eaas-header" [ngBusy]="busyInit">
+        <div class="clearfix eaas-header-panel-margin">
+            <a href="/" style="cursor: pointer">Home
+            </a>
+            <span>>&nbsp;Monitor&nbsp;>&nbsp;</span>
+            <span class="eaas-header-title">Statistics</span>
+            <a href="javascript:void(0)" (click)="backToPreviousPage()" class="pull-right" tooltip="Previous page">
+                <i class="fa fa-reply" aria-hidden="true"></i>
+            </a>
+        </div>
+        <span>With system wise monitoring, you can monitor message flow between partners, easy to find out the problem. There is a chance that the EaaS unable to identify an incomming message or EDI data feed due to various reason, these messages will be displayed as unknown partner, station or message type.</span>
+    </div>
+  
+    <div class="margin-20" [ngBusy]="busySearch">
+      <form autocomplete="off">
+          <div class="row">
+            <div class="col-xs-12 no-padding-left no-padding-right">
+              <div class="col-lg-4 no-padding-left">
+                <div class="form-group row">
+                  <label for="organization" class="col-sm-4 col-form-label">Organization: </label>
+                  <div class="col-sm-8">
+                    <select name="organization" class="form-control" [(ngModel)]="Request.Organization" [disabled]="true">
+                        <option *ngFor="let Organization of OrganizationLsit" [ngValue]="Organization">
+                          {{ Organization.Name }}
+                        </option>
+                      </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group row">
+                  <label for="localPartner" class="col-sm-4 col-form-label">Local Partner: </label>
+                  <div class="col-sm-8">
+                    <select name="localPartner" [(ngModel)]="Request.LocalPartner" (change)="changeLocalPartner($event.target.value)" [disabled]="UserInfo.PartnerID" class="form-control">
+                      <option *ngFor="let LocalPartner of LocalPartnerLsit" [ngValue]="LocalPartner" >
+                        {{ LocalPartner.Name }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group row">
+                  <label for="localStation" class="col-sm-4 col-form-label">Local Station: </label>
+                  <div class="col-sm-8 no-padding-right">
+                    <select name="localStation" [(ngModel)]="Request.LocalStation" [disabled]="UserInfo.PartnerID" class="form-control">
+                      <option *ngFor="let LocalStation of LocalStationLsit" [ngValue]="LocalStation">
+                        {{ LocalStation.Name }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 no-padding-left no-padding-right">
+              <div class="col-lg-4 no-padding-left">
+                <div class="form-group row">
+                  <label for="messageType" class="col-sm-4 col-form-label">Message Type: </label>
+                  <div class="col-sm-8">
+                    <select name="messageType" [(ngModel)]="Request.MessageType" class="form-control">
+                      <option *ngFor="let MessageType of MessageTypeList" [ngValue]="MessageType">
+                        {{ MessageType.DisplayName }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group row">
+                  <label for="tradingPartner" class="col-sm-4 col-form-label">Trading Partner: </label>
+                  <div class="col-sm-8">
+                    <input name="tradingPartner" 
+                      [(ngModel)]="TradingPartnerName"
+                      [typeahead]="TradingPartnerList" 
+                      typeaheadOptionField="Name"
+                      [typeaheadMinLength]="0"
+                      [typeaheadScrollable]="true"
+                      [typeaheadOptionsInScrollableView]="10"
+                      [typeaheadOptionsLimit]="10000"
+                      (typeaheadOnSelect)="changeTradingPartner($event)"
+                      (change)="tradingPartnerNameChange($event)"
+                      class="form-control" 
+                      placeholder="Enter Name">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group row">
+                  <label for="tradingStation" class="col-sm-4 col-form-label">Trading Station: </label>
+                  <div class="col-sm-8 no-padding-right">
+                    <select name="tradingStation" [(ngModel)]="Request.TradingStation" class="form-control">
+                        <option *ngFor="let TradingStation of TradingStationList" [ngValue]="TradingStation">
+                          {{ TradingStation.Name }}
+                        </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 no-padding-left no-padding-right">
+              <div class="col-lg-4 no-padding-left">
+                <div class="form-group row">
+                  <label for="period" class="col-sm-4 col-form-label">Period: </label>
+                  <div class="col-sm-8">
+                    <select name="period" [(ngModel)]="Request.Period" class="form-control">
+                        <option *ngFor="let period of Periods" [ngValue]="period">
+                          {{ period.Name }}
+                        </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                  <div class="form-group row">
+                    <label for="receiveTimeInput" class="col-sm-4 col-form-label">Receive Time: </label>
+                    <div class="col-sm-8">
+                      <div>
+                          <date-range-picker [(startDate)]="Request.ReceiveTimeFrom" [(endDate)]="Request.ReceiveTimeTo"></date-range-picker>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 no-padding-right">
+                    <button type="submit" class=" btn btn-primary pull-right no-border-radius" (click)="search()" >
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                      Search
+                    </button>
+                </div>
+            </div>
+ 
+          </div>
+      </form> 
+      
+      <div name="result-region" class="row">
+        <!-- Total Info -->
+        <collapse-zone (click)="isTotalMessageChartsCollapsed = !isTotalMessageChartsCollapsed" [rotate]="isTotalMessageChartsCollapsed" collapseTitle="Total Message Processed" count="{{ totalMessageCount }}" ></collapse-zone>
+        <div class="row" [collapse]="isTotalMessageChartsCollapsed">
+            <div class="col-md-4" >
+              <canvas baseChart [datasets]="totalMessageDoughnutChart.data.datasets"   height="400px"
+                                [labels]="totalMessageDoughnutChart.data.labels" 
+                                [options]="totalMessageDoughnutChart.options"
+                                [chartType]="totalMessageDoughnutChart.type"></canvas>
+            </div>
+            <div class="col-md-8" >
+              <canvas baseChart [datasets]="totalMessageTrendLineChart.data.datasets"   height="400px"
+                              [labels]="totalMessageTrendLineChart.data.labels"
+                              [options]="totalMessageTrendLineChart.options"
+                              [chartType]="totalMessageTrendLineChart.type"></canvas>
+          </div>
+        </div>
+    
+        <!-- Failed Info -->
+        <collapse-zone (click)="isFailedMessageChartsCollapsed = !isFailedMessageChartsCollapsed" [rotate]="isFailedMessageChartsCollapsed" collapseTitle="Failed Message"  count="{{ failedMessageCount }}" ></collapse-zone>    
+        <div class="row" [collapse]="isFailedMessageChartsCollapsed">
+          <div class="col-md-4" >
+            <canvas baseChart [datasets]="failedMessageBarChart.data.datasets" height="400px"
+                              [labels]="failedMessageBarChart.data.labels" 
+                              [options]="failedMessageBarChart.options"
+                              [chartType]="failedMessageBarChart.type"></canvas>
+          </div>
+          <div class="col-md-8" >
+            <canvas baseChart [datasets]="failedMssageTrendLineChart.data.datasets"  height="400px"
+                              [labels]="failedMssageTrendLineChart.data.labels"
+                              [options]="failedMssageTrendLineChart.options"
+                              [chartType]="failedMssageTrendLineChart.type"></canvas>
+          </div>
+        </div>
+    
+        <!-- Avg Time Info -->
+        <collapse-zone (click)="isAvgTimeChartsCollapsed = !isAvgTimeChartsCollapsed" [rotate]="isAvgTimeChartsCollapsed" collapseTitle="Avg Process Time" ></collapse-zone>    
+        <div class="row" [collapse]="isAvgTimeChartsCollapsed">
+          <div class="col-md-4" >
+            <canvas baseChart [datasets]="avgTimeBarChart.data.datasets" height="400px"
+                              [labels]="avgTimeBarChart.data.labels" 
+                              [options]="avgTimeBarChart.options"
+                              [chartType]="avgTimeBarChart.type"></canvas>
+          </div>
+          <div class="col-md-8" >
+            <canvas baseChart [datasets]="avgTimeTrendLineChart.data.datasets" height="400px"
+                              [labels]="avgTimeTrendLineChart.data.labels"
+                              [options]="avgTimeTrendLineChart.options"
+                              [chartType]="avgTimeTrendLineChart.type"></canvas>
+          </div>
+        </div>
+    
+        <collapse-zone (click)="isTotalMessageTableCollapsed = !isTotalMessageTableCollapsed" [rotate]="isTotalMessageTableCollapsed" collapseTitle="Total Message" ></collapse-zone>
+        <div class="row" [collapse]="isTotalMessageTableCollapsed">
+          <div class="col-lg-12" >
+            <table class="table table-sm table-hover">
+              <thead>
+                <tr>
+                  <th>Message Type</th>
+                  <th>Total {{ totalMessageCount ?  '(' + totalMessageCount + ')' : ''}}</th>
+                  <th>Successfully {{ successfullCount ?  '(' + successfullCount + ')' : ''}}</th>
+                  <th>InProcessing {{ inProcessingCount ?  '(' + inProcessingCount + ')' : ''}}</th>
+                  <th>Failed {{ failedMessageCount ?  '(' + failedMessageCount + ')' : ''}}</th>
+                  <th>Avg Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let message of totalTableInfo">
+                  <th scope="row"> 
+                    <span class="message-type-square" [ngStyle]="{'background':message.MessageType | messageColor}" style="width: 15px;">&nbsp; </span> 
+                    {{ message.MessageTypeName + ' (' + message.MessageType + ' - ' + message.MessageTypeCode + ')' }}
+                  </th>
+                  <td><a href="javascript:void(0)" (click)="redirectToMessagePage('Status', null, message)"> {{ message.TotalCount}} </a></td>
+                  <td><a href="javascript:void(0)" (click)="redirectToMessagePage('Status', 'Successful', message)"> {{ message.SuccessCount}} </a></td>
+                  <td><a href="javascript:void(0)" (click)="redirectToMessagePage('Status', 'InProcessing', message)"> {{ message.ProcessingCount}} </a></td>
+                  <td><a href="javascript:void(0)" (click)="redirectToMessagePage('Status', 'Failed', message)"> {{ message.FailedCount}} </a></td>
+                  <td> {{ message.AverageTime }} (s) </td>
+                </tr>
+                <tr *ngIf="totalTableInfo.length == 0">
+                  <td colspan="6">No data to display.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <collapse-zone (click)="isErrorMessageTableCollapsed = !isErrorMessageTableCollapsed" [rotate]="isErrorMessageTableCollapsed" collapseTitle="Error Message" ></collapse-zone>
+        <div class="row" [collapse]="isErrorMessageTableCollapsed">
+          <div class="col-lg-6" >
+            <table class="table table-sm table-hover">
+              <caption>Top 10 Error</caption>
+              <thead>
+                <tr>
+                  <th>Partner</th>
+                  <th>Count</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let failedMessage of failedMessageCountTableInfo">
+                  <td scope="row"> {{ failedMessage.LocalStationName + " <--> " +  failedMessage.TradingStationName}} </td>
+                  <td><a href="javascript:void(0)" (click)="redirectToMessagePage('PartnerInfo', failedMessage)"> {{ failedMessage.FailedCount }} </a></td>
+                </tr>
+                <tr *ngIf="failedMessageCountTableInfo.length == 0">
+                  <td colspan="6">No data to display.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    
+          <div class="col-lg-6" >
+            <table class="table table-sm table-hover">
+              <caption>Top 10 Error Rate(%)</caption>
+              <thead>
+                <tr>
+                  <th>Partner</th>
+                  <th>Count</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let failedMessage of failedMessageRateTableInfo">
+                    <td scope="row"> {{ failedMessage.LocalStationName + " <--> " +  failedMessage.TradingStationName}} </td>
+                    <td><a href="javascript:void(0)" (click)="redirectToMessagePage('PartnerInfo', failedMessage)"> {{ (failedMessage.FailedRate * 100).toFixed(2) }}% </a></td>
+                </tr>
+                <tr *ngIf="failedMessageRateTableInfo.length == 0">
+                  <td colspan="6">No data to display.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    
+        </div>
+
+      </div>
+  
+    </div>
+  
+  </div>
+  
