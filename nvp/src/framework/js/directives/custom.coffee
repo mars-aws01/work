@@ -1,0 +1,21 @@
+﻿angular.module("negDirectives",
+  [
+   'pasvaz.bindonce'
+   'pascalprecht.translate'
+   'ngBindHtmlUnsafe'
+   'negModal'
+   'negAutoSize'
+   'negDatePicker'
+   'negDateRangePicker'
+   'negDropzone'
+   'negSpinner'
+   'negTimePicker'
+   'negColorPicker'
+   'negSimpleColorPicker'
+   'negMenu'
+   'negScroll'
+   'negTree'
+   'negValidator'
+   'negValidtip'
+  ]
+)

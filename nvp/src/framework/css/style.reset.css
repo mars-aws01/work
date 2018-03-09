@@ -1,0 +1,42 @@
+/*reset table style*/
+.table thead tr {
+    background: none;
+}
+
+/*reset grid style*/
+.ngGrid {
+    border-color: #ddd;
+}
+
+.ngGroupPanel {
+    border-color: #ddd;
+    background-color: #F5F5F5;
+    background: linear-gradient(rgb(248, 248, 248) 0%, rgb(236, 236, 236) 100%) repeat-x rgb(242, 242, 242);
+}
+
+.ngTopPanel {
+    border-bottom: 1px solid #ddd;
+    background-color: #F5F5F5;
+}
+
+.ngHeaderContainer {
+    border-bottom: 1px solid #ddd;
+}
+
+.ngFooterPanel {
+    border-color: #ddd;
+    background-color: #F5F5F5;
+}
+
+.ngRow.even {
+    background-color: #F9F9F9;
+}
+
+.ngRow:hover {
+    background-color: #F5F5F5;
+}
+
+.ngRow.selected {
+    background-color: #c9dde1;
+}
+

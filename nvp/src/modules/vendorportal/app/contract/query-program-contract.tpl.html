@@ -1,0 +1,409 @@
+﻿<style>
+    .wizard-steps li.active:before, .wizard-steps li.complete:before, .wizard-steps li.active .step, .wizard-steps li.complete .step {
+        border-color: #90BF89;
+    }
+
+    .wizard-steps li .step {
+        border: 4px solid #ced1d6;
+        color: #CED1D6;
+        border-radius: 0;
+        width: 72px;
+    }
+
+    .wizard-steps li .step-icon {
+        color: #90BF89;
+        font-size: 25px;
+        position: absolute;
+        margin-top: 3px;
+    }
+
+    .step-icon-1 {
+        margin-left: -21px;
+    }
+
+    .step-icon-2 {
+        margin-left: -27px;
+    }
+
+    .step-icon-3 {
+        margin-left: -28px;
+    }
+
+    .upload-directive-alignment > div > div {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+        .upload-directive-alignment > div > div:first-child > div:first-child {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+    .hr {
+        border: 0;
+        border-top: 1px solid #E0E0E0;
+        margin: 10px 0 15px 0;
+    }
+
+    .loader {
+        z-index: 1000;
+    }
+
+    .table-all-border {
+    }
+
+        .table-all-border > tbody > tr > th, .table-all-border > tbody > tr > td {
+            border: 1px solid #eee !important;
+        }
+
+    .table-title {
+        height: 25px;
+        padding: 3px;
+        background-color: #9d9c9c;
+        color: white;
+        font-weight: bold;
+        font-size: 13px;
+    }
+
+    input[type='text'][disabled] {
+        cursor: default !important;
+    }
+
+    .icon-spin-position {
+        position: absolute;
+        right: 5px;
+        margin-top: -7px;
+    }
+
+    .icon-spin-position-reject {
+        position: absolute;
+        right: 80px;
+        margin-top: 2px;
+    }
+
+    .mdf-detail-schedule-table {
+        min-width: 102px;
+        max-width: 102px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    @media (min-width: 768px) {
+        .icon-spin-position {
+            position: absolute;
+            right: 65px;
+            margin-top: 2px;
+        }
+
+        .mdf-detail-schedule-table {
+            min-width: 202px;
+            max-width: 202px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .mdf-detail-schedule-table {
+            min-width: 402px;
+            max-width: 402px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .mdf-detail-schedule-table {
+            min-width: 556px;
+            max-width: 556px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+</style>
+
+<div class="row vp-agent-margin">
+    <vd-agent click="search()" />
+</div>
+<vd-cover bottom="10"></vd-cover>
+
+
+<div class="row vp-panel-bar mt-10">
+    <vd-panelbar is-show="isShowDetail" translatetitle="{ 'qpc_title.search' | translate }"></vd-panelbar>
+    <div class="col-xs-12 no-padding" ng-hide="isShowDetail==false">
+        <form class="form-horizontal" role="form">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Rebate Type:</label>
+                            <div class="col-md-9 no-padding-left">
+                                <select class="form-control" ng-model="query.RebateType" required ng-options="item.Code as item.Description | translate for item in rebeatTypeList"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Status:</label>
+                            <div class="col-md-9 no-padding-left">
+                                <select class="form-control" ng-model="query.Status" required ng-options="item.Code as item.Description | translate for item in statusList"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-lg-6 no-padding">
+                        <label class="col-md-3 control-label no-padding">
+                            <input type="checkbox" class="ace" ng-model="query.ApplyStartDate" value="true">
+                            <span class="lbl"><span class="hidden-md">&nbsp;</span>Start Date:</span>
+                        </label>
+                        <div class="col-md-9 no-padding-left">
+                            <div class="col-sm-12 no-padding-left input-group">
+                                <div class="input-group">
+                                    <input class="form-control date-picker"
+                                           type="text"
+                                           neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                           ng-model="query.StartDateBegin"
+                                           ng-disabled="!query.ApplyStartDate">
+                                    <span class="input-group-addon">
+                                        <i class="icon-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+                                <span class="input-group-addon no-border-bottom no-border-top no-border-left no-border-right" style="background-color: #ffffff;">
+                                    <i class="icon-minus smaller-90"></i>
+                                </span>
+                                <div class="input-group">
+                                    <input class="form-control date-picker"
+                                           type="text"
+                                           neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                           ng-model="query.StartDateEnd"
+                                           ng-disabled="!query.ApplyStartDate">
+                                    <span class="input-group-addon">
+                                        <i class="icon-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 no-padding">
+                        <label class="col-md-3 control-label no-padding">
+                            <input type="checkbox" class="ace" ng-model="query.ApplyEndDate" value="true">
+                            <span class="lbl"><span class="hidden-md">&nbsp;</span>End Date:</span>
+                        </label>
+                        <div class="col-md-9 no-padding-left">
+                            <div class="col-sm-12 no-padding-left input-group">
+                                <div class="input-group">
+                                    <input class="form-control date-picker"
+                                        type="text"
+                                        neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                        ng-model="query.EndDateBegin"
+                                        name="endDateBegin"
+                                        ng-disabled="!query.ApplyEndDate">
+                                    <span class="input-group-addon">
+                                        <i class="icon-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+                                <span class="input-group-addon no-border-bottom no-border-top no-border-left no-border-right" style="background-color: #ffffff;">
+                                    <i class="icon-minus smaller-90"></i>
+                                </span>
+                                <div class="input-group">
+                                    <input class="form-control date-picker"
+                                        type="text"
+                                        neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                        ng-model="query.EndDateEnd"
+                                        ng-disabled="!query.ApplyEndDate">
+                                    <span class="input-group-addon">
+                                        <i class="icon-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Program Description:</label>
+                            <div class="col-md-9 no-padding-left">
+                                <input type="text" class="form-control vp-input"
+                                    ng-model="query.ProgramDescription"
+                                    maxlength="200" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-right">
+                        <button type="button" class="btn btn-primary btn-sm" ng-click="search()">
+                            <span class="ace-icon  icon-search icon-on-right bigger-110"></span>
+                            {{ 'qpc_title.search' | translate }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row vp-panel-bar mt-10">
+    <vd-panelbar is-show="isShowDetail2" translatetitle="{ 'qpc_title.result' | translate }"></vd-panelbar>
+    <div class="col-xs-12 no-padding-left" id="gridContainer" ng-hide="isShowDetail2==false">
+        <vd-grid gid="{{dataGridName}}"
+            refresh-key="{{refreshKey}}" auto-height="false"
+            ng-options="gridOptions">
+            <script id="tpl_programcontract_requestnumber" type="text/x-kendo-tmpl">
+                 <div class="col-xs-12 no-padding text-left">
+                    <a href="javascript:void(0)" title="{{dataItem.RequestNumber}}" 
+                       style="text-decoration: underline;"
+                       class="blue"
+                       ng-class="{'vp-disabled':dataItem.isDifferent180Days}"
+                       ng-click="showDetailInfo(dataItem)">
+                        <span>{{dataItem.RequestNumber}}</span>
+                    </a>
+                 </div>
+            </script>
+            <script id="tpl_programcontract_contractamount" type="text/x-kendo-tmpl">
+                <div class="col-xs-12 no-padding text-right"><span>$</span><span title="{{dataItem.ContractAmount}}">{{dataItem.ContractAmount | vfCurrency:""}}</span></div>
+            </script>
+            <script id="tpl_programcontract_status" type="text/x-kendo-tmpl">
+                 <div class="col-xs-12 no-padding text-left">
+                    <a href="javascript:void(0)" title="{{dataItem.Status}}"
+                       style="text-decoration: underline;"
+                       ng-class="{'vp-disabled':dataItem.isDifferent180Days}"
+                       class="blue" ng-click="showStatusModal(dataItem)">
+                        <span>{{dataItem.Status}}</span>
+                    </a>
+                 </div>
+            </script>
+       </vd-grid>
+    </div>
+</div>
+
+<div class="row vp-panel-bar mt-10" ng-show="detailEntity.RequestNumber">
+    <vd-panelbar is-show="isShowDetail3" translatetitle="{ 'qpc_title.agreement' | translate }"></vd-panelbar>
+    <div class="col-xs-12 no-padding-left" ng-hide="isShowDetail3==false">
+        <form class="form-horizontal" role="form">
+            <div class="col-xs-12">
+                <div class="form-group col-md-4">
+                    <label class="col-md-5 control-label">Contract #:</label>
+                    <div class="col-md-7 no-padding-left">
+                        <input type="text" class="form-control vp-input"
+                            ng-model="detailEntity.RequestNumber"
+                            disabled />
+                    </div>
+                </div>
+            </div>
+
+            <vd-contract-detail-common ng-show="detailEntity.EIMSTypeDescription!='PP'&&detailEntity.EIMSTypeDescription!='MDF'&&detailEntity.EIMSTypeDescription!='COOP'"></vd-contract-detail-common>
+
+            <vd-contract-detail-pp ng-show="detailEntity.EIMSTypeDescription=='PP'"></vd-contract-detail-pp>
+
+            <vd-contract-detail-mdf ng-show="detailEntity.EIMSTypeDescription=='MDF'||detailEntity.EIMSTypeDescription=='COOP'"></vd-contract-detail-mdf>
+
+            <hr class="col-xs-11 hr" />
+
+            <div class="col-xs-12 mb-10">
+                <button class="btn btn-primary btn-sm" type="button" title="Event Log" ng-click="showEventModal()">
+                    <div class="col-xs-12">
+                        <i class="icon-list"></i><span class="hidden-xs">&nbsp;Event Log</span>
+                    </div>
+                </button>
+                <button class="btn btn-primary btn-sm" type="button" title="Attachment" ng-click="showContractAttachment()">
+                    <div class="col-xs-12">
+                        <i class="icon-file"></i><span class="hidden-xs">&nbsp;Attachment ({{currentAttachment.contractAttachmentList.length}})</span>
+                    </div>
+                </button>
+                <button class="btn btn-success btn-sm" vd-auth="Submit" ng-disabled="disableApprove || disableReject" type="button" title="Approve" ng-click="approve()" ng-show="detailEntity.hasApproveRejectAuth">
+                    <div class="col-xs-12">
+                        <i class="ace-icon icon-spinner icon-spin-position icon-spin white bigger-120" ng-show="loadingApprove"></i>
+                        <i class="icon-check" ng-hide="loadingApprove"></i><span class="hidden-xs">&nbsp;Approve</span>
+                    </div>
+                </button>
+                <button class="btn btn-danger btn-sm" vd-auth="Submit" ng-disabled="disableApprove || disableReject" type="button" title="Reject" ng-click="showRejectModal()" ng-show="detailEntity.hasApproveRejectAuth">
+                    <div class="col-xs-12">
+                        <i class="icon-close"></i><span class="hidden-xs">&nbsp;Reject</span>
+                    </div>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--Status Report-->
+<div modal="statusModal" close="closeStatusModal()" options="{backdrop: true,dialogFade:true}">
+    <div class="modal-dialog" style="width: 800px">
+        <form name="statusForm" class="modal-content">
+            <div class="widget-header">
+                <h4><i class="icon-hand-right"></i>&nbsp;Status Report</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <ul class="wizard-steps green">
+                        <li data-step="1" ng-class="{'active':currentStatusReport.step_1}">
+                            <span class="step" ng-class="{'green':currentStatusReport.step_1}">Creator</span>
+                            <span class="title">{{ currentStatusReport.step_1_desc }}</span>
+                        </li>
+                        <li data-step="2" ng-class="{'active':currentStatusReport.step_2}">
+                            <span class="step" ng-class="{'green':currentStatusReport.step_2}"><i class="icon icon-caret-right step-icon step-icon-1" ng-show="currentStatusReport.step_2"></i>Vendor</span>
+                            <span class="title">{{ currentStatusReport.step_2_desc }}</span>
+                        </li>
+                        <li data-step="3" ng-class="{'active':currentStatusReport.step_3}">
+                            <span class="step" ng-class="{'green':currentStatusReport.step_3}"><i class="icon icon-caret-right step-icon step-icon-2" ng-show="currentStatusReport.step_3"></i>PMD</span>
+                            <span class="title">{{ currentStatusReport.step_3_desc }}</span>
+                        </li>
+                        <li data-step="4" ng-class="{'active':currentStatusReport.step_4}">
+                            <span class="step" ng-class="{'green':currentStatusReport.step_4}"><i class="icon icon-caret-right step-icon step-icon-3" ng-show="currentStatusReport.step_4"></i>Final</span>
+                            <span class="title">{{ currentStatusReport.step_4_desc }}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row mt-10 mr-5">
+                    <a class="underline pull-right mr-20" href="#" ng-click="showStatusHistory()" ng-show="currenthistoryList.length==0">Learn more from History</a>
+                    <i class="icon icon-spinner icon-spin bigger-120 icon-fw pull-right mr-2 blue" ng-show="gettingStatusHistory"></i>
+                </div>
+                <div class="ml-20" ng-show="currenthistoryList.length==0 && noHistoryShow">
+                    <span class="icon-exclamation-circle orange"></span>&nbsp;&nbsp;No History Data
+                </div>
+                <h4 class="ml-20" ng-show="currenthistoryList.length>0">History</h4>
+                <table class="table table-detail ml-20 animated fadeInDown" style="width: 95%" ng-show="currenthistoryList.length>0">
+                    <thead>
+                        <tr>
+                            <td class="vp-table-Header">Occur Date</td>
+                            <td class="vp-table-Header">User</td>
+                            <td class="vp-table-Header">Email Address</td>
+                            <td class="vp-table-Header">Memo</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in currenthistoryList">
+                            <td><span>{{item.EventDate | moment:'MM/DD/YYYY'}}</span></td>
+                            <td><span>{{item.UserID}}</span></td>
+                            <td><span>{{item.EmailAddress}}</span></td>
+                            <td><span>{{item.EventMemo}}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer no-margin-top">
+                <button type="button" class="btn btn-danger btn-sm" ng-click="closeStatusModal()">
+                    <i class="icon-undo"></i>
+                    {{ 'view_itemlist.close' | translate }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--Event Log View-->
+<vd-contract-event-log></vd-contract-event-log>
+
+<!--Attachment View-->
+<vd-contract-attachment></vd-contract-attachment>
+<vd-contract-upload-file></vd-contract-upload-file>
+
+<!--Reject Modal-->
+<vd-contract-reject></vd-contract-reject>

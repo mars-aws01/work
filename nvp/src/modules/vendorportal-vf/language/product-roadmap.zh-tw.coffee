@@ -1,0 +1,41 @@
+﻿NEG.namespace('resources.vendorportal.productRoadmap.tw',
+  roadmap_common:
+    category:"類別"
+    brand:"品牌"
+    upload_date:"上傳日期"
+    description:"描述"
+    search:"搜索"
+    add:"添加"
+  view_list:
+    action:"操作"
+    search:"搜索"
+    resultList:"結果列表"
+    export:"導出"
+    _print:"打印"
+    editTip:"編輯"
+    deleteTip:"刪除"
+  modal_view:
+    add_title:"添加產品規劃"
+    edit_title:"編輯產品規劃"
+    note:"備註"
+    attachment:"附件"
+    submit:"提交"
+    cancle:"取消"
+  error:
+    invalidDate:"無效的時間"
+    startDatebigger:"開始時間必須小於結束時間"
+    addFailed:"添加產品規劃失敗"
+    editFailed:"更新產品規劃失敗"
+    getFailed:"獲取當前產品規劃信息失敗"
+    deleteFailed:"刪除產品規劃信息失敗"
+    fileFormatError:"請選擇一個有效的文件，比如: pdf,doc,docx,xls,xlsx,ppt,pptx,jpg,txt"
+    validCategory:"請選擇一個正確的類別"
+    validBrand:"請選擇一個正確的品牌"
+    leastOne:"Please upload at least one file"
+  success:
+    addSuccess:"添加產品規劃成功"
+    editSuccess:"更新產品規劃成功"
+    deleteSucess:"刪除產品規劃成功"
+  notice:
+    deleteConfirm:"您確定要刪除產品規劃?"
+)

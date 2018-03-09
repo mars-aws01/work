@@ -1,0 +1,39 @@
+﻿NEG.namespace('resources.vendorportal.vendorlist.cn',
+  view_vendorlist:
+    vendorSearch:"查询"
+    exactMatch:"精确匹配"
+    searchPlaceHolder:"请输入查询供货商的关键字。"
+    vendorType:"供应商类型"
+    role:"角色"
+    vendorStatus:"供应商状态"
+    permissionDetail:"权限明细"
+    save:"保存"
+    rolePlaceHolder:"选择角色..."
+    vendor:"供应商"
+  header_vendorlist:
+    vendorNumber:"供应商编号"
+    name:"名称"
+    contactUser:"联系人"
+    contactPhone:"联系电话"
+    contactEmail:"电子邮件"
+    city:"城市"
+    roles:"角色"
+    status:"状态"
+    noMatchItems:"未找到相关记录" 
+    tableSummaryShow:"显示第"
+    tableSummaryTo:"至第"
+    tableSummaryOf:"条数据,总计:"
+    tableSummaryOfEntries:"条数据"
+  confirm_vendorlist:
+    dntSave:"数据尚未保存。继续将放弃保存，是否继续？"
+    modify:"是否需要修改自己的权限？"
+  error_vendorlist:
+    loadVendorList:"载入供应商列表失败。原因: "
+    loadRoleList:"载入角色列表失败。原因: "
+    vendorInvalid:"请首先选择一个供应商"
+    operation:"操作失败. 原因: "
+    userRolesInvalid:"请选择供应商角色!"
+    rolesEmpty:"未选择角色，不允许操作"
+  success_vendorlist:
+    operation:"更新角色请求提交成功。请稍等片刻后再刷新页面查看修改结果。"
+)  

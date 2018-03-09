@@ -1,0 +1,164 @@
+﻿
+<div ng-show="__login" ng-controller="MainCtrl">
+    <div class="navbar navbar-default vp-navbar-fixed-top" id="navbar">
+        <script type="text/javascript">
+            try { ace.settings.check('navbar', 'fixed') } catch (e) { }
+        </script>
+        <div class="navbar-container" id="navbar-container">
+            <!-- #section:basics/sidebar.mobile.toggle -->
+            <!-- #section:basics/sidebar.mobile.toggle -->
+            <button type="button" class="navbar-toggle menu-toggler pull-left btn-grey" id="menu-toggler">
+                <span class="sr-only">Toggle sidebar</span>
+
+                <span class="icon-bar"></span>
+
+                <span class="icon-bar"></span>
+
+                <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-header pull-left hidden-xs">
+                <img src="/framework/img/newegg/logo/3.png" alt="Newegg Vendor Portal" />
+            </div>
+
+            <div class="navbar-buttons navbar-header" role="navigation" style="float: right !important;">
+                <ul class="nav ace-nav">
+                    <li ng-repeat="toolbar in toolbars" ng-include="toolbar"></li>
+                    <li>
+                        <a data-toggle="dropdown" href="#" class="col-xs-12 no-padding-left no-padding-right dropdown-toggle vp-header-icon-width" title="{{ loginUser.Name }}">
+                            <i class="icon-user bigger-150 vp-header-icon"></i>
+                        </a>
+                        <ul class="user-menu pull-right dropdown-menu-right dropdown-menu dropdown-light-blue dropdown-caret dropdown-close">
+                            <li>
+                                <a href="/change-password"
+                                    title="change password">
+                                    <i class="icon-key"></i>
+                                    {{ 'system.header.reset' | translate }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="JavaScript:void(0)" ng-click="signout()">
+                                    <i class="icon-off"></i>
+                                    {{ 'system.header.signout' | translate }}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container vp_content" id="main-container" style="margin-top: 47px">
+        <script type="text/javascript">
+            try { ace.settings.check('main-container', 'fixed') } catch (e) { }
+        </script>
+
+
+        <div class="sidebar responsive" id="sidebar">
+            <script type="text/javascript">
+                try { ace.settings.check('sidebar', 'fixed') } catch (e) { }
+            </script>
+            <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+                <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                    <a href="#" ng-click="back()" title="{{ 'framework_button.back' | translate }}" style="margin-left: 7px;">
+                        <i class="icon-arrow-left bigger-160"></i>
+                    </a>
+                    <a href="#" ng-click="refresh()" title="{{ 'framework_button.refresh' | translate }}">
+                        <i class="icon-refresh bigger-160"></i>
+                    </a>
+                    <a href="/home" title="{{ 'framework_button.home' | translate }}" ng-click="home()">
+                        <i class="icon-home bigger-170"></i>
+                    </a>
+                    <a href="#" data-toggle="dropdown" title="{{ 'framework_button.favorites' | translate }}">
+                        <i class="icon-star bigger-160"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-default text-left" style="top: 35px; left: 75%; background-color: #fff !important;">
+                        <li ng-repeat="item in links">
+                            <a href="javascript:void(0)" ng-click="favoriteToUrl(item.Url)"><i class="{{item.Icon}}"></i>&nbsp;{{item | menuLocalize}}</a>
+                        </li>
+                        <li ng-show="links.length==0">
+                            <a href="JavaScript:void(0)">{{ 'system.sidebar.noFavor' | translate }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                    <span class="btn btn-siderbar-sm btn-grey"></span>
+                    <span class="btn btn-siderbar-sm btn-grey"></span>
+                    <span class="btn btn-siderbar-sm btn-grey"></span>
+                    <span class="btn btn-siderbar-sm btn-grey"></span>
+                </div>
+            </div>
+            <div id="menuPanel" neg-menu val="__menus" top="isTopMenu">
+            </div>
+            <div class="sidebar-toggle sidebar-collapse bigger-120 " id="sidebar-collapse" style="cursor:pointer">
+                <a class="LeftWitch">
+                    <span class="witchUp">
+                        <i class="ace-icon icon-angle-double-left bigger-130" data-icon1="ace-icon icon-angle-double-left " data-icon2="ace-icon icon-angle-double-right"></i>
+                    </span>
+                    <span class="witchDown"></span>
+                </a>
+            </div>
+            <script type="text/javascript">
+                try { ace.settings.check('sidebar', 'collapsed'); } catch (e) { }
+            </script>
+        </div>
+        <div class="main-content">
+            <div class="breadcrumbs" id="breadcrumbs" ng-hide="!breads || breads.length==0" style="z-index: 2">
+                <script type="text/javascript">
+                    try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+                </script>
+
+                <ul class="breadcrumb pull-left no-padding-left no-margin-left hidden-xs" style="margin: 10px 0;">
+                    <li class="active " ng-repeat="menu in breads">
+                        <span >{{ menu | menuLocalize }}</span>
+                    </li>
+                </ul>
+
+                <span ng-click="toggle()" class="hidden-xs" style="cursor: pointer; float: left; margin: 2px 10px;">
+                    <i ng-hide="isExist()" class="icon-star-empty bigger-125" style="text-shadow: #CCC 1px 1px; color: #666;"></i>
+                    <i ng-show="isExist()" class="icon-star bigger-125" style="text-shadow: #CCC 1px 1px; color: #FEE188"></i>
+                </span>
+
+                <span ng-click="toggle()" class="visible-xs" style="cursor: pointer; float: left; margin: 2px 5px;">
+                    <i ng-hide="isExist()" class="icon-star-empty bigger-125" style="text-shadow: #CCC 1px 1px; color: #666;"></i>
+                    <i ng-show="isExist()" class="icon-star bigger-125" style="text-shadow: #CCC 1px 1px; color: #FEE188"></i>
+                </span>
+                <ul class="breadcrumb breadcrumb-noneBefore pull-left no-padding visible-xs" style="margin: 10px 0 7px 0;">
+
+                    <li class="active no-padding" ng-repeat="menu in breads">
+                        <span style="font-size: 15px;" ng-hide="$index==0 && breads.length > 1">{{ menu | menuLocalize }}</span>
+                    </li>
+                </ul>
+
+                <a href="#" class="pull-right visible-xs" ng-click="forward()" title="{{ 'framework_button.forward' | translate }}" style="margin: 4px 0px 4px 35px;">
+                    <i class="icon-arrow-right bigger-160 grey"></i>
+                </a>
+                <a href="#" class="pull-right visible-xs" ng-click="back()" title="{{ 'framework_button.back' | translate }}" style="margin: 4px 0px;">
+                    <i class="icon-arrow-left bigger-160 grey"></i>
+                </a>
+
+
+            </div>
+            <div class="page-content col-xs-12" ng-view style="padding-bottom: 36px !important;">
+                <div style="float: left; width: 12px;"></div>
+            </div>
+        </div>
+        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse" style="margin-bottom: 40px">
+            <i class="icon-angle-double-up icon-only bigger-110"></i>
+        </a>
+
+    </div>
+    <footer class="col-sm-12 col-xs-12 vp-footer text-center">
+        <div class="container">
+            <p>
+                <a class="a-link login-footer hidden" href="javascript:void(0)" ng-click="redirectTo('contentPolicy',true)">Content Policy</a>
+                <span class="login-footer login-label-light hidden">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+                <a class="a-link login-footer  hidden" href="javascript:void(0)" ng-click="redirectTo('policyAndAgreement',true)">Policy &amp; Agreement</a>
+                <span class="login-footer login-label-light hidden">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+                <a class="a-link login-footer  hidden" href="javascript:void(0)" ng-click="redirectTo('privacyPolicy',true)">Privacy Policy</a>
+                <span class="login-footer login-label-light ng-binding">© 2000-<span ng-bind="nowYear"></span> Newegg Inc. All rights reserved.</span>
+            </p>
+        </div>
+    </footer>
+</div>
+

@@ -1,0 +1,136 @@
+﻿<style>
+html[data-useragent*='MSIE'] .vp-home-row {
+    margin-right: 0px;
+}
+
+html[data-useragent*='MSIE'] .vp-agent-row {
+    margin-right: 12px;
+}
+
+.k-autocomplete > .k-input {
+    height: 1.9em;
+    line-height: 1.9em;
+}
+
+.vp-tpl-cg-header > .k-input {
+    padding: 0;
+}
+
+.control-label-right {
+    text-align: right;
+}
+
+.im-tip{
+    vertical-align: middle;
+    font-size: 17px;
+}
+
+.upload-no-padding .ng-scope > div:first-child
+{
+    padding-left:0;
+    padding-right:0;
+}
+
+.attch-padding-right{
+    padding-right:0;
+}
+
+@media (min-width:1200px){
+    .attch-padding-right{
+        padding-right:12px;
+    }
+}
+
+@media (max-width:992px){
+    .no-padding-left-sm-xs{
+        padding-left:0 !important;
+    }
+}
+</style>
+
+<div class="row vp-agent-margin">
+    <vd-agent click="changeVendor()" />
+</div>
+
+<vd-cover bottom="-63"></vd-cover>
+
+<div class="col-sm-12" style="margin-bottom: 50px">
+
+    <div class="col-md-12 no-padding" id="itemRequest">
+        <form name="imForm" class="form-horizontal">
+
+            <div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 15px;">
+                <vd-panelbar is-show="isShowDetail4" translatetitle="Basic Information">
+                </vd-panelbar>
+                <div class="col-md-12 no-padding" style="margin: 5px 0;" ng-hide="isShowDetail4==false">
+                    <vd-im-basic-info class="col-md-12 no-padding"></vd-im-basic-info>
+                </div>
+            </div>
+
+            <div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 15px;">
+                <vd-panelbar is-show="isShowDetail6" translatetitle="Dimension & Weight">
+                </vd-panelbar>
+                <div class="col-md-12 no-padding" style="margin: 5px 0;" ng-hide="isShowDetail6==false">
+                    <vd-im-dimension-weight class="col-md-12 no-padding"></vd-im-dimension-weight>
+                </div>
+            </div>
+
+            <div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 15px;">
+                <vd-panelbar is-show="isShowDetail8" translatetitle="Other Information">
+                </vd-panelbar>
+                <div class="col-md-12 no-padding" style="margin-top: 5px;margin-bottom: 5px;margin-left:-8px;" ng-hide="isShowDetail8==false">
+                    <vd-im-other-info class="col-md-12 no-padding" style="margin-left: 8px;" ></vd-im-other-info>
+                </div>
+            </div>
+
+            <div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 15px;">
+                <vd-panelbar is-show="isShowDetail9" translatetitle="Memo">
+                </vd-panelbar>
+                <div class="col-md-12 no-padding" style="margin-top: 5px;margin-bottom: 5px;margin-left:-8px;" ng-hide="isShowDetail9==false">
+                    <div class="col-md-12 no-padding">
+                        <label class="col-md-2 control-label">{{ 'view_query.vendorMemo' | translate }}:</label>
+                        <div class="col-md-10 no-padding">
+                            <textarea style="width: 100%; height: 100px; resize: vertical;margin-left: 8px;" ng-model="entity.VendorMemo" maxlength="2000"></textarea>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 10px;" class="vp-fixed fixed-bottom">
+                <div style="width: 100%; margin-left: 20px;">
+                    <button class="btn btn-primary btn-sm" type="submit" ng-disabled="isSubmiting"  ng-click="submit()">
+                        <div class="col-xs-12">
+                            {{ 'view_creation.submit' | translate }}
+                        </div>
+                    </button>
+                    <button type="button" class="btn btn-primary btn-sm" ng-click="reset();">
+                        <div class="col-xs-12">
+                            {{ 'view_creation.cancel' | translate }}
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div modal="copyItemReqModal" close="closeItemReqModal()" options="{backdrop: true,dialogFade:true}">
+        <div class="modal-dialog">
+            <div name="copyItemReqForm" class="modal-content">
+                <div class="widget-header">
+                        <div style="position: absolute;top:8px;right:5px; cursor: pointer;" ng-click="copyItemReqModal=false">
+                            <i class="icon-remove red bigger-180"></i>
+                        </div>
+                    <h4>{{ 'view_creation.copyFrom' | translate }}</h4>
+                </div>
+                <div class="modal-body" style="height:100px;">
+                    <div class="form-group col-xs-12">
+                        <label class="col-xs-2  control-label">{{ 'view_basic.mfrPartNumber' | translate }}:</label>
+                        <input class="col-xs-8 vp-input vp-input-sm" type="text" ng-model="mfrPartNumber" style="margin-right:10px;"/>
+                        <button type="button" class="btn btn-xs btn-primary">{{ 'view_creation.choose' | translate }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

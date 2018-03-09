@@ -1,0 +1,69 @@
+<a ng-show="true" ng-controller="ToolbarSystemFeedbackCtrl"
+    class="col-xs-11 no-padding-left no-padding-right dropdown-toggle vp-header-icon-width"
+    href="javascript:void(0)"
+    ng-click="showFeedback()"
+    title="Feedback">
+    <i class="icon-comment-o bigger-150 vp-header-icon"></i>
+    <!-- <span class="label-status label-green">New</span>-->
+    <div modal="feedbackModal"
+        close="closeFeedback()"
+        options="{backdrop: true,dialogFade:true}">
+        <div class="modal-dialog vp-feedback" style="margin-top: 50px;">
+            <form name="feedbackForm" class="modal-content content-h480" ng-submit="sendFeedback()">
+                <div class="modal-body">
+                    <h1 class="title">FEEDBACK</h1>
+                    <div ng-click="closeFeedback()" class="closeIcon closeIcon-lg hidden-xs">
+                        <i class="icon-remove white"></i>
+                    </div>
+                    <div ng-click="closeFeedback()" class="closeIcon closeIcon-xs visible-xs">
+                        <i class="icon-remove"></i>
+                    </div>
+                    <hr class="hr" style="margin: 0 0 15px 10px;" />
+                    <div class="col-md-12">
+                        <select class="form-control" style="height: 34px;"
+                            ng-model="entity.supportTeam"
+                            required ng-options="item.value as item.text for item in supportTeamData"
+                            ng-disabled="isPayAction == true">
+                            <option value="">Please select Support Team</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12 form-group" style="margin-top: 6px; margin-bottom: 6px;">
+                        <input type="text" placeholder="Your Title" class="form-control vp-input" ng-model="entity.title" ng-disabled="isPayAction == true" required></input>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <textarea ng-model="entity.comment"
+                            type="text"
+                            name="comments"
+                            placeholder="Your Comments"
+                            maxlength="1300"
+                            required
+                            style="height: 130px; resize: none; margin-bottom: 5px;font-size: 13px;padding-left: 12px;" 
+                            class="form-control vp-input"></textarea>
+                    </div>
+                    <div style="border-bottom: 1px solid #E3E3E3; margin: 7px; color: #8f918d; line-height: 12px;">
+                        <label >
+                            <input type="checkbox"  ng-model="includeScreenshot">
+                            Send Screenshot</label>
+                    </div>
+                    <div class="col-md-12 feedback-screenshot-img text-center" style="padding: 5px 12px;" ng-hide="!includeScreenshot">
+                        <img ng-src="{{screenshotImg}}" alt="" style="width: 100%; height: 100%;"></img>
+                    </div>
+                     <div style="border-bottom: 1px solid #E3E3E3; margin: 7px; color: #8f918d; line-height: 12px;">
+                        <label >
+                            <input type="checkbox"  ng-model="includeBrowserInfo">
+                            Send Browser Information</label>
+                    </div>
+                    <div id="divBrowserInfo_feedback" class="col-md-12" style="padding: 5px 12px;height:90px;overflow-y:auto" ng-hide="!includeBrowserInfo"></div>
+                    <div class="col-md-12 form-group" style="margin-top: 6px;">
+                            <button class="col-md-12 btn btn-success blod">Send Feedback</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</a>
+<span class="col-xs-1 no-padding-left no-padding-right vp-header-icon-border" ng-show="true"></span>
+
+
+
+

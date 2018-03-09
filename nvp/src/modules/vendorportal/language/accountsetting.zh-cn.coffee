@@ -1,0 +1,22 @@
+﻿NEG.namespace('resources.vendorportal.accountsetting.cn',
+  view_accountsetting:
+    accountSearch:"查询"
+    exactMatch:"精确匹配"
+    accountSearchPlaceHolder:"请输入用户名."
+    inviteUserBtn:"邀请用户"
+    inviteUserHeader:"邀请用户"
+    email:"电子邮件:"
+    admin:"管理员"
+    inviteMore:"邀请更多..."
+    dialogCancel:"取消"
+    dialogInvite:"邀请"
+    adminTip:"请注意：如果选择管理员，默认将拥有所有权限."
+  error_accountsetting  :
+    getUsersFailed:"获取用户列表失败。"
+    currentUserInvalid:"未找到当前用户信息。"
+    emailDuplicate:"电子邮件重复，请删除重复的电子邮件。"
+    emailInvalid:"请至少输入一个被邀请用户的电子邮件。"
+    emailExist:"以下邮件地址已经使用,请使用其他邮件地址:"
+  success_accountsetting:
+    invitation:"邀请用户成功，邀请信息将在几分钟内发送至被邀请用户邮箱。"
+)

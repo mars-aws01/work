@@ -1,0 +1,33 @@
+﻿<ul id="grid_customMenu" style="position: absolute; top: 1px; right: 1px;">
+    <li>
+        <a  title="">
+            <span class="k-icon k-i-custom"></span>
+        </a>
+        <ul class="grid-custom-menu">
+            <li style="padding: 3px 10px 10px 10px;">
+                <div class="col-xs-12 no-padding">
+                    <h4>Show / Hide Columns:</h4>
+                </div>
+                <div class="col-xs-12 no-padding" style="background: transparent">
+                    # for (var i = 0; i < data.length; i++) { #
+                    <label class="col-xs-5" for='cfield-#= data[i].idx #-#= data[i].gid #'>
+                        <input class="ace" type='checkbox' id='cfield-#= data[i].idx #-#= data[i].gid #'  />
+                        <span class="lbl">&nbsp;#= data[i].title ? data[i].title : data[i].field #</span>
+                    </label>
+                    # } #
+                </div>
+            </li>
+            <li >
+                <hr class="no-padding col-xs-12" style="border-top: 1px solid \#D1E0ED; margin: 8px -0px 8px 0px;" ></hr>
+                <div style="float: right; margin-top: 5px; margin-bottom: 10px;margin-right: 8px">
+                    <button type="button" class="btn btn-xs btn-primary edi-btn-restore" >
+                        <i class="icon-undo"></i>
+                        Restore
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+

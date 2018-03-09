@@ -1,0 +1,107 @@
+<style>
+html[data-useragent*='MSIE'] .vp-home-row {
+    margin-right: 0px;
+}
+
+html[data-useragent*='MSIE'] .vp-agent-row {
+    margin-right: 12px;
+}
+
+.k-autocomplete > .k-input {
+    height: 1.9em;
+    line-height: 1.9em;
+}
+
+.vp-tpl-cg-header > .k-input {
+    padding: 0;
+}
+</style>
+<div class="row vp-agent-margin">
+    <vd-agent click="search()"/>
+</div>
+
+<vd-cover bottom="-7"></vd-cover>
+
+<div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 5px;">
+    <vd-panelbar is-show="isShowDetail" translatetitle="{ 'view_report.search' | translate }"></vd-panelbar>
+    <div class="col-xs-12 no-padding" ng-hide="isShowDetail==false">
+        <form class="form-horizontal" role="form" ng-init="keyLength=25">
+            <div class="col-lg-7 col-md-9 no-padding">
+                <div class="form-group col-md-7 col-lg-8">
+                    <label class="col-md-3 control-label">{{ 'view_report.keyword' | translate }}:</label>
+                    <div class="col-md-9 no-padding-left">
+                        <input type="text" class="form-control vp-input" maxlength="{{keyLength}}" ng-model="query.KeyWord" />
+                    </div>
+                </div>
+                <div class="form-group col-md-5 col-lg-4 no-padding">
+                    <label class="radio-inline">
+                        <input name="form-field-radio" ng-model="query.KeyWordType" value="NeweggItemNumber" ng-click="getMaxLength('NeweggItemNumber')" type="radio" class="ace">
+                        <span class="lbl">&nbsp;{{ 'view_report.itemNumber' | translate }}</span>
+                    </label>
+                    <label class="radio-inline no-margin-left">
+                        <input name="form-field-radio" ng-model="query.KeyWordType" value="ManufacturePartNumber" ng-click="getMaxLength('ManufacturePartNumber')" type="radio" class="ace">
+                        <span class="lbl">&nbsp;{{ 'view_report.mfrPartNumber' | translate }}</span>
+                    </label>
+                </div>
+                <div class="form-group col-md-7 col-lg-8">
+                    <label class="col-md-3 control-label">{{ 'view_report.category' | translate }}:</label>
+                    <div class="col-md-9 no-padding-left">
+                        <vd-category value="query.CategoryCode"></vd-category>
+                    </div>
+                </div>
+                <div class="form-group col-md-7 col-lg-8">
+                    <label class="col-md-3 control-label">
+                        <span class="lbl"><span class="hidden-md">&nbsp;</span>{{ 'view_report.month' | translate }}:</span>
+                    </label>
+                    <div class="col-md-9 no-padding-left">
+                        <div class="col-sm-12 no-padding-left input-group">
+                            <div class="col-sm-12 input-group">
+                                <vd-month-picker ng-model="query.ReportDateFrom" name="from" min-date="minDate" max-date="maxDate"></vd-month-picker>
+                                <span class="input-group-addon no-border-bottom no-border-top no-border-left no-border-right" style="background-color: #ffffff;">
+                                    <i class="icon-minus smaller-90"></i>
+                                </span>
+                                <vd-month-picker ng-model="query.ReportDateTo" name="to" min-date="minDate" max-date="maxDate"></vd-month-picker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 no-padding">
+                <button type="button" ng-click="search()" class="btn btn-primary btn-sm" style="padding: 2px 12px 2px 10px !important;">
+                    <span class="ace-icon  icon-search icon-on-right bigger-110"></span> {{ 'view_report.search' | translate }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 15px;">
+    <vd-panelbar is-show="isShowDetail3" template="<label style='font-size: 13px; font-weight: bold; '><strong>{ 'view_report.total' | translate }</strong>&nbsp;{ 'view_report.returnAmount' | translate }: ${ totalReturnAmount | vfCurrency:'' } &nbsp;{ 'view_report.returnQuantity' | translate }: { totalReturnQuantity | number : 0 } </label>"translatetitle=" { 'view_report.resultList' | translate }"></vd-panelbar>
+    <div class="col-xs-12 no-padding-left" ng-hide="isShowDetail3==false">
+        <vd-grid gid="{{dataGridName}}" refresh-key="{{refreshKey}}" ng-options="rmaListOptions">
+            <script id="tpl_rmaList_category" type="text/x-kendo-tmpl">
+                <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.CategoryName}}">{{dataItem.CategoryName}}</span></div>
+            </script>
+            <script id="tpl_rmaList_itemnumber" type="text/x-kendo-tmpl">
+                <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.ItemNumber}}">{{dataItem.ItemNumber}}</span></div>
+            </script>
+            <script id="tpl_rmaList_description" type="text/x-kendo-tmpl">
+                <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.ItemDescription}}">{{dataItem.ItemDescription}}</span></div>
+            </script>
+            <script id="tpl_rmaList_manufacturerpartnumber" type="text/x-kendo-tmpl">
+                <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.ManufacturerPartNumber}}">{{dataItem.ManufacturerPartNumber}}</span></div>
+            </script>
+            <script id="tpl_rmaList_returnamount" type="text/x-kendo-tmpl">
+                <div class="col-xs-12 no-padding text-right"><span>$</span><span title="{{dataItem.ReturnAmount}}">{{dataItem.ReturnAmount | vfCurrency:''}}</span></div>
+            </script>
+            <script id="tpl_rmaList_returnamountrate" type="text/x-kendo-tmpl">
+                <div class="col-xs-12 no-padding text-right"><span title="{{dataItem.ReturnAmountRate}}">{{dataItem.ReturnAmountRate | vfPercent: ''}}</span></div>
+            </script>
+            <script id="tpl_rmaList_returnqty" type="text/x-kendo-tmpl">
+                <div class="col-xs-12 no-padding text-right"><span title="{{dataItem.ReturnQuantity}}">{{dataItem.ReturnQuantity| number: 0}}</span></div>
+            </script>
+            <script id="tpl_rmaList_returnqtyrate" type="text/x-kendo-tmpl">
+                <div class="col-xs-12 no-padding text-right"><span title="{{dataItem.ReturnQuantityRate}}">{{dataItem.ReturnQuantityRate | vfPercent: ''}}</span></div>
+            </script>
+        </vd-grid>
+    </div>
+</div>

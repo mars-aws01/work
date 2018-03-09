@@ -1,0 +1,426 @@
+﻿<div class="row vp-agent-margin">
+    <vd-agent click="changeVendor()" />
+</div>
+<br />
+<vd-cover auto="true"></vd-cover>
+<div class="row vp-top-table">
+    <ul class="nav nav-tabs" id="myTab">
+        <li class="active"><a href="#business" id="business_a" data-toggle="tab" ng-click="selectedbusinessTab=true;GetBusinessInfo()">&nbsp;{{ 'view_accountinfo.businessInfo' | translate }}&nbsp;</a></li>
+        <li><a href="#contact" id="contact_a" data-toggle="tab" ng-click="selectedbusinessTab=false;GetContactInfo()">&nbsp;{{ 'view_accountinfo.contactInfo' | translate }}&nbsp;</a></li>
+        <li><a href="#warehouse" id="warehouse_a" data-toggle="tab" ng-click="selectedbusinessTab=false;GetWarehouseInfo()">&nbsp;{{ 'view_accountinfo.warehouseInfo' | translate }}&nbsp;</a></li>
+        <li><a href="#profile" id="profile_a" data-toggle="tab" ng-click="selectedbusinessTab=false;GetProfileInfo()">&nbsp;{{ 'view_accountinfo.profileInfo' | translate }}&nbsp;</a></li>
+    </ul>
+
+    <div class="tab-content no-border">
+        <!--business-->
+        <div class="tab-pane active" id="business">
+            <div class="row vp-list vp-list-height-240">
+                <div class="col-lg-6">
+                    <div>
+                        <div class="vp-list-icon vp-list-icon-blue">
+                            <i class="ace-icon  icon-user"></i>
+                            <span class="title text-left">{{ 'view_accountinfo.mainContact' | translate }}</span>
+                        </div>
+
+                        <div class="vp-list-info">
+                            <div class="vp-list-row">
+                                <div class="name">{{ 'view_accountinfo.contactName' | translate }}</div>
+                                <div class="value">
+                                    <span>{{BusinessInfo.Contact}}</span>
+                                </div>
+                            </div>
+                            <div class="vp-list-row">
+                                <div class="name">{{ 'view_accountinfo.phoneNumber' | translate }}</div>
+                                <div class="value">
+                                    <span>{{BusinessInfo.Phone}}</span>
+                                </div>
+                            </div>
+                            <div class="vp-list-row">
+                                <div class="name">{{ 'view_accountinfo.email' | translate }}</div>
+                                <div class="value">
+                                    <span>{{BusinessInfo.EmailAddress}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 ">
+                    <div>
+                        <div class="vp-list-icon vp-list-icon-blue">
+                            <i class="ace-icon  icon-map-marker"></i>
+                            <span class="title text-left">{{ 'view_accountinfo.mainAddress' | translate }}</span>
+                        </div>
+
+                        <div class="vp-list-info" style="margin-left:24px">
+                            <div class="vp-list-row">
+                                <div class="name">{{ 'view_accountinfo.address1' | translate }}</div>
+                                <div class="value">
+                                    <span class="vp-trim-noLineheight" style="width: 25em" title="{{BusinessInfo.Address1}}">{{BusinessInfo.Address1}}</span>
+                                </div>
+                            </div>
+                            <div class="vp-list-row">
+                                <div class="name">{{ 'view_accountinfo.address2' | translate }}</div>
+                                <div class="value">
+                                    <span class="vp-trim-noLineheight" style="width: 25em" title="{{BusinessInfo.Address2}}">{{BusinessInfo.Address2}}</span>
+                                </div>
+                            </div>
+                            <div class="vp-list-row">
+                                <div class="name">{{ 'view_accountinfo.city' | translate }}</div>
+                                <div class="value">
+                                    <span class="vp-trim-noLineheight" style="width: 25em" title="{{BusinessInfo.City}}">{{BusinessInfo.City}}</span>
+                                </div>
+                            </div>
+                            <div class="vp-list-row">
+                                <div class="name">{{ 'view_accountinfo.prs' | translate }}</div>
+                                <div class="value">
+                                    <span>{{BusinessInfo.State}}</span>
+                                </div>
+                            </div>
+                            <div class="vp-list-row">
+                                <div class="name">{{ 'view_accountinfo.postalCode' | translate }}</div>
+                                <div class="value">
+                                    <span>{{BusinessInfo.Zip}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--contact-->
+        <div class="tab-pane" id="contact">
+            <div class="row vp-list vp-list-height-490">
+                <div class="col-lg-6" ng-repeat="ContactInfo in ContactInfoList" ng-class="{'vp-list-orange':ContactInfo.displayStatus=='Create'}">
+                    <div>
+                        <form ng-submit="saveContract()">
+                            <div class="vp-list-icon" ng-class="{'vp-list-icon-orange':ContactInfo.displayStatus=='Create','vp-list-icon-blue':ContactInfo.displayStatus!='Create'}" style="height: 44px;">
+                                <i class="ace-icon  icon-user" style="vertical-align: top"></i>
+                                <span class="title text-left vp-trim-noLineheight" style="width: 85%" title="{{ContactInfo.ContactName}}">{{ContactInfo.ContactName}}</span>
+                            </div>
+
+                            <div class="vp-list-info">
+                                <div class="vp-list-row">
+                                    <div class="name" >{{'view_accountinfo.contactName' | translate}}</div>
+                                    <div class="value" ng-show="ContactInfo.displayStatus=='View'">
+                                        <span class="vp-trim-noLineheight" style="width: 25em" title="{{ContactInfo.ContactName}}">{{ContactInfo.ContactName}}</span>
+                                    </div>
+                                    <div class="value value2" ng-show="ContactInfo.displayStatus!='View'">
+                                        <input class="form-control vp-input" required ng-model="NewContactInfo.ContactName" maxlength="80" type="text" placeholder="{{'view_accountinfo.contactName' | translate}}">
+                                        <span class="vp-required-label">*</span>
+                                    </div>
+                                </div>
+                                <div class="vp-list-row">
+                                    <div class="name">{{'view_accountinfo.department' | translate}}</div>
+                                    <div class="value" ng-show="ContactInfo.displayStatus=='View'">
+                                        <span>{{ContactInfo.DepartmentName}}</span>
+                                    </div>
+                                    <div class="value value2" ng-show="ContactInfo.displayStatus!='View'">
+                                        <select class="form-control vp-select"
+                                            ng-model="NewContactInfo.DepartmentCode" required
+                                            ng-options="item.DepartmentCode as item.DepartmentName for item in DepartmentList" />
+                                        <span class="vp-required-label">*</span>
+                                    </div>
+                                </div>
+                                <div class="vp-list-row">
+                                    <div class="name">{{'view_accountinfo.title' | translate}}</div>
+                                    <div class="value" ng-show="ContactInfo.displayStatus=='View'">
+                                        <span>{{ContactInfo.TitleName}}</span>
+                                    </div>
+                                    <div class="value value2" ng-show="ContactInfo.displayStatus!='View'">
+                                        <select class="form-control vp-select"
+                                            ng-model="NewContactInfo.TitleCode"
+                                            ng-options="item.TitleCode as item.TitleName for item in TitleList" />
+                                    </div>
+                                </div>
+                                <div class="vp-list-row">
+                                    <div class="name">{{'view_accountinfo.phoneNumber' | translate}}</div>
+                                    <div class="value" ng-show="ContactInfo.displayStatus=='View'">
+                                        <span>{{ContactInfo.PhoneNumber}}</span>
+                                    </div>
+                                    <div class="value value2" ng-show="ContactInfo.displayStatus!='View'">
+                                        <input required ng-model="NewContactInfo.PhoneNumber" type="text" maxlength="20" class="form-control vp-input">
+                                        <span class="vp-required-label">*</span>
+                                    </div>
+                                </div>
+                                <div class="vp-list-row">
+                                    <div class="name">{{ 'view_accountinfo.email' | translate }}</div>
+                                    <div class="value" ng-show="ContactInfo.displayStatus=='View'">
+                                        <span class="vp-trim-noLineheight" style="width: 25em" title="{{ContactInfo.Email}}">{{ContactInfo.Email}}</span>
+                                    </div>
+                                    <div class="value value2" ng-show="ContactInfo.displayStatus!='View'">
+                                        <input required ng-model="NewContactInfo.Email" type="email" maxlength="128" class="form-control vp-input">
+                                        <span class="vp-required-label">*</span>
+                                    </div>
+                                </div>
+
+                                <div class="vp-list-row">
+                                    <div class="name">{{ 'view_accountinfo.address1' | translate }}</div>
+                                    <div class="value" ng-show="ContactInfo.displayStatus=='View'">
+                                        <span class="vp-trim-noLineheight" style="width: 25em" title="{{ContactInfo.Address1}}">{{ContactInfo.Address1}}</span>
+                                    </div>
+                                    <div class="value value2" ng-show="ContactInfo.displayStatus!='View'">
+                                        <input ng-model="NewContactInfo.Address1" type="text" maxlength="100" class="form-control vp-input">
+                                    </div>
+                                </div>
+                                <div class="vp-list-row">
+                                    <div class="name">{{ 'view_accountinfo.address2' | translate }}</div>
+                                    <div class="value" ng-show="ContactInfo.displayStatus=='View'">
+                                        <span class="vp-trim-noLineheight" style="width: 25em" title="{{ContactInfo.Address2}}">{{ContactInfo.Address2}}</span>
+                                    </div>
+                                    <div class="value value2" ng-show="ContactInfo.displayStatus!='View'">
+                                        <input ng-model="NewContactInfo.Address2" type="text" maxlength="100" class="form-control vp-input">
+                                    </div>
+                                </div>
+                                <div class="vp-list-row">
+                                    <div class="name">{{ 'view_accountinfo.city' | translate }}</div>
+                                    <div class="value" ng-show="ContactInfo.displayStatus=='View'">
+                                        <span class="vp-trim-noLineheight" style="width: 25em" title="{{ContactInfo.City}}">{{ContactInfo.City}}</span>
+                                    </div>
+                                    <div class="value value2" ng-show="ContactInfo.displayStatus!='View'">
+                                        <input ng-model="NewContactInfo.City" type="text" maxlength="45" class="form-control vp-input">
+                                    </div>
+                                </div>
+                                <div class="vp-list-row">
+                                    <div class="name">{{ 'view_accountinfo.prs' | translate }}</div>
+                                    <div class="value" ng-show="ContactInfo.displayStatus=='View'">
+                                        <span>{{ContactInfo.State}}</span>
+                                    </div>
+                                    <div class="value value2" ng-show="ContactInfo.displayStatus!='View'">
+                                        <input ng-model="NewContactInfo.State" type="text" required maxlength="32" class="form-control vp-input">
+                                        <span class="vp-required-label">*</span>
+                                    </div>
+                                </div>
+                                <div class="vp-list-row">
+                                    <div class="name">{{ 'view_accountinfo.postalCode' | translate }}</div>
+                                    <div class="value" ng-show="ContactInfo.displayStatus=='View'">
+                                        <span>{{ContactInfo.ZipCode}}</span>
+                                    </div>
+                                    <div class="value value2" ng-show="ContactInfo.displayStatus!='View'">
+                                        <input ng-model="NewContactInfo.ZipCode" type="text" required maxlength="20" class="form-control vp-input">
+                                        <span class="vp-required-label">*</span>
+                                    </div>
+                                </div>
+                                <div class="vp-list-row">
+                                    <div class="name">{{ 'header_accountinfo.country' | translate }}</div>
+                                    <div class="value" ng-show="ContactInfo.displayStatus=='View'">
+                                        <span>{{ContactInfo.Country}}</span>
+                                    </div>
+                                    <div class="value value2" ng-show="ContactInfo.displayStatus!='View'">
+                                        <input ng-model="NewContactInfo.Country" required type="text" maxlength="15" class="form-control vp-input">
+                                        <span class="vp-required-label">*</span>
+                                    </div>
+                                </div>
+                                <div class="vp-list-row">
+                                    <div class="name">
+                                        <label style="text-align: center;" ng-show="ContactInfo.displayStatus=='View'">
+                                            <input name="form-field-checkbox" class="ace form-control" type="checkbox" ng-model="ContactInfo.DefaultMark" ng-show="ContactInfo.displayStatus=='View'" ng-disabled="ContactInfo.displayStatus=='View'">
+                                            <span class="lbl">{{ 'view_accountinfo.default' | translate }}</span>
+                                        </label>
+                                        
+                                        <label style="text-align: center;" ng-show="ContactInfo.displayStatus!='View'">
+                                            <input name="form-field-checkbox" class="ace form-control" type="checkbox" ng-model="NewContactInfo.DefaultMark" >
+                                            <span class="lbl">{{ 'view_accountinfo.default' | translate }}</span>
+                                        </label>
+                                    </div>
+                                    <!--<span class="defaultMark" ng-show="ContactInfo.DefaultMark&&ContactInfo.displayStatus=='View'">{{ 'view_accountinfo.default' | translate }}</span>-->
+                                    <div class="value" style="margin-left:200px">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 no-padding" style="margin-top: 5px;">
+
+                                <div class="col-xs-6 pull-right text-right action-buttons no-padding">
+                                    <a href="#" vd-auth="Submit" ng-click="updateContact_UI(ContactInfo)" ng-show="ContactInfo.displayStatus=='View'" title="{{ 'view_accountinfo.editContact2' | translate }}">
+                                        <i class="icon-pencil bigger-160 blue"></i>
+                                    </a>
+                                    <button type="submit" class="vp-btn-link" vd-auth="Submit" ng-show="ContactInfo.displayStatus!='View'" title="{{ 'view_accountinfo.save' | translate }}" style="margin: 0 3px;">
+                                        <i class="icon-save bigger-160 green"></i>
+                                    </button>
+                                    <a href="#" ng-click="DeleteContact(ContactInfo,$index)" vd-auth="Submit" ng-show="ContactInfo.displayStatus!='Edit'" title="{{ 'view_accountinfo.deleteContact2' | translate }}">
+                                        <i class="icon-remove bigger-170 red"></i>
+                                    </a>
+                                    <a href="#" ng-click="undoContact_UI(ContactInfo)" ng-show="ContactInfo.displayStatus=='Edit'" title="{{ 'view_accountinfo.cancel' | translate }}">
+                                        <i class="icon-undo bigger-170 orange"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="col-lg-6 vp-list-dotted" ng-click="addNewContact_UI()" vd-auth="Submit" >
+                    <div ng-hide="currentUser.VendorNumber == '0'" >
+                        <span class="vp-list-new">
+                            <i class="icon-plus"></i>
+                            <br />
+                            <span>{{ 'view_accountinfo.addContact2' | translate }}</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--warehouse-->
+        <div class="tab-pane" id="warehouse">
+            <div class="row vp-list" ng-show="!displayTable_WH">
+                <div class="col-lg-6" ng-repeat="WarehouseInfo in WarehouseList">
+                    <div>
+                        <div class="vp-list-icon vp-list-icon-blue">
+                            <i class="ace-icon  icon-map-marker"></i>
+                            <span class="title text-left">{{WarehouseInfo.VendorWarehouseNumber}}</span>
+                        </div>
+
+                        <div class="vp-list-info">
+                            <div class="vp-list-row">
+                                <div class="name">{{ 'header_accountinfo.whFullName' | translate }}</div>
+                                <div class="value">
+                                    <span class="vp-trim-noLineheight" style="width: 25em" title="{{WarehouseInfo.WarehouseName}}">{{WarehouseInfo.WarehouseName}}</span>
+                                </div>
+                            </div>
+                            <div class="vp-list-row">
+                                <div class="name">{{ 'header_accountinfo.whAddress' | translate }}</div>
+                                <div class="value">
+                                    <span class="vp-trim-noLineheight" style="width: 25em" title="{{WarehouseInfo.Address}}">{{WarehouseInfo.Address}}</span>
+                                </div>
+                            </div>
+                            <div class="vp-list-row">
+                                <div class="name">{{ 'view_accountinfo.city' | translate }}</div>
+                                <div class="value">
+                                    <span class="vp-trim-noLineheight" style="width: 25em" title="{{WarehouseInfo.City}}">{{WarehouseInfo.City}}</span>
+                                </div>
+                            </div>
+                            <div class="vp-list-row">
+                                <div class="name">{{ 'header_accountinfo.whState' | translate }}</div>
+                                <div class="value">
+                                    <span>{{WarehouseInfo.State}}</span>
+                                </div>
+                            </div>
+                            <div class="vp-list-row">
+                                <div class="name">{{ 'header_accountinfo.whZipcode' | translate }}</div>
+                                <div class="value">
+                                    <span>{{WarehouseInfo.ZipCode }}</span>
+                                </div>
+                            </div>
+                            <div class="vp-list-row">
+                                <div class="name">{{ 'header_accountinfo.whCountryCode' | translate }}</div>
+                                <div class="value">
+                                    <span>{{WarehouseInfo.CountryCode}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vp-list-info" ng-show="WarehouseInfo.ContactWith">
+                            <div class="vp-list-row">
+                                <div class="name">{{ 'view_accountinfo.contactName' | translate }}</div>
+                                <div class="value">
+                                    <span class="vp-trim-noLineheight" style="width: 25em" title="{{WarehouseInfo.ContactWith}}">{{WarehouseInfo.ContactWith}}</span>
+                                </div>
+                            </div>
+                            <div class="vp-list-row">
+                                <div class="name">
+                                    <i class="icon-phone bigger-125"></i>
+                                </div>
+                                <div class="value">
+                                    <span>{{WarehouseInfo.ContactPhoneNumber}}</span>
+                                </div>
+                            </div>
+                            <div class="vp-list-row">
+                                <div class="name">{{ 'header_accountinfo.whContactEmail' | translate }}</div>
+                                <div class="value">
+                                    <span class="vp-trim-noLineheight" style="width: 25em" title="{{WarehouseInfo.Email}}">{{WarehouseInfo.Email}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 no-padding-left" style="margin-top: 10px" ng-show="displayTable_WH">
+                <table class="table table-striped-2 table-bordered table-hover table-highlight">
+                    <thead>
+                        <tr>
+                            <td>{{ 'header_accountinfo.whID' | translate }}</td>
+                            <td>{{ 'header_accountinfo.whName' | translate }}</td>
+                            <td>{{ 'header_accountinfo.whAddress' | translate }}</td>
+                            <td>{{ 'view_accountinfo.city' | translate }}</td>
+                            <td>{{ 'header_accountinfo.whState' | translate }}</td>
+                            <td>{{ 'header_accountinfo.whZipcode' | translate }}</td>
+                            <td>{{ 'header_accountinfo.whCountryCode' | translate }}</td>
+                            <td>{{ 'view_accountinfo.contactName' | translate }}</td>
+                            <td>{{ 'header_accountinfo.whContactPhone' | translate }}</td>
+                            <td>{{ 'header_accountinfo.whContactEmail' | translate }}</td>
+                        </tr>
+                    </thead>
+                    <tbody ng-show="!WarehouseList || WarehouseList.length == 0">
+                        <tr>
+                            <td colspan="11" style="background: #F0F3F5">{{ 'view_accountinfo.noMatchItems' | translate }}</td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr ng-repeat="WarehouseInfo in WarehouseList">
+                            <td>{{WarehouseInfo.VendorWarehouseNumber}}</td>
+                            <td>{{WarehouseInfo.WarehouseName}}</td>
+                            <td title="{{WarehouseInfo.Address}}"><span class="vp-trim-noLineheight" style="width: 120px">{{WarehouseInfo.Address}}</span></td>
+                            <td>{{WarehouseInfo.City}}</td>
+                            <td>{{WarehouseInfo.State}}</td>
+                            <td>{{WarehouseInfo.Zipcode}}</td>
+                            <td>{{WarehouseInfo.CountryCode}}</td>
+                            <td>{{WarehouseInfo.ContactWith}}</td>
+                            <td>{{WarehouseInfo.ContactPhoneNumber}}</td>
+                            <td>{{WarehouseInfo.Email}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        
+        <!--profile-->
+        <div class="tab-pane" id="profile">
+            <div class="row vp-list vp-list-height-240">
+                <div class="col-lg-6">
+                    <div>
+                        <div class="vp-list-icon vp-list-icon-blue">
+                            <i class="ace-icon  icon-money"></i>
+                            <span class="title text-left">{{ 'view_accountinfo.basic' | translate }}</span>
+                        </div>
+
+                        <div class="vp-list-info">
+                            <div class="vp-list-row">
+                                <div class="name" style="width: 170px">{{ 'view_accountinfo.currencyCode' | translate }}</div>
+                                <div class="value">
+                                    <span>{{Profile.CurrencyCode}}</span>
+                                </div>
+                            </div>
+                            <div class="vp-list-row">
+                                <div class="name" style="width: 170px">{{ 'view_accountinfo.weightMeasurement' | translate }}</div>
+                                <div class="value">
+                                    <span>{{Profile.WeightMeasurementCode}}</span>
+                                </div>
+                            </div>
+                            <div class="vp-list-row">
+                                <div class="name" style="width: 170px">{{ 'view_accountinfo.dimensionMeasurement' | translate }}</div>
+                                <div class="value">
+                                    <span>{{Profile.LengthMeasurementCode}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<script>
+
+    $('#myTab a').click(function (e) {
+        e.preventDefault();
+
+        $(this).tab('show');
+        //  $(this).animate({ backgroundColor: "#1875a3", borderColor: "#1875a3" }, 'slow', 'swing');
+        // $('a', '#myTab').not(this).animate({ "backgroundColor": "#F9F9F9", "borderColor": "#F9F9F9" }, 'fast', 'swing');
+    });
+
+</script>

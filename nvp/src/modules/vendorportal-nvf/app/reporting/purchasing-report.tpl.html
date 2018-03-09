@@ -1,0 +1,480 @@
+﻿<style>
+    html[data-useragent*='MSIE'] .vp-home-row {
+        margin-right: 0px;
+    }
+
+    html[data-useragent*='MSIE'] .vp-agent-row {
+        margin-right: 12px;
+    }
+
+    .k-autocomplete > .k-input {
+        height: 1.9em;
+        line-height: 1.9em;
+    }
+
+    .vp-tpl-cg-header > .k-input {
+        padding: 0;
+    }
+
+    .control-label1 {
+        text-align: left;
+        padding-left: 18px !important;
+        padding-right: 4px !important;
+    }
+
+    .margin-left-offset-10 {
+        margin-left: -10px;
+    }
+</style>
+<script id="tpl_poList_type" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.POType}}">{{dataItem.POType}}</span></div>
+</script>
+
+<!-- PO DataGrid Columns-->
+<script id="tpl_poList_ponumber" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.PONumber}}">{{dataItem.PONumber}}</span></div>
+</script>
+<script id="tpl_poList_podate" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.PODate}}">{{dataItem.PODate}}</span></div>
+</script>
+<script id="tpl_poList_postatus" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.POStatus}}">{{dataItem.POStatus}}</span></div>
+</script>
+<script id="tpl_poList_receiveddate" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.ReceivedDate}}">{{dataItem.ReceivedDate}}</span></div>
+</script>
+<script id="tpl_poList_orderqty" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-right"><span title="{{dataItem.OrderQty}}">{{dataItem.OrderQty | number: 0}}</span></div>
+</script>
+<script id="tpl_poList_receivedqty" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-right"><span title="{{dataItem.ReceivedQty}}">{{dataItem.ReceivedQty | number: 0}}</span></div>
+</script>
+<script id="tpl_poList_pendingqty" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-right"><span title="{{dataItem.PendingQty}}">{{dataItem.PendingQty | number: 0}}</span></div>
+</script>
+<script id="tpl_poList_poamount" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-right"><span>$</span><span title="{{dataItem.POAmount}}">{{dataItem.POAmount | vfCurrency:'' }}</span></div>
+</script>
+<script id="tpl_poList_wh" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.WarehouseNumber}}">{{dataItem.WarehouseNumber}}</span></div>
+</script>
+<script id="tpl_poList_eta" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.ETA}}">{{dataItem.ETA}}</span></div>
+</script>
+<script id="tpl_poList_purchaser" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.Purchaser}}">{{dataItem.Purchaser}}</span></div>
+</script>
+
+<!-- Item DataGrid Columns-->
+<script id="tpl_itemList_itemnumber" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.ItemNumber}}">{{dataItem.ItemNumber}}</span></div>
+</script>
+<script id="tpl_itemList_manufacturerpartnumber" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.ManufacturerPartNumber}}">{{dataItem.ManufacturerPartNumber}}</span></div>
+</script>
+<script id="tpl_itemList_description" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.ItemDescription}}">{{dataItem.ItemDescription}}</span></div>
+</script>
+<script id="tpl_itemList_potype" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.POType}}">{{dataItem.POType}}</span></div>
+</script>
+<script id="tpl_itemList_vendorname" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.VendorName}}">{{dataItem.VendorName}}</span></div>
+</script>
+<script id="tpl_itemList_ponumber" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.PONumber}}">{{dataItem.PONumber}}</span></div>
+</script>
+<script id="tpl_itemList_wh" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.WarehouseNumber}}">{{dataItem.WarehouseNumber}}</span></div>
+</script>
+<script id="tpl_itemList_podate" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.PODate}}">{{dataItem.PODate}}</span></div>
+</script>
+<script id="tpl_itemList_postatus" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.POStatus}}">{{dataItem.POStatus}}</span></div>
+</script>
+<script id="tpl_itemList_reveiveddate" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.ReceivedDate}}">{{dataItem.ReceivedDate}}</span></div>
+</script>
+<script id="tpl_itemList_orderqty" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-right"><span title="{{dataItem.OrderQty}}">{{dataItem.OrderQty | number: 0}}</span></div>
+</script>
+<script id="tpl_itemList_reveivedqty" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-right"><span title="{{dataItem.ReceivedQty}}">{{dataItem.ReceivedQty | number: 0}}</span></div>
+</script>
+<script id="tpl_itemList_pendingqty" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-right"><span title="{{dataItem.PendingQty}}">{{dataItem.PendingQty | number: 0}}</span></div>
+</script>
+<script id="tpl_itemList_cost" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-right"><span>$</span><span title="{{dataItem.Cost}}">{{dataItem.Cost | vfCurrency:''}}</span></div>
+</script>
+<script id="tpl_itemList_eta" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.ETA}}">{{dataItem.ETA}}</span></div>
+</script>
+<script id="tpl_itemList_purchaser" type="text/x-kendo-tmpl">
+    <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.Purchaser}}">{{dataItem.Purchaser}}</span></div>
+</script>
+
+<div class="row vp-agent-margin">
+    <vd-agent click="search()" />
+</div>
+<vd-cover bottom="2"></vd-cover>
+<div class="row vp-panel-bar">
+    <ul class="nav nav-tabs" id="myTab">
+        <li class="active"><a href="#bypo" id="bypo_a" ng-click="selectedByPoTab=true;" data-toggle="tab">&nbsp;{{ 'view_report.byPO' | translate }}&nbsp;</a></li>
+        <li><a href="#byitem" id="byitem_a" ng-click="selectedByPoTab=false;" data-toggle="tab">&nbsp;{{ 'view_report.byItem' | translate }}&nbsp;</a></li>
+    </ul>
+    <div class="tab-content no-border">
+
+        <!-- Tab By PO -->
+        <div class="tab-pane active" id="bypo">
+            <div class="row vp-panel-bar" style="font-size: 13px !important; ">
+                <vd-panelbar is-show="isShowDetail" translatetitle="{ 'view_report.search' | translate }"></vd-panelbar>
+                <div class="col-xs-12 no-padding" ng-hide="isShowDetail==false">
+                    <form class="form-horizontal" role="form">
+                        <div class="col-lg-10 col-md-12 no-padding">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group col-md-6 col-lg-6">
+                                    <label class="col-md-3 control-label margin-left-offset-10">{{ 'view_report.poNumber' | translate }}:</label>
+                                    <div class="col-md-9 no-padding-left margin-left-offset-10">
+                                        <input type="text" class="form-control vp-input" name="input_poNumber"
+                                            ng-model="queryByPo.PONumber"
+                                            maxlength="25" />
+                                        <validtip for="input_poNumber" class="vp-validtip"></validtip>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group col-md-6 col-lg-6">
+                                    <label class="col-md-3 control-label margin-left-offset-10">{{ 'view_report.keyword' | translate }}:</label>
+                                    <div class="col-md-9 no-padding-left margin-left-offset-10">
+                                        <input type="text" class="form-control vp-input" name="keywords_byPo"
+                                            ng-model="queryByPo.KeyWord"
+                                            maxlength="{{ queryByPo.KeyWordType ==='NeweggItemNumber'? 25 : 40}}" />
+                                        <validtip for="keywords_byPo" class="vp-validtip"></validtip>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-6 col-lg-6" style="padding-left: 40px">
+                                    <label class="col-md-3 control-label1 no-padding-right">{{ 'view_report.type' | translate }}:</label>
+                                    <div class="col-md-9 no-padding-left">
+                                        <label class="col-lg-5 col-md-6 radio-inline no-padding-left">
+                                            <input name="form-field-radio" ng-model="queryByPo.KeyWordType" value="NeweggItemNumber" type="radio" class="ace" checked="checked">
+                                            <span class="lbl">&nbsp;{{ 'view_report.itemNumber' | translate }}</span>
+                                        </label>
+                                        <label class="col-lg-5 col-md-6 radio-inline no-margin-left">
+                                            <input name="form-field-radio" ng-model="queryByPo.KeyWordType" value="ManufacturePartNumber" type="radio" class="ace">
+                                            <span class="lbl">&nbsp;{{ 'view_report.mfrPartNumber' | translate }}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group col-md-6 col-lg-6">
+                                    <label class="col-md-3 control-label margin-left-offset-10">{{ 'view_report.poStatus' | translate }}:</label>
+                                    <div class="col-md-9 no-padding-left margin-left-offset-10">
+                                        <vd-po-status status="queryByPo.POStatus" potype="queryByPo.POType"></vd-po-status>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-6 col-lg-6" style="padding-left: 40px">
+                                    <label class="col-md-3 control-label1">{{ 'view_report.poType' | translate }}:</label>
+                                    <div class="col-md-9 no-padding-left">
+                                        <label class="col-lg-5 col-md-6 radio-inline no-padding-left">
+                                            <input name="form-field-radio2" ng-model="queryByPo.POType" value="Consignment" type="radio" class="ace">
+                                            <span class="lbl">&nbsp;{{ 'view_report.poType_consignment' | translate }}</span>
+                                        </label>
+                                        <label class="col-lg-5 col-md-6 radio-inline no-margin-left">
+                                            <input name="form-field-radio2" ng-model="queryByPo.POType" value="Regular" type="radio" class="ace" checked="checked">
+                                            <span class="lbl">&nbsp;{{ 'view_report.poType_regular' | translate }}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group col-md-6 col-lg-6">
+                                    <label class="col-md-3 control-label margin-left-offset-10">
+                                        <input type="checkbox" class="ace" ng-model="queryByPo.PODateIsSelected">
+                                        <span class="lbl"><span class="hidden-md">&nbsp;</span>{{ 'view_report.poDate' | translate }}:</span>
+                                    </label>
+                                    <div class="col-md-9 no-padding-left margin-left-offset-10">
+                                        <div class="col-sm-12 no-padding-left input-group">
+                                            <div class="input-group">
+                                                <input class="form-control date-picker"
+                                                    type="text"
+                                                    neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd","addMonth":-6}'
+                                                    ng-model="queryByPo.PODateFrom"
+                                                    ng-disabled="queryByPo.PODateIsSelected == false">
+                                                <span class="input-group-addon">
+                                                    <i class="icon-calendar bigger-110"></i>
+                                                </span>
+                                            </div>
+                                            <span class="input-group-addon no-border-bottom no-border-top no-border-left no-border-right" style="background-color: #ffffff;">
+                                                <i class="icon-minus smaller-90"></i>
+                                            </span>
+                                            <div class="input-group">
+                                                <input class="form-control date-picker"
+                                                    type="text"
+                                                    neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd","addMonth":-6}'
+                                                    ng-model="queryByPo.PODateTo"
+                                                    ng-disabled="queryByPo.PODateIsSelected == false">
+                                                <span class="input-group-addon">
+                                                    <i class="icon-calendar bigger-110"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-6 col-lg-6" style="padding-left: 40px">
+                                    <label class="col-md-3 control-label1">
+                                        <input type="checkbox" class="ace" ng-model="queryByPo.ETADateIsSelected">
+                                        <span class="lbl"><span class="hidden-md">&nbsp;</span>{{ 'view_report.etaDate_eta' | translate }}<span class="hidden-md">&nbsp;{{ 'view_report.etaDate_date' | translate }}</span>:</span>
+                                    </label>
+                                    <div class="col-md-9 no-padding-left">
+
+                                        <div class="col-sm-12 no-padding-left input-group">
+                                            <div class="input-group">
+                                                <input class="form-control date-picker"
+                                                    type="text"
+                                                    neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd","addMonth":-6}'
+                                                    ng-model="queryByPo.ETADateFrom"
+                                                    ng-disabled="queryByPo.ETADateIsSelected == false">
+                                                <span class="input-group-addon">
+                                                    <i class="icon-calendar bigger-110"></i>
+                                                </span>
+                                            </div>
+                                            <span class="input-group-addon no-border-bottom no-border-top no-border-left no-border-right" style="background-color: #ffffff;">
+                                                <i class="icon-minus smaller-90"></i>
+                                            </span>
+                                            <div class="input-group">
+                                                <input class="form-control date-picker"
+                                                    type="text"
+                                                    neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd","addMonth":-6}'
+                                                    ng-model="queryByPo.ETADateTo"
+                                                    ng-disabled="queryByPo.ETADateIsSelected == false">
+                                                <span class="input-group-addon">
+                                                    <i class="icon-calendar bigger-110"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-1 col-md-12 no-padding">
+                            <button type="button" class="btn btn-primary btn-sm" style="padding: 2px 12px 2px 10px !important;" ng-click="searchByPo()">
+                                <span class="ace-icon  icon-search icon-on-right bigger-110"></span>
+                                {{ 'view_report.search' | translate }}
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 10px;">
+                <vd-panelbar is-show="isShowDetail3" template="<label style='font-size: 13px; font-weight: bold; '><strong>Total</strong>&nbsp;&nbsp;{ 'view_report.poAmount' | translate }: ${ poSummary.TotalPOAmount | vfCurrency:'' }&nbsp;&nbsp; { 'view_report.orderQty' | translate }: { poSummary.OrderQuantity  | number: 0} &nbsp; { 'view_report.receivedQty' | translate }: { poSummary.ReceivedQuantity | number: 0 } &nbsp; { 'view_report.pendingQty' | translate }: { poSummary.PendingQuantity | number: 0 }</label>" translatetitle=" { 'view_report.resultList' | translate }"></vd-panelbar>
+                <div class="col-xs-12 no-padding-left" ng-hide="isShowDetail3==false">
+                    <vd-grid gid="{{dataGridName_byPo}}"
+                        refresh-key="{{refreshKey_byPo}}"
+                        ng-options="purchaseByPoListOptions">
+          
+    
+                    </vd-grid>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Tab By Item -->
+        <div class="tab-pane" id="byitem">
+            <div class="row vp-panel-bar" style="font-size: 13px !important; ">
+                <vd-panelbar is-show="isShowDetail" translatetitle="{ 'view_report.search' | translate }"></vd-panelbar>
+                <div class="col-xs-12 no-padding" ng-hide="isShowDetail==false">
+                    <form class="form-horizontal" role="form" name="formByPo">
+                        <div class="col-lg-10 col-md-12 no-padding">
+
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group col-md-6 col-lg-6">
+                                    <label class="col-md-3 control-label margin-left-offset-10">{{ 'view_report.keyword' | translate }}:</label>
+                                    <div class="col-md-9 no-padding-left margin-left-offset-10">
+                                        <input type="text" class="form-control vp-input" name="keywords_byItem"
+                                            ng-model="queryByItem.KeyWord"
+                                            maxlength="{{ queryByItem.KeyWordType ==='NeweggItemNumber'? 25 : 40}}" />
+                                        <validtip for="keywords_byItem" class="vp-validtip"></validtip>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6 col-lg-6" style="padding-left: 40px">
+                                    <label class="col-md-3 control-label1">{{ 'view_report.type' | translate }}:</label>
+                                    <div class="col-md-9 no-padding-left">
+                                        <label class="col-lg-5 col-md-6 radio-inline no-padding-left">
+                                            <input name="form-field-radio" ng-model="queryByItem.KeyWordType" value="NeweggItemNumber" type="radio" class="ace" checked="checked">
+                                            <span class="lbl">&nbsp;{{ 'view_report.itemNumber' | translate }}</span>
+                                        </label>
+                                        <label class="col-lg-5 col-md-6 radio-inline no-margin-left">
+                                            <input name="form-field-radio" ng-model="queryByItem.KeyWordType" value="ManufacturePartNumber" type="radio" class="ace">
+                                            <span class="lbl">&nbsp;{{ 'view_report.mfrPartNumber' | translate }}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group col-md-6 col-lg-6">
+                                    <label class="col-md-3 control-label margin-left-offset-10">{{ 'view_report.poStatus' | translate }}:</label>
+                                    <div class="col-md-9 no-padding-left margin-left-offset-10">
+                                        <vd-po-status status="queryByItem.POStatus" potype="queryByItem.POType"></vd-po-status>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-6 col-lg-6" style="padding-left: 40px">
+                                    <label class="col-md-3 control-label1">{{ 'view_report.poType' | translate }}:</label>
+                                    <div class="col-md-9 no-padding-left">
+                                        <label class="col-lg-5 col-md-6 radio-inline no-padding-left">
+                                            <input name="form-field-radio2" ng-model="queryByItem.POType" value="Consignment" type="radio" class="ace">
+                                            <span class="lbl">&nbsp;{{ 'view_report.poType_consignment' | translate }}</span>
+                                        </label>
+                                        <label class="col-lg-5 col-md-6 radio-inline no-margin-left">
+                                            <input name="form-field-radio2" ng-model="queryByItem.POType" value="Regular" type="radio" class="ace" checked="checked">
+                                            <span class="lbl">&nbsp;{{ 'view_report.poType_regular' | translate }}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group col-md-6 col-lg-6">
+                                    <label class="col-md-3 control-label margin-left-offset-10">
+                                        <input type="checkbox" class="ace" ng-model="queryByItem.PODateIsSelected">
+                                        <span class="lbl"><span class="hidden-md">&nbsp;</span>{{ 'view_report.poDate' | translate }}:</span>
+                                    </label>
+                                    <div class="col-md-9 no-padding-left margin-left-offset-10">
+                                        <div class="col-sm-12 no-padding-left input-group">
+                                            <div class="input-group">
+                                                <input class="form-control date-picker"
+                                                    type="text"
+                                                    neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd","addMonth":-6}'
+                                                    ng-model="queryByItem.PODateFrom"
+                                                    ng-disabled="queryByItem.PODateIsSelected == false">
+                                                <span class="input-group-addon">
+                                                    <i class="icon-calendar bigger-110"></i>
+                                                </span>
+                                            </div>
+                                            <span class="input-group-addon no-border-bottom no-border-top no-border-left no-border-right" style="background-color: #ffffff;">
+                                                <i class="icon-minus smaller-90"></i>
+                                            </span>
+                                            <div class="input-group">
+                                                <input class="form-control date-picker"
+                                                    type="text"
+                                                    neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd","addMonth":-6}'
+                                                    ng-model="queryByItem.PODateTo"
+                                                    ng-disabled="queryByItem.PODateIsSelected == false">
+                                                <span class="input-group-addon">
+                                                    <i class="icon-calendar bigger-110"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-6 col-lg-6" style="padding-left: 40px">
+                                    <label class="col-md-3 control-label1">
+                                        <input type="checkbox" class="ace" ng-model="queryByItem.ETADateIsSelected">
+                                        <span class="lbl"><span class="hidden-md">&nbsp;</span>{{ 'view_report.etaDate_eta' | translate }}<span class="hidden-md">&nbsp;{{ 'view_report.etaDate_date' | translate }}</span>:</span>
+                                    </label>
+                                    <div class="col-md-9 no-padding-left">
+                                        <div class="col-sm-12 no-padding-left input-group">
+                                            <div class="input-group">
+                                                <input class="form-control date-picker"
+                                                    type="text"
+                                                    neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd","addMonth":-6}'
+                                                    ng-model="queryByItem.ETADateFrom"
+                                                    ng-disabled="queryByItem.ETADateIsSelected == false">
+                                                <span class="input-group-addon">
+                                                    <i class="icon-calendar bigger-110"></i>
+                                                </span>
+                                            </div>
+                                            <span class="input-group-addon no-border-bottom no-border-top no-border-left no-border-right" style="background-color: #ffffff;">
+                                                <i class="icon-minus smaller-90"></i>
+                                            </span>
+                                            <div class="input-group">
+                                                <input class="form-control date-picker"
+                                                    type="text"
+                                                    neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd","addMonth":-6}'
+                                                    ng-model="queryByItem.ETADateTo"
+                                                    ng-disabled="queryByItem.ETADateIsSelected == false">
+                                                <span class="input-group-addon">
+                                                    <i class="icon-calendar bigger-110"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12">
+
+                                <div class="form-group col-md-6 col-lg-6">
+                                    <label class="col-md-3 control-label margin-left-offset-10">{{ 'view_report.itemStatus' | translate }}:</label>
+                                    <div class="col-md-9 no-padding-left margin-left-offset-10">
+                                        <label class="radio-inline no-padding-left">
+                                            <input name="form-field-radio3" ng-model="queryByItem.ItemStatus" value="All" type="radio" class="ace" checked="checked">
+                                            <span class="lbl">&nbsp;{{ 'view_report.itemStatus_all' | translate }}</span>
+                                        </label>
+                                        <label class="radio-inline no-margin-left">
+                                            <input name="form-field-radio4" ng-model="queryByItem.ItemStatus" value="Active" type="radio" class="ace">
+                                            <span class="lbl">&nbsp;{{ 'view_report.itemStatus_active' | translate }}</span>
+                                        </label>
+                                        <label class="radio-inline no-margin-left">
+                                            <input name="form-field-radio5" ng-model="queryByItem.ItemStatus" value="Deactive" type="radio" class="ace">
+                                            <span class="lbl">&nbsp;{{ 'view_report.itemStatus_deactivated' | translate }}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-1 col-md-12 no-padding">
+                            <button type="button" class="btn btn-primary btn-sm" style="padding: 2px 12px 2px 10px !important;" ng-click="searchByItem()">
+                                <span class="ace-icon  icon-search icon-on-right bigger-110"></span>
+                                {{ 'view_report.search' | translate }}
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 10px;">
+                <vd-panelbar is-show="isShowDetail3" template="<label style='font-size: 13px; font-weight: bold; '><strong>{ 'view_report.total' | translate }</strong>&nbsp;&nbsp;{ 'view_report.receivedQty' | translate }: { itemSummary.ReceivedQuantity | number : 0 } &nbsp; { 'view_report.orderQty' | translate }: { itemSummary.OrderQuantity | number : 0} &nbsp; { 'view_report.pendingQty' | translate }: { itemSummary.PendingQuantity | number : 0}</label>" translatetitle=" { 'view_report.resultList' | translate }"></vd-panelbar>
+                <div class="col-xs-12 no-padding-left" ng-hide="isShowDetail3==false">
+                    <vd-grid gid="{{dataGridName_byItem}}"
+                        refresh-key="{{refreshKey_byItem}}"
+                        ng-options="purchaseByItemListOptions">
+          
+    
+                    </vd-grid>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $('#myTab a').click(function (e) {
+        e.preventDefault();
+
+        $(this).tab('show');
+        //  $(this).animate({ backgroundColor: "#1875a3", borderColor: "#1875a3" }, 'slow', 'swing');
+        // $('a', '#myTab').not(this).animate({ "backgroundColor": "#F9F9F9", "borderColor": "#F9F9F9" }, 'fast', 'swing');
+    });
+
+</script>

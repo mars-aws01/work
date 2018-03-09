@@ -1,0 +1,22 @@
+﻿NEG.namespace('resources.vendorportal.accountsetting.tw',
+  view_accountsetting:
+    accountSearch:"查詢"
+    exactMatch:"精確匹配"
+    accountSearchPlaceHolder:"請輸入使用者名."
+    inviteUserBtn:"邀請使用者"
+    inviteUserHeader:"邀請使用者"
+    email:"電子郵件:"
+    admin:"管理員"
+    inviteMore:"邀請更多..."
+    dialogCancel:"取消"
+    dialogInvite:"邀請"
+    adminTip:"請注意：如果選擇管理員，預設將擁有擁有權限."
+  error_accountsetting  :
+    getUsersFailed:"獲取使用者清單失敗。"
+    currentUserInvalid:"未找到當前使用者資訊。"
+    emailDuplicate:"電子郵件重複，請刪除重複的電子郵件。"
+    emailInvalid:"請至少輸入一個被邀請人的電子郵件"
+    emailExist:"以下郵件地址已經使用,請使用其他郵件地址:"
+  success_accountsetting:
+    invitation:"邀請使用者成功，邀請資訊將在幾分鐘內發送至被邀請人郵箱。"
+)

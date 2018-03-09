@@ -1,0 +1,38 @@
+﻿NEG.namespace('resources.vendorportal.batchItem.us',
+  view_item_batch:
+    uploadFileLabel:"Upload File"
+    uploadTemplate:"Upload File"
+    uploading:"Uploading..."
+    DownloadTemplate:"Download Template"
+    UploadDateFrom:"Uploaded Date From"
+    UploadDateTo:"Uploaded Date To"
+    CompleteDateFrom:"Completed Date From"
+    CompleteDateTo:"Completed Date To"
+    Status:"Status"
+    MyUploads:"My Uploads"
+    FileName:"File Name"
+    UploadDate:"Uploaded Date"
+    UploadUser:"Uploaded User"
+    CompleteDate:"Completed Date"
+    ViewEndResult:"View End Result"
+    RefreshList:"Refresh List"
+    Download: "Download"
+    Waiting:"Waiting"
+    Processing:"Processing"
+  error_item_batch:
+    fileTypeInvalid:"Upload file must have an extension with \".xlsx\", please select a valid file to upload."
+    uploadDateFromInvalid:"Please input a valid \"Uploaded Date From\"."
+    uploadDateToInvalid:"Please input a valid \"Uploaded Date To\"."
+    completeDateFromInvalid:"Please input a valid \"Completed Date From\"."
+    completeDateToInvalid:"Please input a valid \"Completed Date To\"."
+    uploadDateFromLargerError:"The \"Uploaded Date From\" can not greater than \"Uploaded Date To\"."
+    completeDateFromLargerError:"The \"Completed Date From\" can not greater than \"Completed Date To\"."
+    upload_failed:"Upload file failed."
+  fileTypeInvalid:
+    error_item_batch:"Upload file must have an extension with \".xlsx\", please select a valid file to upload."
+    no_file_selected:"Please choose a file to upload."
+    filesize_larger:"The maximum allowed file size is 10MB"
+    filesize_zero:"The file size must be greater than 0."
+  success_item_batch:
+    uploadFile:"File has been uploaded successfully,and it need a while for the system to process, please refresh the list later for the latest result."    
+)

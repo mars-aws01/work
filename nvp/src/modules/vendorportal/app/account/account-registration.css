@@ -1,0 +1,80 @@
+﻿
+.acct-h2
+{
+    height: 25px;
+    color: #CB6000;
+    font-size: 1.4em;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.termsConditions
+{
+    margin: 0 auto;
+    width: 790px;
+}
+
+    .termsConditions .content
+    {
+        padding: 10px;
+        height: 300px;
+        overflow: scroll;
+        overflow-x: hidden;
+        border: 1px solid #C4C4C4;
+        background: #FFF;
+    }
+
+        .termsConditions .content p
+        {
+            padding-bottom: 20px;
+        }
+
+    .termsConditions .buttonBar
+    {
+        margin: 0 auto;
+        width: 300px;
+        overflow: hidden;
+        padding: 10px;
+    }
+
+.acct-body
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: normal;
+    font-family: inherit;
+    vertical-align: baseline;
+    font-size:14px;
+}
+
+    .acct-body li
+    {
+        display: list-item;
+        text-align: -webkit-match-parent;
+    }
+
+    .acct-body ul, ol
+    {
+        list-style: none;
+        margin-left: 0px;
+    }
+
+    .acct-body .acct-section
+    {
+        margin-left: 0px;
+        text-align: left;
+    }
+
+    .acct-body .acct-header
+    {
+        border: 0px solid blue;
+    }
+
+    .acct-body .acct-text
+    {
+        margin-left: 0px;
+    }
+

@@ -1,0 +1,622 @@
+﻿<div class="row vp-agent-margin">
+    <vd-agent click="changeVendor()" />
+</div>
+
+<vd-cover bottom="-63"></vd-cover>
+
+<div class="row">
+    <form class="form-horizontal no-padding" role="form" ng-submit="startSearch()" >
+        <div class="col-md-10" style="margin-top: 10px; padding: 0px;">
+            <vd-search keys="advancedkeyList" query="advancedQuery" output="advancedSearchTextOutput" />
+        </div>
+        <div class="col-md-2 text-right" style="padding-top: 13px;">
+            <a href="#" ng-click="showAdvanced = !showAdvanced" class="">
+                <i class="icon-filter bigger-170 grey" ng-show="!showAdvanced"></i>
+                <span style="text-decoration: underline; font-size: 15px;" class="grey">{{ 'view_itemlist.advancedSearch' | translate }}</span>
+            </a>
+
+            <div class="vp-search-popover  fade bottom in" style="display: block;" ng-show="showAdvanced">
+                <div class="popover-content" style="padding-left: 6px;">
+                    <div style="width: 503px">
+                        <form name="formItemQuickSearch" ng-submit="quickSearch()">
+                            <div style="position: absolute; top: 3px; right: 10px;" ng-show="showAdvanced">
+                                <i class="icon-filter bigger-170 grey"></i>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="col-md-12 no-padding-left text-left">
+                                    <h4 style="margin-bottom: 4px;">{{ 'view_itemlist.byPriceOrQty' | translate }}:</h4>
+                                </div>
+                                <div class="col-md-12 no-padding-left text-left fixed-bottom-label">
+                                    <label>{{ 'view_itemlist.priceLessThan' | translate }}</label>
+                                </div>
+                                <div class="col-md-12 no-padding-left">
+                                    <input  ng-class="col-xs-12"
+                                        type="text"
+                                        vd-number
+                                        ng-model="advancedQuery.UnitPriceTo"
+                                        class="form-control" />
+                                </div>
+                                <div class="col-md-12 no-padding-left text-left fixed-bottom-label">
+                                    <label>{{ 'view_itemlist.qtyLessThan' | translate }}</label>
+                                </div>
+                                <div class="col-md-12 no-padding-left">
+                                    <input class="col-xs-12"
+                                        ng-model="advancedQuery.QuantityTo"
+                                        type="text"
+                                        vd-number="int"
+                                        class="form-control" />
+                                </div>
+                                <div class="col-md-12 no-padding-left text-left" style="margin-top: 8px;">
+                                    <label class="vp-checkbox ">
+                                        <input name="form-field-checkbox" ng-model="advancedQuery.UnlistedOnly" class="ace ace-checkbox" type="checkbox">
+                                        <span class="lbl">&nbsp;{{ 'view_itemlist.unlistedItemOnly' | translate }}</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-12 no-padding-left text-left">
+                                    <label class="vp-checkbox pull-left">
+                                        <input name="form-field-checkbox" ng-model="advancedQuery.MyItemsOnly" class="ace ace-checkbox" type="checkbox">
+                                        <span class="lbl">&nbsp;{{ 'view_itemlist.myItemsOnly' | translate }}</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="col-md-12 no-padding-left text-left">
+                                    <h4 style="margin-bottom: 4px;">{{ 'view_itemlist.byDate' | translate }}:</h4>
+                                </div>
+                                <div class="col-md-12 no-padding-left text-left fixed-bottom-label">
+                                    <label>{{ 'view_itemlist.createdFrom' | translate }}</label>
+                                </div>
+                                <div class="col-md-12 no-padding-left">
+                                    <div class="input-group">
+                                        <input class="form-control"
+                                            type="text"
+                                            neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                            ng-model="advancedQuery.CreatedFrom">
+                                        <span class="input-group-addon">
+                                            <i class="icon-calendar bigger-110"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 no-padding-left text-left fixed-bottom-label">
+                                    <label>{{ 'view_itemlist.createdTo' | translate }}</label>
+                                </div>
+                                <div class="col-md-12 no-padding-left">
+                                    <div class="input-group">
+                                        <input class="form-control"
+                                            type="text"
+                                            neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                            ng-model="advancedQuery.CreatedTo">
+                                        <span class="input-group-addon">
+                                            <i class="icon-calendar bigger-110"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 no-padding-left text-left fixed-bottom-label">
+                                    <label>{{ 'view_itemlist.updatedFrom' | translate }}</label>
+                                </div>
+                                <div class="col-md-12 no-padding-left">
+                                    <div class="input-group">
+                                        <input class="form-control"
+                                            type="text"
+                                            neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                            ng-model="advancedQuery.UpdatedFrom">
+                                        <span class="input-group-addon">
+                                            <i class="icon-calendar bigger-110"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 no-padding-left text-left fixed-bottom-label">
+                                    <label>{{ 'view_itemlist.updatedTo' | translate }}</label>
+                                </div>
+                                <div class="col-md-12 no-padding-left">
+                                    <div class="input-group">
+                                        <input class="form-control"
+                                            type="text"
+                                            neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                            ng-model="advancedQuery.UpdatedTo">
+                                        <span class="input-group-addon">
+                                            <i class="icon-calendar bigger-110"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="no-margin no-padding col-xs-12" style="border-top: 1px solid #D1E0ED; margin-top: 15px !important;" />
+                            <div style="float: right; margin-top: 5px; margin-bottom: 10px">
+                                <button type="submit" class="btn btn-xs btn-primary" style="width: 105px">
+                                    <i class="icon-search"></i>
+                                    {{ 'view_itemlist.quickSearch' | translate }}
+                                </button>
+                                <button type="button" class="btn btn-xs btn-danger" style="width: 105px" ng-click="showAdvanced=false">
+                                    <i class="icon-undo"></i>
+                                    {{ 'view_itemlist.close' | translate }}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 no-padding-left" style="margin-top: 3px;">
+            <div class="vp-search-action" ng-show="currentQuery.UnitPriceTo||currentQuery.UnitPriceTo==0">
+                <span>{{ 'view_itemlist.priceLessThan' | translate }}: {{ currentQuery.UnitPriceTo }}</>&nbsp;</span>
+                <a href="#" ng-click="removeQueryFiled('UnitPriceTo')"><i class="icon-remove"></i></a>
+            </div>
+            <div class="vp-search-action" ng-show="currentQuery.QuantityTo||currentQuery.QuantityTo==0">
+                <span>{{ 'view_itemlist.qtyLessThan' | translate }}: {{ currentQuery.QuantityTo }}&nbsp;</span>
+                <a href="#" ng-click="removeQueryFiled('QuantityTo')"><i class="icon-remove"></i></a>
+            </div>
+            <div class="vp-search-action" ng-show="currentQuery.CreatedFrom">
+                <span>{{ 'view_itemlist.createdFrom' | translate }}: {{ currentQuery.CreatedFrom2 | moment:'MM/DD/YYYY' }}&nbsp;</span>
+                <a href="#" ng-click="removeQueryFiled('CreatedFrom')"><i class="icon-remove"></i></a>
+            </div>
+            <div class="vp-search-action" ng-show="currentQuery.CreatedTo">
+                <span>{{ 'view_itemlist.createdTo' | translate }}: {{ currentQuery.CreatedTo2 | moment:'MM/DD/YYYY' }}&nbsp;</span>
+                <a href="#" ng-click="removeQueryFiled('CreatedTo')"><i class="icon-remove"></i></a>
+            </div>
+            <div class="vp-search-action" ng-show="currentQuery.UpdatedFrom">
+                <span>{{ 'view_itemlist.updatedFrom' | translate }}: {{ currentQuery.UpdatedFrom2 | moment:'MM/DD/YYYY' }}&nbsp;</span>
+                <a href="#" ng-click="removeQueryFiled('UpdatedFrom')"><i class="icon-remove"></i></a>
+            </div>
+            <div class="vp-search-action" ng-show="currentQuery.UpdatedTo">
+                <span>{{ 'view_itemlist.updatedTo' | translate }}: {{ currentQuery.UpdatedTo2 | moment:'MM/DD/YYYY' }}&nbsp;</span>
+                <a href="#" ng-click="removeQueryFiled('UpdatedTo')"><i class="icon-remove"></i></a>
+            </div>
+            <div class="vp-search-action" ng-show="currentQuery.UnlistedOnly">
+                <span>{{ 'view_itemlist.unlistedItemOnly' | translate }}: Yes&nbsp;</span>
+                <a href="#" ng-click="removeQueryFiled('UnlistedOnly')"><i class="icon-remove"></i></a>
+            </div>
+            <div class="vp-search-action" ng-show="currentQuery.MyItemsOnly">
+                <span>{{ 'view_itemlist.myItemsOnly' | translate }}: Yes&nbsp;</span>
+                <a href="#" ng-click="removeQueryFiled('MyItemsOnly')"><i class="icon-remove"></i></a>
+            </div>
+            <div class="vp-search-action"
+                ng-show="currentQuery.UnlistedOnly||currentQuery.MyItemsOnly||currentQuery.CreatedFrom||currentQuery.CreatedTo||currentQuery.UpdatedFrom||currentQuery.UpdatedTo||currentQuery.UnitPriceTo||currentQuery.QuantityTo||currentQuery.UnitPriceTo==0||currentQuery.QuantityTo==0">
+                <span><strong>{{ 'view_itemlist.clearAll' | translate }}</strong>&nbsp;</span>
+                <a href="#" ng-click="removeQueryFiled('all')"><i class="icon-remove"></i></a>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<div class="row no-margin-right" style="margin-top: 5px;">
+    <vd-grid gid="{{dataGridName}}"
+             refresh-key="{{refreshKey}}"
+             ng-options="itemListOptions">
+        <script id="tpl_itemList_action" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding action-buttons text-left" style="text-align: center; padding-top: 4px; padding-bottom: 4px;">
+                <a href="\#" title="{{ 'header_itemlist.editTip' | translate }}" vd-auth="Submit" ng-click="openEditItemModal(dataItem)" ng-show="dataItem.Status=='A'?true:false"><i class="icon-pencil bigger-140 blue"></i></a>
+            </div>
+        </script>
+        <script id="tpl_itemList_status" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left" vd-bg="Status" ><span title="{{dataItem.Status=='A'?'Listed':(dataItem.Status=='D'?'UnListed':'')}}">{{dataItem.Status=='A'?'Listed':(dataItem.Status=='D'?'UnListed':'')}}</span></div>
+        </script>
+        <script id="tpl_itemList_vendorpartnumber" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left">
+                <a href="\#" title="{{'tip_itemlist.outOfDate' | translate}}" ng-show="dataItem.AutoClearStorageWarning==-1"><i class="icon-exclamation-sign bigger-120 blue"></i></a>
+                <a href="\#" title="{{'tip_itemlist.within1Day' | translate}}" ng-show="dataItem.AutoClearStorageWarning==1"><i class="icon-exclamation-sign bigger-120 blue"></i></a>
+                <a href="\#" title="{{'tip_itemlist.within2Days' | translate}}" ng-show="dataItem.AutoClearStorageWarning==2"><i class="icon-exclamation-sign bigger-120 blue"></i></a>
+                <span ng-style="dataItem.TipMessage!=''?{'color':'red'}:{'color':'\#55555a'}" title="{{dataItem.VendorPartNumber}}">{{dataItem.VendorPartNumber}}</span>
+            </div>
+        </script>
+        <script id="tpl_itemList_neweggitemnumber" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.NeweggItemNumber}}">{{dataItem.NeweggItemNumber}}</span></div>
+        </script>
+        <script id="tpl_itemList_neweggitestatus" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left"><span>{{dataItem.NeweggItemStatus}}</span></div>
+        </script>
+        <script id="tpl_itemList_manufacturer" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left"  vd-bg="Manufacturer" ><span title="{{dataItem.Manufacturer}}">{{dataItem.Manufacturer}}</span></div>
+        </script>
+        <script id="tpl_itemList_manufacturerpartnumber" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left"  vd-bg="ManufacturerPartNumber" ><span title="{{dataItem.ManufacturerPartNumber}}">{{dataItem.ManufacturerPartNumber}}</span></div>
+        </script>
+        <script id="tpl_itemList_upc" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left" vd-bg="UPC"><span title="{{dataItem.UPC}}">{{dataItem.UPC}}</span></div>
+        </script>
+        <script id="tpl_itemList_description" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left"  vd-bg="Description" ><span title="{{dataItem.Description}}">{{dataItem.Description}}</span></div>
+        </script>
+        <script id="tpl_itemList_unitprice" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-right" vd-bg="UnitPrice" ><span title="{{dataItem.UnitPrice|currency:''}}">{{dataItem.UnitPrice|currency:''}}</span></div>
+        </script>
+        <script id="tpl_itemList_quantity" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-right" vd-bg="Quantity" >
+                <span title="{{dataItem.Quantity}}">{{dataItem.Quantity}}</span>
+                <a href="\#" title="{{ 'tip_itemlist.whDetail' | translate }}" ng-show="dataItem.WarehouseList&&dataItem.WarehouseList.length>0" ng-click="openWarehouseDetail(dataItem)"><i class="icon-list bigger-120 blue"></i></a>
+            </div>
+        </script>
+        <script id="tpl_itemList_updatedate" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left" vd-bg="UpdateDate" ><span title="{{dataItem.UpdateDate | moment:'MM/DD/YYYY h:mm:ss A'}}">{{dataItem.UpdateDate | moment:'MM/DD/YYYY h:mm:ss A'}}</span></div>
+        </script>
+        <script id="tpl_itemList_updateusername" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left" vd-bg="UpdateUserName" ><span title="{{dataItem.UpdateUserName}}">{{dataItem.UpdateUserName}}</span></div>
+        </script>
+        <script id="tpl_itemList_createdate" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.CreateDate | moment:'MM/DD/YYYY h:mm:ss A'}}">{{dataItem.CreateDate | moment:'MM/DD/YYYY h:mm:ss A'}}</span></div>
+        </script>
+        <script id="tpl_itemList_createusername" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.CreateUserName}}" >{{dataItem.CreateUserName}}</span></div>
+        </script>
+    </vd-grid>
+</div>
+
+<div style="margin-top: 10px;" class="vp-fixed fixed-bottom">
+    <div style="width: 100%; margin-left: 20px;">
+        <button type="button" class="btn btn-primary btn-sm" ng-click="unlistItemsClick();" vd-auth="Submit">
+            <div class="col-xs-12">
+                {{ 'buttonPanel_itemlist.unlistItems' | translate }}
+            </div>
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" ng-click="relistUnlistItemsClick();" vd-auth="Submit">
+            <div class="col-xs-12">
+                {{ 'buttonPanel_itemlist.relistUnlistedItems' | translate }}
+            </div>
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" ng-click="republishItemsClick();" vd-auth="Submit">
+            <div class="col-xs-12">
+                {{ 'buttonPanel_itemlist.republishItems' | translate }}
+            </div>
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" ng-click="resetItemChangesClick();" vd-auth="Submit">
+            <div class="col-xs-12">
+                {{ 'buttonPanel_itemlist.resetItemChange' | translate }}
+            </div>
+        </button>
+        <button type="button" class="btn btn-success btn-sm" ng-click="updateCatalogClick();" vd-auth="Submit" analytics-on analytics-category="itemlist" analytics-event="updateCatalog"  analytics-label="{{common.currentUser.VendorNumber}}_itemlist_updateCatalog">
+            <div class="col-xs-12">
+                <i class="ace-icon icon-save icon-on-right"></i>&nbsp;&nbsp;{{ 'buttonPanel_itemlist.updateCatalog' | translate }}
+            </div>
+        </button>
+        <button type="button" class="btn btn-success btn-sm" ng-click="addNewItemClick();" vd-auth="Submit">
+            <div class="col-xs-12">
+                <i class="ace-icon icon-plus icon-on-right"></i>&nbsp;&nbsp;{{ 'buttonPanel_itemlist.addNewItem' | translate }}
+            </div>
+        </button>
+    </div>
+</div>
+
+
+<script>
+    $('#myTab a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+</script>
+
+
+<div modal="editItemModal" close="closeEditItemModal()" options="{backdrop: true,dialogFade:true}" >
+    <div class="modal-dialog">
+        <form name="editItemForm" class="modal-content" ng-submit="editOKClick()">
+            <div class="widget-header">
+                <h4>{{ 'header_itemlist.editItemHeader' | translate }}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group ">
+                        <label class="col-md-3 control-label col-md-offset-1" style="text-align: left">{{ 'header_itemlist.vendorPartNumber' | translate }}:</label>
+                        <div class="col-md-7 no-padding">
+                            <input ng-model="currentItemBak.VendorPartNumber"
+                                type="text"
+                                maxlength="40"
+                                ng-disabled="true"
+                                class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label col-md-offset-1" style="text-align: left">{{ 'header_itemlist.manuName' | translate }}:</label>
+                        <div class="col-md-7 input-group">
+                            <input ng-model="currentItemBak.Manufacturer"
+                                type="text"
+                                maxlength="40"
+                                required
+                                class="form-control" />
+                            <span class="vp-required-label2">*</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label col-md-offset-1" style="text-align: left">{{ 'header_itemlist.manufacturerPartNumber' | translate }}:</label>
+                        <div class="col-md-7 input-group">
+                            <input ng-model="currentItemBak.ManufacturerPartNumber"
+                                type="text"
+                                maxlength="40"
+                                required
+                                class="col-sm-12" />
+                            <span class="vp-required-label2">*</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label col-md-offset-1" style="text-align: left">{{ 'header_itemlist.UPC' | translate }}:</label>
+                        <div class="col-md-7 no-padding">
+                            <input ng-model="currentItemBak.UPC"
+                                type="text"
+                                name="UPC"
+                                maxlength="50"
+                                class="form-control" />
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label col-md-offset-1" style="text-align: left">{{ 'header_itemlist.description' | translate }}:</label>
+                        <div class="col-md-7 no-padding">
+                            <textarea class="form-control" maxlength="200" style="font-size: 12px; padding: 5px 12px; resize: none;"
+                                ng-model="currentItemBak.Description"></textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label col-md-offset-1" style="text-align: left">{{ 'header_itemlist.status' | translate }}:</label>
+                        <label class="col-md-7 control-label" style="text-align: left">{{currentItemBak.Status=='A'?'Listed':(currentItemBak.Status=='D'?'UnListed':'')}}</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label col-md-offset-1" style="text-align: left">{{ 'header_itemlist.price' | translate }}<vd-profile-label type="{{ 'CurrencyCode' }}"></vd-profile-label>:</label>
+                        <div class="col-md-7 input-group">
+                            <input ng-model="currentItemBak.UnitPrice"
+                                type="text"
+                                vd-number
+                                ng-required="true"
+                                class="form-control" />
+                            <span class="vp-required-label2">*</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-show="isSingleWarehouseVendor">
+                        <label class="col-md-3 control-label col-md-offset-1" style="text-align: left">{{ 'header_itemlist.qty' | translate }}:</label>
+                        <div class="col-md-7 input-group">
+                            <input ng-model="currentItemBak.Quantity"
+                                type="text"
+                                vd-number="int"
+                                class="form-control" />
+                            <span class="vp-required-label2">*</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group " ng-show="!isSingleWarehouseVendor">
+                        <label class="col-md-3 control-label col-md-offset-1" style="text-align: left">{{ 'header_itemlist.editItemWHHeader' | translate }}:</label>
+                        <div class="col-md-7 no-padding">
+                            <div class="clearfix" neg-scroll scroll-height="150">
+                                <table class="table table-detail" style="width: 95%">
+                                    <thead>
+                                        <tr>
+                                            <td class="col-sm-4">{{ 'header_itemlist.warehouseNumber' | translate }}</td>
+                                            <td class="col-sm-6">{{ 'header_itemlist.qty' | translate }}</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="warhouseStock in currentItemBak.WarehouseList">
+                                            <td class="text-left"><span>{{ warhouseStock.VendorWarehouseNumber }}</span></td>
+                                            <td class="text-left" style="padding: 0px;">
+                                                <div>
+                                                    <input ng-model="warhouseStock.Quantity"
+                                                        type="text"
+                                                        vd-number="int"
+                                                        class="col-sm-12" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" style="width: 76px;" type="submit">
+                    <i class="icon-save"></i>
+                    {{ 'header_itemlist.dialogOK' | translate }}
+                </button>
+                <button type="button" class="btn btn-danger btn-sm" ng-click="closeEditItemModal()" style="width: 76px;">
+                    <i class="icon-undo"></i>
+                    {{ 'header_itemlist.dialogCancel' | translate }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div modal="addItemModal" close="closeAddItemModal()" options="{backdrop: true,dialogFade:true}">
+    <div class="modal-dialog">
+        <form name="addItemForm" class="modal-content" ng-submit="addOKClick()">
+            <div class="widget-header">
+                <h4>{{ 'header_itemlist.addItemHeader' | translate }}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label col-md-offset-1" style="text-align: left">{{ 'header_itemlist.vendorPartNumber' | translate }}:</label>
+                        <div class="col-md-7 input-group">
+                            <input ng-model="createdItem.VendorPartNumber"
+                                type="text"
+                                maxlength="40"
+                                required
+                                class="form-control" />
+                            <span class="vp-required-label2">*</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label col-md-offset-1" style="text-align: left">{{ 'header_itemlist.manuName' | translate }}:</label>
+                        <div class="col-md-7 input-group">
+                            <input ng-model="createdItem.Manufacturer"
+                                type="text"
+                                maxlength="40"
+                                required
+                                class="form-control" />
+                            <span class="vp-required-label2">*</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label col-md-offset-1" style="text-align: left">{{ 'header_itemlist.manufacturerPartNumber' | translate }}:</label>
+                        <div class="col-md-7 input-group">
+                            <input ng-model="createdItem.ManufacturerPartNumber"
+                                type="text"
+                                maxlength="40"
+                                required
+                                class="form-control" />
+                            <span class="vp-required-label2">*</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                        <label class="col-md-3 control-label col-md-offset-1" style="text-align: left">{{ 'header_itemlist.UPC' | translate }}:</label>
+                        <div class="col-md-7 input-group">
+                            <input ng-model="createdItem.UPC"
+                                type="text"
+                                name="UPC"
+                                maxlength="50"
+                                class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label col-md-offset-1" style="text-align: left">{{ 'header_itemlist.description' | translate }}:</label>
+                        <div class="col-md-7 input-group">
+                            <textarea class="form-control" maxlength="200" style="font-size: 12px; padding: 5px 12px; resize: none;"
+                                ng-model="createdItem.Description"></textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label col-md-offset-1" style="text-align: left">{{ 'header_itemlist.status' | translate }}:</label>
+                        <div class="col-md-7 input-group">
+                            <select ng-options="itemStatus.value as itemStatus.text for itemStatus in itemStatusList"
+                                ng-model="createdItem.Status"
+                                ng-change="statusChange();" class="form-control">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label col-md-offset-1" style="text-align: left">{{ 'header_itemlist.price' | translate }}<vd-profile-label type="{{ 'CurrencyCode' }}"></vd-profile-label>:</label>
+                        <div class="col-md-7 input-group">
+                            <input ng-model="createdItem.UnitPrice"
+                                type="text"
+                                vd-number
+                                ng-required="true"
+                                />
+                            <span class="vp-required-label2">*</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-show="isSingleWarehouseVendor">
+                        <label class="col-md-3 control-label col-md-offset-1" style="text-align: left">{{ 'header_itemlist.qty' | translate }}:</label>
+                        <div class="col-md-7 input-group">
+                            <input ng-model="createdItem.Quantity"
+                                type="text"
+                                vd-number="int"
+                                ng-required="isSingleWarehouseVendor"
+                                ng-disabled="quantityDisabled"
+                                class="form-control" />
+                            <span class="vp-required-label2">*</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-show="!isSingleWarehouseVendor">
+                        <label class="col-md-3 control-label col-md-offset-1" style="text-align: left">{{ 'header_itemlist.editItemWHHeader' | translate }}:</label>
+                        <div class="col-md-7 input-group">
+                            <div class="clearfix" neg-scroll scroll-height="150">
+                                <table class="table table-detail" style="width: 95%">
+                                    <thead>
+                                        <tr>
+                                            <td class="col-sm-4">{{ 'header_itemlist.warehouseNumber' | translate }}</td>
+                                            <td class="col-sm-6">{{ 'header_itemlist.qty' | translate }}</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="warhouseStock in createdItem.WarehouseList">
+                                            <td class="text-left"><span>{{ warhouseStock.VendorWarehouseNumber }}</span></td>
+                                            <td class="text-left" style="padding: 0px;">
+                                                <div>
+                                                    <input ng-model="warhouseStock.Quantity"
+                                                        type="text"
+                                                        vd-number="int"
+                                                        ng-required="!isSingleWarehouseVendor"
+                                                        ng-disabled="quantityDisabled"
+                                                        class="col-sm-12" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" style="width: 76px;">
+                    <i class="icon-save"></i>
+                    {{ 'header_itemlist.dialogOK' | translate }}
+                </button>
+                <button type="button" class="btn btn-danger btn-sm" ng-click="closeAddItemModal()" style="width: 76px;">
+                    <i class="icon-undo"></i>
+                    {{ 'header_itemlist.dialogCancel' | translate }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!---->
+<div modal="warehouseDetailModal" close="closeWarehouseDetail()" options="{backdrop: true,dialogFade:true}">
+    <div class="modal-dialog" style="width: 300px">
+        <form name="warehouseDetailForm" class="modal-content" ng-submit="editStockQtyOKClick()">
+            <div class="widget-header">
+                <h4><i class="icon-hand-right"></i>&nbsp;{{ 'header_itemlist.whDetailHeader' | translate }}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-xs-12 no-padding">
+                    <a href="#" vd-auth="Submit" class="pull-right" style="text-decoration: underline;" ng-click="editStockQtyClick()" ng-show="currentItemBak.Status=='A'?true:false">{{ 'header_itemlist.editStockQty' | translate }}</a>
+                </div>
+                <table class="table table-detail">
+                    <thead>
+                        <tr>
+                            <td>{{ 'header_itemlist.warehouseNumber' | translate }}</td>
+                            <td>{{ 'header_itemlist.qty' | translate }}</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="warhouseStock in currentItemBak.WarehouseList">
+                            <td class="text-left"><span>{{ warhouseStock.VendorWarehouseNumber }}</span></td>
+                            <td class="text-right" style="width:90px" ng-show="!isEditStockQty" ng-style="warhouseStock.QuantityDB!=warhouseStock.Quantity?{'background-color': '#F5F58E'}:{}"><span>{{ warhouseStock.Quantity }}</span></td>
+                            <td class="text-left" ng-show="isEditStockQty" style="padding: 0px; width:90px">
+                                <div style="width:auto">
+                                    <input ng-model="warhouseStock.Quantity"
+                                        type="text"
+                                        vd-number="int"
+                                        required
+                                        style="height:24px;width:90px; text-align:right; padding:1px 1px;" />
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer no-margin-top">
+                <button class="btn btn-primary btn-sm" style="width: 76px;" ng-show="isEditStockQty">
+                    <i class="icon-save"></i>
+                    {{ 'header_itemlist.dialogOK' | translate }}
+                </button>
+                <button type="button" class="btn btn-danger btn-sm" ng-click="closeWarehouseDetail()">
+                    <i class="icon-undo"></i>
+                    {{ 'view_itemlist.close' | translate }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,219 @@
+﻿<style>
+    html[data-useragent*='MSIE'] .vp-home-row {
+        margin-right: 0px;
+    }
+
+    html[data-useragent*='MSIE'] .vp-agent-row {
+        margin-right: 12px;
+    }
+
+    .btn-100 {
+        width: 100px;
+    }
+
+    .btn-xs-2 {
+        padding: 3px 5px;
+    }
+    .disabled {
+      cursor: not-allowed;
+    }
+</style>
+
+
+<div class="row vp-agent-margin vp-agent-row">
+    <vd-agent click="initData()" />
+</div>
+<vd-cover bottom="-340"></vd-cover>
+<div class="row vp-home-row">
+
+    <!-- Prerequisite Status-->
+    <div class="col-xs-12 widget-container-col ui-sortable no-padding-left mb-5">
+        <div class="widget-box widget-color-blue2 ui-sortable-handle">
+            <div class="widget-header widget-header-small">
+                <h5 class="widget-title lighter">
+                    <strong>{{ 'view_sf.prerequisiteStatus_1' | translate }}</strong>
+                    <span class="hidden-xs hidden-sm">{{ 'view_sf.prerequisiteStatus_2' | translate }}</span>
+                </h5>
+                <div class="widget-toolbar">
+                    <a href="#" ng-click="initPrerequsiteItemList()">
+                        <i class="ace-icon icon-refresh white"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="widget-body">
+                <div class="widget-main no-padding">
+                    <table class="table table-bordered table-striped dashboard-table">
+                        <thead class="thin-border-bottom">
+                            <tr>
+                                <th>{{ 'header_sf.prerequisite' | translate }}
+                                </th>
+                                <th style="width: 150px">{{ 'header_sf.status' | translate }}
+                                </th>
+                                <th style="width: 180px">{{ 'header_sf.action' | translate }}
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="item in PrerequsiteItemList | orderBy: 'Id'">
+                                <td>
+                                    <label>{{item.Name}}</label></td>
+                                <td>
+                                    <label ng-class="getPrerequisiteStatusColor(item.Status)">{{item.StatusDescription}}</label></td>
+                                <td>
+                                    <a class="btn btn-xs btn-100 btn-grey" href="#" ng-click="navigate('/self-testing-prerequisite',$index+1)">
+                                        <i class="ace-icon  icon-pencil align-top bigger-120"></i>
+                                        {{ 'header_sf.label_edit' | translate }}
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Connection Setup-->
+    <div class="col-xs-12 widget-container-col ui-sortable no-padding-left mb-15">
+        <div class="widget-box widget-color-blue2 ui-sortable-handle">
+            <div class="widget-header widget-header-small">
+                <h5 class="widget-title lighter">
+                    <strong>{{ 'view_sf.connectionSetup_1' | translate }}</strong>
+                    <span class="hidden-xs hidden-sm">{{ 'view_sf.connectionSetup_2' | translate }}</span>
+                </h5>
+                <div class="widget-toolbar">
+                    <a href="#" ng-click="initConnectionList()">
+                        <i class="ace-icon icon-refresh white"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="widget-body">
+                <div class="widget-main no-padding">
+                    <table class="table table-bordered table-striped dashboard-table">
+                        <thead class="thin-border-bottom">
+                            <tr>
+                                <th>{{ 'header_sf.connectionName' | translate }}
+                                </th>
+                                <th>{{ 'header_sf.connectionProtocol' | translate }}
+                                </th>
+                                <th>{{ 'header_sf.type' | translate }}
+                                </th>
+                                <th style="width: 150px">{{ 'header_sf.status' | translate }}
+                                </th>
+                                <th style="width: 180px">{{ 'header_sf.action' | translate }}
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="item in VendorConnectionList">
+                                <td style="max-width: 380px;word-wrap:break-word;">
+                                    {{item.ConnectionName}}</td>
+                                <td>
+                                    <label>{{item.ConnectionProtocol}}</label></td>
+                                <td>
+                                    <label>{{item.ConnectionType}}</label></td>
+                                <td>
+                                    <label ng-class="getConnectionStatusColor(item.ConnectionStatus)">{{item.ConnectionStatusDescription}}</label></td>
+                                <td>
+                                    <div class="btn-group" ng-init="item.actionName='Action'">
+                                        <button  data-toggle="dropdown" class="btn btn-info btn-xs btn-grey btn-100 btn-xs-2 dropdown-toggle">
+                                            {{ item.actionName }}
+                                            <span class="ace-icon icon-caret-down icon-on-right"></span>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-inverse">
+                                            <li>
+                                                <a href="#" ng-click="goConnection(item)">{{ 'header_sf.label_edit' | translate }}</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" ng-click="removeConnection(item)">{{ 'header_sf.label_delete' | translate }}</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" ng-click="goConnectionTest(item)" >{{ 'header_sf.label_test' | translate }}</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" ng-show="item.ConnectionType == 'Production'" ng-click="connectionGoLive(item)">{{ 'header_sf.label_goLive' | translate }}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 no-padding">
+            <a class="btn btn-white btn-info btn-bold pull-right" href="#" ng-click="navigate('/self-testing-connection','add')" ng-disabled="connectionDisabled">
+                <i class="icon-plus"></i>
+                Add a Connection
+            </a>
+        </div>
+    </div>
+
+    <!-- EDI X12 Setup-->
+    <div class="col-xs-12 widget-container-col ui-sortable no-padding-left">
+        <div class="widget-box widget-color-blue2 ui-sortable-handle">
+            <div class="widget-header widget-header-small">
+                <h5 class="widget-title lighter">
+                    <strong>{{ 'view_sf.ediX12Setup' | translate }}</strong>
+                </h5>
+                <div class="widget-toolbar">
+                    <a href="#" ng-click="initEdiFileSetup()">
+                        <i class="ace-icon icon-refresh white"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="widget-body">
+                <div class="widget-main no-padding">
+                    <table class="table table-bordered table-striped dashboard-table">
+                        <thead class="thin-border-bottom">
+                            <tr>
+                                <th>{{ 'header_sf.ediMessage' | translate }}
+                                </th>
+                                <th style="width: 150px">{{ 'header_sf.status' | translate }}
+                                </th>
+                                <th style="width: 180px">{{ 'header_sf.action' | translate }}
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="item in SetupList">
+                                <td>
+                                    <label>{{getEdiFileDesc(item.FileType)}}</label></td>
+                                <td>
+                                    <label ng-class="getX12StatusColor(item.SetupStatus)">{{item.SetupStatusDesc}}</label></td>
+                                <td>
+                                    <div class="btn-group" ng-init="item.actionName='Action'" ng-class="{'dropup':$index == 4}">
+                                        <button data-toggle="dropdown" class="btn btn-info btn-xs btn-grey btn-100 btn-xs-2 dropdown-toggle">
+                                            {{ item.actionName }}
+                                            <span class="ace-icon icon-caret-down icon-on-right"></span>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-inverse">
+                                            <li>
+                                                <a href="#" ng-click="navigateToSurvey('/self-testing-x12',item,$index+1)">{{ 'header_sf.label_survey' | translate }}</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" ng-click ="navigateToX12Testing('/self-testing-x12-test',item,$index+1)">{{ 'header_sf.label_test' | translate }}</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" ng-click="ediFileGoLive(item)">{{ 'header_sf.label_goLive' | translate }}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

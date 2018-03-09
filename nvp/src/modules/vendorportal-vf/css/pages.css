@@ -1,0 +1,236 @@
+﻿.vp-page {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background: #FFF;
+    border-radius: 3px;
+    color: #404040;
+    -webkit-border-radius: 3px;
+    border: 1px solid #EDEDED;
+    border-bottom: 1px solid #e2e2e2;
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.06);
+    transition: padding 500ms;
+    -moz-transition: padding 500ms;
+    -webkit-transition: padding 500ms;
+}
+
+.vp-page-header {
+    background: #f7f7f7;
+    border-bottom: 8px solid #f1f1f1;
+    padding: 16px 25px 15px 12px;
+}
+
+.vp-page-header-logo {
+    height: 26px;
+    width: 26px;
+    margin: 0px 29px 0 18px;
+    float: left;
+    font-size: 36px;
+}
+
+.vp-page-header-title {
+    float: left;
+    margin-top: -8px;
+    font-size: 20px;
+}
+
+.vp-page-header-address {
+    margin: -5px 0 0 30px;
+    float: left;
+    border-left: 5px solid #e8e8e8;
+    color: #959595;
+    display: block;
+    font-size: 12px;
+    line-height: 15px;
+    padding-left: 8px;
+}
+
+.vp-page-header-desc {
+    font-weight: normal;
+    font-size: 14px;
+    color: #555555;
+}
+
+.vp-page-label {
+    padding:5px 0;
+    font-size: 13px;
+}
+
+.vp-page-label2
+{
+
+}
+
+.vp-page-header2 label
+{
+    font-size:13px;
+}
+
+.vp-page-info {
+    padding: 2px 0 8px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.vp-page-dashed {
+    border-bottom: 1px dashed #CECECE;
+}
+
+.vp-page-br {
+    border-left: 1px solid rgba(0,0,0,0.12);
+}
+
+.vp-page-address {
+    margin: 15px 0 0 0;
+    padding-bottom:15px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.vp-page-info-recipient {
+    background: #EAEAEA;
+    border-radius: 999px;
+    color: #888;
+    font-size: 13px;
+    font-weight: 600;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    width: 55px;
+}
+
+.vp-page-info-address {
+    line-height: 18px;
+    padding-left: 1px;
+}
+
+.vp-page-row {
+    font-size: 13px;
+    display: table-row;
+}
+
+    .vp-page-row .name {
+        text-align: left;
+        padding: 4px 6px 1px 0px;
+        font-weight: normal;
+        color: #747474;
+        background-color: transparent;
+        border-bottom: 1px dotted #D5E4F1;
+        display: table-cell;
+        vertical-align: middle;
+        margin-right: 7px;
+        width: 125px;
+    }
+
+    .vp-page-row .value {
+        display: table-cell;
+        padding: 4px 0px 1px 0px;
+        color: #626464;
+        font-weight: 600;
+        vertical-align: middle;
+        border-bottom: 1px dotted #D5E4F1;
+    }
+
+
+.vp-page-row2 {
+    font-size: 13px;
+    display: table-row;
+}
+
+    .vp-page-row2 .name {
+        text-align: left;
+        padding: 4px 6px 1px 0px;
+        font-weight: 600;
+        background-color: transparent;
+        border-bottom: 1px dotted #D5E4F1;
+        display: table-cell;
+        vertical-align: middle;
+        margin-right: 7px;
+        width: 125px;
+    }
+
+    .vp-page-row2 .value {
+        display: table-cell;
+        padding: 4px 0px 1px 0px;
+        font-weight: normal;
+        vertical-align: middle;
+        border-bottom: 1px dotted #D5E4F1;
+        word-break: break-all;
+    }
+
+.vp-widget {
+    background-color: #ffffff;
+    border: 1px solid #DBE5E8;
+}
+
+    .vp-widget .vp-widget-header {
+        padding: 3px 10px;
+        height: 28px;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: #EAF2F5;
+        background-color: #EAF2F5 !important;
+    }
+
+.vp-widget-header-title {
+    font-size: 13px;
+}
+
+.vp-widget .vp-widget-content {
+    padding: 5px 11px 4px 11px;
+}
+
+.vp-widget .vp-widget-footer {
+    padding: 2px 10px 0px 10px;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #EAF2F5;
+    background-color: white !important;
+}
+
+.vp-page-footer {
+    padding: 8px 10px 3px 10px;
+}
+
+.vp-page-footer-label {
+    padding: 0 0 0 3px;
+    color: #555555;
+}
+
+.vp-ul > li > div {
+    border: 1px solid #ecebeb;
+    box-shadow: 1px 1px 3px #8EA2B2;
+}
+
+.vp-edit-input-margin {
+    margin: 2px 0px;
+}
+
+.vp-edit-input {
+    height: 25px !important;
+    padding-right: 0px !important;
+    padding-bottom: 2px !important;
+}
+
+.vp-edit-input-central {
+    height: 25px !important;
+    padding-top: 1px !important;
+    padding-right: 0px !important;
+    padding-bottom: 1px !important;
+    vertical-align: central;
+}
+
+.tooltip-inner {
+    max-width: 400px !important;
+}
+
+
+.fixedBottomPanel {
+    position: fixed;
+    bottom: 48px;
+    right: 20px;
+    width: 600px;
+    text-align: right;
+    background-color: transparent;
+}
+
+.vp-striped {
+    background-color: #F0F3F7;
+}

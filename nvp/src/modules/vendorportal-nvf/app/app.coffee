@@ -1,0 +1,12 @@
+﻿angular.module('vendorportal-nvf-system',[
+  'nvp-inventory-report',
+  'nvp-sell-through-report',
+  'nvp-purchasing-report'
+  'nvp-rma-report'
+  'nvp-iron-egg-price-match-report'
+  'nvp-vendor-queue-report'
+  'nvp-whs-receiving-violation-report'
+  'nvp-customer-reviews'
+  'nvp-product-reviews'
+  'nvp-out-of-stock-report'
+])

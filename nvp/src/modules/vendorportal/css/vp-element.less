@@ -1,0 +1,106 @@
+@vp_form_element_height: 30px;
+@vp_normal_fontSize: 13px;
+
+/************************** elements ****************************/
+label
+{
+    font-size: @vp_normal_fontSize - 1;
+}
+
+
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], select.form-control
+{
+    font-size: @vp_normal_fontSize;
+    height: @vp_form_element_height;
+}
+
+select
+{
+    padding:4px 3px 4px 7px !important;
+    height: @vp_form_element_height;
+}
+
+.angular-date-range-picker__input
+{
+    border: 1px solid #cdcdcd;
+    padding: 5px 10px;
+    height: @vp_form_element_height - 12;
+    color: #575757;
+}
+
+input[type=checkbox].ace.ace-checkbox-2:checked + .lbl::before, input[type=radio].ace.ace-checkbox-2:checked + .lbl::before
+{
+    background-color: #6cb5f4;
+    border-color: #6cb5f4;
+    color: #FFF;
+}
+.btn-sm {
+  height: 30px !important;
+  padding:2px 5px !important;
+}
+.vp-checkbox
+{
+    margin-top: 5px;
+}
+
+.input-icon
+{
+    top: none !important;
+    bottom: none !important;
+}
+
+    .input-icon > .ace-icon
+    {
+        top: 0px !important;
+        bottom: 1px !important;
+    }
+
+    .input-icon > input[type=text]
+    {
+        padding-left: 22px !important;
+    }
+
+    .input-icon > i
+    {
+        padding-left: 4px !important;
+        font-size: 13px !important;
+    }
+
+.color-label
+{
+    float: left;
+    margin-right: 5px;
+}
+
+.color-label-background
+{
+    background-color: rgba(74, 153, 227, 0.13);
+}
+
+.color-label-icon
+{
+    margin-top: -2px !important;
+}
+
+.color-label-a
+{
+    margin-left: 12px;
+    margin-right: 5px;
+    color: rgba(58, 125, 183, 0.58);
+}
+
+.color-label-title
+{
+    padding-top: 4px;
+    padding-left: 7px !important;
+    padding-right: 5px;
+}
+
+.color-label-remove
+{
+    margin-left: 15px;
+    text-decoration: underline;
+    font-weight: bold;
+    color: #37689f;
+    line-height: 27px;
+}

@@ -1,0 +1,109 @@
+NEG.namespace('resources.vendorportal_nvf.customer_reviews.cn',
+  view_customer_reviews:
+    Search:"查询"
+    Result:"结果"
+    ProductSummary:"商品汇总"
+    KeyWords:"关键字:"
+    KeyWordsPlaceholder:"输入关键字..."
+    NeweggItemNumber:"新蛋商品编号"
+    ItemDescription:"商品描述"
+    Category:"商品类别:"
+    Status:"状态:"
+    Date:"时间:"
+    SortBy:"排序:"
+    RatingFilter:"等级过滤"
+    Filter:"过滤"
+    F_Rating:"等级"
+    F_Status:"状态"
+    Results:"个结果"
+    PageSize:"每页页数:"
+    ReadAllReviews:"阅读所有评论"
+    By:"来自于"
+    Pros:"优点:"
+    Cons:"缺点:"
+    OtherThoughts:"其他想法:"
+    Reply:"答复"
+    ViewReply:"显示答复"
+    EditReply:"编辑答复"
+    Notice:"注意："
+    UploadGuidelines:"答复指南"
+    Comment:"答复客户评论..."
+    AddLink:"添加衔接"
+    Clear:"清除"
+    SaveDraft:"保存草稿"
+    ApplyFilter:"执行过滤"
+    Close:"关闭"
+    AttachmentTitle:"请给这个附件添加标题。"
+    LinkTitle:"请给这个衔接添加标题"
+    LinkDes:"添加衔接"
+    ItemNumber:"商品编号："
+    MPN:"型号:"
+    LatestReview:"最近评论时间:"
+    TotalReviews:"所有评论:"
+    AverageRating:"平均等级:"
+    ViewNewegg:"在Newegg上查看商品"
+    BackPage:"Back Page"
+    Refresh:"Refresh Page"
+    Submit:"提交"
+  status_customer_reviews:
+    All:"所有评论"
+    NoReply:"等待回复"
+    Draft:"草稿回复"
+    Pending:"回复待审核"
+    Approved:"回复通过"
+    Declined:"回复失败"
+  sort_customer_reviews:
+    Date:"发布时间"
+    Highest:"高评价等级"
+    Lowest:"低评价等级"
+  buttonPanel_customer_reviews:
+    TimeRange:'时间范围'
+    UploadGuidelines:'答复指南'
+    Confirm:'确认'
+  msg_customer_reviews:
+    msg_filter:'默认情况下,所有等级不勾选，会查询所有。'
+    msg_timeRange:'时间限制可以追溯到2011年5月。如果你想查询之前的记录,请联系新蛋网支持团队寻求帮助。'
+    msg_notice1:'回复最多2000字，并且在上传到网站之前要受到新蛋内容管理部门的复核以及谨慎的批准。 '
+    msg_notice2:'回复应当礼貌客气并且设法解决客户评论中提出的问题'
+    msg_upload:'最多上传5个附件,每个附件不能超过5 MB的大小,并且限制'
+    msg_upload_filetype:"文件类型"
+    msg_upload_tooltip:"上传文件类型只能是下列格式的:PDF, TXT, JPG, GIF, RAR, DOC, XLS, PPT, HTML, HTM and BMP."
+    msg_link:'最多只能添加5个衔接'
+    msg_upload_1:'1.供应商不得上传包含不适当内容的文件. '
+    msg_upload_1_1:'包含亵渎内容的'
+    msg_upload_1_2:'包含裸露内容的'
+    msg_upload_1_3:'包含攻击性内容的图片'
+    msg_upload_2:'2.不得上传包含与竞争品牌，竞争品牌产品比较的内容。'
+    msg_upload_3:'3.不得上传包含指向竞争对手或经销商URL的内容。'
+    msg_upload_4:'4.上传的内容中不得包含不在厂商原始文件且非厂商认可的非官方指南。（如超频，硬件破解，调整及改机）。'
+    msg_upload_5:'5.上传文件大小应小于5MB。'
+    msg_upload_6:'6.上传的文件或URL指向的内容必须获得版权所有者的授权。'
+    msg_upload_7:'7.不能包含时间敏感信息，如定价。'
+    msg_upload_8:'8.对顾客评论的回应应礼貌且尽力帮助解决评论中提到的问题。'
+    msg_upload_9:'9.必须遵守所有适用的法律。'
+    msg_upload_10:'10.供应商不得侵犯任何第三方的任何权利。'
+    msg_upload_11:'对您在此提交的文档，你给予Newegg.com一个非独占的，免版税的，永久的和不可撤销的使用权。Newegg.com可以在我们认为必要的情况下 复制和修改该文档用于Newegg.com网站或其他营销材料中。'
+    msg_upload_12:'您保证您拥有或以其他方式控制您提交内容的权利，且保证内容是准确的。如果有任何指南的违反， 您同意赔偿和保证不损及Newegg.com及其董事，管理人员和员工。 Newegg.com对您或任何第三方发布的任何内容不承担任何责任。'
+  confirm_customer_reviews:
+    clear:"您确认清空当前答复信息吗?"
+    change:"您的更改尚未保存，如果继续将放弃更改，是否继续?"
+    submit:"您确认提交当前答复信息吗?"
+    saveDraft:"您确认保存当前答复为草稿吗?"
+  error_customer_reviews:
+    add_reply:"添加答复失败。"
+    edit_reply:"修改答复失败。"
+    upload:"上传文件失败"
+  success_customer_reviews:
+    save:"保存草稿成功。"  
+    submit:"你的答复提交成功。"
+  warning_customer_reviews:
+    contentEmpty:"回复内容不能为空。"
+    linkEmpty:"衔接标题和地址不能为空。"
+    fileEmpty:"上传文件标题不能为空。"
+    linkValid:"请输入有效的衔接地址。"
+    linkMaxCount:"衔接数量不能超过5个。"  
+    uploadCheck_1:"上传文件的扩展名必须是 \".pdf .txt .jpg .gif .rar .doc .xls .ppt .html .htm .bmp \", please select a valid file to upload."
+    uploadCheck_2:"上传文件的大小必须小于5M, 请重新上传有效的文件。"
+    uploadCheck_3:"上传文件内容不能为空，请重新上传有效的文件。"
+    dateCheck:"必须输入开始时间和结束时间，并且结束时间大于等于开始时间。"
+)

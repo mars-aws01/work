@@ -1,0 +1,332 @@
+﻿<style>
+.grey {
+    color: #5D5D5D !important;
+}
+
+.sf-guide p {
+    color: #5D5D5D !important;
+}
+
+.vp-wizard-completed .label {
+    background: #9CC96B !important;
+}
+
+.vp-wizard-completed .guide-title {
+    color: #9CC96B;
+}
+
+.vp-wizard-steps > li {
+    width: 20%;
+}
+
+.refresh {
+    position: relative;
+    top: 0px;
+    right: 10px;
+}
+
+.x12-profile {}
+
+.x12-profile h4 {
+    font-weight: 200 !important;
+    font-size: 16px;
+}
+
+.x12-profile p {
+    margin: 3px 0 3px 2px;
+}
+.td-trim{
+    width: auto;
+    max-width: 142px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+</style>
+<h3 class="header grey" style="margin-top: 19px;">{{ 'x12Test_sf.title' | translate }}</h3>
+<div class="row sf-guide">
+    <div class="col-xs-12 text-left">
+        <div id="wizard" class="vp-wizard clearfix no-padding">
+            <ol class="vp-wizard-steps clearfix clickable" role="tablist">
+                <li ng-class="{'active':currentStep==1,'vp-wizard-completed':stepInfo.step1}" ng-click="change(1)">
+                    <span class="label badge">1</span>
+                    <a class="guide-title" href="#">{{ 'x12_sf.title_1' | translate }}</a>
+                    <a href="#"><small>{{ 'x12_sf.title_1_desc' | translate }}</small></a>
+                </li>
+                <li ng-class="{'active':currentStep==2,'vp-wizard-completed':stepInfo.step2}" ng-click="change(2)">
+                    <span class="label badge">2</span>
+                    <a class="guide-title" href="#">{{ 'x12_sf.title_2' | translate }}</a>
+                    <a href="#"><small>{{ 'x12_sf.title_2_desc' | translate }}</small></a>
+                </li>
+                <li ng-class="{'active':currentStep==3,'vp-wizard-completed':stepInfo.step3}" ng-click="change(3)">
+                    <span class="label badge">3</span>
+                    <a class="guide-title" href="#">{{ 'x12_sf.title_3' | translate }}</a>
+                    <a href="#"><small>{{ 'x12_sf.title_3_desc' | translate }}</small></a>
+                </li>
+                <li ng-class="{'active':currentStep==4,'vp-wizard-completed':stepInfo.step4}" ng-click="change(4)">
+                    <span class="label badge">4</span>
+                    <a class="guide-title" href="#">{{ 'x12_sf.title_4' | translate }}</a>
+                    <a href="#"><small>{{ 'x12_sf.title_4_desc' | translate }}</small></a>
+                </li>
+                <li ng-class="{'active':currentStep==5,'vp-wizard-completed':stepInfo.step5}" ng-click="change(5)">
+                    <span class="label badge">5</span>
+                    <a class="guide-title" href="#">{{ 'x12_sf.title_5' | translate }}</a>
+                    <a href="#"><small>{{ 'x12_sf.title_5_desc' | translate }}</small></a>
+                </li>
+            </ol>
+            <div class="well vp-wizard-content grey" style="background-color: white; border-radius: 3px;">
+                <a class="refresh pull-right" href="#" title="{{ 'framework_button.refresh' | translate }}" ng-click="refresh()" ng-hide="currentStep == 2">
+                    <i class="icon-refresh bigger-160"></i>
+                </a>
+                <!-- step 1 & 846 -->
+                <div class="row no-margin" ng-class="{'active':currentStep==1}">
+                    <form name="stepForm_1">
+                        <h4 class="grey">{{ 'x12Test_sf.desc_846_1' | translate }}
+                        <span class="label label-lg arrowed label-success pull-right" style="margin-right: 16px;margin-top: -2px;" ng-show="entity.InventoryTest.IsPassed == true">
+                            {{ 'connectionTest_sf.lb_passed' | translate}}
+                            </span>
+                        </h4>
+                        <div class="col-md-12 well well-lg">
+                            <div class="col-xs-12 no-padding mb-15">
+                                <div class="col-md-10 no-padding" id="inventory">
+                                    <input type="file" name="uploadFile" url="url" ng-file-select ng-click="setCurrentUploadItem('inventory',null)" />
+                                </div>
+                                <div class="col-md-2 text-right no-padding">
+                                    <button class="btn btn-info btn-xs" style="margin-top: 2px;" type="button" ng-click="uploadFile('inventory',null)">
+                                        <i class="icon-upload-alt"></i>&nbsp;{{ 'connection_sf.btn_UploadC' | translate }}
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 no-padding-right alert" ng-class="{'alert-success':entity.InventoryTest.IsPassed,'alert-warning':entity.InventoryTest.IsPassed != true}" ng-show="entity.InventoryTest.TestResult">
+                                <strong>{{ entity.InventoryTest.TestResult }}</strong>
+                            </div>
+                            <h5 class="grey">{{ 'x12Test_sf.desc_846_2' | translate }}
+                        </h5>
+                            <div class="col-xs-12 no-padding mb-20">
+                                <table class="table table-bordered table-striped dashboard-table">
+                                    <thead>
+                                        <tr>
+                                            <th>{{ 'x12Test_sf.header_846_1' | translate}}</th>
+                                            <th>{{ 'x12Test_sf.header_846_2' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in entity.InventoryWarehouseList">
+                                            <td>{{ item.WarehouseAddress }}
+                                            </td>
+                                            <td>{{ item.WarehouseCode }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <h5 class="grey">{{ 'x12Test_sf.desc_846_3' | translate }}
+                        </h5>
+                            <div class="col-xs-12 no-padding">
+                                <table class="table table-bordered table-striped dashboard-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:20%">{{ 'guide_sf.items_header_1' | translate}}</th>
+                                            <th style="width:20%">{{ 'guide_sf.items_header_2' | translate}}</th>
+                                            <th style="width:20%">{{ 'guide_sf.items_header_3' | translate}}</th>
+                                            <th style="width:30%">{{ 'guide_sf.items_header_4' | translate}}</th>
+                                            <th style="width:10%">{{ 'guide_sf.items_header_5' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in entity.InventoryItemList">
+                                            <td class="td-trim" style="width:20%;" title="{{ item.VendorPartNumber }}">
+                                                {{ item.VendorPartNumber }}
+                                            </td>
+                                            <td class="td-trim" style="width:20%;" title="{{ item.ManufacturerPartNumber }}">{{ item.ManufacturerPartNumber }}
+                                            </td>
+                                            <td class="td-trim" style="width:20%;" title="{{ item.UPC }}">
+                                                {{ item.UPC }}
+                                            </td>
+                                            <td class="td-trim" style="width:30%;" title="{{ item.Description }}">
+                                                {{ item.Description }}
+                                            </td>
+                                            <td class="td-trim" style="width:10%;" title="{{ item.Cost }}">
+                                                {{ item.Cost }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                        <!--<div class="col-xs-12 no-padding text-center mt-20">
+                            <a class="btn btn-primary btn-sm" href="#" ng-click="save_846()">
+                                <i class="icon-save">&nbsp;</i>
+                                {{ 'common_sf.btn_save' | translate }}
+                            </a>
+                        </div>-->
+                    </form>
+                </div>
+                <!-- step 2 & 850 -->
+                <div class="row no-margin" ng-class="{'active':currentStep==2}">
+                    <form name="stepForm_2">
+                        <h4 class="grey mb-20">{{ 'x12Test_sf.desc_850_1' | translate }}
+                        </h4>
+                        <div class="col-md-12 well well-lg" ng-repeat="data in x12TestData2">
+                            <h4 class="blue">{{ $index+1 }}. Test using PO {{ data.text1 }}
+                            </h4>
+                            <p><strong>Test PO Number:</strong> {{ data.text1 }}</p>
+                            <p><strong>Test Scenarios:</strong> {{ data.text2 }}</p>
+                            <p>
+                                <!--<strong>Result:</strong> <span class="green">Passed</span>-->
+                                <!--<span>
+                                    <i class="icon icon-hand-right blue bigger-130"></i>
+                                </span>-->
+                                <a class="btn-link grey underline" ng-click="downloadFile(data.text1)">{{ 'common_sf.btn_download' | translate}}
+                                    <i class="icon-download-alt"></i>
+                                </a>
+                            </p>
+                            <!--<hr class="hr hr-20 col-xs-12" />-->
+                        </div>
+                        <!-- <div class="col-xs-12 no-padding  text-center mt-20">
+                            <a class="btn btn-primary btn-sm" href="#" ng-click="save_850()">
+                                <i class="icon-save">&nbsp;</i>
+                                {{ 'common_sf.btn_save' | translate }}
+                            </a>
+                        </div>-->
+                    </form>
+                </div>
+                <!-- step 3 & 855-->
+                <div class="row no-margin" ng-class="{'active':currentStep==3}">
+                    <form name="stepForm_3">
+                        <h4 class="grey mb-20">{{ 'x12Test_sf.desc_855_1' | translate }}
+                        </h4>
+                        <div class="col-md-12 well well-lg" ng-repeat="item in entity.PurchaseOrderAckTest">
+                            <h4 class="blue">{{ $index+1 }}. Test using PO {{ item.BusinessNumber }}
+                            <span class="label label-lg arrowed label-success pull-right" ng-show="item.IsPassed">
+                            {{ 'connectionTest_sf.lb_passed' | translate}}
+                            </span>
+                            </h4>
+                            <p><strong>Test PO Number:</strong> {{ item.BusinessNumber }}</p>
+                            <p><strong>Test Scenarios:</strong> {{ getTestScenarios(item.BusinessNumber) | menuLocalize }}</p>
+                            <!--<p>
+                                <strong>Test Result:</strong> {{ item.TestResult }}
+                            </p>-->
+                            <div class="col-xs-12 no-padding mt-10">
+                                <div class="col-md-10 no-padding" ng-attr-id="{{'purchase-order-ack'+item.BusinessNumber}}">
+                                    <input type="file" name="uploadFile" url="url" ng-file-select ng-click="setCurrentUploadItem('purchase-order-ack', item.BusinessNumber)" />
+                                </div>
+                                <div class="col-md-2 text-right no-padding">
+                                    <button class="btn btn-info btn-xs" style="margin-top: 2px;" type="button" ng-click="uploadFile('purchase-order-ack',item.BusinessNumber)">
+                                        <i class="icon-upload-alt"></i>&nbsp;{{ 'connection_sf.btn_UploadC' | translate }}
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 no-padding-right alert" ng-class="{'alert-success':item.IsPassed,'alert-warning':item.IsPassed != true}" style="margin-top:4px;margin-bottom: -10px;" ng-show="item.TestResult">
+                                <strong>{{ item.TestResult }}</strong>
+                            </div>
+                            <!--<hr class="hr hr-20 col-xs-12" />-->
+                        </div>
+                        <!--<div class="col-xs-12 no-padding text-center mt-20">
+                            <a class="btn btn-primary btn-sm" href="#" ng-click="save_855()">
+                                <i class="icon-save">&nbsp;</i>
+                                {{ 'common_sf.btn_save' | translate }}
+                            </a>
+                        </div>-->
+                    </form>
+                </div>
+                <!-- step 4 & 856 -->
+                <div class="row no-margin" ng-class="{'active':currentStep==4}">
+                    <form name="stepForm_4">
+                        <h4 class="grey mb-20">{{ 'x12Test_sf.desc_856_1' | translate }}
+                        </h4>
+                        <div class="col-md-12 well well-lg" ng-repeat="item in entity.ShipmentTest">
+                            <h4 class="blue">{{ $index+1 }}. Test using PO {{ item.BusinessNumber }}
+                            <span class="label label-lg arrowed label-success pull-right" ng-show="item.IsPassed">
+                            {{ 'connectionTest_sf.lb_passed' | translate}}
+                            </span>
+                            </h4>
+                            <p><strong>Test PO Number:</strong> {{ item.BusinessNumber }}</p>
+                            <p><strong>Test Scenarios:</strong> {{ getTestScenarios(item.BusinessNumber) | menuLocalize }}</p>
+                            <p>
+                                <!--<strong>Result:</strong> <span class="green">Passed</span>-->
+                            </p>
+                            <div class="col-xs-12 no-padding mt-10">
+                                <div class="col-md-10 no-padding"  ng-attr-id="{{'shipment'+item.BusinessNumber}}">
+                                    <input type="file" name="uploadFile" url="url" ng-file-select ng-click="setCurrentUploadItem('shipment', item.BusinessNumber)" />
+                                </div>
+                                <div class="col-md-2 text-right no-padding">
+                                    <button class="btn btn-info btn-xs" style="margin-top: 2px;" type="button" ng-click="uploadFile('shipment',item.BusinessNumber)">
+                                        <i class="icon-upload-alt"></i>&nbsp;{{ 'connection_sf.btn_UploadC' | translate }}
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 no-padding-right alert" ng-class="{'alert-success':item.IsPassed,'alert-warning':item.IsPassed != true}" style="margin-top:4px;margin-bottom: -10px;" ng-show="item.TestResult">
+                                <strong>{{ item.TestResult }}</strong>
+                            </div>
+                            <!--<hr class="hr hr-20 col-xs-12" />-->
+                        </div>
+                        <!--<div class="col-xs-12 no-padding text-center mt-20">
+                            <a class="btn btn-primary btn-sm" href="#" ng-click="save_856()">
+                                <i class="icon-save">&nbsp;</i>
+                                {{ 'common_sf.btn_save' | translate }}
+                            </a>
+                        </div>-->
+                    </form>
+                </div>
+                <!-- step 5 & 810 -->
+                <div class="row no-margin" ng-class="{'active':currentStep==5}">
+                    <form name="stepForm_5">
+                        <h4 class="grey mb-20">{{ 'x12Test_sf.desc_810_1' | translate }}
+                        </h4>
+                        <div class="col-md-12 well well-lg" ng-repeat="item in entity.InvoiceTest">
+                            <h4 class="blue">{{ $index+1 }}. Test using PO {{ item.BusinessNumber }}
+                            <span class="label label-lg arrowed label-success pull-right" ng-show="item.IsPassed">
+                            {{ 'connectionTest_sf.lb_passed' | translate}}
+                            </span>
+                            </h4>
+                            <p><strong>Test PO Number:</strong> {{ item.BusinessNumber }}</p>
+                            <p><strong>Test Scenarios:</strong> {{ getTestScenarios(item.BusinessNumber) | menuLocalize }}</p>
+                            <p>
+                                <!--<strong>Result:</strong> <span class="green">Passed</span>-->
+                            </p>
+                            <div class="col-xs-12 no-padding mt-10">
+                                <div class="col-md-10 no-padding" ng-attr-id="{{'invoice'+item.BusinessNumber}}">
+                                    <input type="file" name="uploadFile" url="url" ng-file-select ng-click="setCurrentUploadItem('invoice', item.BusinessNumber)" />
+                                </div>
+                                <div class="col-md-2 text-right no-padding">
+                                    <button class="btn btn-info btn-xs" style="margin-top: 2px;" type="button" ng-click="uploadFile('invoice',item.BusinessNumber)">
+                                        <i class="icon-upload-alt"></i>&nbsp;{{ 'connection_sf.btn_UploadC' | translate }}
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 no-padding-right alert" ng-class="{'alert-success':item.IsPassed,'alert-warning':item.IsPassed != true}" style="margin-top:4px;margin-bottom: -10px;" ng-show="item.TestResult">
+                                <strong>{{ item.TestResult }}</strong>
+                            </div>
+                            <!--<hr class="hr hr-20 col-xs-12" />-->
+                        </div>
+                        <!--<div class="col-xs-12 no-padding text-center mt-20">
+                            <a class="btn btn-primary btn-sm" href="#" ng-click="save_810()">
+                                <i class="icon-save">&nbsp;</i>
+                                {{ 'common_sf.btn_save' | translate }}
+                            </a>
+                        </div>-->
+                    </form>
+                </div>
+            </div>
+            <ul class="pager vp-wizard-buttons">
+                <li class="previous" role="button" ng-class="{'disabled':currentStep==1}" aria-disabled="true">
+                    <a href="#" ng-click="previous()">
+                        <i class="icon-long-arrow-left"></i> {{ 'common_sf.btn_previous' | translate }}
+                    </a>
+                </li>
+                <li class="text-center hidden-xs" role="button" aria-disabled="true">
+                    <a href="#" ng-click="backToDashboard()">
+                        <i class="icon-dashboard">&nbsp;</i> {{ 'common_sf.btn_dashboard' | translate }}
+                    </a>
+                </li>
+                <li class="next" role="button" ng-class="{'disabled':currentStep==5}">
+                    <a href="#" ng-click="next()">{{ 'common_sf.btn_next' | translate }}
+                        <i class="icon-long-arrow-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

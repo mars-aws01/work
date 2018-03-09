@@ -1,0 +1,109 @@
+﻿<style type="text/css">
+    .table-all-border {
+    }
+
+        .table-all-border > tbody > tr > th, .table-all-border > tbody > tr > td {
+            border: 1px solid #eee !important;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            vertical-align: middle;
+            height: 34px;
+        }
+
+    .item-update-warning-desc {
+        margin: -10px 0 2px 0px !important;
+    }
+</style>
+<div class="row vp-agent-margin">
+    <vd-agent click="search()" />
+</div>
+<vd-cover bottom="-10"></vd-cover>
+<div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 5px;">
+    <vd-panelbar is-show="isShowDetail" translatetitle="{ 'view_list.search' | translate }"></vd-panelbar>
+    <div class="col-xs-12 no-padding" ng-hide="isShowDetail==false">
+        <form name="queryRoadmapForm" class="form-horizontal" role="form">
+            <div class="col-md-10 no-padding">
+                <div class="col-xs-12 no-padding">
+                    <div class="form-group col-md-6 col-lg-6">
+                        <label class="col-md-3 control-label">{{ 'roadmap_common.brand' | translate }}:</label>
+                        <div class="col-md-9 no-padding-left">
+                            <vd-brand-v2 ng-model="queryBrand"></vd-brand-v2>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 col-lg-6">
+                        <label class="col-md-4 control-label">Item Web Description:</label>
+                        <div class="col-md-8 no-padding-left">
+                            <input type="text" class="form-control vp-input" maxlength="100" ng-model="query.WebDescription" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 no-padding">
+                    <div class="form-group col-md-6 col-lg-6">
+                        <label class="col-md-3 control-label">UPC/EAN:</label>
+                        <div class="col-md-9 no-padding-left">
+                            <input type="text" class="form-control vp-input" maxlength="100" ng-model="query.UPCCode" />
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 col-lg-6">
+                        <label class="col-md-4 control-label">Item Status:</label>
+                        <div class="col-md-8 no-padding-left">
+                            <select class="form-control col-xs-12 vp-select vp-select-sm" ng-model="query.NeweggItemMark" name="hasAttachment" ng-options="item.value as item.text for item in itemStatusList">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 no-padding">
+                    <div class="form-group col-md-6 col-lg-6">
+                        <label class="col-md-3 control-label">Mfr. Part #:</label>
+                        <div class="col-md-9 no-padding-left">
+                            <input type="text" class="form-control vp-input" maxlength="100" ng-model="query.AdsPartNumber" />
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 col-lg-6">
+                        <label class="col-md-4 control-label">Category:</label>
+                        <div class="col-md-8 no-padding-left">
+                            <vd-category-item class="item-creation-well" category-id="query.GroupID" subscribe="true" style="height: 30px;" ctrl-id="query"></vd-category-item>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 no-padding">
+                    <div class="form-group col-md-6 col-lg-6">
+                        <label class="col-md-3 control-label">Newegg Item #:</label>
+                        <div class="col-md-9 no-padding-left">
+                            <input type="text" class="form-control vp-input" maxlength="100" ng-model="query.Item" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 no-padding">
+                <button type="button" class="btn btn-primary btn-sm" ng-disabled="!brandControlData || brandControlData.length == 0" style="padding: 2px 12px 2px 10px !important;" ng-click="search()">
+                    <span class="ace-icon  icon-search icon-on-right bigger-110"></span>
+                    {{ 'view_list.search' | translate }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 15px;">
+    <vd-panelbar is-show="isShowDetail3" translatetitle=" { 'view_list.resultList' | translate }"></vd-panelbar>
+    <div class="col-xs-12 no-padding-left" ng-hide="isShowDetail3==false">
+        <vd-grid gid="{{dataGridName}}"
+            refresh-key="{{refreshKey}}"
+            ng-options="itemProfileOptions" auto-height="false">
+            <script id="tpl_itemprofile_newegg" type="text/x-kendo-tmpl">
+                 <div class="col-xs-12 no-padding text-left">
+                    <a href="javascript:void(0)" title="{{dataItem.Item}}" 
+                       style="text-decoration: underline;"
+                       class="blue"
+                       ng-click="showDetail(dataItem)">
+                        <span>{{dataItem.Item}}</span>
+                    </a>
+                 </div>
+            </script>
+    </vd-grid>
+    </div>
+</div>
+
+<!--<vd-item-update-request-detail></vd-item-update-request-detail>-->
+<vd-item-profile-detail></vd-item-profile-detail>

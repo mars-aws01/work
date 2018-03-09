@@ -1,0 +1,124 @@
+﻿<style>
+    html .vp-rolelist-row
+    {
+        margin-right:0px;
+    }
+    html[data-useragent*='MSIE'] .vp-rolelist-row
+    {
+        margin-right:12px !important;
+    }
+</style>
+<script type="text/javascript">
+    jQuery(function ($) {
+        var doc = document.documentElement;
+        doc.setAttribute('data-useragent', navigator.userAgent);
+    });
+</script>
+<!--Search Area-->
+<div class="row vp-block-blue vp-rolelist-row" style="margin-top: 10px;margin-top:10px;margin-bottom: 10px;padding-right: 10px;">
+        <div class="col-xs-10" style="margin-top:10px;margin-bottom: 10px;margin-left:0px;">
+            <div class="col-xs-6 no-padding-left">
+                <label class="col-xs-3 no-padding-left" style="padding-top: 5px;">
+                            {{ 'header_rolelist.roleName' | translate }}:&nbsp;</label>
+                <input type="text" class="col-xs-9 no-padding-left vp-input" ng-model="searchCondition.RoleName" maxlength="128" ui-keypress="{13:'searchWithConfirm()'}">
+            </div>
+            <div class="input-group-btn">
+                <label class="pull-left" style="margin-top: 5px;">
+                        <input name="form-field-checkbox" ng-model="searchCondition.IsExact"  class="ace ace-checkbox" type="checkbox">
+                        <span class="lbl " style="color: #7E7E7E">&nbsp;{{ &apos;view_orderlist.exactMatch&apos; | translate }}</span>
+                </label>
+                <div class="pull-left">
+                    <label style="width: 1px; height: 18px; background: #BFBFBF; vertical-align: middle; margin: 5px 15px 9px 14px;"></label>
+                    
+                     <button type="button" ng-click="searchWithConfirm()" class="btn btn-app vp-btn vp-btn-blue" style="width: 110px;">
+                        <div class="col-xs-12"><span class="ace-icon icon icon-search icon-on-right"></span>&nbsp;{{ &apos;view_orderlist.search&apos; | translate }}</div>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-2 no-padding" style="margin-top:10px;margin-bottom: 10px">
+            <button type="button" class="btn btn-success btn-sm pull-right" ng-click="addNewRoleClick()" style="width: 140px" vd-auth="Edit">
+                <div class="col-xs-12">
+                    <span class="ace-icon icon icon-plus icon-on-right"></span>
+                    &nbsp;{{ 'view_rolelist.addNewRole' | translate }}
+                </div>
+            </button>
+        </div>
+    </div>
+<!--List--> 
+<div class="row vp-rolelist-row" style="margin-top: 10px;margin-right:0;">
+    <vd-grid gid="{{dataGridName}}" 
+             refresh-key="{{refreshKey}}" 
+             ng-options="roleListOptions" auto-height="false">
+          <script id="tpl_roleList_action" type="text/x-kendo-tmpl">
+             <div class="col-xs-12 no-padding action-buttons text-center" style="margin-top: 3px;">
+                 <a class="red" href="\#" ng-show="dataItem.RoleType!='System'" ng-click="deleteRole(dataItem)" vd-auth="Edit" title="{{ 'header_rolelist.deleteTip' | translate }}">
+                      <i class="icon-remove bigger-130"></i>
+                 </a>
+             </div>
+          </script>
+    </vd-grid>
+</div> 
+<!--Role Permission-->
+<div class="row no-padding vp-rolelist-row" style="margin-top: 10px" ng-class="{'vp-list-orange':action=='Create','vp-list':action!='Create'}">
+      <div class="col-lg-12 ">
+          <div class="col-xs-12">
+              <div class="vp-list-icon vp-list-icon-blue" ng-class="{'vp-list-icon-orange': action=='Create'}">
+                  <i class="ace-icon  icon-user" ng-hide="true" ></i>
+                <span  class="title text-left vp-trim-noLineheight" style="margin-left:15px;font-size:22px;font-weight: 600" ng-show="action=='Create'">{{ 'header_rolelist.createRole' | translate }}</span>
+                <span class="title text-left vp-trim-noLineheight" style="margin-left:15px" ng-show="action!='Create'">{{ 'header_rolelist.roleDetail' | translate }}</span>
+               
+              </div>
+              <div class="col-xs-12 no-padding " style="margin-top:10px">
+                  <div class="col-xs-6 form-group" style="margin-left: 33px">
+                      <div class="input-group">
+                          <span class="input-group-addon" style="background-color: #ffffff; border-color: #ffffff;font-weight: 600">{{ 'header_rolelist.roleName' | translate }}:</span>
+                          <input type="text" style="width:320px;margin-left: -2px"  id="Text1" ng-model="currentSelectedRole.RoleName" ng-disabled="currentSelectedRole.RoleType=='System'||action=='Delete' || hasOwnProperty(currentSelectedRole)==false" required maxlength="200" />
+                      </div>
+                  </div>
+                  <div class="col-xs-2 form-group">
+                      <div class="input-group">
+                          <span class="input-group-addon" style="background-color: #ffffff; border-color: #ffffff;font-weight: 600">{{ 'header_rolelist.roleDescription' | translate }}:</span>
+                          <input type="text" style="width:320px;margin-left: -2px"  id="Text2" ng-model="currentSelectedRole.RoleDescription" ng-disabled="currentSelectedRole.RoleType=='System'||action=='Delete' || hasOwnProperty(currentSelectedRole)==false" maxlength="2000" />
+                      </div>
+                  </div>
+              </div>
+              <hr style="margin-top: 50px;margin-bottom:-10px;" />
+              <div class="vp-list-info" ng-repeat="fun in currentSelectedRole.functionList" style="width:90%;margin-top: 10px;margin-bottom:20px;">
+                  <div class="col-xs-12 no-padding" style="padding-left: 18px;margin: -6px 0;"  ng-hide="fun.MenuURL=='/home'">
+                      <label style="float: left; width: 220px !important; margin-top: -2px; font-size: 15px; font-weight: 700; color: #626464">
+                          <a href="#" ng-click="fun.isShowDetail=false" ng-hide="fun.isShowDetail==false"><i class="icon-angle-down bigger-130" style="font-weight:bold;"></i></a>
+                          <a href="#" ng-click="fun.isShowDetail=true" ng-hide="fun.isShowDetail!=false"><i class="icon-angle-up bigger-130" style="font-weight:bold;"></i></a>
+                          {{ fun | menuLocalize}}
+                      </label>
+                      <label style="float: left; margin-left: 6px; margin-right: 49px; margin-bottom: 0px;" ng-repeat="item in fun.functionDisplayList">
+                          <input name="{{item.menuID}}{{item.userID}}"  type="radio" ng-model="fun.activeType"  value="{{item.name}}" class="ace">
+                          <span class="lbl">&nbsp;{{ item.name}}</span>
+                      </label>
+                  </div>
+                  <div class="vp-list-row" ng-repeat="menu in fun.SubMenuList"  ng-hide="fun.MenuURL=='/home'||menu.MenuURL=='/product-reviews'||fun.isShowDetail==false">
+                      <div class="name" style="text-align: left; width: 220px; padding-left: 15px;">{{ menu | menuLocalize}}</div>
+                      <div class="value">
+                          <span>
+                              <label style="margin-right: 55px; margin-bottom: 0px;" ng-repeat="item in menu.functionDisplayList">
+                                  <input name="{{item.menuID}}{{item.userID}}" type="radio" ng-model="menu.activeType"  value="{{item.name}}" class="ace">
+                                  <span class="lbl" style="font-size: 13px;">&nbsp;{{ item.name }}</span>
+                              </label>
+                          </span>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-xs-12 text-right no-padding" style="margin-top: 15px;margin-bottom: 10px" ng-show="action=='Create'||action=='Edit'">
+                  <button type="button" class="btn btn-primary btn-sm" ng-click="saveRole()" vd-auth="Edit" ng-disabled="hasOwnProperty(currentSelectedRole)==false">
+                      &nbsp;<i class="icon-save"></i>&nbsp;&nbsp;{{ 'common_button.save' | translate }}&nbsp;
+                  </button>
+                  <button type="button" class="btn btn-danger btn-sm" ng-click="resetRole()" vd-auth="Edit" ng-disabled="hasOwnProperty(currentSelectedRole)==false">
+                      &nbsp;<i class="icon-undo"></i>&nbsp;&nbsp;{{ 'common_button.cancel' | translate }}&nbsp;
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div>
+

@@ -1,0 +1,451 @@
+﻿<style>
+.grey {
+    color: #5D5D5D !important;
+}
+
+.sf-guide p {
+    color: #5D5D5D !important;
+}
+
+.vp-wizard-completed .label {
+    background: #9CC96B !important;
+}
+
+.vp-wizard-completed .guide-title {
+    color: #9CC96B;
+}
+
+.op-img {
+    opacity: 0.9;
+}
+
+.valid-label {
+    margin-top: 16px;
+    margin-left: 200px;
+}
+
+.vp-edit-input-right {
+    height: 25px !important;
+    padding-top: 1px !important;
+    padding-right: 2px !important;
+    padding-bottom: 1px !important;
+    vertical-align: central;
+}
+</style>
+<h3 class="header grey" style="margin-top: 19px;">{{ 'guide_sf.title_prerequisite' | translate }}</h3>
+<div class="row sf-guide">
+    <div class="col-xs-12 text-left">
+        <div id="wizard" class="vp-wizard clearfix no-padding">
+            <ol class="vp-wizard-steps clearfix clickable" role="tablist">
+                <li ng-class="{'active':currentStep==1,'vp-wizard-completed':stepInfo.step1}" ng-click="change(1)">
+                    <span class="label badge">1</span>
+                    <a class="guide-title" href="#">{{ 'guide_sf.header_1' | translate }}</a>
+                    <a href="#"><small>{{ 'guide_sf.header_1_desc' | translate }}</small></a>
+                </li>
+                <li ng-class="{'active':currentStep==2,'vp-wizard-completed':stepInfo.step2}" ng-click="change(2)">
+                    <span class="label badge">2</span>
+                    <a class="guide-title" href="#">{{ 'guide_sf.header_2' | translate }}</a>
+                    <a href="#"><small>{{ 'guide_sf.header_2_desc' | translate }}</small></a>
+                </li>
+                <li ng-class="{'active':currentStep==3,'vp-wizard-completed':stepInfo.step3}" ng-click="change(3)">
+                    <span class="label badge">3</span>
+                    <a class="guide-title" href="#">{{ 'guide_sf.header_3' | translate }}</a>
+                    <a href="#"><small>{{ 'guide_sf.header_3_desc' | translate }}</small></a>
+                </li>
+                <li ng-class="{'active':currentStep==4,'vp-wizard-completed':stepInfo.step4}" ng-click="change(4)">
+                    <span class="label badge">4</span>
+                    <a class="guide-title" href="#">{{ 'guide_sf.header_4' | translate }}</a>
+                    <a href="#"><small>{{ 'guide_sf.header_4_desc' | translate }}</small></a>
+                </li>
+                <li ng-class="{'active':currentStep==5,'vp-wizard-completed':stepInfo.step5}" ng-click="change(5)">
+                    <span class="label badge">5</span>
+                    <a class="guide-title" href="#">{{ 'guide_sf.header_5' | translate }}</a>
+                    <a href="#"><small>{{ 'guide_sf.header_5_desc' | translate }}</small></a>
+                </li>
+                <li ng-class="{'active':currentStep==6,'vp-wizard-completed':stepInfo.step6}" ng-click="change(6)">
+                    <span class="label badge">6</span>
+                    <a class="guide-title" href="#">{{ 'guide_sf.header_6' | translate }}</a>
+                    <a href="#"><small>{{ 'guide_sf.header_6_desc' | translate }}</small></a>
+                </li>
+            </ol>
+            <div class="well vp-wizard-content" style="background-color: white; border-radius: 3px;">
+                <!-- step 1 -->
+                <div class="row no-margin" ng-class="{'active':currentStep==1}">
+                    <form name="stepForm_1">
+                        <h4 class="grey">{{ 'guide_sf.survey_title_1' | translate }}
+                        </h4>
+                        <p class="grey">
+                            {{ 'guide_sf.survey_desc_1' | translate }}
+                        </p>
+                        <h4 class="grey mt-25">{{ 'guide_sf.survey_title_2' | translate }}
+                        </h4>
+                        <ul class="list-unstyled grey">
+                            <li>&middot;&nbsp; {{ 'guide_sf.survey_desc_2_1' | translate }}</li>
+                            <li>&middot;&nbsp; {{ 'guide_sf.survey_desc_2_2' | translate }}</li>
+                            <li>&middot;&nbsp; {{ 'guide_sf.survey_desc_2_3' | translate }}</li>
+                        </ul>
+                        <h4 class="grey mt-25">{{ 'guide_sf.survey_title_3' | translate }}
+                        </h4>
+                        <p class="grey">
+                            {{ 'guide_sf.survey_desc_3' | translate }}
+                        </p>
+                        <div class="col-xs-12 mt-5 text-center grey">
+                            <label class="bigger-125">{{ 'guide_sf.survey_desc_4' | translate }}&nbsp;&nbsp;&nbsp;</label>
+                            <label>
+                                <input name="form-field-checkbox" type="checkbox" class="ace" ng-model="VendorPrerequsite.GeneralSurvey.IsAcknowledge" required>
+                                <span class="lbl">&nbsp;{{ 'guide_sf.common_desc_1' | translate }}</span>
+                            </label>
+                        </div>
+                        <div class="col-xs-12 no-padding text-center mt-20">
+                            <a class="btn btn-primary btn-sm" href="#" ng-click="save_1()">
+                                <i class="icon-save">&nbsp;</i> {{ 'common_sf.btn_save' | translate }}
+                            </a>
+                        </div>
+                    </form>
+                </div>
+                <!-- step 2 -->
+                <div class="row no-margin" ng-class="{'active':currentStep==2}">
+                    <form name="stepForm_2">
+                        <!--<h4 class="grey mb-10">{{ 'guide_sf.x12_title_1' | translate }}
+                        </h4>-->
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center mt-20" ng-repeat="item in x12StandardFileData">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <img class="img-responsive center-block op-img" src="/framework/img/file.png" alt="{{item.text}}" />
+                                </li>
+                                <li>
+                                    <a class="grey bigger-120 btn-link" ng-href="{{item.value}}" target="_blank">{{item.text}}
+                                        <i class="icon-download-alt"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-12 mt-5 text-center grey">
+                            <label class="bigger-125">{{ 'guide_sf.x12_desc_1' | translate }}&nbsp;&nbsp;&nbsp;</label>
+                            <label>
+                                <input name="form-field-checkbox" type="checkbox" class="ace" ng-model="VendorPrerequsite.X12Standard.IsAcknowledge" required>
+                                <span class="lbl">&nbsp;{{ 'guide_sf.common_desc_1' | translate }}</span>
+                            </label>
+                        </div>
+                        <div class="col-xs-12 no-padding text-center mt-20">
+                            <a class="btn btn-primary btn-sm" href="#" ng-click="save_2()">
+                                <i class="icon-save">&nbsp;</i> {{ 'common_sf.btn_save' | translate }}
+                            </a>
+                        </div>
+                    </form>
+                </div>
+                <!-- step 3 -->
+                <div class="row no-margin" ng-class="{'active':currentStep==3}">
+                    <form name="stepForm_3">
+                        <!--<h4 class="grey mb-10">{{ 'guide_sf.x12_title_2' | translate }}
+                        </h4>-->
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center mt-20" ng-repeat="item in x12SampleFileData">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <img class="img-responsive center-block op-img" src="/framework/img/file.png" alt="{{item.text}}" />
+                                </li>
+                                <li>
+                                    <a class="grey bigger-120 btn-link" ng-href="{{item.value}}" target="_blank">{{item.text}}
+                                        <i class="icon-download-alt"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-12 mt-5 text-center grey">
+                            <label class="bigger-125">{{ 'guide_sf.x12_desc_2' | translate }}&nbsp;&nbsp;&nbsp;</label>
+                            <label>
+                                <input name="form-field-checkbox" type="checkbox" class="ace" ng-model="VendorPrerequsite.X12Sample.IsAcknowledge" required>
+                                <span class="lbl">&nbsp;{{ 'guide_sf.common_desc_1' | translate }}</span>
+                            </label>
+                        </div>
+                        <div class="col-xs-12 no-padding text-center mt-20">
+                            <a class="btn btn-primary btn-sm" href="#" ng-click="save_3()">
+                                <i class="icon-save">&nbsp;</i> {{ 'common_sf.btn_save' | translate }}
+                            </a>
+                        </div>
+                    </form>
+                </div>
+                <!-- step 4 -->
+                <div class="row no-margin" ng-class="{'active':currentStep==4}">
+                    <form name="stepForm_4">
+                        <!--<h4 class="grey mb-10">{{ 'guide_sf.slip_title' | translate }}
+                        </h4>-->
+                        <div class="col-md-6 col-sm-6 text-center mt-20" ng-repeat="item in packingSlipData">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <img class="img-responsive center-block op-img" src="/framework/img/file.png" alt="{{item.text}}" />
+                                </li>
+                                <li>
+                                    <a class="grey bigger-120 btn-link" ng-href="{{item.value}}" target="_blank">{{item.text}}
+                                        <i class="icon-download-alt"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-12 mt-5 text-center grey">
+                            <label class="bigger-125">{{ 'guide_sf.slip_desc' | translate }}&nbsp;&nbsp;&nbsp;</label>
+                            <label>
+                                <input name="form-field-checkbox" type="checkbox" class="ace" ng-model="VendorPrerequsite.PackingSlip.IsAcknowledge" required>
+                                <span class="lbl">&nbsp;{{ 'guide_sf.common_desc_1' | translate }}</span>
+                            </label>
+                        </div>
+                        <div class="col-xs-12 no-padding text-center mt-20">
+                            <a class="btn btn-primary btn-sm" href="#" ng-click="save_4()">
+                                <i class="icon-save">&nbsp;</i> {{ 'common_sf.btn_save' | translate }}
+                            </a>
+                        </div>
+                    </form>
+                </div>
+                <!-- step 5 -->
+                <div class="row no-margin" ng-class="{'active':currentStep==5}">
+                    <form name="stepForm_5">
+                        <h4 class="grey mb-10">{{ 'guide_sf.id_title_1' | translate }}
+                        </h4>
+                        <!-- Newegg Identifier -->
+                        <div class="col-xs-12 mb-30 no-padding">
+                            <table class="table table-bordered table-striped dashboard-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 20%"></th>
+                                        <th style="width: 40%">{{ 'guide_sf.id_header_1' | translate}}</th>
+                                        <th style="width: 40%">{{ 'guide_sf.id_header_2' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>ISA ID Qualifier</td>
+                                        <td>{{ VendorPrerequsite.Identity.NeweggIdentifier.Test.ISAIDQualifier }}</td>
+                                        <td>{{ VendorPrerequsite.Identity.NeweggIdentifier.Production.ISAIDQualifier }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ISA ID</td>
+                                        <td>{{ VendorPrerequsite.Identity.NeweggIdentifier.Test.ISAID }}</td>
+                                        <td>{{ VendorPrerequsite.Identity.NeweggIdentifier.Production.ISAID }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>GS ID</td>
+                                        <td>{{ VendorPrerequsite.Identity.NeweggIdentifier.Test.GSID }}</td>
+                                        <td>{{ VendorPrerequsite.Identity.NeweggIdentifier.Production.GSID }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <h4 class="grey">{{ 'guide_sf.id_title_2' | translate }}
+                        </h4>
+                        <!-- Vendor Identifier -->
+                        <div class="col-xs-12 mb-30 no-padding">
+                            <table class="table table-bordered table-striped dashboard-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 20%"></th>
+                                        <th style="width: 40%">{{ 'guide_sf.id_header_1' | translate}}</th>
+                                        <th style="width: 40%">{{ 'guide_sf.id_header_2' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>ISA ID Qualifier</td>
+                                        <td>
+                                            <div class="form-group clearfix">
+                                                <div class="col-sm-12 no-padding">
+                                                    <div class="clearfix">
+                                                        <select class="col-xs-9" style="height:30px" ng-model="VendorPrerequsite.Identity.VendorIdentifier.Test.ISAIDQualifier" required ng-options="item.value as item.text + ' - ' +item.description for item in ISAIDQualifierData"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group clearfix">
+                                                <div class="col-sm-12 no-padding">
+                                                    <div class="clearfix">
+                                                        <select class="col-xs-9" style="height:30px" ng-model="VendorPrerequsite.Identity.VendorIdentifier.Production.ISAIDQualifier" required ng-options="item.value as item.text + ' - ' +item.description for item in ISAIDQualifierData"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>ISA ID</td>
+                                        <td>
+                                            <div class="form-group clearfix">
+                                                <div class="col-sm-12 no-padding">
+                                                    <div class="clearfix">
+                                                        <input name="isaId_test" class="col-xs-9 vp-input vp-input-sm" type="text" ng-model="VendorPrerequsite.Identity.VendorIdentifier.Test.ISAID" required maxlength="{{identityMaxLength}}" ng-pattern='getNormalReg()' valid-pattern-tip="Please enter a valid ISA ID." ng-change="isaIdChanged('Test')" />
+                                                    </div>
+                                                    <validtip for="isaId_test" class="vp-validtip"></validtip>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group clearfix">
+                                                <div class="col-sm-12 no-padding">
+                                                    <div class="clearfix">
+                                                        <input name="isaId_prd" class="col-xs-9 vp-input vp-input-sm" type="text" ng-model="VendorPrerequsite.Identity.VendorIdentifier.Production.ISAID" required maxlength="{{identityMaxLength}}" ng-pattern='getNormalReg()' valid-pattern-tip="Please enter a valid ISA ID." ng-change="isaIdChanged('Production')" />
+                                                    </div>
+                                                    <validtip for="isaId_prd" class="vp-validtip"></validtip>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>GS ID</td>
+                                        <td>
+                                            <div class="form-group clearfix">
+                                                <div class="col-sm-12 no-padding">
+                                                    <div class="clearfix">
+                                                        <input name="gsId_test" class="col-xs-9 vp-input vp-input-sm" type="text" ng-model="VendorPrerequsite.Identity.VendorIdentifier.Test.GSID" required maxlength="{{identityMaxLength}}" ng-pattern='getNormalReg()' valid-pattern-tip="Please enter a valid GS ID." ng-change="gsIdManualChanged('Test')" />
+                                                    </div>
+                                                    <validtip for="gsId_test" class="vp-validtip"></validtip>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group clearfix">
+                                                <div class="col-sm-12 no-padding">
+                                                    <div class="clearfix">
+                                                        <input name="gsId_prd" class="col-xs-9 vp-input vp-input-sm" type="text" ng-model="VendorPrerequsite.Identity.VendorIdentifier.Production.GSID" required maxlength="{{identityMaxLength}}" ng-pattern='getNormalReg()' valid-pattern-tip="Please enter a valid GS ID." ng-change="gsIdManualChanged('Production')" />
+                                                    </div>
+                                                    <validtip for="gsId_prd" class="vp-validtip"></validtip>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-xs-12 no-padding text-center mt-5">
+                            <a class="btn btn-primary btn-sm" href="#" ng-click="save_5()">
+                                <i class="icon-save">&nbsp;</i> {{ 'common_sf.btn_save' | translate }}
+                            </a>
+                        </div>
+                    </form>
+                </div>
+                <!-- step 6 -->
+                <div class="row no-margin" ng-class="{'active':currentStep==6}">
+                    <form name="stepForm_6">
+                        <h4 class="grey mb-10">{{ 'guide_sf.items_title' | translate }}
+                        </h4>
+                        <p>{{ 'guide_sf.items_desc_1' | translate }} </p>
+                        <p>{{ 'guide_sf.items_desc_2' | translate }} </p>
+                        <!-- AcceptedItemList-->
+                        <div class="col-xs-12 mb-20 no-padding" style="overflow: scroll;overflow: auto;">
+                            <table class="table table-bordered table-striped dashboard-table">
+                                <thead>
+                                    <tr>
+                                        <th>{{ 'guide_sf.items_header_1' | translate}}</th>
+                                        <th>{{ 'guide_sf.items_header_2' | translate}}</th>
+                                        <th>{{ 'guide_sf.items_header_3' | translate}}</th>
+                                        <th>{{ 'guide_sf.items_header_4' | translate}}</th>
+                                        <th>{{ 'guide_sf.items_header_5' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in VendorPrerequsite.TestItem.AcceptedItemList">
+                                        <td>
+                                            <input class="vp-input vp-input-sm" type="text" ng-model="item.VendorPartNumber" maxlength="{{partNumberMaxLength}}" />
+                                        </td>
+                                        <td>
+                                            <input class="vp-input vp-input-sm" type="text" ng-model="item.ManufacturerPartNumber" maxlength="{{partNumberMaxLength}}" />
+                                        </td>
+                                        <td>
+                                            <input class="vp-input vp-input-sm" type="text" ng-model="item.UPC" maxlength="{{upcMaxLength}}" />
+                                        </td>
+                                        <td>
+                                            <input class="vp-input vp-input-sm" type="text" ng-model="item.Description" maxlength="{{descriptionMaxLength}}" />
+                                        </td>
+                                        <td>
+                                            <input class="vp-input vp-input-sm vp-edit-input-right" type="text" ng-model="item.Cost" vd-number style="text-align: right;margin-left: 4px;padding-right: 4px;" />
+                                        </td>
+                                        <td style="width:80px">
+                                            <a href="#" ng-hide="VendorPrerequsite.TestItem.AcceptedItemList.length < 2" class="pull-right" ng-click="removeItem(VendorPrerequsite.TestItem.AcceptedItemList,$index)" style="margin: 6px 20px 0 20px">
+                                                <i class="icon-remove red bigger-150 "></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-xs-12 no-padding">
+                            <div class="col-xs-2 pull-right">
+                                <a href="#" class="pull-right" ng-hide="VendorPrerequsite.TestItem.AcceptedItemList.length==3" ng-click="addItem(VendorPrerequsite.TestItem.AcceptedItemList)">
+                                    <i class="ace-icon icon-plus bigger-120 "></i>
+                                    <span class="bigger-110 ">Add</span>
+                                </a>
+                            </div>
+                        </div>
+                        <p>{{ 'guide_sf.items_desc_3' | translate }} </p>
+                        <!-- RejectedItemList-->
+                        <div class="col-xs-12 no-padding" style="overflow: scroll;overflow: auto;">
+                            <table class="table table-bordered table-striped dashboard-table">
+                                <thead>
+                                    <tr>
+                                        <th>{{ 'guide_sf.items_header_1' | translate}}</th>
+                                        <th>{{ 'guide_sf.items_header_2' | translate}}</th>
+                                        <th>{{ 'guide_sf.items_header_3' | translate}}</th>
+                                        <th>{{ 'guide_sf.items_header_4' | translate}}</th>
+                                        <th>{{ 'guide_sf.items_header_5' | translate}}</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in VendorPrerequsite.TestItem.RejectedItemList">
+                                        <td>
+                                            <input class="vp-input vp-input-sm" type="text" ng-model="item.VendorPartNumber" maxlength="40" />
+                                        </td>
+                                        <td>
+                                            <input class="vp-input vp-input-sm" type="text" ng-model="item.ManufacturerPartNumber" maxlength="40" />
+                                        </td>
+                                        <td>
+                                            <input class="vp-input vp-input-sm" type="text" ng-model="item.UPC" maxlength="50" />
+                                        </td>
+                                        <td>
+                                            <input class="vp-input vp-input-sm" type="text" ng-model="item.Description" maxlength="200" />
+                                        </td>
+                                        <td>
+                                            <input class="vp-input vp-input-sm vp-edit-input-right" type="text" ng-model="item.Cost" vd-number style="text-align: right; margin-left: 4px;padding-right: 4px;" />
+                                        </td>
+                                        <td style="width:80px">
+                                            <a href="#" ng-hide="VendorPrerequsite.TestItem.RejectedItemList.length < 2" class="pull-right" ng-click="removeItem(VendorPrerequsite.TestItem.RejectedItemList,$index)" style="margin: 6px 20px 0 20px">
+                                                <i class="icon-remove red bigger-150 "></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-xs-12 no-padding">
+                            <div class="col-xs-2 pull-right" style="padding-top:10px">
+                                <a href="#" class="pull-right" ng-hide="VendorPrerequsite.TestItem.RejectedItemList.length==3" ng-click="addItem(VendorPrerequsite.TestItem.RejectedItemList)">
+                                    <i class="ace-icon icon-plus bigger-120 "></i>
+                                    <span class="bigger-110 ">Add</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 no-padding text-center mt-15">
+                            <a class="btn btn-primary btn-sm" href="#" ng-click="save_6()">
+                                <i class="icon-save">&nbsp;</i> {{ 'common_sf.btn_save' | translate }}
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <ul class="pager vp-wizard-buttons">
+                <li class="previous" role="button" ng-class="{'disabled':currentStep==1}" aria-disabled="true">
+                    <a href="#" ng-click="previous()">
+                        <i class="icon-long-arrow-left"></i> {{ 'common_sf.btn_previous' | translate }}
+                    </a>
+                </li>
+                <li class="text-center hidden-xs" role="button" aria-disabled="true">
+                    <a href="#" ng-click="backToDashboard()">
+                        <i class="icon-dashboard">&nbsp;</i> {{ 'common_sf.btn_dashboard' | translate }}
+                    </a>
+                </li>
+                <li class="next" role="button" ng-class="{'disabled':currentStep==6}">
+                    <a href="#" ng-click="next()">{{ 'common_sf.btn_next' | translate }}
+                        <i class="icon-long-arrow-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

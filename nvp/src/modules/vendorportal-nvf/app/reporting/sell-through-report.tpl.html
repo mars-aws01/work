@@ -1,0 +1,143 @@
+﻿<style>
+    html[data-useragent*='MSIE'] .vp-home-row {
+        margin-right: 0px;
+    }
+
+    html[data-useragent*='MSIE'] .vp-agent-row {
+        margin-right: 12px;
+    }
+
+    .k-autocomplete > .k-input {
+        height: 1.9em;
+        line-height: 1.9em;
+    }
+
+    .vp-tpl-cg-header > .k-input {
+        padding: 0;
+    }
+</style>
+<div class="row vp-agent-margin">
+    <vd-agent click="search()" />
+</div>
+
+<vd-cover bottom="-7"></vd-cover>
+
+<div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 5px;">
+    <vd-panelbar is-show="isShowDetail" translatetitle="{ 'view_report.search' | translate }"></vd-panelbar>
+    <div class="col-xs-12 no-padding" ng-hide="isShowDetail==false">
+        <form class="form-horizontal" role="form" ng-init="keyLength=25">
+            <div class="col-lg-7 col-md-9 no-padding">
+                <div class="form-group col-md-7 col-lg-8">
+                    <label class="col-md-3 control-label">{{ 'view_report.keyword' | translate }}:</label>
+                    <div class="col-md-9 no-padding-left">
+                        <input type="text" class="form-control vp-input" maxlength="{{keyLength}}" ng-model="query.KeyWord"/>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-5 col-lg-4 no-padding">
+                    <label class="radio-inline">
+                        <input name="form-field-radio" ng-model="query.KeyWordType" value="ItemNumber" type="radio" ng-click="keyLength=25" class="ace" checked="checked">
+                        <span class="lbl">&nbsp;{{ 'view_report.itemNumber' | translate }}</span>
+                    </label>
+                    <label class="radio-inline no-margin-left">
+                        <input name="form-field-radio" ng-model="query.KeyWordType" value="ManufacturerPartNumber" ng-click="keyLength=40" type="radio" class="ace">
+                        <span class="lbl">&nbsp;{{ 'view_report.mfrPartNumber' | translate }}</span>
+                    </label>
+                </div>
+             
+                <div class="form-group col-md-7 col-lg-8">
+                    <label class="col-md-3 control-label">{{ 'view_report.category' | translate }}:</label>
+                    <div class="col-md-9 no-padding-left">
+                        <vd-category ></vd-category>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-7 col-lg-8">
+                    <label class="col-md-3 control-label">{{ 'view_report.saledDate' | translate }}:</label>
+                    <div class="col-md-9 no-padding-left">
+                        <div class="col-sm-12 no-padding-left input-group">
+                            <div class="input-group">
+                                <input class="form-control date-picker"
+                                       type="text"
+                                       neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd","addMonth":-6}'
+                                       ng-model="query.StartDate">
+                                <span class="input-group-addon">
+                                    <i class="icon-calendar bigger-110"></i>
+                                </span>
+                            </div>
+                            <span class="input-group-addon no-border-bottom no-border-top no-border-left no-border-right" style="background-color: #ffffff;">
+                                <i class="icon-minus smaller-90"></i>
+                            </span>
+                            <div class="input-group">
+                                <input class="form-control date-picker"
+                                       type="text"
+                                       neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd","addMonth":-6}'
+                                       ng-model="query.EndDate">
+                                <span class="input-group-addon">
+                                    <i class="icon-calendar bigger-110"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="form-group col-md-5 col-lg-4">
+                    <vd-pop-tip class="align-middle ng-isolate-scope visible-lg"   style="float:left;margin-top:5px; margin-right:20px; "
+                          ng-title="{{ &apos;view_orderlist.vendorSearchHelpTitle&apos; | translate }}" 
+                          ng-content="{{ 'view_report.helpContent' | translate }}">
+                    </vd-pop-tip>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 no-padding">
+                <button type="button" class="btn btn-primary btn-sm" style="padding: 2px 12px 2px 10px !important;" ng-click="search()">
+                    <span class="ace-icon  icon-search icon-on-right bigger-110"></span>
+                    {{ 'view_report.search' | translate }}
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+
+<div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 15px;">
+    <vd-panelbar is-show="isShowDetail3" template="<label style='font-size: 13px; font-weight: bold; '><strong>{ 'view_report.total' | translate }</strong>&nbsp;&nbsp;{'view_report.qty' | translate }: { totalQty | number : 0 } &nbsp;&nbsp;&nbsp;<span ng-show=currentRole=='advanced' >{ 'header_report.totalCost' | translate }: ${ totalCost | vfCurrency:'' }</span>&nbsp;&nbsp;&nbsp;<span ng-show=currentRole=='advanced' >{ 'view_report.soldAmount' | translate }: ${ totalSoldAmt | vfCurrency:'' }</span>&nbsp;&nbsp;&nbsp;{'view_report.detailCount' | translate }: { detailCount | number : 0 }</label>" translatetitle=" { 'view_report.resultList' | translate }" ></vd-panelbar>
+    <div class="col-xs-12 no-padding-left" ng-hide="isShowDetail3==false">
+    <vd-grid gid="{{dataGridName}}"
+             refresh-key="{{refreshKey}}"
+             ng-options="sellThroughListOptions">
+    
+        <script id="tpl_sellThroughList_itemnumber" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left" ><span title="{{dataItem.ItemNumber}}">{{dataItem.ItemNumber}}</span></div>
+        </script>
+        <script id="tpl_sellThroughList_description" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left" ><span title="{{dataItem.Description}}">{{dataItem.Description}}</span></div>
+        </script>
+        <script id="tpl_sellThroughList_manufacturerpartnumber" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left"  ><span title="{{dataItem.ManufacturerPartNumber}}">{{dataItem.ManufacturerPartNumber}}</span></div>
+        </script>
+        <script id="tpl_sellThroughList_model" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left" ><span title="{{dataItem.Model}}">{{dataItem.Model}}</span></div>
+        </script>
+        <script id="tpl_sellThroughList_totalqty" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-right"  ><span title="{{dataItem.Quantity}}">{{dataItem.Quantity | number: 0}}</span></div>
+        </script>
+        <script id="tpl_sellThroughList_avgcost" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-right" ><span>$</span><span title="{{dataItem.AverageCost}}">{{dataItem.AverageCost | vfCurrency:''}}</span></div>
+        </script>
+        <script id="tpl_sellThroughList_avgsellingprice" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-right" ><span>$</span><span title="{{dataItem.AverageSellingPrice}}">{{dataItem.AverageSellingPrice | vfCurrency:''}}</span></div>
+        </script>
+        <script id="tpl_sellThroughList_salesamount" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-right" ><span>$</span><span title="{{dataItem.SalesAmount}}">{{dataItem.SalesAmount | vfCurrency:''}}</span></div>
+        </script>
+        <script id="tpl_sellThroughList_ordercount" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-right" ><span title="{{dataItem.SOCount}}">{{dataItem.SOCount | number: 0}}</span></div>
+        </script>
+    </vd-grid>
+    </div>
+</div>
+

@@ -1,0 +1,24 @@
+﻿<style>
+    
+</style>
+
+<h3 class="header smaller lighter grey " style="margin-top: 19px;">Virtual Fulfillment X12 Self Testing
+</h3>
+
+<div class="row mt-20">
+    <div class="col-xs-12">
+        <label class="bigger-125 grey ">Show By:</label>
+        <label class="ml-30" style="margin-bottom: -5px">
+            <input name="radio-encryption" ng-model="chartType" ng-change="showChart('vendor')" checked type="radio" class="ace">
+            <span class="lbl">&nbsp;Vendor</span>
+        </label>
+
+        <label class="ml-30">
+            <input name="radio-encryption" ng-model="chartType" ng-change="showChart('date')" value="RC2" type="radio" class="ace">
+            <span class="lbl">&nbsp;Date</span>
+        </label>
+    </div>
+    <div class="col-xs-12 mt-10" style="overflow: auto; overflow-y: hidden;">
+        <div id="chart" style="height: 580px; width: 2000px"></div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+﻿<div class="col-xs-12">
+    <!--Search Area-->
+    <div class="row" style="margin-top: 20px">
+        <form name="vendorInvitaionForm" ng-submit="invitation()">
+
+            <div class="jumbotron" style="background: #F5F5F5; padding: 10px 40px 45px 40px;">
+                <h2 style="margin-bottom:0;margin-left:-12px;">
+                    <span class="icon-stack">
+                      <i class=" icon-share-alt "></i>
+                    </span>
+                    {{ 'view_vendorinvitation.invitateVendor' | translate }}
+                </h2>
+                <label style="font-size:20px;color:#747474;font-weight:200;">{{ 'view_vendorinvitation.invitateInfo' | translate }}</label>
+                <hr class="hr" />
+                <div class="row" style="margin-top: 15px">
+                    <div class="col-md-12">
+                        <label style="font-weight: 700; width: 100px;">{{ 'view_vendorinvitation.vendorType' | translate }}</label>
+                            <label>
+                                <input name="form-field-radio" type="radio" class="ace" checked>
+                                <span class="lbl">&nbsp;{{ 'view_vendorinvitation.vf' | translate }}</span>
+                            </label>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label style="font-weight: 700; width: 100px;">{{ 'view_vendorinvitation.vendorEmail' | translate }}</label>
+                        <input class="vp-input" style="width: 350px;" type="email" maxlength="128" required ng-model="invitationEntity.Email" />
+                    </div>
+
+                    <div class="col-md-12 no-padding" style="margin-top: 12px;">
+                        <div class="col-xs-12">
+                            <button type="submit" class="btn btn-success btn-sm pull-left" style="width: 110px">
+                                <div class="col-xs-12">
+                                   
+                                    {{ 'view_vendorinvitation.submit' | translate }}
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>

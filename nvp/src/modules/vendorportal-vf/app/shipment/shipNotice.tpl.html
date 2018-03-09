@@ -1,0 +1,525 @@
+﻿<form name="shipNoticeForm" ng-submit="submitShipNotice()" style="padding-bottom: 60px;">
+    <div class="row" style="margin: 10px -12px 0 0;">
+        <div class="col-sm-12 no-padding-left">
+            <vd-order data="currentOrder"></vd-order>
+        </div>
+    </div>
+
+    <div class="row no-margin">
+        <div class="col-sm-12 vp-page ">
+            <div class="col-xs-12 vp-page-info">
+                <h3 class="no-margin">{{ 'view_shipnotice.shipNotice' | translate }}</h3>
+                <div class="col-xs-12 vp-page-header2"
+                    ng-show="action=='view' && currentShipNotice.ShippingDate"
+                    style="padding: 10px 0 0px 0;">
+                    <div class="col-md-3 no-padding-left">
+                        <label style="font-weight: 600;">{{ 'view_shipnotice.shippingDate' | translate }}: </label>
+                        <label> {{ currentShipNotice.ShippingDate | moment:'YYYY-MM-DD, dddd' }}</label>
+                    </div>
+                    <div class="col-md-4">
+                        <label style="font-weight: 600;">{{ 'view_shipnotice.shippedService' | translate }}: </label>
+                        <label>&nbsp;{{ currentShipNotice.ShippedService }}</label>
+                    </div>
+                    <div class="col-md-5">
+                        <label style="font-weight: 600;">{{ 'view_shipnotice.shipNotice' | translate }} #: </label>
+                        <label>&nbsp;{{ currentShipNotice.ControlNumber }}</label>
+                    </div>
+                </div>
+
+                <div class="col-xs-12" style="padding: 10px 0 3px 0;" ng-show="action!='view'">
+                    <div class="col-md-4 no-padding-left">
+                        <label class="vp-page-label col-lg-5 col-md-5" style="font-weight: 600;">{{ 'view_shipnotice.shippedService' | translate }}:</label>
+                        <select placeholder="{{ 'view_shipnotice.shipservice' | translate }}" ng-show="action!='view'"
+                            class="vp-select col-lg-7 col-md-7"
+                            ng-model="currentShipNotice.ShippedService"
+                            ng-options="item.value as item.text for item in shipServiceList.data" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="vp-page-label col-lg-4 col-md-5" style="font-weight: 600;">{{ 'view_shipnotice.shippingDate' | translate }}:</label>
+                        <div class="input-group col-lg-8 col-md-7">
+                            <input class="form-control"
+                                type="text"
+                                required
+                                neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                ng-model="currentShipNotice.ShippingDate">
+                            <span class="input-group-addon">
+                                <i class="icon-calendar bigger-110"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <span class="vp-page-label col-lg-4 col-md-5" style="font-weight: 600;">{{ 'view_shipnotice.shipNoticeNumber' | translate }}: </span>
+                        <input ng-disabled="action!='edit'" class="vp-input col-lg-8 col-md-7"
+                            type="text" placeholder="{{ 'view_shipnotice.enterShipserviceTip' | translate }}"
+                            ng-model="currentShipNotice.ControlNumber">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 vp-page-address">
+                <div class="col-lg-2 visible-lg" style="padding: 45px 40px;">
+                    <em class="icon-truck" style="color: #909FA7; font-size: 65px;"></em>
+                </div>
+                <div class="col-lg-5 col-xs-12 vp-page-br ">
+                    <div class="col-md-12">
+                        <h4 style="font-weight: bold;">{{ 'view_shipnotice.from' | translate }}</h4>
+                        <address class="col-md-12 vp-page-info-address">
+                            <div class="vp-page-row2">
+                                <div class="name">{{ 'view_shipnotice.warehouseId' | translate }}:</div>
+                                <div class="value">
+                                    <span>{{ currentOrder.ShipFrom.VendorWarehouseNumber }} </span>
+                                </div>
+                            </div>
+                            <div class="vp-page-row2">
+                                <div class="name">{{ 'view_shipnotice.warehouseName' | translate }}:</div>
+                                <div class="value">
+                                    <span>{{ currentOrder.ShipFrom.WareHouseName }} </span>
+                                </div>
+                            </div>
+                            <div class="vp-page-row2" ng-show="action=='view'">
+                                <div class="name">{{ 'view_shipnotice.address' | translate }}:</div>
+                                <div class="value">
+                                    <span>{{ currentOrder.ShipFrom.Address }}</span>
+                                </div>
+                            </div>
+                            <div class="vp-page-row2" ng-show="action=='view'">
+                                <div class="name"></div>
+                                <div class="value">
+                                    <span>{{ currentOrder.ShipFrom.City }}, {{ currentOrder.ShipFrom.State }} {{ currentOrder.ShipFrom.ZipCode }}, {{ currentOrder.ShipFrom.Country }}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 no-padding vp-edit-input-margin" ng-show="action!='view'">
+                                <input type="text"
+                                    required class="vp-input"
+                                    maxlength="81"
+                                    style="width: 100%"
+                                    placeholder="{{ 'view_shipnotice.enterAddressTip' | translate }}"
+                                    ng-model="currentOrder.ShipFrom.Address">
+                            </div>
+
+                            <div class="col-xs-12 vp-edit-input-margin no-padding" ng-show="action!='view'" style="color: black">
+                                <input class="vp-input" maxlength="45" required style="float: left; width: 39%;" type="text" placeholder="{{ 'view_shipnotice.city' | translate }}" ng-model="currentOrder.ShipFrom.City">
+                                <span style="float: left;">&nbsp;,&nbsp;</span>
+                                <input class="vp-input" maxlength="32" required style="float: left; width: 15%;" type="text" placeholder="{{ 'view_shipnotice.state' | translate }}" ng-model="currentOrder.ShipFrom.State">
+                                <span style="float: left;">&nbsp;&nbsp;</span>
+                                <input class="vp-input" maxlength="20" required style="float: left; width: 18%;" type="text" placeholder="{{ 'view_shipnotice.zipCode' | translate }}" ng-model="currentOrder.ShipFrom.ZipCode">
+                                <span style="float: left;">&nbsp;,&nbsp;</span>
+                                <input class="vp-input" maxlength="3" required style="float: left; width: 19%;" type="text" placeholder="{{ 'view_shipnotice.country' | translate }}" ng-model="currentOrder.ShipFrom.Country">
+                               
+                            </div>
+
+                            <button class="btn btn-sm btn-primary" vd-auth="Submit" type="button" ng-click="openAddressList()" style="margin-top: 10px;" ng-show="action!='view' && warehouseLevel!=true">
+                                ... <i class="icon-pencil"></i>
+                            </button>
+                        </address>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-xs-12 vp-page-br ">
+                    <div class="col-md-12">
+                        <h4 style="font-weight: bold;">{{ 'view_shipnotice.to' | translate }}</h4>
+                        <address class="col-md-12 vp-page-info-address">
+                            <div class="vp-page-row2">
+                                <div class="name">{{ 'view_shipnotice.customerName' | translate }}:</div>
+                                <div class="value">
+                                    <span>{{ currentOrder.ShipTo.Name }} ({{ currentOrder.ShipTo.CompanyName }} Inc.)</span>
+                                </div>
+                            </div>
+
+                            <div class="vp-page-row2">
+                                <div class="name">{{ 'view_shipnotice.address' | translate }}:</div>
+                                <div class="value">
+                                    <span>{{ currentOrder.ShipTo.Address }}</span>
+                                </div>
+                            </div>
+                            <div class="vp-page-row2">
+                                <div class="name"></div>
+                                <div class="value">
+                                    <span>{{ currentOrder.ShipTo.City }}, {{ currentOrder.ShipTo.State }} {{ currentOrder.ShipTo.ZipCode }}, {{ currentOrder.ShipTo.Country }}</span>
+                                </div>
+                            </div>
+                            <div class="vp-page-row2">
+                                <div class="value">
+                                    <i class="icon-phone bigger-110"></i>&nbsp;<span>{{ currentOrder.ShipTo.Phone }}</span>
+                                </div>
+                                <div class="value">
+                                    <i class="icon-envelope bigger-110"></i>&nbsp;<span>{{ currentOrder.ShipTo.Email }}</span>
+                                </div>
+                            </div>
+                        </address>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 vp-page-footer no-padding-left no-padding-right">
+                <div class="col-xs-12 no-padding">
+                    <h4 class="col-xs-6 no-padding">{{ 'view_shipnotice.packageList' | translate }}</h4>
+                </div>
+                <ul class="col-xs-12 no-margin no-padding vp-ul vp-clearListStyleType"
+                    ng-show="currentShipNotice.OrderList[0].PackageList">
+                    <li ng-repeat="package in currentShipNotice.OrderList[0].PackageList">
+                        <div class="col-xs-12 vp-widget no-padding"
+                            style="margin-bottom: 10px;">
+                            <div class="vp-widget-header col-xs-12">
+                                <span class="vp-widget-header-title">{{ 'view_shipnotice.package' | translate }} <strong>{{$index+1}}</strong></span>
+                                <div class="pull-right action-buttons" style="border-left: 1px solid #D6D6D6; padding: 2px 4px 2px 10px;">
+                                    <a href="#" title="{{ 'view_shipnotice.printPackageList' | translate }}" vd-auth="Print" ng-click="printPackage(currentShipNotice,package.TrackingNumber,package)"><i class="icon-print bigger-150 blue"></i></a>
+                                    <a href="#" title="{{ 'view_shipnotice.removePackageTip' | translate }}" vd-auth="Submit" ng-show="action!='view'" ng-click="removePackage($index)"><i class="icon-trash bigger-150 blue"></i></a>
+                                </div>
+                            </div>
+                            <div class="vp-widget-content col-xs-12">
+                                <div class="col-xs-12 no-padding" ng-show="action!='view'">
+                                    <a href="#" class="vp-grey" ng-click="openItemList(package,$index)" style="text-decoration: underline" vd-auth="Submit">{{ 'view_shipnotice.addItem' | translate }}</a>
+                                    &nbsp;&nbsp;
+                                    <a href="#" class="vp-grey" ng-click="removeItem(package)" style="text-decoration: underline" vd-auth="Submit">{{ 'view_shipnotice.removeItem' | translate }}</a>
+                                </div>
+                                <div class="col-xs-12 no-padding" style="margin-top: 2px; overflow-x:auto;width: 100%;">
+                                    <table class="table table-detail" style="margin-bottom: 2px;min-width: 1050px;">
+                                        <thead>
+                                            <tr>
+                                                <td class="vp-table-Header" style="width: 18px;" ng-show="action!='view'">
+                                                    <input class="ngSelectionCheckbox" style="margin-top: 2px;" type="checkbox" ng-click="checkAll(package,package.ItemList,'isCheckedAll')" ng-checked="package.isCheckedAll" />
+                                                </td>
+                                                <td class="vp-table-Header">{{ 'header_shipnotice.vendorPartNumber' | translate }}</td>
+                                                <td class="vp-table-Header hidden-xs" style="width: 135px;">{{ 'header_shipnotice.nePartNumber' | translate }}</td>
+                                                <td class="vp-table-Header hidden-xs" style="width: 78px;">{{ 'header_shipnotice.manufacturer' | translate }}</td>
+                                                <td class="vp-table-Header hidden-xs" style="width: 110px;">{{ 'header_shipnotice.mrfPartNumber' | translate }}</td>
+                                                <td class="vp-table-Header hidden-xs">{{ 'header_shipnotice.UPC' | translate }}</td>
+                                                <td class="vp-table-Header hidden-xs" style="width: 70px;">{{ 'header_shipnotice.description' | translate }}</td>
+                                                <td class="vp-table-Header" style="width: 90px;">{{ 'header_shipnotice.qtyOrdered' | translate }}</td>
+                                                <td class="vp-table-Header" style="width: 90px;">{{ 'header_shipnotice.qtyIncluded' | translate }}</td>
+                                                <td class="vp-table-Header" style="width: 80px;">{{ 'header_shipnotice.ackStatus' | translate }}</td>
+                                                <td class="vp-table-Header" style="width: 110px;">{{ 'header_shipnotice.serialNumber' | translate }}</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in package.ItemList" ng-class="{'red': item.ItemACKStatus == 'Reject'}">
+                                                <td ng-show="action!='view'">
+                                                    <input class="ngSelectionCheckbox" style="margin-top: 2px;" type="checkbox" ng-checked="item.isChecked" ng-click="itemCheck(package,package.ItemList,item,'isCheckedAll')" />
+                                                </td>
+                                                <td><span class="vp-trim" style="width: 130px" title="{{ item.VendorPartNumber }}">{{ item.VendorPartNumber }}</span></td>
+                                                <td class="hidden-xs"><span  title="{{ item.NeweggItemNumber}}">{{ item.NeweggItemNumber}}</span></td>
+                                                <td class="hidden-xs"><span class="vp-trim" style="width: 78px;" title="{{ item.Manufacturer }}">{{ item.Manufacturer }}</span></td>
+                                                <td class="hidden-xs"><span class="vp-trim" style="width: 110px;" title="{{ item.ManufacturerPartNumber }}">{{ item.ManufacturerPartNumber }}</span></td>
+                                                <td class="hidden-xs"><span class="vp-trim" style="width: 90px;" title="{{ item.UPC }}">{{ item.UPC }}</span></td>
+                                                <td class="hidden-xs "><span class="vp-trim" style="width: 70px;" title="{{item.Description}}">{{ item.Description }}</span></td>
+                                                <td class="text-right"><span>{{ item.OrderQty }}</span></td>
+                                                <td class="text-right">
+                                                    <input class="col-md-8 vp-edit-input-central" ng-show="action!='view'"
+                                                        ng-class="{'vp-bg-input-warning':item.Quantity > item.OrderQty, 'vp-bg-input-normal':item.Quantity <= item.OrderQty}"
+                                                        style="height: 24px; width: 80px; text-align: right;"
+                                                        type="number"
+                                                        required
+                                                        max="99999999"
+                                                        min="1"
+                                                        ng-model="item.Quantity">
+                                                    <span ng-show="action=='view'">{{ item.Quantity }}</span>
+                                                </td>
+                                                <td><span>{{ item.ItemACKStatus=="None"?'':item.ItemACKStatus }}</span></td>
+                                                <td class="text-center action-buttons">
+                                                    <a href="#" title="{{ 'view_shipnotice.serialNumberListTip' | translate }}" vd-auth="Submit" ng-show="item.Quantity > 0" style="margin-top: 2px;" ng-click="openSerialNumberList(item)">
+                                                        <i class="icon-list-alt grey bigger-125"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="vp-widget-footer col-xs-12">
+                                <div class="col-xs-12 no-padding">
+                                    <div class="col-md-4 form-group  no-padding">
+                                        <label class="col-md-3  vp-page-footer-label " for="trackingNumber{{$index}}"><span ng-show="action!='view'" class="red">* </span>{{ 'view_shipnotice.trackingNumber' | translate }}: </label>
+                                        <div class="col-md-9  no-padding">
+                                            <div class="clearfix">
+                                                <input name="trackingNumber{{$index}}"
+                                                    type="text" ng-show="action!='view'"
+                                                    required
+                                                    maxlength="40"
+                                                    ng-model="package.TrackingNumber"
+                                                    class="col-sm-11 vp-edit-input-central" />
+
+                                                <span ng-show="action=='view'" class="vp-trim" title="{{ package.TrackingNumber }}" style="margin-top: 6px !important; font-weight: bold; float: left; max-width: 230px;">{{ package.TrackingNumber }}</span>
+                                            </div>
+                                            <validtip for="trackingNumber{{$index}}"></validtip>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2 form-group  no-padding">
+                                        <label class="col-md-5  vp-page-footer-label vp-page-dashed" for="grossWeight{{$index}}"
+                                            tooltip="{{ 'view_shipnotice.weightTip' | translate }}">
+                                            {{ 'view_shipnotice.weight' | translate }}<vd-profile-label type="{{ 'WeightMeasurementCode' }}"></vd-profile-label>:</label>
+                                        <div class="col-md-7  no-padding">
+                                            <div class="clearfix">
+                                                <input name="grossWeight{{$index}}"
+                                                    type="number" ng-show="action!='view'"
+                                                    max="99999999"
+                                                    min="0.01"
+                                                    step="0.01" style="text-align: right; margin-left: 4px;"
+                                                    ng-model="package.GrossWeightPerPack"
+                                                    class="col-sm-11 vp-edit-input-central" />
+                                                <span ng-show="action=='view'" style="margin-top: 4px; font-weight: bold; float: left">&nbsp;{{ package.GrossWeightPerPack }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2 form-group  no-padding">
+                                        <label class="col-md-5  vp-page-footer-label " for="length{{$index}}">{{ 'view_shipnotice.length' | translate }}<vd-profile-label type="{{ 'LengthMeasurementCode' }}"></vd-profile-label>: </label>
+                                        <div class="col-md-7  no-padding">
+                                            <div class="clearfix">
+                                                <input name="length{{$index}}" ng-show="action!='view'"
+                                                    type="number"
+                                                    max="99999999"
+                                                    min="0.01"
+                                                    step="0.01" style="text-align: right;"
+                                                    ng-model="package.Length"
+                                                    class="col-sm-11 vp-edit-input-central" />
+                                                <span ng-show="action=='view'" style="margin-top: 4px; font-weight: bold; float: left">{{ package.Length }}</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 form-group  no-padding">
+                                        <label class="col-md-5  vp-page-footer-label " for="width{{$index}}">{{ 'view_shipnotice.width' | translate }}<vd-profile-label type="{{ 'LengthMeasurementCode' }}"></vd-profile-label>: </label>
+                                        <div class="col-md-7  no-padding">
+                                            <div class="clearfix">
+                                                <input name="width{{$index}}" ng-show="action!='view'"
+                                                    type="number"
+                                                    max="99999999"
+                                                    min="0.01"
+                                                    step="0.01"
+                                                    ng-model="package.Width" style="text-align: right;"
+                                                    class="col-sm-11 vp-edit-input-central" />
+                                                <span ng-show="action=='view'" style="margin-top: 4px; font-weight: bold; float: left">{{ package.Width }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 form-group  no-padding">
+                                        <label class="col-md-5  vp-page-footer-label " for="height{{$index}}">{{ 'view_shipnotice.height' | translate }}<vd-profile-label type="{{ 'LengthMeasurementCode' }}"></vd-profile-label>: </label>
+                                        <div class="col-md-7  no-padding">
+                                            <div class="clearfix">
+                                                <input name="height{{$index}}" ng-show="action!='view'"
+                                                    type="number"
+                                                    max="99999999"
+                                                    min="0.01" style="text-align: right;"
+                                                    step="0.01"
+                                                    ng-model="package.Height"
+                                                    class="col-sm-12 vp-edit-input-central" />
+                                                <span ng-show="action=='view'" style="margin-top: 4px; font-weight: bold; float: left">{{ package.Height }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+
+                <br />
+            </div>
+        </div>
+    </div>
+
+    <div class="vp-fixed fixed-bottom" style="margin-top: 10px;" ng-hide="action == 'view'">
+        <div style="width: 100%; margin-left: 20px;">
+            <button class="btn btn-success btn-sm"  type="button" ng-click="addPackage()" vd-auth="Submit" ng-show="!isSumbited">
+                <div class="col-xs-12">
+                    <i class="ace-icon icon-on-right icon-plus"></i>&nbsp;{{ 'view_shipnotice.addPackage' | translate }}
+                </div>
+            </button>
+            &nbsp;
+            <button type="submit" class="btn btn-primary btn-sm"  vd-auth="Submit" ng-show="!isSumbited" analytics-on analytics-category="shipnotice" analytics-event="submit"  analytics-label="{{common.currentUser.VendorNumber}}_shipnotice_submit">
+                <div class="col-xs-12">
+                    <i class="icon-save"></i>
+                    &nbsp;{{ 'view_shipnotice.submitShipNotice' | translate }}
+                </div>
+            </button>
+            &nbsp;
+            <button class="btn btn-danger btn-sm" type="button" vd-auth="Delete"  analytics-on analytics-category="shipnotice" analytics-event="delete"  analytics-label="{{common.currentUser.VendorNumber}}_shipnotice_delete"
+                ng-click="deleteShipNotice()" ng-show="action == 'edit' && !isSumbited">
+                <div class="col-xs-12">
+                    <i class="icon-remove"></i>
+                    &nbsp;{{ 'view_shipnotice.deleteShipNotice' | translate }}
+                </div>
+            </button>
+        </div>
+    </div>
+</form>
+
+<div modal="addressListModal" close="closeAddressList()" options="{backdrop: true,dialogFade:true}">
+    <div class="modal-dialog" style="width: 700px">
+        <form name="addressListForm" class="modal-content">
+
+            <div class="modal-body clearfix">
+                <div class="col-xs-12" style="margin-top: 10px;">
+                    <h5 class="header smaller grey"><i class="icon-hand-right"></i>&nbsp;{{ 'view_shipnotice.selectWarehouseAddress' | translate }}</h5>
+                    <table class="table table-detail">
+                        <thead>
+                            <tr>
+                                <td class="vp-table-Header">{{ 'header_shipnotice.address' | translate }}</td>
+                                <td class="vp-table-Header">{{ 'header_shipnotice.cityStateZipcode' | translate }}</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in currentAddressList"
+                                style="cursor: pointer"
+                                ng-click="selectAddressRow(item)">
+                                <td ng-class="{'vp-bg-green':item.isSelected}">
+                                    <span style="font-size: 13px; max-width: 280px;" class="vp-trim" title="{{ item.Address }}">{{ item.Address}}</span>
+                                    <span ng-show="item.IsDefault" class="green"
+                                        style="font-size: 11px;">&nbsp;{{ 'header_shipnotice.isDefault' | translate }}</span>
+                                </td>
+                                <td ng-class="{'vp-bg-green':item.isSelected}"><span class="vp-trim" style="max-width: 300px;" title="{{ item.City }}, {{ item.State }}, {{ item.ZipCode }}">{{ item.City }},&nbsp;{{ item.State }},&nbsp;{{ item.ZipCode }}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-sm pull-left" ng-show="hasDefaultAddress" ng-click="addressList_Default()">
+                    {{ 'view_shipnotice.useDefaultAddress' | translate }}
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="addressList_OK()">
+                    <i class="icon-ok"></i>
+                    {{ 'view_shipnotice.ok' | translate }}
+                </button>
+                <button type="button" class="btn btn-danger btn-sm" ng-click="closeAddressList()">
+                    <i class="icon-remove"></i>
+                    {{ 'view_shipnotice.cancel' | translate }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div modal="itemListModal" close="closeItemList()" options="{backdrop: true,dialogFade:true}">
+    <div class="modal-dialog" style="width: 1000px">
+        <form name="itemListForm" class="modal-content">
+
+            <div class="modal-body clearfix">
+                <div class="col-xs-12" style="margin-top: 10px;">
+                    <h5 class="header smaller grey"><i class="icon-hand-right"></i>&nbsp;{{ 'view_shipnotice.packTip' | translate }}<strong>{{ 'view_shipnotice.package' | translate }} {{ currentPackageIndex+1 }}</strong>.</h5>
+                    <div class="col-xs-12 no-padding" style="overflow-y: auto; max-height: 500px;">
+                        <table class="table table-detail" style="margin-bottom: 2px;">
+                            <thead>
+                                <tr>
+                                    <td class="vp-table-Header" style="width: 16px;">
+                                        <input class="ngSelectionCheckbox" style="margin-top: 2px;" type="checkbox" ng-click="checkAll(currentPackage,currentItemList,'isCheckedAll_modal')" ng-checked="currentPackage.isCheckedAll_modal" />
+                                    </td>
+                                    <td class="vp-table-Header" style="width: 120px;">{{ 'header_shipnotice.vendorPartNumber' | translate }}</td>
+                                    <td class="vp-table-Header hidden-xs">{{ 'header_shipnotice.nePartNumber' | translate }}</td>
+                                    <td class="vp-table-Header hidden-xs">{{ 'header_shipnotice.manufacturer' | translate }}</td>
+                                    <td class="vp-table-Header hidden-xs">{{ 'header_shipnotice.mrfPartNumber' | translate }}</td>
+                                    <td class="vp-table-Header hidden-xs">{{ 'header_shipnotice.UPC' | translate }}</td>
+                                    <td class="vp-table-Header visible-lg">{{ 'header_shipnotice.description' | translate }}</td>
+                                    <td class="vp-table-Header">{{ 'header_shipnotice.qtyOrdered' | translate }}</td>
+                                    <td class="vp-table-Header">{{ 'header_shipnotice.ackStatus' | translate }}</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in currentItemList">
+                                    <td>
+                                        <input class="ngSelectionCheckbox" style="margin-top: 2px;" type="checkbox" ng-checked="item.isChecked" ng-click="itemCheck(currentPackage,currentItemList,item,'isCheckedAll_modal')" />
+                                    </td>
+                                    <td><span>{{ item.VendorPartNumber}}</span></td>
+                                    <td class="hidden-xs"><span>{{ item.NeweggItemNumber}}</span></td>
+                                    <td class="hidden-xs"><span>{{ item.Manufacturer }}</span></td>
+                                    <td class="hidden-xs"><span>{{ item.ManufacturerPartNumber }}</span></td>
+                                    <td class="hidden-xs"><span>{{ item.UPC }}</span></td>
+                                    <td class="visible-lg"><span>{{ item.Description }}</span></td>
+                                    <td class="text-right"><span>{{ item.OrderQty }}</span></td>
+                                    <td><span>{{ item.ItemACKStatus=="None"?'':item.ItemACKStatus }}</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-sm" ng-click="AddItem()">
+                    <i class="icon-ok"></i>
+                    {{ 'view_shipnotice.ok' | translate }}
+                </button>
+                <button type="button" class="btn btn-danger btn-sm" ng-click="closeItemList()">
+                    <i class="icon-remove"></i>
+                    {{ 'view_shipnotice.cancel' | translate }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div modal="serialNumberListModal" close="closeSerialNumberList()" options="{backdrop: true,dialogFade:true}">
+    <div class="modal-dialog" style="width: 500px">
+        <form name="serialNumberListForm" class="modal-content">
+            <div class="modal-body clearfix">
+                <div class="col-xs-12" style="margin-top: 10px;">
+                    <h5 class="header smaller grey"><i class="icon-hand-right"></i>&nbsp;{{ 'view_shipnotice.serialNumberTip' | translate }} <strong>{{ currentItem_serial.VendorPartNumber }}</strong>.</h5>
+                    <div class="col-xs-12 no-padding text-right" style="color: #797979; margin: -3px 1px 3px 0; font-size: 12px;">
+                        <span>{{ 'header_shipnotice.qtyOrdered' | translate }}: <strong>{{ currentItem_serial.OrderQty }}</strong></span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>{{ 'header_shipnotice.qtyShipped' | translate }}: <strong>{{ currentItem_serial.Quantity }}</strong></span>
+                    </div>
+                    <div class="col-xs-12 no-padding" style="max-height: 400px; overflow-y: auto;">
+                        <table class="table table-detail" style="margin-bottom: 2px;">
+                            <thead>
+                                <tr>
+                                    <td class="vp-table-Header" style="width: 32px;" ng-show="action!='view'"></td>
+                                    <td class="vp-table-Header">{{ 'header_shipnotice.serialNumber' | translate }}</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in currentItem_serial.SerialNumberList2">
+                                    <td class="action-buttons" ng-show="action!='view'">
+                                        <a href="#" ng-click="removeSerialNumber($index)">
+                                            <i class="icon-remove red bigger-150"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <input class="col-xs-12 pull-left"
+                                            style="height: 22px; padding: 2px 2px; margin: 0px !important;"
+                                            type="text" ng-show="action!='view'"
+                                            maxlength="40"
+                                            ng-model="item.serialNumber">
+                                        <span ng-show="action=='view'">{{ item.serialNumber }}</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-sm pull-left" ng-click="addSerialNumber()" ng-show="action!='view'">
+                    <i class="icon-plus"></i>
+                    {{ 'view_shipnotice.add' | translate }}
+                </button>
+                <button type="button" class="btn btn-primary btn-sm pull-left" ng-click="clearSerialNumberList()" ng-show="action!='view'">
+                    <i class="icon-remove"></i>
+                    {{ 'view_shipnotice.clearAll' | translate }}
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="serialNumberList_OK()" ng-show="action!='view'">
+                    <i class="icon-ok"></i>
+                    {{ 'view_shipnotice.ok' | translate }}
+                </button>
+                <button type="button" class="btn btn-danger btn-sm" ng-click="closeSerialNumberList()">
+                    <i class="icon-remove"></i>
+                    {{ 'view_shipnotice.cancel' | translate }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $("[data-toggle=tooltip]").tooltip();
+</script>

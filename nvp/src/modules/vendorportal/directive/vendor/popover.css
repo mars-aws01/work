@@ -1,0 +1,71 @@
+﻿.popover {
+    position: absolute;
+    min-width: 330px;
+    width: auto;
+    top: 0;
+    left: 0;
+    z-index: 1500;
+    border-radius: 3px;
+    overflow-wrap: break-word;
+}
+
+.popover-title {
+    overflow: hidden !important;
+    -ms-text-overflow: ellipsis !important;
+    -o-text-overflow: ellipsis !important;
+    text-overflow: ellipsis !important;
+}
+
+.popover .arrow {
+    position: absolute;
+    left: -15px;
+}
+
+.arrow-top {
+    -webkit-transform: rotate(-90deg) !important;
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    transform: rotate(-90deg) !important;
+}
+
+.arrow-bottom {
+    -webkit-transform: rotate(90deg) !important;
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    transform: rotate(90deg) !important;
+}
+
+.arrow-left {
+    -webkit-transform: rotate(180deg) !important;
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    transform: rotate(180deg) !important;
+}
+
+
+.popover .arrow:before {
+    position: absolute;
+    content: '';
+    display: block;
+    border-width: 8px 15px 8px 0;
+    border-style: solid;
+    border-color: transparent rgba(0, 0, 0, 0.4) transparent transparent;
+}
+
+.popover .arrow:after {
+    position: absolute;
+    content: '';
+    display: block;
+    left: 1px;
+    border-width: 8px 15px 8px 0;
+    border-style: solid;
+    border-color: transparent #fff transparent transparent;
+}
+
+.popover a {
+    text-decoration: underline;
+}
+

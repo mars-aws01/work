@@ -1,0 +1,380 @@
+﻿<style>
+.grey {
+    color: #5D5D5D !important;
+}
+
+.sf-guide p {
+    color: #5D5D5D !important;
+}
+
+.vp-wizard-completed .label {
+    background: #9CC96B !important;
+}
+
+.vp-wizard-completed .guide-title {
+    color: #9CC96B;
+}
+
+.vp-wizard-steps > li {
+    width: 20%;
+}
+</style>
+<h3 class="header grey" style="margin-top: 19px;">{{ 'x12_sf.title' | translate }}</h3>
+<div class="row sf-guide">
+    <div class="col-xs-12 text-left">
+        <div id="wizard" class="vp-wizard clearfix no-padding">
+            <ol class="vp-wizard-steps clearfix clickable" role="tablist">
+                <li ng-class="{'active':currentStep==1,'vp-wizard-completed':stepInfo.step1}" ng-click="change(1)">
+                    <span class="label badge">1</span>
+                    <a class="guide-title" href="#">{{ 'x12_sf.title_1' | translate }}</a>
+                    <a href="#"><small>{{ 'x12_sf.title_1_desc' | translate }}</small></a>
+                </li>
+                <li ng-class="{'active':currentStep==2,'vp-wizard-completed':stepInfo.step2}" ng-click="change(2)">
+                    <span class="label badge">2</span>
+                    <a class="guide-title" href="#">{{ 'x12_sf.title_2' | translate }}</a>
+                    <a href="#"><small>{{ 'x12_sf.title_2_desc' | translate }}</small></a>
+                </li>
+                <li ng-class="{'active':currentStep==3,'vp-wizard-completed':stepInfo.step3}" ng-click="change(3)">
+                    <span class="label badge">3</span>
+                    <a class="guide-title" href="#">{{ 'x12_sf.title_3' | translate }}</a>
+                    <a href="#"><small>{{ 'x12_sf.title_3_desc' | translate }}</small></a>
+                </li>
+                <li ng-class="{'active':currentStep==4,'vp-wizard-completed':stepInfo.step4}" ng-click="change(4)">
+                    <span class="label badge">4</span>
+                    <a class="guide-title" href="#">{{ 'x12_sf.title_4' | translate }}</a>
+                    <a href="#"><small>{{ 'x12_sf.title_4_desc' | translate }}</small></a>
+                </li>
+                <li ng-class="{'active':currentStep==5,'vp-wizard-completed':stepInfo.step5}" ng-click="change(5)">
+                    <span class="label badge">5</span>
+                    <a class="guide-title" href="#">{{ 'x12_sf.title_5' | translate }}</a>
+                    <a href="#"><small>{{ 'x12_sf.title_5_desc' | translate }}</small></a>
+                </li>
+            </ol>
+            <div class="well vp-wizard-content grey" style="background-color: white; border-radius: 3px;">
+                <!-- step 1 & 846 -->
+                <div class="row no-margin" ng-class="{'active':currentStep==1}">
+                    <form name="stepForm_1" ng-submit="save_846()">
+                        <h4 class="grey">{{ 'x12_sf.desc_846_1' | translate }}
+                        </h4>
+                        <div class="form-group col-xs-12 mt-5 no-padding">
+                            <div class="col-md-9 no-padding">
+                                <label>{{ 'x12_sf.desc_846_2' | translate }} </label>
+                            </div>
+                            <div class="form-group col-md-3 no-padding-right">
+                                <input name="form-field-radio" type="radio" class="ace" ng-model="entity.InventorySurvey.IsUsedSeqSegment" ng-value="true" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_yes' | translate }}  </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input name="form-field-radio" type="radio" class="ace" ng-model="entity.InventorySurvey.IsUsedSeqSegment" ng-value="false" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_no' | translate }}  </span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 mt-5 no-padding">
+                            <div class="col-md-9 no-padding">
+                                <label>{{ 'x12_sf.desc_846_3' | translate }} </label>
+                            </div>
+                            <div class="col-md-3 no-padding-right">
+                                <input name="form-field-radio1" type="radio" class="ace" ng-model="entity.InventorySurvey.IsFullModel" ng-value="true" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_yes' | translate }}  </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input name="form-field-radio1" type="radio" class="ace" ng-model="entity.InventorySurvey.IsFullModel" ng-value="false" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_no' | translate }}  </span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 mt-5 no-padding">
+                            <div class="col-md-9 no-padding">
+                                <label>{{ 'x12_sf.desc_846_4' | translate }} </label>
+                            </div>
+                            <div class="col-md-3 no-padding-right">
+                                <input name="form-field-checkbox" type="checkbox" class="ace" ng-model="entity.InventorySurvey.IsProvidePartNumbersAcknowledge" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_ack' | translate }}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 mt-5 no-padding">
+                            <div class="col-md-9 no-padding">
+                                <label class="col-xs-12 no-padding">{{ 'x12_sf.desc_846_5' | translate }} </label>
+                                <div class="col-xs-12">
+                                    <ul class="list-unstyled">
+                                        <li class="mt-5">
+                                            <strong>{{ 'x12_sf.desc_846_6' | translate }}</strong>
+                                        </li>
+                                        <li>
+                                            <span>{{ 'x12_sf.desc_846_7' | translate }}</span>
+                                        </li>
+                                        <li>
+                                            <span>{{ 'x12_sf.desc_846_8' | translate }}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3 no-padding-right">
+                                <input name="form-field-checkbox" type="checkbox" class="ace" ng-model="entity.InventorySurvey.IsNoGapInLinAcknowledge" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_ack' | translate }}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 mt-5 no-padding">
+                            <div class="col-md-9 no-padding">
+                                <label>{{ 'x12_sf.desc_846_9' | translate }} </label>
+                            </div>
+                            <div class="col-md-3 no-padding-right">
+                                <input name="form-field-checkbox" type="checkbox" class="ace" ng-model="entity.InventorySurvey.IsProvideCostAcknowledge" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_ack' | translate }}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 no-padding text-center mt-20">
+                            <button class="btn btn-primary btn-sm" type="submit">
+                                <i class="icon-save">&nbsp;</i> {{ 'common_sf.btn_save' | translate }}
+                            </button>
+                            <a class="btn btn-primary btn-sm ml-10" href="/self-testing-x12-test/1" ng-show="stepInfo.step1 && isPreStepFinished">
+                                <i class="icon-mail-forward">&nbsp;</i> {{ 'common_sf.btn_test' | translate }}
+                            </a>
+                        </div>
+                    </form>
+                </div>
+                <!-- step 2 & 850 -->
+                <div class="row no-margin" ng-class="{'active':currentStep==2}">
+                    <form name="stepForm_2" ng-submit="save_850()">
+                        <h4 class="grey">{{ 'x12_sf.desc_850_1' | translate }}
+                        </h4>
+                        <div class="col-xs-12 mt-5 no-padding">
+                            <div class="col-md-9 no-padding">
+                                <label>{{ 'x12_sf.desc_850_2' | translate }} </label>
+                            </div>
+                            <div class="col-md-3 no-padding-right">
+                                <input name="form-field-checkbox" type="checkbox" class="ace" ng-model="entity.PurchaseOrderSurvey.IsShipPolicyAcknowledge" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_ack' | translate }}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 mt-5 no-padding">
+                            <div class="col-md-9 no-padding">
+                                <label>{{ 'x12_sf.desc_850_3' | translate }} </label>
+                            </div>
+                            <div class="col-md-3 no-padding-right">
+                                <input name="form-field-checkbox" type="checkbox" class="ace" ng-model="entity.PurchaseOrderSurvey.IsPartNumberPositionAcknowledge" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_ack' | translate }}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 mt-5 no-padding">
+                            <div class="col-md-9 no-padding">
+                                <label>{{ 'x12_sf.desc_850_4' | translate }} </label>
+                            </div>
+                            <div class="col-md-3 no-padding-right">
+                                <input name="form-field-checkbox" type="checkbox" class="ace" ng-model="entity.PurchaseOrderSurvey.IsPackingSlipAcknowledge" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_ack' | translate }}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 mt-5 no-padding">
+                            <div class="col-md-9 no-padding">
+                                <label>{{ 'x12_sf.desc_850_5' | translate }} </label>
+                            </div>
+                            <div class="col-md-3 no-padding-right">
+                                <input name="form-field-checkbox" type="checkbox" class="ace" ng-model="entity.PurchaseOrderSurvey.IsCustomerReferenceNumberAcknowledge" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_ack' | translate }}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 mt-5 no-padding">
+                            <div class="col-md-9 no-padding">
+                                <label class="col-xs-12 no-padding">{{ 'x12_sf.desc_850_6' | translate }} </label>
+                                <div class="col-md-6 mt-10 mb-10 no-padding-right">
+                                    <table class="table table-bordered table-striped dashboard-table">
+                                        <thead>
+                                            <tr>
+                                                <th>{{ 'x12_sf.header_850_1' | translate}}</th>
+                                                <th>{{ 'x12_sf.header_850_2' | translate}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in entity.ShipViaList">
+                                                <td>{{ item.Code }}</td>
+                                                <td>{{ item.Description }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-3 no-padding-right">
+                                <input name="form-field-checkbox" type="checkbox" class="ace" ng-model="entity.PurchaseOrderSurvey.IsShipViaAcknowledge" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_ack' | translate }}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 no-padding  text-center mt-20">
+                            <button class="btn btn-primary btn-sm" type="submit">
+                                <i class="icon-save">&nbsp;</i> {{ 'common_sf.btn_save' | translate }}
+                            </button>
+                            <a class="btn btn-primary btn-sm ml-10" href="/self-testing-x12-test/2" ng-show="stepInfo.step2 && isPreStepFinished">
+                                <i class="icon-mail-forward">&nbsp;</i> {{ 'common_sf.btn_test' | translate }}
+                            </a>
+                        </div>
+                    </form>
+                </div>
+                <!-- step 3 & 855-->
+                <div class="row no-margin" ng-class="{'active':currentStep==3}">
+                    <form name="stepForm_3" ng-submit="save_855()">
+                        <h4 class="grey">{{ 'x12_sf.desc_855_1' | translate }}
+                        </h4>
+                        <div class="col-xs-12 mt-5 no-padding">
+                            <div class="col-md-9 no-padding">
+                                <label>{{ 'x12_sf.desc_855_2' | translate }} </label>
+                            </div>
+                            <div class="col-md-3 no-padding-right">
+                                <input name="form-field-checkbox" type="checkbox" class="ace" ng-model="entity.PurchaseOrderAckSurvey.IsRejectPolicyAcknowledge" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_ack' | translate }}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 mt-5 no-padding">
+                            <div class="col-md-9 no-padding">
+                                <label>{{ 'x12_sf.desc_855_3' | translate }} </label>
+                            </div>
+                            <div class="col-md-3 no-padding-right">
+                                <input name="form-field-checkbox" type="checkbox" class="ace" ng-model="entity.PurchaseOrderAckSurvey.IsRejectShippedPolicyAcknowledge" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_ack' | translate }}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 mt-5 no-padding">
+                            <div class="col-md-9 no-padding">
+                                <label>{{ 'x12_sf.desc_855_4' | translate }} </label>
+                            </div>
+                            <div class="col-md-3 no-padding-right">
+                                <input name="form-field-checkbox" type="checkbox" class="ace" ng-model="entity.PurchaseOrderAckSurvey.IsSecondRejectPolicyAcknowledge" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_ack' | translate }}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 mt-5 no-padding">
+                            <div class="col-md-9 no-padding">
+                                <label>{{ 'x12_sf.desc_855_5' | translate }} </label>
+                            </div>
+                            <div class="col-md-3 no-padding-right">
+                                <input name="form-field-checkbox" type="checkbox" class="ace" ng-model="entity.PurchaseOrderAckSurvey.IsRejectCodePolicyAcknowledge" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_ack' | translate }}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 no-padding text-center mt-20">
+                            <button class="btn btn-primary btn-sm" type="submit">
+                                <i class="icon-save">&nbsp;</i> {{ 'common_sf.btn_save' | translate }}
+                            </button>
+                            <a class="btn btn-primary btn-sm ml-10" href="/self-testing-x12-test/3" ng-show="stepInfo.step3 && isPreStepFinished">
+                                <i class="icon-mail-forward">&nbsp;</i> {{ 'common_sf.btn_test' | translate }}
+                            </a>
+                        </div>
+                    </form>
+                </div>
+                <!-- step 4 & 856 -->
+                <div class="row no-margin" ng-class="{'active':currentStep==4}">
+                    <form name="stepForm_4" ng-submit="save_856()">
+                        <h4 class="grey">{{ 'x12_sf.desc_856_1' | translate }}
+                        </h4>
+                        <div class="col-xs-12 mt-5 no-padding">
+                            <div class="col-md-9 no-padding">
+                                <label class="col-xs-12 no-padding">{{ 'x12_sf.desc_856_2' | translate }} </label>
+                                <div class="col-md-6 mt-10 mb-10 no-padding-right">
+                                    <table class="table table-bordered table-striped dashboard-table">
+                                        <thead>
+                                            <tr>
+                                                <th>{{ 'x12_sf.header_850_1' | translate}}</th>
+                                                <th>{{ 'x12_sf.header_850_2' | translate}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in entity.ShipViaList">
+                                                <td>{{ item.Code }}</td>
+                                                <td>{{ item.Description }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-3 no-padding-right">
+                                <input name="form-field-checkbox" type="checkbox" class="ace" ng-model="entity.ShipmentSurvey.IsShipViaAcknowledge" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_ack' | translate }}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 mt-5 no-padding">
+                            <div class="col-md-9 no-padding">
+                                <label>{{ 'x12_sf.desc_856_3' | translate }} </label>
+                            </div>
+                            <div class="col-md-3 no-padding-right">
+                                <input name="form-field-checkbox" type="checkbox" class="ace" ng-model="entity.ShipmentSurvey.IsTrackingNumberAcknowledge" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_ack' | translate }}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 mt-5 no-padding">
+                            <div class="col-md-9 no-padding">
+                                <label>{{ 'x12_sf.desc_856_4' | translate }} </label>
+                            </div>
+                            <div class="col-md-3 no-padding-right">
+                                <input name="form-field-checkbox" type="checkbox" class="ace" ng-model="entity.ShipmentSurvey.IsPackageInfoAcknowledge" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_ack' | translate }}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 mt-5 no-padding">
+                            <div class="col-md-9 no-padding">
+                                <label>{{ 'x12_sf.desc_856_5' | translate }} </label>
+                            </div>
+                            <div class="col-md-3 no-padding-right">
+                                <input name="form-field-radio2" type="radio" class="ace" ng-model="entity.ShipmentSurvey.IsSerialNumberProvide" ng-value="true" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_yes' | translate }}  </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input name="form-field-radio2" type="radio" class="ace" ng-model="entity.ShipmentSurvey.IsSerialNumberProvide" ng-value="false" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_no' | translate }}  </span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 no-padding text-center mt-20">
+                            <button class="btn btn-primary btn-sm" type="submit">
+                                <i class="icon-save">&nbsp;</i> {{ 'common_sf.btn_save' | translate }}
+                            </button>
+                            <a class="btn btn-primary btn-sm ml-10" href="/self-testing-x12-test/4" ng-show="stepInfo.step4 && isPreStepFinished">
+                                <i class="icon-mail-forward">&nbsp;</i> {{ 'common_sf.btn_test' | translate }}
+                            </a>
+                        </div>
+                    </form>
+                </div>
+                <!-- step 5 & 810 -->
+                <div class="row no-margin" ng-class="{'active':currentStep==5}">
+                    <form name="stepForm_5" ng-submit="save_810()">
+                        <h4 class="grey">{{ 'x12_sf.desc_810_1' | translate }}
+                        </h4>
+                        <div class="col-xs-12 mt-5 no-padding">
+                            <div class="col-md-9 no-padding">
+                                <label>{{ 'x12_sf.desc_810_2' | translate }} </label>
+                            </div>
+                            <div class="col-md-3 no-padding-right">
+                                <input name="form-field-checkbox" type="checkbox" class="ace" ng-model="entity.InvoiceSurvey.IsInvoiceTypeAcknowledge" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_ack' | translate }}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 mt-5 no-padding">
+                            <div class="col-md-9 no-padding">
+                                <label>{{ 'x12_sf.desc_810_3' | translate }} </label>
+                            </div>
+                            <div class="col-md-3 no-padding-right">
+                                <input name="form-field-checkbox" type="checkbox" class="ace" ng-model="entity.InvoiceSurvey.IsSACCodeAcknowledge" required>
+                                <span class="lbl">&nbsp;{{ 'common_sf.lb_ack' | translate }}</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 no-padding text-center mt-20">
+                            <button class="btn btn-primary btn-sm" type="submit">
+                                <i class="icon-save">&nbsp;</i> {{ 'common_sf.btn_save' | translate }}
+                            </button>
+                            <a class="btn btn-primary btn-sm ml-10" href="/self-testing-x12-test/5" ng-show="stepInfo.step5 && isPreStepFinished">
+                                <i class="icon-mail-forward">&nbsp;</i> {{ 'common_sf.btn_test' | translate }}
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <ul class="pager vp-wizard-buttons">
+                <li class="previous" role="button" ng-class="{'disabled':currentStep==1}" aria-disabled="true">
+                    <a href="#" ng-click="previous()">
+                        <i class="icon-long-arrow-left"></i> {{ 'common_sf.btn_previous' | translate }}
+                    </a>
+                </li>
+                <li class="text-center hidden-xs" role="button" aria-disabled="true">
+                    <a href="#" ng-click="backToDashboard()">
+                        <i class="icon-dashboard">&nbsp;</i> {{ 'common_sf.btn_dashboard' | translate }}
+                    </a>
+                </li>
+                <li class="next" role="button" ng-class="{'disabled':currentStep==5}">
+                    <a href="#" ng-click="next()">{{ 'common_sf.btn_next' | translate }}
+                        <i class="icon-long-arrow-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

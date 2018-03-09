@@ -1,0 +1,9 @@
+﻿angular.module('vendorportal-nvf-directive',[
+   'vdCategory'
+   'vdSubCategory'
+   'vdPoStatus'
+   'vdBrand'
+   'vdMonthPicker'
+   'vdCategoryV2'
+   'vdBrandV2'
+])

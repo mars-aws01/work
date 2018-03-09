@@ -1,0 +1,1015 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{21535AB7-BCF2-478A-A1EF-BB205594D0BD}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>_02_Portal</RootNamespace>
+    <AssemblyName>02_Portal</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="gulpfile.js" />
+    <Content Include="src\framework\css\loading.css" />
+    <Content Include="src\framework\css\style.reset.css" />
+    <Content Include="src\framework\css\vendor\bootstrap-timepicker.css" />
+    <Content Include="src\framework\css\vendor\bootstrap.css" />
+    <Content Include="src\framework\css\vendor\buttons.css" />
+    <Content Include="src\framework\css\vendor\colorbox.css" />
+    <Content Include="src\framework\css\vendor\colorpicker.css" />
+    <Content Include="src\framework\css\vendor\dropzone.css" />
+    <Content Include="src\framework\css\vendor\font-awesome.css" />
+    <Content Include="src\framework\css\vendor\jquery.gritter.css" />
+    <Content Include="src\framework\css\vendor\jquery\jquery-ui-1.10.3.full.css" />
+    <Content Include="src\framework\css\vendor\jquery\jquery.fileupload-ui.css" />
+    <Content Include="src\framework\css\vendor\jquery\jquery.gritter.css" />
+    <Content Include="src\framework\css\vendor\kendo\images\back.png" />
+    <Content Include="src\framework\css\vendor\kendo\images\kendoui.svg" />
+    <Content Include="src\framework\css\vendor\kendo\images\wp8_icons.png" />
+    <Content Include="src\framework\css\vendor\kendo\images\wp8_inverseicons.png" />
+    <Content Include="src\framework\css\vendor\kendo\kendo.common.css" />
+    <Content Include="src\framework\css\vendor\kendo\kendo.dataviz.css" />
+    <Content Include="src\framework\css\vendor\kendo\kendo.dataviz.silver.css" />
+    <Content Include="src\framework\css\vendor\kendo\kendo.rtl.css" />
+    <Content Include="src\framework\css\vendor\kendo\kendo.silver.css" />
+    <Content Include="src\framework\css\vendor\kendo\Silver\editor.png" />
+    <Content Include="src\framework\css\vendor\kendo\Silver\imagebrowser.png" />
+    <Content Include="src\framework\css\vendor\kendo\Silver\indeterminate.gif" />
+    <Content Include="src\framework\css\vendor\kendo\Silver\loading-image.gif" />
+    <Content Include="src\framework\css\vendor\kendo\Silver\loading.gif" />
+    <Content Include="src\framework\css\vendor\kendo\Silver\loading_2x.gif" />
+    <Content Include="src\framework\css\vendor\kendo\Silver\markers.png" />
+    <Content Include="src\framework\css\vendor\kendo\Silver\markers_2x.png" />
+    <Content Include="src\framework\css\vendor\kendo\Silver\slider-h.gif" />
+    <Content Include="src\framework\css\vendor\kendo\Silver\slider-v.gif" />
+    <Content Include="src\framework\css\vendor\kendo\Silver\sprite.png" />
+    <Content Include="src\framework\css\vendor\kendo\Silver\sprite_2x.png" />
+    <Content Include="src\framework\css\vendor\kendo\Silver\sprite_kpi.png" />
+    <Content Include="src\framework\css\vendor\kendo\Silver\sprite_kpi_2x.png" />
+    <Content Include="src\framework\css\vendor\messenger\messenger-theme-flat.css" />
+    <Content Include="src\framework\css\vendor\messenger\messenger.css" />
+    <Content Include="src\framework\css\vendor\ngProgress.css" />
+    <Content Include="src\framework\css\vendor\photobox.css" />
+    <Content Include="src\framework\data\icons.js" />
+    <Content Include="src\framework\font\fontawesome-webfont.svg" />
+    <Content Include="src\framework\img\alpha.png" />
+    <Content Include="src\framework\img\as2.png" />
+    <Content Include="src\framework\img\avatar.png" />
+    <Content Include="src\framework\img\certifate.png" />
+    <Content Include="src\framework\img\file.png" />
+    <Content Include="src\framework\img\ftp.png" />
+    <Content Include="src\framework\css\vendor\kendo\images\contract-signature.png" />
+    <Content Include="src\framework\img\hue.png" />
+    <Content Include="src\framework\img\icon-refersh.png" />
+    <Content Include="src\framework\img\line_body.png" />
+    <Content Include="src\framework\img\line_part.png" />
+    <Content Include="src\framework\img\newegg\bg\line.png" />
+    <Content Include="src\framework\img\newegg\logo\3.png" />
+    <Content Include="src\framework\img\newegg\vendor\bg_1.jpg" />
+    <Content Include="src\framework\img\newegg\vendor\icons-sprite.png" />
+    <Content Include="src\framework\img\newegg\vendor\us_logo.png" />
+    <Content Include="src\framework\img\no_image.jpg" />
+    <Content Include="src\framework\img\refresh.png" />
+    <Content Include="src\framework\img\refresh_2.png" />
+    <Content Include="src\framework\img\saturation.png" />
+    <Content Include="src\framework\img\upgrade.png" />
+    <Content Include="src\framework\img\vendorPortal.png" />
+    <Content Include="src\framework\img\vendorportal_login.png" />
+    <Content Include="src\framework\img\vendorportal_logo.png" />
+    <Content Include="src\framework\js\config.js" />
+    <Content Include="src\framework\js\directives\custom\negModal.js" />
+    <Content Include="src\framework\js\directives\resources\en-us.js">
+      <DependentUpon>en-us.coffee</DependentUpon>
+    </Content>
+    <Content Include="src\framework\js\directives\resources\en-us.min.js">
+      <DependentUpon>en-us.coffee</DependentUpon>
+    </Content>
+    <Content Include="src\framework\js\directives\resources\zh-cn.js">
+      <DependentUpon>zh-cn.coffee</DependentUpon>
+    </Content>
+    <Content Include="src\framework\js\directives\resources\zh-cn.min.js">
+      <DependentUpon>zh-cn.coffee</DependentUpon>
+    </Content>
+    <Content Include="src\framework\js\directives\resources\zh-tw.js">
+      <DependentUpon>zh-tw.coffee</DependentUpon>
+    </Content>
+    <Content Include="src\framework\js\directives\resources\zh-tw.min.js">
+      <DependentUpon>zh-tw.coffee</DependentUpon>
+    </Content>
+    <Content Include="src\framework\js\directives\vendor\angular-dragdrop.js" />
+    <Content Include="src\framework\js\directives\vendor\angular-file-upload.js" />
+    <Content Include="src\framework\js\directives\vendor\bindonce.js" />
+    <Content Include="src\framework\js\directives\vendor\bootstrap-colorpicker.js" />
+    <Content Include="src\framework\js\directives\vendor\bootstrap-timepicker.js" />
+    <Content Include="src\framework\js\directives\vendor\ngProgress.js" />
+    <Content Include="src\framework\js\directives\vendor\ngStorage.js" />
+    <Content Include="src\framework\js\directives\vendor\select2.js" />
+    <Content Include="src\framework\js\directives\vendor\ui-bootstrap-tpls-0.10.0.js" />
+    <Content Include="src\framework\js\directives\vendor\ui-utils.js" />
+    <Content Include="src\framework\js\filters\filters.js">
+      <DependentUpon>filters.coffee</DependentUpon>
+    </Content>
+    <Content Include="src\framework\js\filters\filters.min.js">
+      <DependentUpon>filters.coffee</DependentUpon>
+    </Content>
+    <Content Include="src\framework\js\untils\global-loading.js">
+      <DependentUpon>global-loading.coffee</DependentUpon>
+    </Content>
+    <Content Include="src\framework\js\utility.js" />
+    <Content Include="src\framework\js\vendor\angular-translate\directive\translate.js" />
+    <Content Include="src\framework\js\vendor\angular-translate\filter\translate.js" />
+    <Content Include="src\framework\js\vendor\angular-translate\service\default-interpolation.js" />
+    <Content Include="src\framework\js\vendor\angular-translate\service\handler-log.js" />
+    <Content Include="src\framework\js\vendor\angular-translate\service\loader-partial.js" />
+    <Content Include="src\framework\js\vendor\angular-translate\service\loader-static-files.js" />
+    <Content Include="src\framework\js\vendor\angular-translate\service\loader-url.js" />
+    <Content Include="src\framework\js\vendor\angular-translate\service\messageformat-interpolation.js" />
+    <Content Include="src\framework\js\vendor\angular-translate\service\storage-cookie.js" />
+    <Content Include="src\framework\js\vendor\angular-translate\service\storage-key.js" />
+    <Content Include="src\framework\js\vendor\angular-translate\service\storage-local.js" />
+    <Content Include="src\framework\js\vendor\angular-translate\service\translate.js" />
+    <Content Include="src\framework\js\vendor\angular-translate\translate.js" />
+    <Content Include="src\framework\js\vendor\angulartics-google-analytics\angulartics-google-analytics.js" />
+    <Content Include="src\framework\js\vendor\angulartics\angulartics.js" />
+    <Content Include="src\framework\js\vendor\angular\angular-animate.js" />
+    <Content Include="src\framework\js\vendor\angular\angular-cookies.js" />
+    <Content Include="src\framework\js\vendor\angular\angular-file-upload.js" />
+    <Content Include="src\framework\js\vendor\angular\angular-resource.js" />
+    <Content Include="src\framework\js\vendor\angular\angular-route.js" />
+    <Content Include="src\framework\js\vendor\angular\angular-sanitize.js" />
+    <Content Include="src\framework\js\vendor\angular\angular-uuid2.js" />
+    <Content Include="src\framework\js\vendor\angular\angular.js" />
+    <Content Include="src\framework\js\vendor\bluebird.js" />
+    <Content Include="src\framework\js\vendor\bootbox.js" />
+    <Content Include="src\framework\js\vendor\bootstrap-colorpicker.js" />
+    <Content Include="src\framework\js\vendor\bootstrap-tag.js" />
+    <Content Include="src\framework\js\vendor\bootstrap.js" />
+    <Content Include="src\framework\js\vendor\buttons.js" />
+    <Content Include="src\framework\js\vendor\dropzone.js" />
+    <Content Include="src\framework\js\vendor\fuelux.spinner.js" />
+    <Content Include="src\framework\js\vendor\html2canvas.js" />
+    <Content Include="src\framework\js\vendor\jquery.autosize.js" />
+    <Content Include="src\framework\js\vendor\jquery.fileupload.js" />
+    <Content Include="src\framework\js\vendor\jquery.gritter.js" />
+    <Content Include="src\framework\js\vendor\jquery.slimscroll.js" />
+    <Content Include="src\framework\js\vendor\jquery\jquery-2.0.3.js" />
+    <Content Include="src\framework\js\vendor\jquery\lib\jquery.ui.touch-punch.js" />
+    <Content Include="src\framework\js\vendor\jquery\lib\jquery-ui-1.10.3.js" />
+    <Content Include="src\framework\js\vendor\jquery\lib\jquery.cookie.js" />
+    <Content Include="src\framework\js\vendor\jquery\lib\jquery.nestable.js" />
+    <Content Include="src\framework\js\vendor\kendo\jszip.js" />
+    <Content Include="src\framework\js\vendor\kendo\kendo.all.js" />
+    <Content Include="src\framework\js\vendor\loading-overlay.js" />
+    <Content Include="src\framework\js\vendor\md5.js" />
+    <Content Include="src\framework\js\vendor\messenger-theme-flat.js" />
+    <Content Include="src\framework\js\vendor\messenger.js" />
+    <Content Include="src\framework\js\vendor\modernizr-2.6.2.js" />
+    <Content Include="src\framework\js\vendor\moment-range.js" />
+    <Content Include="src\framework\js\vendor\moment.js" />
+    <Content Include="src\framework\js\vendor\photobox.js" />
+    <Content Include="src\framework\js\vendor\require\require-css.js" />
+    <Content Include="src\framework\js\vendor\require\require.js" />
+    <Content Include="src\framework\js\vendor\typeahead-bs2.js" />
+    <Content Include="src\framework\js\vendor\uuid.js" />
+    <Content Include="src\framework\plugin\ace_1.2\ace-elements.js" />
+    <Content Include="src\framework\plugin\ace_1.2\ace-extra.js" />
+    <Content Include="src\framework\plugin\ace_1.2\ace-skins.css" />
+    <Content Include="src\framework\plugin\ace_1.2\ace.css" />
+    <Content Include="src\framework\plugin\ace_1.2\ace.js" />
+    <Content Include="src\framework\plugin\select2\select2-spinner.gif" />
+    <Content Include="src\framework\plugin\select2\select2.css" />
+    <Content Include="src\framework\plugin\select2\select2.js" />
+    <Content Include="src\framework\plugin\select2\select2.png" />
+    <Content Include="src\framework\plugin\select2\select2x2.png" />
+    <Content Include="src\framework\plugin\select2\select2_locale_ca.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_cs.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_da.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_de.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_es.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_et.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_eu.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_fr.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_gl.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_he.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_hr.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_hu.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_it.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_ja.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_lt.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_lv.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_mk.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_nl.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_pl.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_pt-BR.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_pt-PT.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_ro.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_ru.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_sk.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_sv.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_tr.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_ua.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_zh-CN.js" />
+    <Content Include="src\framework\plugin\select2\select2_locale_zh-TW.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\index.html" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shAutoloader.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushAppleScript.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushAS3.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushBash.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushColdFusion.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushCpp.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushCSharp.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushCss.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushDelphi.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushDiff.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushErlang.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushGroovy.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushJava.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushJavaFX.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushJScript.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushPerl.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushPhp.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushPlain.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushPowerShell.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushPython.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushRuby.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushSass.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushScala.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushSql.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushVb.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shBrushXml.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shCore.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\scripts\shLegacy.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\src\shAutoloader.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\src\shCore.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\src\shLegacy.js" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\styles\shCore.css" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\styles\shCoreDefault.css" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\styles\shCoreDjango.css" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\styles\shCoreEclipse.css" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\styles\shCoreEmacs.css" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\styles\shCoreFadeToGrey.css" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\styles\shCoreMDUltra.css" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\styles\shCoreMidnight.css" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\styles\shCoreRDark.css" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\styles\shThemeDefault.css" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\styles\shThemeDjango.css" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\styles\shThemeEclipse.css" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\styles\shThemeEmacs.css" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\styles\shThemeFadeToGrey.css" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\styles\shThemeMDUltra.css" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\styles\shThemeMidnight.css" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\styles\shThemeRDark.css" />
+    <Content Include="src\framework\css\vendor\animate.css" />
+    <Content Include="src\framework\img\newegg\bg\img1.jpg" />
+    <Content Include="src\framework\img\newegg\bg\img2.jpg" />
+    <Content Include="src\framework\img\newegg\bg\img3.jpg" />
+    <Content Include="src\framework\img\newegg\footer\map-img.png" />
+    <Content Include="src\framework\img\newegg\icon\01.png" />
+    <Content Include="src\framework\img\newegg\icon\02.png" />
+    <Content Include="src\framework\img\newegg\icon\03.png" />
+    <Content Include="src\framework\img\newegg\img01.jpg" />
+    <Content Include="src\framework\img\newegg\logo\1.png" />
+    <Content Include="src\framework\img\newegg\logo\2.png" />
+    <Content Include="src\framework\img\newegg\user\1.jpg" />
+    <Content Include="src\framework\img\newegg\user\2.jpg" />
+    <Content Include="src\framework\img\newegg\user\3.jpg" />
+    <Content Include="src\framework\themes\ace\index.html" />
+    <Content Include="src\framework\themes\ace\css\login.css" />
+    <Content Include="src\framework\themes\ace\js\back-to-top.js" />
+    <Content Include="src\framework\themes\ace\js\backstretch\jquery.backstretch.min.js" />
+    <Content Include="src\framework\themes\ace\js\login.js" />
+    <Content Include="src\framework\themes\ace\js\wow-animations\wow.min.js" />
+    <Content Include="src\framework\themes\ace\login.html" />
+    <Content Include="src\index.html" />
+    <Content Include="src\modules\system\app\401\index.tpl.html" />
+    <Content Include="src\modules\system\app\404\index.tpl.html" />
+    <Content Include="src\modules\vendorportal-nvf\app\reporting\iron-egg-price-match-report.tpl.html" />
+    <Content Include="src\modules\vendorportal-nvf\app\reporting\purchasing-report.tpl.html" />
+    <Content Include="src\modules\vendorportal-nvf\app\reporting\rma-report.tpl.html" />
+    <Content Include="src\modules\vendorportal-nvf\app\reporting\sell-through-report.tpl.html" />
+    <Content Include="src\modules\vendorportal-nvf\app\reporting\inventory-report.tpl.html" />
+    <Content Include="src\modules\vendorportal-nvf\app\reporting\vendor-queue-report.tpl.html" />
+    <Content Include="src\modules\vendorportal-nvf\app\reporting\whs-receiving-violation-report.tpl.html" />
+    <Content Include="src\modules\vendorportal-nvf\app\reviews\product-reviews.tpl.html" />
+    <Content Include="src\modules\vendorportal-nvf\app\reviews\customer-reviews.tpl.html" />
+    <Content Include="src\modules\vendorportal-vf\app\batch\batch-item-creation.tpl.html" />
+    <Content Include="src\modules\vendorportal-vf\app\item\item-creation.tpl.html" />
+    <Content Include="src\modules\vendorportal-vf\app\item\item-request-query.tpl.html" />
+    <Content Include="src\modules\vendorportal-vf\app\item\query-item-profile.tpl.html" />
+    <Content Include="src\modules\vendorportal-vf\app\item\item-update.tpl.html" />
+    <Content Include="src\modules\vendorportal-vf\app\item\product-roadmap.tpl.html" />
+    <Content Include="src\modules\vendorportal-vf\app\monitor\self-testing-monitor.tpl.html" />
+    <Content Include="src\modules\vendorportal-vf\app\self-testing\connection.tpl.html" />
+    <Content Include="src\modules\vendorportal-vf\app\self-testing\connection-test.tpl.html" />
+    <Content Include="src\modules\vendorportal-vf\app\self-testing\x12-test.tpl.html" />
+    <Content Include="src\modules\vendorportal-vf\app\self-testing\x12.tpl.html" />
+    <Content Include="src\modules\vendorportal-vf\app\self-testing\prerequisite.tpl.html" />
+    <Content Include="src\modules\vendorportal-vf\app\self-testing\dashboard.tpl.html" />
+    <Content Include="src\modules\vendorportal-vf\img\order\po.png" />
+    <Content Include="src\modules\vendorportal-vf\img\print\ItemIsNeweggFlash.png" />
+    <Content Include="src\modules\vendorportal\app\account\account-information.tpl.html" />
+    <Content Include="src\modules\vendorportal-vf\app\batch\batch-processing.tpl.html" />
+    <Content Include="src\modules\vendorportal-vf\app\invoice\invoice.tpl.html" />
+    <Content Include="src\modules\vendorportal-vf\app\order\order.css" />
+    <Content Include="src\modules\vendorportal-vf\app\order\order-detail.tpl.html" />
+    <Content Include="src\modules\vendorportal-vf\app\order\order-list.tpl.html" />
+    <Content Include="src\modules\vendorportal-vf\app\shipment\shipNotice.tpl.html" />
+    <Content Include="src\modules\vendorportal-vf\css\pages.css" />
+    <Content Include="src\modules\vendorportal-vf\css\global.css" />
+    <Content Include="src\modules\vendorportal-vf\img\print\NeweggCa.png" />
+    <Content Include="src\modules\vendorportal-vf\img\print\Newegg.png" />
+    <Content Include="src\modules\vendorportal-vf\img\print\NeweggBusiness.png" />
+    <Content Include="src\modules\vendorportal-vf\img\print\NeweggFlash.png" />
+    <Content Include="src\modules\vendorportal\app\account\account.css" />
+    <Content Include="src\modules\vendorportal\app\account\change-password.tpl.html" />
+    <Content Include="src\modules\vendorportal\app\account\reset-password.tpl.html" />
+    <Content Include="src\modules\vendorportal\app\account\forgot-password.tpl.html" />
+    <Content Include="src\modules\vendorportal-nvf\app\reporting\rp-dashboard.tpl.html" />
+    <Content Include="src\modules\vendorportal\app\contract\query-program-contract.tpl.html" />
+    <Content Include="src\modules\vendorportal\app\home\pay.tpl.html" />
+    <Content Include="src\modules\vendorportal\app\home\home.tpl.html" />
+    <Content Include="src\modules\vendorportal\app\contract\query-contract.tpl.html" />
+    <Content Include="src\modules\vendorportal\app\register\stocking-po-registration.tpl.html" />
+    <Content Include="src\modules\vendorportal\app\register\vendor-registration.css" />
+    <Content Include="src\modules\vendorportal\app\register\vendor-registration.tpl.html" />
+    <Content Include="src\modules\vendorportal\app\user\role-list.tpl.html" />
+    <Content Include="src\modules\vendorportal\app\user\user-list.tpl.html" />
+    <Content Include="src\modules\vendorportal\app\user\user-profile.tpl.html" />
+    <Content Include="src\modules\vendorportal\app\vendor\vendor-request.tpl.html" />
+    <Content Include="src\modules\vendorportal\app\vendor\vendor-invitation.tpl.html" />
+    <Content Include="src\modules\vendorportal\app\vendor\vendor-list.tpl.html" />
+    <Content Include="src\modules\vendorportal\app\vendor\vendor-survey.tpl.html" />
+    <Content Include="src\modules\vendorportal\directive\vendor\datetimepicker.css" />
+    <Content Include="src\modules\vendorportal\directive\vendor\datetimepicker.js" />
+    <Content Include="src\modules\vendorportal\directive\vendor\popover.css" />
+    <Content Include="src\modules\vendorportal\directive\vendor\popover.js" />
+    <Content Include="src\modules\vendorportal\img\bankinfo.png" />
+    <Content Include="src\modules\vendorportal-vf\template\packagePrintTemplate.html" />
+    <Content Include="src\modules\vendorportal\app\account\account-registration.css" />
+    <Content Include="src\modules\vendorportal\app\account\user-account-setting.tpl.html" />
+    <Content Include="src\modules\vendorportal\css\global.css" />
+    <Content Include="src\modules\vendorportal-vf\css\packagePrint.css" />
+    <Content Include="src\modules\vendorportal\service\cache\printer.coffee" />
+    <Content Include="src\favicon.ico" />
+    <Content Include="src\modules\vendorportal\template\tpl_approveEimsContract.html" />
+    <Content Include="src\modules\vendorportal\template\tpl_rejectEimsContract.html" />
+    <Content Include="src\modules\vendorportal\template\tpl_userFeedback.html" />
+    <Content Include="src\modules\vendorportal\template\tpl_gridCustomMenu.html" />
+    <Content Include="src\modules\system\app\system-feedback\index.tpl.html" />
+    <Content Include="src\modules\system\app\system-translate\index.js">
+      <DependentUpon>index.coffee</DependentUpon>
+    </Content>
+    <Content Include="src\modules\system\app\system-translate\index.min.js">
+      <DependentUpon>index.coffee</DependentUpon>
+    </Content>
+    <Content Include="src\modules\system\app\system-translate\index.tpl.html" />
+    <Content Include="src\modules\vendorportal\language\rolelist.en-us.coffee" />
+    <Content Include="src\modules\vendorportal\language\rolelist.zh-cn.coffee" />
+    <Content Include="src\modules\vendorportal\language\rolelist.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal\language\userlist.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal\language\userlist.en-us.coffee" />
+    <Content Include="src\modules\vendorportal\language\userlist.zh-cn.coffee" />
+    <Content Include="src\modules\vendorportal\language\vendorlist.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal\language\vendorlist.en-us.coffee" />
+    <Content Include="src\modules\vendorportal\language\vendorlist.zh-cn.coffee" />
+    <Content Include="src\modules\vendorportal\language\vendor-invitation.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal\language\vendor-invitation.en-us.coffee" />
+    <Content Include="src\modules\vendorportal\language\vendor-invitation.zh-cn.coffee" />
+    <Content Include="test\karma.conf.js" />
+    <Content Include="test\lib\angular-mocks.js" />
+    <Content Include="test\lib\angular-resource.js" />
+    <Content Include="test\lib\angular-route.min.js" />
+    <Content Include="test\lib\angular-translate-loader-static-files.js" />
+    <Content Include="test\lib\angular-translate.js" />
+    <Content Include="test\lib\angular.js" />
+    <Content Include="test\lib\jquery.cookie.js" />
+    <Content Include="test\lib\jquery.js" />
+    <Content Include="test\lib\should.js" />
+    <Content Include="test\nvf\app\customer-reviews.test.js" />
+    <Content Include="test\nvf\app\iron-egg-price-match-report.test.js" />
+    <Content Include="test\nvf\app\rma-report.test.js" />
+    <Content Include="test\nvf\app\vendor-rma-queue-report.test.js" />
+    <Content Include="test\nvf\app\whs-receiving-violation-report.test.js" />
+    <Content Include="test\nvf\directive\vd-strong-password.test.js" />
+    <Content Include="test\test-main.js" />
+    <Content Include="test\vf\app\connection.test.js" />
+    <Content Include="test\vf\app\dashboard.test.js" />
+    <Content Include="test\vf\app\prerequisite.test.js" />
+    <Content Include="test\vp\app\stocking-po-registration.test.js" />
+    <Content Include="test\vp\directive\vdAddress.test.js" />
+    <Content Include="test\vp\directive\vdContact.test.js" />
+    <Content Include="test\vp\service\registration.test.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\framework\app\app.coffee" />
+    <Content Include="src\framework\app\controller\framework-LoginCtrl.coffee" />
+    <Content Include="src\framework\app\controller\framework-MainCtrl.coffee" />
+    <Content Include="src\framework\app\controller\framework.coffee" />
+    <Content Include="src\framework\app\l18n\languages\en-us.coffee" />
+    <Content Include="src\framework\app\l18n\languages\zh-cn.coffee" />
+    <Content Include="src\framework\app\l18n\languages\zh-tw.coffee" />
+    <Content Include="src\framework\css\style.less" />
+    <Content Include="src\framework\font\fontawesome-webfont.eot" />
+    <Content Include="src\framework\font\fontawesome-webfont.ttf" />
+    <Content Include="src\framework\font\fontawesome-webfont.woff" />
+    <Content Include="src\framework\font\FontAwesome.otf" />
+    <Content Include="src\framework\js\defaultProfile.coffee" />
+    <Content Include="src\framework\js\directives\custom.coffee" />
+    <Content Include="src\framework\js\directives\custom\negAutoSize.coffee" />
+    <Content Include="src\framework\js\directives\custom\negColorPicker.coffee" />
+    <Content Include="src\framework\js\directives\custom\negDatePicker.coffee" />
+    <Content Include="src\framework\js\directives\custom\negDateRangePicker.coffee" />
+    <Content Include="src\framework\js\directives\custom\negDateRangePicker.less" />
+    <Content Include="src\framework\js\directives\custom\negDropzone.coffee" />
+    <Content Include="src\framework\js\directives\custom\negMenu.coffee" />
+    <Content Include="src\framework\js\directives\custom\negScroll.coffee" />
+    <Content Include="src\framework\js\directives\custom\negSimpleColorPicker.coffee" />
+    <Content Include="src\framework\js\directives\custom\negSpinner.coffee" />
+    <Content Include="src\framework\js\directives\custom\negTimePicker.coffee" />
+    <Content Include="src\framework\js\directives\custom\negTree.coffee" />
+    <Content Include="src\framework\js\directives\custom\validator.coffee" />
+    <Content Include="src\framework\js\directives\custom\validTip.coffee" />
+    <Content Include="src\framework\js\directives\custom\_ngBindHtmlUnsafe.coffee" />
+    <Content Include="src\framework\js\directives\resources\en-us.coffee" />
+    <Content Include="src\framework\js\directives\resources\zh-cn.coffee" />
+    <Content Include="src\framework\js\directives\resources\zh-tw.coffee" />
+    <Content Include="src\framework\js\filters\filters.coffee" />
+    <Content Include="src\framework\js\services\custom\account.coffee" />
+    <Content Include="src\framework\js\services\custom\authorize.coffee" />
+    <Content Include="src\framework\js\services\custom\context.coffee" />
+    <Content Include="src\framework\js\services\custom\converter.coffee" />
+    <Content Include="src\framework\js\services\custom\lastBreadCrumb.coffee" />
+    <Content Include="src\framework\js\services\custom\logger.coffee" />
+    <Content Include="src\framework\js\services\custom\messager.coffee" />
+    <Content Include="src\framework\js\services\custom\progress.coffee" />
+    <Content Include="src\framework\js\services\custom\storage.coffee" />
+    <Content Include="src\framework\js\services\custom\systemRoute.coffee" />
+    <Content Include="src\framework\js\services\custom\userProfile.coffee" />
+    <Content Include="src\framework\js\services\services-base.coffee" />
+    <Content Include="src\framework\js\untils\global-loading.coffee" />
+    <Content Include="src\framework\plugin\select2\component.json" />
+    <Content Include="src\framework\plugin\select2\LICENSE" />
+    <Content Include="src\framework\plugin\select2\README.md" />
+    <Content Include="src\framework\plugin\select2\release.sh" />
+    <Content Include="src\framework\plugin\select2\select2.jquery.json" />
+    <Content Include="src\framework\plugin\select2\select2_locale_en.js.template" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\compass\config.rb" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\compass\shCore.scss" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\compass\shCoreDefault.scss" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\compass\shCoreDjango.scss" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\compass\shCoreEclipse.scss" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\compass\shCoreEmacs.scss" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\compass\shCoreFadeToGrey.scss" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\compass\shCoreMDUltra.scss" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\compass\shCoreMidnight.scss" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\compass\shCoreRDark.scss" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\compass\shThemeDefault.scss" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\compass\shThemeDjango.scss" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\compass\shThemeEclipse.scss" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\compass\shThemeEmacs.scss" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\compass\shThemeFadeToGrey.scss" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\compass\shThemeMDUltra.scss" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\compass\shThemeMidnight.scss" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\compass\shThemeRDark.scss" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\compass\_theme_template.scss" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\LGPL-LICENSE" />
+    <Content Include="src\framework\plugin\syntaxhighlighter_3.0.83\MIT-LICENSE" />
+    <Content Include="src\framework\themes\ace\index.less" />
+    <Content Include="src\modules\system\app\401\index.coffee" />
+    <Content Include="src\modules\system\app\404\index.coffee" />
+    <Content Include="src\modules\system\app\app.coffee" />
+    <Content Include="src\modules\system\services\system-service-version.coffee" />
+    <Content Include="src\modules\system\app\system-feedback\index.coffee" />
+    <Content Include="src\modules\system\app\system-translate\index.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\app.coffee" />
+    <Content Include="src\modules\vendorportal-vf\app\app.coffee" />
+    <Content Include="src\modules\vendorportal-vf\app\order\order-list.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\orderlist.en-us.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\orderlist.zh-cn.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\orderlist.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal\app.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\service\cache\apiSetting.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\service\service-base.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\service\cache\order.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\service\cache\item.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\service\cache\vf-common.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\app\item\item-list.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\app\item\item-list.tpl.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\directive\custom\vdSearch.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\directive\directive-base.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\service\api\order.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\service\api\item.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\service\api\shipnotice.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\service\api\invoice.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\service\api\orderException.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\service\api\warehouse.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\service\api\orderAck.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\framework\js\services\custom\common.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\service\service-base.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\app\order\order-detail.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\service\cache\shipNotice.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\app\account\account-information.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\framework\js\services\custom\vendor.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\app\invoice\invoice.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\service\cache\invoice.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\service\api\user.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\app\shipment\shipNotice.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\app\batch\batch-processing.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\service\cache\batch.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\service\api\vendorContact.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\service\api\contract.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\service\api\address.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\service\api\configuration.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\app\app.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\app\account\user-account-setting.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\directive\directive-base.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\directive\custom\vdFunctionList.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\app\account\account-registration.tpl.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\app\account\account-registration.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\directive\custom\vdAuth.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\directive\custom\vdAgent.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\service\api\batch.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\directive\custom\vdPopTip.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\app\home\home.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\css\vp-menu.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\css\vp-table.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\css\vp-element.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\app\user\user-list.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\app\user\role-list.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\service\api\role.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\service\api\vendor.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\app\user\user-profile.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\app\register\vendor-registration.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal\service\api\rolePermission.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\language\itemlist.en-us.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\language\itemlist.zh-cn.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\modules\vendorportal-vf\language\batch.en-us.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\batch.zh-cn.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\batch.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal-vf\directive\custom\vdOrder.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\invoice.en-us.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\invoice.zh-cn.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\invoice.zh-tw.coffee" />
+    <Content Include="src\framework\css\vendor\kendo\images\kendoui.ttf" />
+    <Content Include="src\framework\css\vendor\kendo\images\kendoui.woff" />
+    <Content Include="src\framework\css\vendor\kendo\fonts\DejaVu\DejaVuSans.ttf" />
+    <Content Include="src\modules\vendorportal-vf\directive\custom\vdOrderStatus.coffee" />
+    <Content Include="src\modules\vendorportal-vf\directive\custom\vdInvoiceStatus.coffee" />
+    <Content Include="src\modules\vendorportal-vf\directive\custom\vdShipmentStatus.coffee" />
+    <Content Include="src\modules\vendorportal-vf\directive\custom\vdOrderException.coffee" />
+    <Content Include="src\modules\vendorportal-vf\directive\custom\vdOnErrorSrc.coffee" />
+    <Content Include="src\framework\js\services\custom\mail.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\app.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\app\app.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\app\reporting\inventory-report.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\directive\directive-base.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\service\api\category.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\service\service-base.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\directive\custom\vdCategory.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\app\reporting\sell-through-report.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\app\reporting\purchasing-report.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\directive\custom\vdPoStatus.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\service\api\inventory-report.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\service\api\sell-through-report.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\service\api\purchasing-report.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\directive\custom\vdBrand.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\service\api\brand.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\service\cache\report-exporter.coffee" />
+    <Content Include="gulp_tasks\task_framework.coffee" />
+    <Content Include="gulp_tasks\task_modules.coffee" />
+    <Content Include="gulp_tasks\task_serve.coffee" />
+    <Content Include="gulp_tasks\task_watch.coffee" />
+    <Content Include="gulpfile.coffee" />
+    <Content Include="package.json" />
+    <Content Include="src\modules\vendorportal-nvf\app\reporting\rma-report.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\directive\custom\vdMonthPicker.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\app\reporting\iron-egg-price-match-report.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\app\reporting\vendor-queue-report.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\app\reporting\whs-receiving-violation-report.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\app\reviews\customer-reviews.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\service\api\whs-receiving-violation-report.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\service\api\iron-egg-price-match-report.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\service\api\vendor-queue-report.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\service\api\rma-report.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\service\api\customer-reviews.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\directive\custom\vdSubCategory.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\service\api\sub-category.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\app\reviews\product-reviews.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\language\reporting.en-us.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\language\reporting.zh-cn.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\language\reporting.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\language\customer-reviews.en-us.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\language\customer-reviews.zh-cn.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\language\customer-reviews.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal-vf\app\self-testing\dashboard.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\self-testing-dashboard.en-us.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\self-testing-dashboard.zh-cn.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\self-testing-dashboard.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal-vf\app\self-testing\prerequisite.coffee" />
+    <Content Include="src\modules\vendorportal-vf\app\self-testing\connection.coffee" />
+    <Content Include="src\modules\vendorportal-vf\app\self-testing\connection-test.coffee" />
+    <Content Include="src\modules\vendorportal-vf\app\self-testing\x12.coffee" />
+    <Content Include="src\modules\vendorportal-vf\app\self-testing\x12-test.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\files\test-1.pdf" />
+    <Content Include="src\modules\vendorportal-nvf\files\test-2.pdf" />
+    <Content Include="src\modules\vendorportal-vf\app\monitor\self-testing-monitor.coffee" />
+    <Content Include="src\framework\js\services\custom\profileInfo.coffee" />
+    <Content Include="src\modules\vendorportal\service\api\management.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\service\api\vendor-survey.coffee" />
+    <Content Include="src\modules\vendorportal-vf\app\item\item-creation.coffee" />
+    <Content Include="src\modules\vendorportal-vf\app\item\item-request-query.coffee" />
+    <Content Include="src\modules\vendorportal-vf\directive\page\vdImAttachments.coffee" />
+    <Content Include="src\modules\vendorportal-vf\directive\page\vdImBasicInfo.coffee" />
+    <Content Include="src\modules\vendorportal-vf\directive\page\vdImDimensionWeight.coffee" />
+    <Content Include="src\modules\vendorportal-vf\directive\page\vdImOtherInfo.coffee" />
+    <Content Include="src\modules\vendorportal-vf\directive\page\vdImSpecificationInfo.coffee" />
+    <Content Include="src\modules\vendorportal-vf\directive\page\vdImSubCategory.coffee" />
+    <Content Include="src\modules\vendorportal-vf\directive\page\vdImWarrantyInfo.coffee" />
+    <Content Include="src\modules\vendorportal-vf\directive\page\vdPm.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\item-creation.en-us.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\item-creation.zh-cn.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\item-creation.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\app\reporting\out-of-stock-report.tpl.html" />
+    <Content Include="src\modules\vendorportal-nvf\app\reporting\out-of-stock-report.coffee">
+      <Compile>True</Compile>
+      <Minify>True</Minify>
+      <IgnoreWarnings>True</IgnoreWarnings>
+      <IgnoreErrors>True</IgnoreErrors>
+      <Bare>False</Bare>
+      <Iced>False</Iced>
+    </Content>
+    <Content Include="src\modules\vendorportal-nvf\service\api\out-of-stock-report.coffee">
+      <Compile>True</Compile>
+      <Minify>True</Minify>
+      <IgnoreWarnings>True</IgnoreWarnings>
+      <IgnoreErrors>True</IgnoreErrors>
+      <Bare>False</Bare>
+      <Iced>False</Iced>
+    </Content>
+    <Content Include="src\framework\font\fontawesome-webfont.woff2" />
+    <Content Include="src\modules\vendorportal-vf\app\item\product-roadmap.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\directive\custom\vdBrandV2.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\directive\custom\vdCategoryV2.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\service\api\category-v2.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\service\api\brand-v2.coffee" />
+    <Content Include="src\modules\vendorportal-vf\directive\page\vdCategoryItem.coffee" />
+    <Content Include="src\modules\vendorportal-vf\app\batch\batch-item-creation.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\batch-item-creation.en-us.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\batch-item-creation.zh-cn.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\batch-item-creation.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal-vf\app\item\item-update.coffee" />
+    <Content Include="src\modules\vendorportal-vf\directive\item-update\vdItemUpdateRequestDetail.coffee">
+      <Compile>True</Compile>
+      <Minify>True</Minify>
+      <IgnoreWarnings>True</IgnoreWarnings>
+      <IgnoreErrors>True</IgnoreErrors>
+      <Bare>False</Bare>
+      <Iced>False</Iced>
+    </Content>
+    <Content Include="src\modules\vendorportal-vf\language\item-update.en-us.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\item-update.zh-cn.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\item-update.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal-vf\directive\page\vdCategoryItemV2.coffee" />
+    <Content Include="src\modules\vendorportal-vf\app\item\query-item-profile.coffee" />
+    <Content Include="src\modules\vendorportal-vf\directive\page\vdItemProfileDetail.coffee" />
+    <None Include="src\modules\vendorportal-vf\language\itemlist.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal\app\vendor\vendor-invitation.coffee" />
+    <Content Include="src\modules\vendorportal\app\vendor\vendor-list.coffee" />
+    <Content Include="src\modules\vendorportal\language\accountinfo.en-us.coffee" />
+    <Content Include="src\modules\vendorportal\language\accountinfo.zh-ch.coffee" />
+    <Content Include="src\modules\vendorportal\language\accountinfo.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal\language\accountsetting.en-us.coffee" />
+    <Content Include="src\modules\vendorportal\language\accountsetting.zh-cn.coffee" />
+    <Content Include="src\modules\vendorportal\language\accountsetting.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal\css\vp-list.less" />
+    <Content Include="src\modules\vendorportal\service\api\vendorUser.coffee" />
+    <Content Include="src\modules\vendorportal\css\vp-page.less" />
+    <Content Include="src\modules\vendorportal-vf\language\orderdetail.en-us.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\orderdetail.zh-cn.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\orderdetail.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\shipNotice.en-us.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\shipNotice.zh-cn.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\shipNotice.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal\language\common.en-us.coffee" />
+    <Content Include="src\modules\vendorportal\language\common.zh-cn.coffee" />
+    <Content Include="src\modules\vendorportal\language\common.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal\filter\custom\vfCurrency.coffee" />
+    <Content Include="src\modules\vendorportal\filter\filter-base.coffee" />
+    <Content Include="src\modules\vendorportal\directive\custom\vdCover.coffee" />
+    <Content Include="src\modules\vendorportal\directive\custom\vdGrid.coffee" />
+    <Content Include="src\modules\vendorportal\language\dashboard.en-us.coffee" />
+    <Content Include="src\modules\vendorportal\directive\custom\vdBg.coffee" />
+    <Content Include="src\modules\vendorportal\language\vdgrid.en-us.coffee" />
+    <Content Include="src\modules\vendorportal\directive\custom\vdNumber.coffee" />
+    <Content Include="src\modules\vendorportal\css\vp-card.less" />
+    <Content Include="src\modules\vendorportal\css\vp-feedback.less" />
+    <Content Include="src\modules\vendorportal\css\vp-panel.less" />
+    <Content Include="src\modules\vendorportal\directive\custom\vdPanelbar.coffee" />
+    <Content Include="src\modules\vendorportal\app\account\forgot-password.coffee" />
+    <Content Include="src\modules\vendorportal\app\account\reset-password.coffee" />
+    <Content Include="src\modules\vendorportal\directive\custom\vdStrongPassword.coffee" />
+    <Content Include="src\modules\vendorportal\directive\custom\vdStar.coffee" />
+    <Content Include="src\modules\vendorportal\filter\custom\vfPercent.coffee" />
+    <Content Include="src\modules\vendorportal-vf\service\cache\self-testing.coffee" />
+    <Content Include="src\modules\vendorportal-vf\service\api\self-testing.coffee" />
+    <Content Include="src\modules\vendorportal\directive\custom\vdProfileLabel.coffee" />
+    <Content Include="src\modules\vendorportal-nvf\app\reporting\rp-dashboard.coffee" />
+    <Content Include="src\modules\vendorportal\app\home\pay.coffee" />
+    <Content Include="src\modules\vendorportal\app\register\stocking-po-registration.coffee" />
+    <Content Include="src\modules\vendorportal\directive\custom\vdAddress.coffee" />
+    <Content Include="src\modules\vendorportal\directive\custom\vdContact.coffee" />
+    <Content Include="src\modules\vendorportal\directive\custom\vdUpload.coffee" />
+    <Content Include="src\modules\vendorportal\directive\custom\vdTerritory.coffee" />
+    <Content Include="src\modules\vendorportal\app\contract\query-contract.coffee" />
+    <Content Include="src\modules\vendorportal\language\query-contract.en-us.coffee" />
+    <Content Include="src\modules\vendorportal\language\query-contract.zh-cn.coffee" />
+    <Content Include="src\modules\vendorportal\language\query-contract.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal\directive\custom\vdEmbedSrc.coffee" />
+    <Content Include="src\modules\vendorportal\app\account\change-password.coffee" />
+    <Content Include="src\modules\vendorportal-vf\service\api\orderStatus.coffee" />
+    <Content Include="src\modules\vendorportal\app\vendor\vendor-survey.coffee" />
+    <Content Include="src\modules\vendorportal-vf\service\api\item-creation.coffee" />
+    <Content Include="src\modules\vendorportal-vf\service\api\manufacturer.coffee" />
+    <Content Include="src\modules\vendorportal-vf\service\cache\item-creation.coffee" />
+    <Content Include="src\modules\vendorportal-vf\service\custom\publisher.coffee" />
+    <Content Include="src\modules\vendorportal\css\vp-theme.less" />
+    <Content Include="src\modules\vendorportal-vf\language\product-roadmap.en-us.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\product-roadmap.zh-cn.coffee" />
+    <Content Include="src\modules\vendorportal-vf\language\product-roadmap.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal-vf\service\api\product-roadmap.coffee" />
+    <Content Include="src\modules\vendorportal-vf\service\api\batch-item-creation.coffee" />
+    <Content Include="src\modules\vendorportal\directive\custom\vdUploadV2.coffee" />
+    <Content Include="src\modules\vendorportal\language\query-program-contract.en-us.coffee" />
+    <Content Include="src\modules\vendorportal\language\query-program-contract.zh-cn.coffee" />
+    <Content Include="src\modules\vendorportal\language\query-program-contract.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal\app\contract\query-program-contract.coffee" />
+    <Content Include="src\modules\vendorportal\directive\custom\vdNeweggUser.coffee" />
+    <Content Include="src\modules\vendorportal\directive\contract\vdContractAttachment.coffee">
+      <Compile>True</Compile>
+      <Minify>True</Minify>
+      <IgnoreWarnings>True</IgnoreWarnings>
+      <IgnoreErrors>True</IgnoreErrors>
+      <Bare>False</Bare>
+      <Iced>False</Iced>
+    </Content>
+    <Content Include="src\modules\vendorportal\directive\contract\vdContractUploadFile.coffee">
+      <Compile>True</Compile>
+      <Minify>True</Minify>
+      <IgnoreWarnings>True</IgnoreWarnings>
+      <IgnoreErrors>True</IgnoreErrors>
+      <Bare>False</Bare>
+      <Iced>False</Iced>
+    </Content>
+    <Content Include="src\modules\vendorportal\directive\contract\vdContractDetail_common.coffee" />
+    <Content Include="src\modules\vendorportal\directive\contract\vdContractDetail_pp.coffee" />
+    <Content Include="src\modules\vendorportal\directive\contract\vdContractDetail_mdf.coffee" />
+    <Content Include="src\modules\vendorportal\directive\contract\vdContractEventLog.coffee" />
+    <Content Include="src\modules\vendorportal\directive\contract\vdContractReject.coffee" />
+    <Content Include="src\modules\vendorportal-vf\service\api\item-update.coffee">
+      <Compile>True</Compile>
+      <Minify>True</Minify>
+      <IgnoreWarnings>True</IgnoreWarnings>
+      <IgnoreErrors>True</IgnoreErrors>
+      <Bare>False</Bare>
+      <Iced>False</Iced>
+    </Content>
+    <Content Include="src\modules\vendorportal-vf\service\api\item-profile.coffee" />
+    <Content Include="src\modules\vendorportal\app\vendor\vendor-request.coffee" />
+    <Content Include="src\modules\vendorportal\directive\custom\vdTerritoryV2.coffee" />
+    <None Include="src\modules\vendorportal\language\dashboard.zh-cn.coffee" />
+    <Content Include="src\modules\vendorportal\language\dashboard.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal\service\api\dashboard.coffee" />
+    <Content Include="src\modules\vendorportal\language\vdgrid.zh-ch.coffee" />
+    <Content Include="src\modules\vendorportal\language\vdgrid.zh-tw.coffee" />
+    <Content Include="src\modules\vendorportal\service\api\userFeedback.coffee" />
+    <Content Include="src\modules\vendorportal\service\cache\auth.coffee" />
+    <Content Include="src\modules\vendorportal\service\api\registration.coffee" />
+    <Content Include="src\modules\vendorportal\service\cache\registration.coffee" />
+    <Content Include="src\modules\vendorportal\service\api\applicationForm.coffee" />
+    <Content Include="src\modules\vendorportal\service\api\stockingPO.coffee" />
+    <Content Include="src\modules\vendorportal\service\cache\apiMonitor.coffee" />
+    <Content Include="src\modules\vendorportal\service\api\apiTrace.coffee" />
+    <Content Include="src\modules\vendorportal\service\api\zipCode.coffee" />
+    <Content Include="src\modules\vendorportal\service\api\captcha.coffee" />
+    <Content Include="src\modules\vendorportal\service\api\latestUpdate.coffee" />
+    <Content Include="src\modules\vendorportal\service\api\vendorDraft.coffee" />
+    <Content Include="src\modules\vendorportal\service\api\eims.coffee" />
+    <Content Include="src\modules\vendorportal\service\api\territory.coffee" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>packages\Microsoft.AspNet.SignalR.Core.1.0.0\lib\net40\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Owin">
+      <HintPath>packages\Microsoft.AspNet.SignalR.Owin.1.0.0\lib\net45\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
+      <HintPath>packages\Microsoft.AspNet.SignalR.SystemWeb.1.0.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>packages\Microsoft.Owin.Host.SystemWeb.1.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\modules\vendorportal-nvf\css\" />
+    <Folder Include="src\modules\vendorportal-nvf\img\" />
+    <Folder Include="src\modules\vendorportal-nvf\template\" />
+    <Folder Include="test\vf\directive\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49930/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

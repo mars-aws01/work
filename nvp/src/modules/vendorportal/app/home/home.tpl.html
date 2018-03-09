@@ -1,0 +1,455 @@
+﻿<style>
+    .home-row {
+        margin: 40px 0;
+        text-align: center;
+        line-height: 20px;
+        vertical-align: middle;
+        color: #ababab;
+    }
+
+        .home-row i {
+            font-size: 64px;
+            color: #8a95a7;
+        }
+
+        .home-row .boxTitle {
+            font-size: 20px;
+            font-weight: bold;
+            color: #3d3d3d;
+            margin: 15px 0 5px;
+        }
+
+        .home-row .boxDetaile {
+            margin-top: 10px;
+            color: #6a6a6a;
+            font-size: 14px;
+        }
+
+    .home-inbox {
+        margin-top: 10px;
+    }
+
+    .home-otherBox {
+        margin-top: 10px;
+        color: #8a96a6;
+        display: inline-block;
+        width: 350px;
+    }
+
+        .home-otherBox .iconBox {
+            padding: 10px 5px 8px;
+            float: left;
+            font-size: 36px;
+            color: #8d95a8;
+        }
+
+        .home-otherBox .text {
+            float: right;
+            width: 300px;
+            text-align: left;
+        }
+
+        .home-otherBox .titledown {
+            color: #3392ce;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .home-otherBox .text .link {
+            color: #8d95a8;
+            text-decoration: underline;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+            .home-otherBox .text .link:hover {
+                color: #428bca;
+            }
+
+    .home-welcome {
+        background-color: #EAF2F7;
+        border-left: 4px solid #8BC1E5;
+        padding: 10px 10px !important;
+        margin: 5px 0px 5px 0;
+    }
+
+        .home-welcome > h3 {
+            color: #3d3d3d;
+            margin: 5px 0 !important;
+        }
+
+    .content-display {
+        border: none !important;
+        background-color: white;
+        white-space: pre-wrap;
+    }
+
+    .panel-body *:first-child {
+        margin-top: 0;
+    }
+
+    .dashboard-feed__item {
+        padding: 5px 0px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        color: #999999;
+    }
+
+        .dashboard-feed__item:before, .dashboard-feed__item:after {
+            content: " ";
+            display: table;
+        }
+
+        .dashboard-feed__item:before, .dashboard-feed__item:after {
+            content: " ";
+            display: table;
+        }
+
+        .dashboard-feed__item:after {
+            clear: both;
+        }
+
+        .dashboard-feed__item > span {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            padding: 0;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .dashboard-feed__item > small {
+            float: right;
+            color: #aaa;
+        }
+
+    .float-right {
+        float: right;
+    }
+
+    .home-row-new {
+        margin: 40px 0;
+        text-align: left;
+        line-height: 20px;
+        vertical-align: middle;
+        color: #ababab;
+    }
+
+    .panel {
+        box-shadow: none;
+        border: none;
+    }
+
+    .panel-default > .panel-heading {
+        color: #333333;
+        background-color: transparent;
+        border-color: rgba(0, 0, 0, 0.07);
+    }
+
+    .panel-heading {
+        border-bottom: 0;
+        padding-left: 0;
+    }
+
+    .panel-body {
+        padding-left: 0;
+    }
+
+    .panel-title {
+        font-size: 17px;
+    }
+
+    a.eclips {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 82%;
+        display: inline-block;
+        overflow: hidden;
+    }
+
+    ol {
+        display: block;
+        list-style-type: decimal;
+        -webkit-margin-before: 1em;
+        -webkit-margin-after: 1em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        -webkit-padding-start: 23px;
+    }
+
+    ol > li {
+        display: list-item;
+    }
+   
+    ol {
+        padding-left:1px;
+    }
+
+
+
+    ul, ol {
+        margin-left:16px;
+    }
+
+    @media (min-width: 1200px) {
+        .esd-vertical-center {
+            margin-top: 10%;
+        }
+    }
+    
+</style>
+
+<div class="row vp-agent-margin vp-agent-row">
+    <vd-agent click="search()" />
+</div>
+
+<vd-cover auto="true" ng-show="vendorType=='admin'"></vd-cover>
+
+<div class="row" ng-show="isAdmin==false">
+    <div class="col-xs-12 home-welcome">
+        <h3>Welcome To Newegg Vendor Portal</h3>
+    </div>
+</div>
+
+<div class="row" ng-show="vendorType=='vf'">
+    <div class="col-xs-12">
+        <div class="col-lg-3 col-xs-12 no-padding-left">
+            <div class="row home-row-new" ng-show="latestUpdateList.length > 0">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Latest Update</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="dashboard__feed">
+                            <div class="dashboard-feed__item" ng-repeat="item in latestUpdateList">
+                                <a href="javascript:void(0)" title="{{getTranslateTitle(item)}}" ng-click="showDetail(item)">{{getTranslateTitle(item) | limitTo:25}}{{getTranslateTitle(item).length > 25 ? '...' : ''}}</a>
+                                <small>{{item.ReleaseDate | moment:"MM/DD/YYYY"}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row home-row-new" ng-show="actionItemList.length > 0 || isShowContractRequest">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Action Items</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="dashboard__feed">
+                            <div class="dashboard-feed__item" ng-repeat="item in actionItemList">
+                                <label class="blue" ng-hide="item.value>0">{{item.text}}</label>
+                                <a href="#" ng-hide="item.value==0" ng-click="jumpToPage(item.type)">{{item.text}}</a>
+                                <small>
+                                    <a href="#" ng-click="jumpToPage(item.type)" ng-hide="item.value==0" class="red underline">{{item.value}}</a>
+                                    <span ng-hide="item.value>0">{{item.value}}</span>
+                                </small>
+                            </div>
+                            <div class="dashboard-feed__item" ng-hide="!isShowContractRequest">
+                                <label class="blue" ng-hide="ContractRequestTotal>0">Pending Program Contract</label>
+                                <a href="#" ng-hide="ContractRequestTotal==0" ng-click="jumpToEIMSPage()">Pending Program Contract</a>
+                                <small>
+                                    <a href="#" ng-click="jumpToEIMSPage()" ng-hide="ContractRequestTotal==0" class="red underline">{{ContractRequestTotal}}</a>
+                                    <span ng-hide="ContractRequestTotal>0">0</span>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 home-row">
+                    <i class="icon-shopping-cart"></i>
+                    <div class="boxTitle">Order Management</div>
+                    <div class="boxDetaile">Manage order statuses, shipments, invoices</div>
+                </div>
+                <div class="col-lg-6 col-md-6 home-row">
+                    <i class="icon-bar-chart"></i>
+                    <div class="boxTitle">Reporting Tools</div>
+                    <div class="boxDetaile">Query and browse, business reports</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 home-row">
+                    <i class="icon-briefcase"></i>
+                    <div class="boxTitle">Contract Management</div>
+                    <div class="boxDetaile">Review online agreements</div>
+                </div>
+                <div class="col-lg-6 col-md-6 home-row">
+                    <i class="icon-archive"></i>
+                    <div class="boxTitle">Item Management</div>
+                    <div class="boxDetaile">Maintain product information, update product roadmaps, query product status</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 hidden-md"></div>
+    </div>
+    <div class="col-xs-12 text-center home-inbox no-padding-right">
+        <div class="home-otherBox">
+            <a href="#"><i class="icon-download-alt iconBox"></i></a>
+            <div class="text">
+                <div class="titledown">Newegg Vendor Portal Quick Guide</div>
+                Want to learn more about Newegg's New Vendor Portal? <a href="https://vendorportal.newegg.com/Pages/Guide/Newegg Vendor Portal User Guide.pdf" class="link" target="_blank">Download now for useful tips</a>!
+            </div>
+        </div>
+        <div class="home-otherBox ">
+            <a href="#" ng-click="showFeedback()"><i class="icon-comment-o iconBox"></i></a>
+            <div class="text">
+                <div class="titledown">Need Help?</div>
+                <a href="#" class="link" ng-click="showFeedback()">Leave a message</a> for prompt assistance from our support team.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" ng-show="vendorType=='nvf'">
+    <div class="col-xs-12">
+        <div class="col-lg-3 col-xs-12 no-padding-left">
+            <div class="row home-row-new" ng-show="latestUpdateList.length > 0">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Latest Update</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="dashboard__feed">
+                            <div class="dashboard-feed__item" ng-repeat="item in latestUpdateList">
+                                <a href="javascript:void(0)" title="{{getTranslateTitle(item)}}" ng-click="showDetail(item)">{{getTranslateTitle(item) | limitTo:25}}{{getTranslateTitle(item).length > 25 ? '...' : ''}}</a>
+                                <small>{{item.ReleaseDate | moment:"MM/DD/YYYY"}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row home-row-new" ng-show="actionItemList.length > 0 || isShowContractRequest">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Action Items</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="dashboard__feed">
+                            <div class="dashboard-feed__item" ng-repeat="item in actionItemList">
+                                <label class="blue" ng-hide="item.value>0">{{item.text}}</label>
+                                <a href="#" ng-hide="item.value==0" ng-click="jumpToPage(item.type)">{{item.text}}</a>
+                                <small>
+                                    <a href="#" ng-click="jumpToPage(item.type)" ng-hide="item.value==0" class="red underline">{{item.value}}</a>
+                                    <span ng-hide="item.value>0">{{item.value}}</span>
+                                </small>
+                            </div>
+                            <div class="dashboard-feed__item" ng-hide="!isShowContractRequest">
+                                <label class="blue" ng-hide="ContractRequestTotal>0">Pending Program Contract</label>
+                                <a href="#" ng-hide="ContractRequestTotal==0" ng-click="jumpToEIMSPage()">Pending Program Contract</a>
+                                <small>
+                                    <a href="#" ng-click="jumpToEIMSPage()" ng-hide="ContractRequestTotal==0" class="red underline">{{ContractRequestTotal}}</a>
+                                    <span ng-hide="ContractRequestTotal>0">0</span>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 home-row">
+                    <i class="icon-thumbs-o-up"></i>
+                    <div class="boxTitle">Customer Review</div>
+                    <div class="boxDetaile">Review and respond to valuable customer feedback</div>
+                </div>
+                <div class="col-lg-6 col-md-6 home-row">
+                    <i class="icon-bar-chart"></i>
+                    <div class="boxTitle">Reporting Tools</div>
+                    <div class="boxDetaile">Query and browse, business reports</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 home-row">
+                    <i class="icon-briefcase"></i>
+                    <div class="boxTitle">Contract Management</div>
+                    <div class="boxDetaile">Review online agreements</div>
+                </div>
+                <div class="col-lg-6 col-md-6 home-row">
+                    <i class="icon-archive"></i>
+                    <div class="boxTitle">Item Management</div>
+                    <div class="boxDetaile">Maintain product information, update product roadmaps, query product status</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 hidden-md"></div>
+    </div>
+    <div class="col-xs-12 text-center home-inbox">
+        <div class="home-otherBox">
+            <a href="#"><i class="icon-download-alt iconBox"></i></a>
+            <div class="text">
+                <div class="titledown">Newegg Vendor Portal Quick Guide</div>
+                Want to learn more about Newegg's New Vendor Portal? <a href="https://vendorportal.newegg.com/Pages/Guide/Newegg Vendor Portal User Guide_StockingVendor.pdf" class="link" target="_blank">Download now for useful tips</a>!
+            </div>
+        </div>
+        <div class="home-otherBox ">
+            <a href="#" ng-click="showFeedback()"><i class="icon-comment-o iconBox"></i></a>
+            <div class="text">
+                <div class="titledown">Need Help?</div>
+                <a href="#" class="link" ng-click="showFeedback()">Leave a message</a> for prompt assistance from our support team.
+            </div>
+        </div>
+        <div class="home-otherBox " ng-hide="true">
+            <a href="/pay"><i class="icon-star iconBox orange"></i></a>
+            <div class="text">
+                <div class="titledown">Vendor Portal Program</div>
+                Want to upgrade to advanced manufacturer program? 
+                <a href="/pay" class="link">Please click here!</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" ng-show="vendorType=='esd'">
+    <div class="col-xs-12">
+        <div class="col-lg-3 hidden-md"></div>
+        <div class="col-lg-6 esd-vertical-center">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 home-row">
+                    <i class="icon-briefcase"></i>
+                    <div class="boxTitle">Contract Management</div>
+                    <div class="boxDetaile">Review online agreements</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 hidden-md"></div>
+    </div>
+</div>
+<!--details-->
+<div modal="ShowDatailModal" close="closeShowDatailModal()" options="{backdrop: true,dialogFade:true}">
+    <div class="modal-dialog" style="width: 750px;" id="uploadAttachmentId">
+        <ng-form class="form-horizontal" role="form">
+            <div  class="modal-content">
+                <div class="widget-header">
+                    <h4 style="padding-right:20px;"  ><span class="vp-trim-2" style="padding-right:20px;max-width: 550px;" >{{ titleEntity.Title }}</span>
+                        <small class="float-right">{{headerReleaseDate | moment:"MM/DD/YYYY"}}</small>
+                    </h4>
+                </div>
+                <div class="modal-body" style="min-height:300px;max-height:500px;overflow:auto">
+                    <div id="lastUpdateContent" data-ng-bind-html="trustAsHtml(contentEntity.Content)"></div>
+                </div>
+                <div class="modal-footer no-padding-left no-padding-right" >
+                    <div class="panel panel-default" style="text-align:left;" ng-show="attachmentList.length > 0">
+                        <div class="panel-heading" style="padding-bottom:0;">
+                            <h4 class="panel-title" style="padding-left:15px;">Download attachment(s)</h4>
+                        </div>
+                        <div class="panel-body" style="padding-top:0;">
+                            <div class="dashboard__feed">
+                                <div class="dashboard-feed__item" style="padding-left:25px;" ng-repeat="item in attachmentList">
+                                    <a class="underline bigger-110" target="_blank" href="{{ item.Url }}"> {{ item.FileName }} </a>
+                                    <small>{{item.FileSize}} MB</small>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" id="modalCancle" class="btn btn-danger btn-sm mr-15" ng-click="closeShowDatailModal()" style="width: 76px;" id="uploadAttachmentCancelBtn">
+                        <i class="icon-undo"></i> {{ 'view_basic.cancel' | translate }}
+                    </button>
+                </div>
+            </div>
+        </ng-form>
+    </div>

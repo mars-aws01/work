@@ -1,0 +1,41 @@
+﻿NEG.namespace('resources.vendorportal.productRoadmap.cn',
+  roadmap_common:
+    category:"类别"
+    brand:"品牌"
+    upload_date:"上传日期"
+    description:"描述"
+    search:"搜索"
+    add:"添加"
+  view_list:
+    action:"操作"
+    search:"搜索"
+    resultList:"结果列表"
+    export:"导出"
+    _print:"打印"
+    editTip:"编辑"
+    deleteTip:"删除"
+  modal_view:
+    add_title:"添加产品规划"
+    edit_title:"编辑产品规划"
+    note:"备注"
+    attachment:"附件"
+    submit:"提交"
+    cancle:"取消"
+  error:
+    invalidDate:"无效的时间"
+    startDatebigger:"开始时间必须小于结束时间"
+    addFailed:"添加产品规划失败"
+    editFailed:"更新产品规划失败"
+    getFailed:"获取当前产品规划信息失败"
+    deleteFailed:"删除产品规划信息失败"
+    fileFormatError:"请选择一个有效的文件，比如: pdf,doc,docx,xls,xlsx,ppt,pptx,jpg,txt"
+    validCategory:"请选择一个正确的类别"
+    validBrand:"请选择一个正确的品牌"
+    leastOne:"Please upload at least one file"
+  success:
+    addSuccess:"添加产品规划成功"
+    editSuccess:"更新产品规划成功"
+    deleteSucess:"删除产品规划成功"
+  notice:
+    deleteConfirm:"您确定要删除产品规划?"
+)

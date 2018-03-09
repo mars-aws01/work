@@ -1,0 +1,425 @@
+﻿<style>
+    html[data-useragent*='MSIE'] .vp-home-row
+    {
+        margin-right:0px;
+    }
+    html[data-useragent*='MSIE'] .vp-agent-row
+    {
+        margin-right:12px;
+    }
+</style>
+
+<div class="row vp-agent-margin vp-agent-row">
+    <vd-agent click="initData()" />
+</div>
+<vd-cover auto="true"></vd-cover>
+<div class="row vp-home-row" style="margin-top:7px;">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-sm-6 widget-container-col ui-sortable no-padding-left" >
+                <div class="widget-box  widget-color-blue2 ui-sortable-handle" id="cogsInfoBox" ng-hide="vendorType == 'nvf'">
+                    <div class="widget-header widget-header-small">
+                        <h5 class="widget-title lighter">
+                            {{ 'view_title.costofgoodssold' | translate }}<vd-profile-label type="{{ 'CurrencyCode' }}"></vd-profile-label>
+                        </h5>
+
+                        <div class="widget-toolbar">
+                            <a href="#" data-action="reload">
+                                <i class="ace-icon icon-refresh white"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="widget-body" style="display: block;">
+                        <div class="widget-main no-padding">
+                            <table class="table table-bordered table-striped dashboard-table">
+                                <thead class="thin-border-bottom">
+                                    <tr>
+                                        <th style="width: 50%">{{ 'view_header.duration' | translate }}</th>
+                                        <th style="width: 25%">{{ 'view_header.cogs' | translate }}<vd-profile-label type="{{ 'CurrencyCode' }}"></vd-profile-label></th>
+                                        <th style="width: 25%">{{ 'view_header.soldqty' | translate }}</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr ng-repeat="item in cogsInfoList">
+                                        <td>{{item.DurationDescription}}</td>
+                                        <td >{{item.Sales | currency:""}}</td>
+                                        <td >{{item.SoldQuantity}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="widget-box widget-color-blue2 ui-sortable-handle" id="vendorInfoBox" ng-hide="vendorType == 'nvf'">
+                    <div class="widget-header widget-header-small">
+                        <h5 class="widget-title lighter">
+                            {{ 'view_title.vendorinformation' | translate }}
+                            <a href="#" data-toggle="tooltip" data-placement="right" data-html="true" title="{{ 'view_tooltip.vendortip' | translate }}">
+                                <i class="icon-question-sign bigger-120 white"></i>
+                            </a>
+                        </h5>
+
+                        <div class="widget-toolbar">
+                            <a href="#" data-action="reload">
+                                <i class="ace-icon icon-refresh white"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="widget-body" style="display: block;">
+                        <div class="widget-main no-padding">
+                            <table class="table table-bordered table-striped dashboard-table">
+                                <thead class="thin-border-bottom">
+                                    <tr>
+                                        <th style="width: 33%">{{ 'view_header.voidheader' | translate }}</th>
+                                        <!--<th style="width: 30%">{{ 'view_header.delay' | translate }}</th>-->
+                                        <th style="width: 33%">{{ 'view_header.totalOrders' | translate }}</th>
+                                        <th style="width: 34%">{{ 'view_header.priorityrank' | translate }}</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr ng-hide="vendorInfoList&&vendorInfoList.length>0">
+                                        <td colspan="3" class="no-data-row">There are no data.</td>
+                                    </tr>
+                                    <tr ng-repeat="item in vendorInfoList">
+                                        <td >{{item.TotalVoidOrders}}</td>
+                                        <!--<td class="text-right">27</td>-->
+                                        <td >{{item.TotalOrders}}</td>
+                                        <td >{{item.PriorityRanking}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="widget-box widget-color-blue2 ui-sortable-handle" id="top5RejectedSKUBox" ng-hide="vendorType == 'nvf'">
+                    <div class="widget-header widget-header-small">
+                        <h5 class="widget-title lighter">
+                            {{ 'view_title.top5rejectedsku' | translate }}
+                        </h5>
+
+                        <div class="widget-toolbar">
+                            <a href="#" data-action="reload">
+                                <i class="ace-icon icon-refresh white"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="widget-body" style="display: block;">
+                        <div class="widget-main no-padding">
+                            <table class="table table-bordered table-striped dashboard-table">
+                                <thead class="thin-border-bottom">
+                                <tr>
+                                    <th style="width: 30%">{{ 'view_header.vendorpartnumber' | translate }}</th>
+                                    <th style="width: 24%">{{ 'view_header.neweggpartnumber' | translate }}</th>
+                                    <th style="width: 23%">{{ 'view_header.orderedqty' | translate }}</th>
+                                    <th style="width: 23%">{{ 'view_header.rejectedqty' | translate }}</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr ng-hide="top5RejectedSKUList&&top5RejectedSKUList.length>0">
+                                        <td colspan="4" class="no-data-row">There are no data.</td>
+                                    </tr>
+                                    <tr ng-repeat="item in top5RejectedSKUList">
+                                        <td>{{item.VendorPartNumber}}</td>
+                                        <td>{{item.ItemNumber}}</td>
+                                        <td class="red">{{item.OrderedQuantity}}</td>
+                                        <td class="red ">{{item.RejectedQuantity}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="widget-box widget-color-blue2 ui-sortable-handle" id="openOrdersBox" ng-hide="vendorType == 'nvf'">
+                    <div class="widget-header widget-header-small">
+                        <h5 class="widget-title lighter">
+                            {{ 'view_title.openorders' | translate }}
+                            <a href="#" data-toggle="tooltip" data-placement="right" data-html="true" title="{{ 'view_tooltip.openorderstip' | translate }}">
+                                <i class="icon-question-sign bigger-120 white"></i>
+                            </a>
+                        </h5>
+
+                        <div class="widget-toolbar">
+                            <a href="#" data-action="reload">
+                                <i class="ace-icon icon-refresh white"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="widget-body" style="display: block;">
+                        <div class="widget-main no-padding">
+                            <table class="table table-bordered table-striped dashboard-table">
+                                <thead class="thin-border-bottom">
+                                    <tr>
+                                        <th style="width: 85%">{{ 'view_header.type' | translate }}
+                                        </th>
+                                        <th style="width: 15%">{{ 'view_header.total' | translate }}
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr ng-repeat="item in openOrdersList">
+                                        <td>{{item.SummaryType}}</td>
+                                        <td ><a href="#" class="red underline" ng-click="jumpToOrderList(item.VendorNumber,item.SummaryType)">{{item.SummaryCount}}</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="widget-box widget-color-blue2 ui-sortable-handle" id="actionItemsBox">
+                    <div class="widget-header widget-header-small">
+                        <h5 class="widget-title lighter">
+                            {{ 'view_title.actionItems' | translate }}
+                        </h5>
+
+                        <div class="widget-toolbar">
+                            <a href="#" data-action="reload">
+                                <i class="ace-icon icon-refresh white"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="widget-body" style="display: block;">
+                        <div class="widget-main no-padding">
+                            <table class="table table-bordered table-striped dashboard-table">
+                                <tbody>
+                                    <tr ng-hide="actionItemList&&actionItemList.length>0">
+                                        <td colspan="2" class="no-data-row">There are no data.</td>
+                                    </tr>
+                                    <tr ng-repeat="item in actionItemList">
+                                        <td>{{item.text}}</td>
+                                        <td >
+                                            <a href="#" class="red underline" ng-click="jumpToPage(item.type)" ng-hide="item.value==0">{{item.value}}</a>
+                                            <span ng-hide="item.value>0">{{item.value}}</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-sm-6 widget-container-col ui-sortable no-padding-left">
+                <div class="widget-box widget-color-blue2 ui-sortable-handle" id="missingDocBox" ng-hide="vendorType == 'nvf'">
+                    <div class="widget-header widget-header-small">
+                        <h5 class="widget-title lighter">
+                            {{ 'view_title.missingdocuments' | translate }}
+                            <a href="#" data-toggle="tooltip" data-placement="right" data-html="true" title="{{ 'view_tooltip.missingdoctip' | translate }}">
+                                <i class="icon-question-sign bigger-120 white"></i>
+                            </a>
+                        </h5>
+
+                        <div class="widget-toolbar">
+                            <a href="#" data-action="reload">
+                                <i class="ace-icon icon-refresh white"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="widget-body" style="display: block;">
+                        <div class="widget-main no-padding">
+                            <table class="table table-bordered table-striped dashboard-table">
+                                <thead class="thin-border-bottom">
+                                    <tr>
+                                        <th style="width: 85%">{{ 'view_header.type' | translate }}
+                                        </th>
+                                        <th style="width: 15%">{{ 'view_header.total' | translate }}
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr ng-repeat="item in missingDocList">
+                                        <td>{{item.SummaryType}}</td>
+                                        <td ><a href="#" class="underline" ng-click="jumpToOrderList(item.VendorNumber,item.SummaryType)">{{item.SummaryCount}}</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="widget-box widget-color-blue2 ui-sortable-handle" id="skuInfoBox" ng-hide="vendorType == 'nvf'">
+                    <div class="widget-header widget-header-small">
+                        <h5 class="widget-title lighter">
+                            {{ 'view_title.skuinformation' | translate }}
+                            <a href="#" data-toggle="tooltip" data-placement="right" data-html="true" title="{{ 'view_tooltip.skutip' | translate }}">
+                                <i class="icon-question-sign bigger-120 white"></i>
+                            </a>
+                        </h5>
+
+                        <div class="widget-toolbar">
+                            <a href="#" data-action="reload">
+                                <i class="ace-icon icon-refresh white"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="widget-body" style="display: block;">
+                        <div class="widget-main no-padding">
+                            <table class="table table-bordered table-striped dashboard-table">
+                                <thead class="thin-border-bottom">
+                                    <tr>
+                                        <th style="width: 30%">{{ 'view_header.mapped' | translate }}</th>
+                                        <th style="width: 30%">{{ 'view_header.unmapped' | translate }}</th>
+                                        <th style="width: 20%">{{ 'view_header.outofdate' | translate }}</th>
+                                        <th style="width: 20%">{{ 'view_header.total' | translate }}</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr ng-hide="skuInfoList&&skuInfoList.length>0">
+                                        <td colspan="4" class="no-data-row">There are no data.</td>
+                                    </tr>
+                                    <tr ng-repeat="item in skuInfoList">
+                                        <td >{{item.MappedItemCount}}</td>
+                                        <td >{{item.UnmappedItemCount}}</td>
+                                        <td >{{item.OutOfDateItemCount}}</td>
+                                        <td >{{item.TotalCount}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+              
+                <div class="widget-box widget-color-blue2 ui-sortable-handle" id="top5Box"  ng-hide="vendorType == 'nvf'">
+                    <div class="widget-header widget-header-small">
+                        <h5 class="widget-title lighter">
+                            {{ 'view_title.top5sku' | translate }}
+                        </h5>
+
+                        <div class="widget-toolbar">
+                            <a href="#" data-action="reload">
+                                <i class="ace-icon icon-refresh white"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="widget-body" style="display: block;">
+                        <div class="widget-main no-padding">
+                            <table class="table table-bordered table-striped dashboard-table">
+                                <thead class="thin-border-bottom">
+                                    <tr>
+                                        <th style="width: 50%">{{ 'view_header.vendorpartnumber' | translate }}</th>
+                                        <th style="width: 25%">{{ 'view_header.neweggpartnumber' | translate }}</th>
+                                        <th style="width: 25%">{{ 'view_header.soldqty' | translate }}</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr ng-hide="top5SKUList&&top5SKUList.length>0">
+                                        <td colspan="3" class="no-data-row">There are no data.</td>
+                                    </tr>
+                                    <tr ng-repeat="item in top5SKUList">
+                                        <td>{{item.VendorPartNumber}}</td>
+                                        <td>{{item.ItemNumber}}</td>
+                                        <td >{{item.SoldQuantity}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="widget-box widget-color-blue2 ui-sortable-handle" id="shippingDelayBox" ng-hide="vendorType == 'nvf'">
+                    <div class="widget-header widget-header-small">
+                        <h5 class="widget-title lighter">
+                            {{ 'view_title.delays' | translate }}
+                            <a href="#" data-toggle="tooltip" data-placement="right" data-html="true" title="{{ 'view_tooltip.delaytip' | translate }}">
+                                <i class="icon-question-sign bigger-120 white"></i>
+                            </a>
+                        </h5>
+
+                        <div class="widget-toolbar">
+                            <a href="#" data-action="reload">
+                                <i class="ace-icon icon-refresh white"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="widget-body" style="display: block;">
+                        <div class="widget-main no-padding">
+                            <table class="table table-bordered table-striped dashboard-table">
+                                <thead class="thin-border-bottom">
+                                    <tr>
+                                        <th style="width: 30%">{{ 'view_header.prioritydelaytotal' | translate }}</th>
+                                        <th style="width: 30%">{{ 'view_header.prioritydelayrate' | translate }}</th>
+                                        <th style="width: 20%">{{ 'view_header.delaytotal' | translate }}</th>
+                                        <th style="width: 20%">{{ 'view_header.rate' | translate }}</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr ng-hide="shippingDelayList&&shippingDelayList.length>0">
+                                        <td colspan="4" class="no-data-row">There are no data.</td>
+                                    </tr>
+                                    <tr ng-repeat="item in shippingDelayList">
+                                        <td >{{item.VendorProcessPriorityDelayCount}}/{{item.VendorProcessPriorityTotalCount}}</td>
+                                        <td >{{item.VendorProcessingPriorityDelayRate}}</td>
+                                        <td >{{item.VendorProcessDelayCount}}/{{item.VendorProcessTotalCount}}</td>
+                                        <td >{{item.VendorProcessingDelayRate}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        // widget box drag 
+        //$('.widget-container-col').sortable({
+        //    connectWith: '.widget-container-col',
+        //    items: '> .widget-box',
+        //    handle: ace.vars['touch'] ? '.widget-header' : false,
+        //    cancel: '.fullscreen',
+        //    opacity: 0.8,
+        //    revert: true,
+        //    forceHelperSize: true,
+        //    placeholder: 'widget-placeholder',
+        //    forcePlaceholderSize: true,
+        //    tolerance: 'pointer',
+        //    start: function (event, ui) {
+        //        ui.item.parent().css({ 'min-height': ui.item.height() });
+        //    },
+        //    update: function (event, ui) {
+        //        ui.item.parent({ 'min-height': '' });
+        //    }
+        //});
+
+        var doc = document.documentElement;
+        doc.setAttribute('data-useragent', navigator.userAgent);
+
+        $("[data-toggle=tooltip]").tooltip();
+
+    });
+</script>

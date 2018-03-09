@@ -1,0 +1,1 @@
+negServices = angular.module("negServices", ["ngResource"])

@@ -1,0 +1,174 @@
+﻿<link rel="stylesheet" href="/modules/vendorportal-vf/app.css" />
+<style type="text/css" media="print">
+    body
+    {
+        margin: 0;
+        padding: 0;
+    }
+
+    .page
+    {
+        width: 21cm;
+        min-height: 28cm;
+        padding: 1cm;
+        margin: 0cm auto;
+        background: white;
+    }
+
+
+
+    @page
+    {
+        size: A4;
+        margin: 0;
+    }
+
+    @media print
+    {
+        /**
+        html, body
+        {
+            width: 210mm;
+            height: 297mm;
+        }
+        **/
+        .page
+        {
+            margin: 0;
+            border: initial;
+            border-radius: initial;
+            width: initial;
+            min-height: initial;
+            box-shadow: initial;
+            background: initial;
+            page-break-after: always;
+        }
+
+        .itemNF
+        {
+            height:14px;
+            width:16px;
+        }
+
+        .hideNF
+        {
+            display:none !important;
+        }
+    }
+</style>
+
+<div class="page vp-print-package vp-print-package-width" ng-repeat="package in packages">
+    <div class="vp-print-package-header">
+        <label>SO#: </label>
+        <label>{{ package.order.soNumber}}</label>
+        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <label>Tracking#: </label>
+        <label>{{ package.trackingNumber}}</label>
+    </div>
+
+    <div class="vp-print-package-width" style="height: 97px;">
+        <div style="float: left; width: 30%">
+            <img src="../../../modules/vendorportal-vf/img/print/{{ package.order.logoName }}.png" class="vp-print-package-logo" />
+        </div>
+        <div style="width: 50%; float: left; text-align: center;">
+            <h1 class="vp-print-package-title">PACKING LIST</h1>
+        </div>
+        <div style="float: left; width: 20%;">
+            <h4 class="vp-print-package-title2">Total QTY:&nbsp;{{ package.itemTotalQty}}</h4>
+        </div>
+    </div>
+
+    <div class="vp-print-package-line vp-print-package-width">
+        <div style="float: left; width: 100%">
+            <span style="float: left; width: 100px; margin-top: 3px;">SHIP TO</span>
+        </div>
+    </div>
+
+    <div class="vp-print-package-width">
+        <div>{{ package.shipTo.name }}</div>
+        <div>{{ package.shipTo.companyName }}</div>
+        <div>{{ package.shipTo.adress }}</div>
+        <div>{{ package.shipTo.city }}, {{ package.shipTo.state }} {{ package.shipTo.zipCode }}, {{ package.shipTo.country }}</div>
+    </div>
+
+    <br />
+
+    <div class="vp-print-package-line vp-print-package-width">
+        <div style="float: left; width: 100%">
+            <span style="float: left; width: 190px; margin-top: 3px;">Customer PO#: {{ package.order.customerPONumber }}</span>
+            <span style="float: left; width: 335px; margin-top: 3px;">Ship Via: {{ package.order.shipVia }}</span>
+            <span style="float: left; width: 140px; margin-top: 3px;">SO Date: {{ package.order.soDate | moment:'MM/DD/YYYY' }}</span>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="vp-print-package-line vp-print-package-width">
+        <div style="float: left; width: 100%">
+            <span style="float: left; width: 206px; margin-top: 3px; padding-left:16px">ITEM NUMBER</span>
+            <span style="float: left; width: 394px; margin-top: 3px;">ITEM DESCRIPTION</span>
+            <span style="float: right; width: 50px; margin-top: 3px;">QTY</span>
+        </div>
+    </div>
+
+    <div class="vp-print-package-width vp-print-package-table" style="float: left;">
+        <table width="100%">
+            <tbody>
+                <tr ng-repeat="item in package.itemList">
+                    <td style="width: 16px;">
+                        <img class="itemNF"  
+                            src="../../../modules/vendorportal-vf/img/print/ItemIsNeweggFlash.png"
+                            ng-style="item.IsNeweggFlashStyle"
+                            ng-class="{'hideNF':!item.IsNeweggFlash}"/>
+                    </td>
+                    <td style="width: 170px;">
+                        <span>{{ item.SONeweggItemNumber }}</span>
+                    </td>
+                    <td style="width: 364px;"><span>&nbsp;&nbsp;&nbsp;&nbsp;{{ item.Description }}</span></td>
+                    <td style="text-align:right; padding-right:20px"><span style="margin-left: 5px;">{{ item.Quantity }}</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="vp-print-package-width">
+        <div><span>PLEASE NOTE:</span></div>
+        <div class="vp-print-package-description-p vp-print-package-description-p-margin">
+            <span>&middot;&nbsp; {{ package.textNode1 }}</span>
+        </div>
+        <div class="vp-print-package-description-p vp-print-package-description-p-margin"><span>&middot;&nbsp; Please save all packaging and accessories. All original equipment, components, manuals, cables, documents and packaging must be returned with your item in order for {{ package.order.webSiteURL }} to process your RMA.</span></div>
+        <br />
+        <div class="vp-print-package-description-p"><span>This is a simple Packing List. If needed you may visit www.{{ package.order.webSiteName }}.com, login to your account and view/print the Invoice for this order.</span></div>
+    </div>
+
+    <br />
+
+    <div class="vp-print-package-width">
+        <div><span>Very Important:</span></div>
+        <div class="vp-print-package-description-p"><span style="padding-left: 24px;">If you ordered more merchandise than what has been included with this shipment, there may be additional packages which have shipped separately. Due to the various speeds of shipping, these packages may or may not have arrived yet. If you are concerned that you have not received your order in its entirety, please wait an additional business day before contacting us.</span></div>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="vp-print-package-width vp-print-package-footer">
+        <div style="float: left; width: 50%">
+            <span style="float: left; font-weight: bold; margin-left: 15px; width: 80px;">Print Date:</span>
+            <span style="float: left;">{{ package.printDate | moment:'MM/DD/YYYY' }}</span>
+        </div>
+        <div style="float: left; width: 50%">
+            <span style="font-weight: bold; float: right; width: 100px;">Page {{ package.paggingInfo.pageIndex }} of {{ package.paggingInfo.pageSize }}</span>
+        </div>
+        <div style="float: left; width: 100%">
+            <span style="float: right; width: 450px; text-align: right" class="vp-print-package-description-p">Please visit {{ package.order.webSiteName }}.com for Terms and Conditions:&nbsp;&nbsp;</span>
+        </div>
+        <div style="float: left; width: 100%">
+            <span style="float: right; width: 600px; text-align: right" class="vp-print-package-description-p">{{ package.textNode2 }}</span>
+        </div>
+    </div>
+</div>
+
+

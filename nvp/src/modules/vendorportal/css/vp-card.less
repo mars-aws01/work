@@ -1,0 +1,191 @@
+.vp-card {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+    .vp-card > li {
+        background: #fff;
+        border: 1px solid #E0E0E0;
+        border-radius: 3px;
+        overflow: hidden;
+        min-height:160px;
+        margin-bottom:15px;
+    }
+
+        .vp-card > li > div {
+            display: table;
+            float: left;
+            width: 100%;
+        }
+
+            .vp-card > li > div > div {
+                display: table-cell;
+                vertical-align: top;
+                padding: 20px;
+                position: relative;
+            }
+
+    .vp-card .vp-card-img {
+        width: 200px;
+        padding: 6px;
+        overflow: hidden;
+        vertical-align: middle;
+    }
+
+        .vp-card .vp-card-img img {
+            width: 100%;
+        }
+
+    .vp-card .vp-card-info {
+        padding-top: 10px !important;
+        width: auto;
+    }
+
+    .vp-card .title {
+        margin: 0 0 8px;
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+        .vp-card .title > h4 {
+            font-weight: 500;
+            color: #0D0D0D;
+        }
+
+    .vp-card .info > span{
+        color:#404040;
+        padding-right:15px;
+    }
+
+    .vp-card .desc {
+        color: #868686;
+        margin-bottom: 15px;
+        height: 32px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 16px;
+    }
+
+    .vp-card .btn-row {
+        text-align: left;
+    }
+
+        .vp-card .btn-row a {
+            color: #666;
+            font-size: 22px;
+            line-height: 14px;
+            opacity: .8;
+        }
+
+        .vp-card .btn-row a:first-child {
+            margin-right: 20px;
+        }
+
+            .vp-card .btn-row a:hover {
+                opacity: 1;
+            }
+
+    .vp-card .vp-card-qty {
+        padding: 5px 0 0 0 !important;
+        width: 260px;
+        border-left: 1px dashed #ddd;
+        padding-top: 5px;
+        
+    }
+
+        .vp-card .vp-card-qty .cost {
+            font-size: 22px;
+            color: #505050;
+        }
+
+        .vp-card .vp-card-qty .lbl {
+            float:left;
+            color: #505050;
+            width: 81px;
+            font-size: 13px;
+            border-bottom:1px dotted #E5E5E5;
+        }
+
+        .vp-card .vp-card-qty .lbl_ch {
+            float:left;
+            color: #505050;
+            width: 71px;
+            font-size: 13px;
+            border-bottom:1px dotted #E5E5E5;
+        }
+        .vp-card .vp-card-qty .lbl2 {
+            width: 102px;
+        }
+
+        .vp-card .vp-card-qty .lbl2_ch{
+            width: 71px;
+        }
+
+        .vp-card .vp-card-qty .value {
+            color: #505050;
+            font-weight:bold;
+            font-size: 14px;
+            padding-bottom:2px;
+        }
+
+        .vp-card .vp-card-qty .err{ 
+            margin-left: -170px;
+        }
+
+        .vp-card .vp-card-qty .err_ch{
+            margin-left: -60px;
+        }
+
+        .vp-card .vp-card-qty .block {
+            text-transform:uppercase;
+            top: 1px;
+            color: #fff;
+            width: 80px;
+            padding: 4px;
+            right: 5px;
+            font-size: 12px;
+            position: absolute;
+            text-align: center;
+            letter-spacing: 1px;
+            /*transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);*/
+        }
+
+        .vp-card .vp-card-qty .rgba-blue {
+            background-color: rgba(52,152,219,0.8);
+        }
+        .vp-card .vp-card-qty .rgba-red {
+            background-color: rgba(231,76,60,0.8);
+        }
+        .vp-card .vp-card-qty .rgba-green {
+            background-color: rgba(114,192,44,0.8);
+        }
+/*********** min screen************/
+@media (max-width: 480px) {
+    .vp-card > li > div > div {
+        display: block;
+        width: 100%;
+    }
+
+    .vp-card .vp-card-img {
+        width: 100%;
+        float: none;
+    }
+
+    .vp-card .btn-row {
+        text-align: right;
+    }
+
+    .vp-card .vp-card-qty {
+        border-left: none;
+        border-top: 1px dashed #ddd;
+        width: 100%;
+        float: left;
+        padding: 15px !important;
+    }
+}

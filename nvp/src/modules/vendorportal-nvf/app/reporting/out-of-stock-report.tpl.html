@@ -1,0 +1,105 @@
+﻿<style>
+    html[data-useragent*='MSIE'] .vp-home-row {
+        margin-right: 0px;
+    }
+
+    html[data-useragent*='MSIE'] .vp-agent-row {
+        margin-right: 12px;
+    }
+
+    .k-autocomplete > .k-input {
+        height: 1.9em;
+        line-height: 1.9em;
+    }
+
+    .vp-tpl-cg-header > .k-input {
+        padding: 0;
+    }
+</style>
+
+<div class="row vp-agent-margin">
+    <vd-agent click="search()"/>
+</div>
+
+<vd-cover bottom="-7"></vd-cover>
+
+<div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 5px;">
+    <vd-panelbar is-show="isShowDetail"  translatetitle="{ 'view_report.search' | translate }"></vd-panelbar>
+    <div class="col-xs-12 no-padding" ng-hide="isShowDetail==false">
+        <form class="form-horizontal" role="form" ng-init="keyLength=25">
+            <div class="col-lg-7 col-md-9 no-padding">
+                <div class="form-group col-md-7 col-lg-8">
+                    <label class="col-md-3 control-label">{{ 'view_report.keyword' | translate }}:</label>
+                    <div class="col-md-9 no-padding-left">
+                        <input type="text" class="form-control vp-input" maxlength="{{keyLength}}" ng-model="KeyWord" />
+                    </div>
+                </div>
+
+                <div class="form-group col-md-5 col-lg-4 no-padding">
+                    <label class="radio-inline">
+                        <input name="form-field-radio" ng-model="KeyWordType" value="NeweggItemNumber" ng-click="keyLength=25" type="radio" class="ace" >
+                        <span class="lbl">&nbsp;{{ 'view_report.oosItemNumber' | translate }}</span>
+                    </label>
+                    <label class="radio-inline no-margin-left">
+                        <input name="form-field-radio" ng-model="KeyWordType" value="ManufacturePartNumber" ng-click="keyLength=40" type="radio" class="ace" >
+                        <span class="lbl">&nbsp;{{ 'view_report.mfrPartNumber' | translate }}</span>
+                    </label>
+                </div>
+             
+                <div class="form-group col-md-7 col-lg-8">
+                    <label class="col-md-3 control-label">{{ 'view_report.category' | translate }}:</label>
+                    <div class="col-md-9 no-padding-left">
+                        <vd-category value="query.CategoryCode"></vd-category>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-7 col-lg-8">
+                    <label class="col-md-3 control-label">{{ 'view_report.brand' | translate }}:</label>
+                    <div class="col-md-9 no-padding-left">
+                       <vd-brand value="query.BrandCode"></vd-brand>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 no-padding">
+                <button type="button" ng-click="search()" class="btn btn-primary btn-sm" style="padding: 2px 12px 2px 10px !important;">
+                    <span class="ace-icon  icon-search icon-on-right bigger-110"></span>
+                    {{ 'view_report.search' | translate }}
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+
+<div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 15px;">
+    <vd-panelbar is-show="isShowDetail3" translatetitle=" { 'view_report.resultList' | translate }"
+	template="<label style='font-size: 13px; font-weight: bold; '>{ 'view_report.totalRecords' | translate }: { Summary.TotalRecords | number : 0 } &nbsp; { 'view_report.totalEstimatedAmount' | translate }: ${ Summary.TotalEstimateAmount | vfCurrency:''}</label>" >
+	</vd-panelbar>
+    <div class="col-xs-12 no-padding-left" ng-hide="isShowDetail3==false">
+    <vd-grid gid="{{dataGridName}}"
+             refresh-key="{{refreshKey}}"
+             ng-options="OutOfStockListOptions">
+        <script id="tpl_oosList_brand" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.BrandDesc}}">{{dataItem.BrandName}}</span></div>
+        </script>
+        <script id="tpl_oosList_category" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left"  ><span title="{{dataItem.CategoryDesc}}">{{dataItem.CategoryName}}</span></div>
+        </script>
+        <script id="tpl_oosList_OutOfStockingItemNumber" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left" ><span title="{{dataItem.OutOfStockingItemNumber}}">{{dataItem.OutOfStockingItemNumber}}</span></div>
+        </script>
+        <script id="tpl_oosList_manufacturerpartnumber" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left"  ><span title="{{dataItem.ManufacturerPartsNumber}}">{{dataItem.ManufacturerPartsNumber}}</span></div>
+        </script>
+        <script id="tpl_oosList_EstimateDailyAmount" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-right"   ><span>$</span><span title="{{dataItem.EstimateDailyAmount}}">{{dataItem.EstimateDailyAmount | vfCurrency:'' }}</span></div>
+        </script>
+
+     
+    </vd-grid>
+    </div>
+</div>
+

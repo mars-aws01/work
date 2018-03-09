@@ -1,0 +1,202 @@
+﻿<div style="padding-bottom: 60px;">
+    <div class="row" style="margin: 10px -12px 0 0;">
+        <div class="col-sm-12 no-padding-left">
+            <vd-order data="currentOrder"></vd-order>
+        </div>
+    </div>
+
+    <div class="row no-margin" ng-show="currentOrder.ShipTo">
+        <div class="col-sm-12 vp-page ">
+            <div class="col-xs-12 vp-page-address no-padding">
+                <div class="col-lg-2 visible-lg" style="padding: 45px 45px;">
+                    <em class="icon-truck" style="color: #909FA7; font-size: 65px;"></em>
+                </div>
+                <div class="col-lg-5 col-xs-12 vp-page-br ">
+                    <div class="col-md-12">
+                        <h4 style="font-weight: bold;">{{ 'view_orderdetail.from' | translate }}</h4>
+                        <address class="col-md-12 vp-page-info-address">
+                            <div class="vp-page-row2">
+                                <div class="name">{{ 'view_shipnotice.warehouseId' | translate }}:</div>
+                                <div class="value">
+                                    <span>{{ currentOrder.ShipFrom.VendorWarehouseNumber }} </span>
+                                </div>
+                            </div>
+                            <div class="vp-page-row2">
+                                <div class="name">{{ 'view_shipnotice.warehouseName' | translate }}:</div>
+                                <div class="value">
+                                    <span>{{ currentOrder.ShipFrom.WareHouseName }} </span>
+                                </div>
+                            </div>
+                            <div class="vp-page-row2">
+                                <div class="name">{{ 'view_shipnotice.address' | translate }}:</div>
+                                <div class="value">
+                                    <span>{{ currentOrder.ShipFrom.Address }}</span>
+                                </div>
+                            </div>
+                            <div class="vp-page-row2">
+                                <div class="name"></div>
+                                <div class="value">
+                                    <span>{{ currentOrder.ShipFrom.City }}, {{ currentOrder.ShipFrom.State }} {{ currentOrder.ShipFrom.ZipCode }}, {{ currentOrder.ShipFrom.Country }} </span>
+                                </div>
+                            </div>
+                        </address>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-xs-12 vp-page-br ">
+                    <div class="col-md-12">
+                        <h4 style="font-weight: bold;">{{ 'view_orderdetail.to' | translate }}</h4>
+                        <address class="col-md-12 vp-page-info-address">
+                            <div class="vp-page-row2">
+                                <div class="name">{{ 'view_shipnotice.customerName' | translate }}:</div>
+                                <div class="value">
+                                    <span>{{ currentOrder.ShipTo.Name }} <span ng-show="currentOrder.ShipTo.CompanyName">({{ currentOrder.ShipTo.CompanyName }} Inc.)</span></span>
+                                </div>
+                            </div>
+
+                            <div class="vp-page-row2">
+                                <div class="name">{{ 'view_shipnotice.address' | translate }}:</div>
+                                <div class="value">
+                                    <span>{{ currentOrder.ShipTo.Address }}</span>
+                                </div>
+                            </div>
+                            <div class="vp-page-row2">
+                                <div class="name"></div>
+                                <div class="value">
+                                    <span>{{ currentOrder.ShipTo.City }}, {{ currentOrder.ShipTo.State }} {{ currentOrder.ShipTo.ZipCode }}, {{ currentOrder.ShipTo.Country }} </span>
+                                </div>
+                            </div>
+                            <div class="vp-page-row2">
+                                <div class="value">
+                                    <i class="icon-phone bigger-110"></i><span>&nbsp;{{ currentOrder.ShipTo.Phone }}</span>
+                                </div>
+                                <div class="value">
+                                    <i class="icon-envelope bigger-110"></i>&nbsp;<span>{{ currentOrder.ShipTo.Email }}</span>
+                                </div>
+
+                            </div>
+                        </address>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 vp-page-footer no-padding-left no-padding-right">
+                <div class="col-xs-12 no-padding">
+                    <h4 class="no-padding">{{ 'view_orderdetail.itemsOrdered' | translate }}
+                        <input ng-show="option!='view'&&option!=undefined"
+                            class="ngSelectionCheckbox"
+                            style="margin: 7px 0 0 4px;"
+                               type="checkbox"
+                            tooltip="Select All"
+                            ng-click="checkAll(currentOrder.ItemList)"
+                            ng-checked="isCheckedAll" />
+                    </h4>
+                </div>
+
+
+                <div class="col-md-12 no-padding">
+                    <ul class="vp-card">
+                        <li ng-repeat="item in currentOrder.ItemList">
+                            <div>
+                                <div ng-show="option!='view'&&option!=undefined" style="vertical-align: middle;padding: 3px 0 0 8px;">
+                                    <input class="ngSelectionCheckbox" style="margin-top: 2px;" type="checkbox" ng-checked="item.isChecked" ng-show="item.canRemoved" ng-click="itemCheck(currentOrder.ItemList,item)" />
+                                    <i class="icon-question-sign bigger-120" ng-show="item.canRemoved==false" title="{{ 'view_orderdetail.itemNotRemoveTip' | translate }}"></i>
+                                </div>
+
+                                <div class="vp-card-img">
+                                    <img ng-src="{{ item.tempImgUrl }}" vd-on-error-src='/framework/img/no_image.jpg' alt="">
+                                    <!--<img ng-src="https://a248.e.akamai.net/f/248/9241/30d/images1.newegg.com/ProductImageCompressAll300/{{ item.NeweggItemNumber}}-02.jpg" vd-on-error-src='/framework/img/no_image.jpg' alt="">-->
+                                </div>
+                                <div class="vp-card-info">
+                                    <h3 class="title">{{ item.VendorPartNumber }}
+                                    </h3>
+                                    <p class="info">
+                                        <span>{{ 'header_orderdetail.nePartNumber' | translate }}:&nbsp;{{ item.NeweggItemNumber}}</span>
+                                        <span>{{ 'header_orderdetail.manufacturer' | translate }}:&nbsp;{{ item.Manufacturer}}</span>
+                                        <span>{{ 'header_orderdetail.mrfPartNumber' | translate }}:&nbsp;{{ item.ManufacturerPartNumber}}</span>
+                                        <span>{{ 'header_orderdetail.UPC' | translate }}:&nbsp;{{ item.UPC}}</span>
+                                    </p>
+                                    <p class="desc" title="{{ item.Description }}">
+                                        <span ng-show="item.Description">{{ item.Description }}</span>
+                                        <span ng-show="!item.Description">No Description...</span>
+                                    </p>
+                                    <div class="btn-row" ng-hide="!removeableItem || item.canRemoved==false">
+                                        <a href="#" tooltip="Reset Item" data-original-title="" title="" ng-click="ResetSingleItem(item)"><i style="font-size: 20px;" class="icon-undo"></i></a>
+                                        <a href="#" tooltip="Remove Item" data-original-title="" title="" ng-click="RemoveSingleItem(item)"><i class="icon-remove"></i></a>
+                                    </div>
+                                </div>
+
+                                <div class="vp-card-qty">
+                                    <div class="col-xs-12">
+                                        <div class="block" ng-class="{'rgba-red': item.ItemACKStatus == 'Reject','rgba-green': item.ItemACKStatus == 'Accept','rgba-blue': item.ItemACKStatus != 'Accept' && item.ItemACKStatus != 'Reject' }">
+                                            <span ng-show="item.ItemACKStatus == 'Reject' || item.ItemACKStatus == 'Accept'">{{ item.ItemACKStatus }}</span>
+                                            <span ng-show="item.ItemACKStatus != 'Accept' && item.ItemACKStatus != 'Reject'">NO ACK</span>
+                                        </div>
+                                        <span class="cost">{{ item.UnitPrice | currency:'' }}<vd-profile-label type="{{ 'CurrencyCode' }}"></vd-profile-label></span>
+                                        <hr class="hr-2" style="margin-bottom: 5px;" />
+                                        <div class="col-xs-12 no-padding">
+                                            <span ng-class="{'lbl':lang=='en-us', 'lbl_ch':lang!='en-us'}">{{ 'header_orderdetail.qtyOrdered' | translate }}:</span>
+                                            <span class="value">{{ item.Quantity }}</span>
+                                        </div>
+                                        <div class="col-xs-12 no-padding">
+                                            <span ng-class="{'lbl':lang=='en-us', 'lbl_ch':lang!='en-us'}">{{ 'header_orderdetail.qtyShipped' | translate }}:</span>
+                                            <span class="value">{{ item.QuantityShipped }}</span>
+                                        </div>
+                                        <div class="col-xs-12 no-padding">
+                                            <span ng-class="{'lbl':lang=='en-us', 'lbl_ch':lang!='en-us'}">{{ 'header_orderdetail.qtyInvoice' | translate }}:</span>
+                                            <span class="value">{{ item.QuantityInvoiced }}</span>
+                                        </div>
+
+                                        <div class="form-group col-xs-12 no-padding">
+                                            <span ng-show="!item.isRemoved" ng-class="{'lbl2':lang=='en-us', 'lbl_ch':lang!='en-us'}">{{ 'header_orderdetail.qtyRemoved' | translate }}:</span>
+                                            <span class="lbl" ng-show="item.isRemoved" ng-class="{'lbl2':lang == 'en-us', 'lbl2_ch':lang != 'en-us'}">{{ 'header_orderdetail.qtyToRemove' | translate }}:</span>
+                                            <input class="col-xs-3 vp-input-sm" ng-class="{'red': item.ItemACKStatus == 'Reject'||item.isRemoved }" style="height:20px;" 
+                                                ng-show="item.isRemoved" type="text" vd-Number="int" ng-model="item.QuantityRemoved"
+                                                ng-required="true" name="qtyRemoved" ng-change="verifyQtyToRemove(item)"/> 
+                                             <span ng-show="item.HasError" ng-class="{'err':lang == 'en-us', 'err_ch':lang != 'en-us'}" style="position: absolute; border: 1px solid #d68273; color: #d68273; box-shadow: 0 1px 3px #ccc; border-radius: 2px; z-index: 1; padding: 2px 4px; background: #fffcef; margin-top:21px">{{ 'error_orderdetail.removeQtyNotValid' | translate }} {{item.Quantity}}.</span>
+                                            <!--<span class="value" ng-class="{'red': item.ItemACKStatus == 'Reject'||item.isRemoved }">
+                                                {{ item.ItemACKStatus == "Reject"||item.isRemoved ? item.Quantity : ""}}
+                                            </span>-->
+                                            <span class="value" ng-show="item.ItemStatusMeaning == 'R' && !item.isRemoved" ng-class="{'red': item.ItemStatusMeaning == 'R' ||item.isRemoved}">
+                                                {{ item.ItemStatusMeaning == "R" ? item.ACKQuantity : ""}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--Bottom Button-->
+    <div class="vp-fixed fixed-bottom" style="margin-top: 10px;" ng-hide="!removeableItem">
+        <div style="width: 100%; margin-left: 20px;">
+            <button type="button" tooltip="{{ 'buttonPanel_orderdetail.resetItem' | translate }}" class="btn btn-success btn-sm" ng-click="ResetItem()" ng-hide="!removeableItem" vd-auth="Submit">
+                <div class="col-xs-12">
+                    <i class="icon-undo"></i>
+                    <span class="hidden-xs">&nbsp;{{ 'buttonPanel_orderdetail.resetItem' | translate }}</span>
+                </div>
+            </button>
+            <button type="button" tooltip="{{ 'buttonPanel_orderdetail.removeItem' | translate }}" class="btn btn-danger btn-sm" ng-click="RemoveItem()" ng-hide="!removeableItem" vd-auth="Submit">
+                <div class="col-xs-12">
+                    <i class="icon-remove"></i>
+                 <span class="hidden-xs">&nbsp;{{ 'buttonPanel_orderdetail.removeItem' | translate }}</span>
+                </div>
+            </button>
+            <button type="button" tooltip="{{ 'buttonPanel_orderdetail.submitChange' | translate }}" class="btn btn-primary btn-sm" ng-click="SubmittheChange()" ng-hide="!removeableItem" vd-auth="Submit" analytics-on analytics-category="orderdetail" analytics-event="submit"  analytics-label="{{common.currentUser.VendorNumber}}_orderdetail_submit">
+                <div class="col-xs-12">
+                    <i class="icon-save"></i>
+                 <span class="hidden-xs">&nbsp;{{ 'buttonPanel_orderdetail.submitChange' | translate }}</span>
+                </div>
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $("[data-toggle=tooltip]").tooltip();
+</script>

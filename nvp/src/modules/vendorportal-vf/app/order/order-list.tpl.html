@@ -1,0 +1,260 @@
+﻿<div class="row vp-agent-margin">
+    <vd-agent click="search()" />
+</div>
+<vd-cover bottom="-63"></vd-cover>
+
+<div class="row">
+    <form class="form-horizontal no-padding" role="form" ng-submit="search()">
+        <div class="col-md-10" style="margin-top: 10px; padding: 0px;">
+            <vd-search keys="advancedkeyList" order="yes" query="advancedQuery" output="advancedSearchTextOutput" />
+        </div>
+
+        <div class="col-md-2 text-right" style="padding-top: 13px;">
+            <a href="#" ng-click="showAdvanced = !showAdvanced" class="">
+                <i class="icon-filter bigger-170 grey" ng-show="!showAdvanced"></i>
+                <span style="text-decoration: underline; font-size: 15px;" class="grey">{{ 'view_orderlist.advancedSearch' | translate }}</span>
+            </a>
+
+            <div class="vp-search-popover  fade bottom in" style="display: block;" ng-show="showAdvanced">
+                <div class="popover-content" style="padding-left: 6px;">
+                    <div style="width: 503px">
+                        <div style="position: absolute; top: 3px; right: 10px;" ng-show="showAdvanced">
+                            <i class="icon-filter bigger-170 grey"></i>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="col-md-12 no-padding-left text-left">
+                                <h4 style="margin-bottom: 4px;">{{ 'view_orderlist.byStatus' | translate }}:</h4>
+                            </div>
+                            <div class="col-md-12 no-padding-left text-left fixed-bottom-label">
+                                <label>{{ 'view_orderlist.orderStatus' | translate }}</label>
+                            </div>
+                            <div class="col-md-12 no-padding-left">
+                                <select class="width-99 vp-select" 
+                                    ng-model="advancedQuery.orderStatus"
+                                    ng-options="item.value as item.text for item in orderStatusList" />
+                            </div>
+                            <div class="col-md-12 no-padding-left text-left fixed-bottom-label">
+                                <label>{{ 'view_orderlist.invoiceStatus' | translate }}</label>
+                            </div>
+                            <div class="col-md-12 no-padding-left">
+                                <select class="width-99 vp-select" 
+                                    ng-model="advancedQuery.invoiceStatus"
+                                    ng-options="item.value as item.text for item in invoiceStatusList" />
+                            </div>
+                            <div class="col-md-12 no-padding-left text-left fixed-bottom-label">
+                                <label>{{ 'view_orderlist.shipmentStatus' | translate }}</label>
+                            </div>
+                            <div class="col-md-12 no-padding-left">
+                                <select class="width-99 vp-select" 
+                                    ng-model="advancedQuery.shipmentStatus"
+                                    ng-options="item.value as item.text for item in shipmentStatusList" />
+                            </div>
+                            <div class="col-md-12 no-padding-left text-left" style="margin-top: 8px;">
+                                <label class="vp-checkbox ">
+                                    <input name="form-field-checkbox" ng-model="exceptionalOrders" class="ace ace-checkbox" type="checkbox">
+                                    <span class="lbl">&nbsp;{{ 'view_orderlist.exceptional' | translate }}</span>
+                                </label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label class="vp-checkbox pull-left">
+                                    <input name="form-field-checkbox" ng-model="myOrders" class="ace ace-checkbox" type="checkbox">
+                                    <span class="lbl">&nbsp;{{ 'view_orderlist.myOrdersOnly' | translate }}</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="col-md-12 no-padding-left text-left">
+                                <h4 style="margin-bottom: 4px;">{{ 'view_orderlist.byDate' | translate }}:</h4>
+                            </div>
+                            <div class="col-md-12 no-padding-left text-left fixed-bottom-label">
+                                <label>{{ 'view_orderlist.createdFrom' | translate }}</label>
+                            </div>
+                            <div class="col-md-12 no-padding-left">
+                                <div class="input-group">
+                                    <input class="form-control"
+                                        type="text"
+                                        neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                        ng-model="advancedQuery.createdDateFrom">
+                                    <span class="input-group-addon">
+                                        <i class="icon-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 no-padding-left text-left fixed-bottom-label">
+                                <label>{{ 'view_orderlist.createdTo' | translate }}</label>
+                            </div>
+                            <div class="col-md-12 no-padding-left">
+                                <div class="input-group">
+                                    <input class="form-control"
+                                        type="text"
+                                        neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                        ng-model="advancedQuery.createdDateTo">
+                                    <span class="input-group-addon">
+                                        <i class="icon-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 no-padding-left text-left fixed-bottom-label">
+                                <label>{{ 'view_orderlist.updatedFrom' | translate }}</label>
+                            </div>
+                            <div class="col-md-12 no-padding-left">
+                                <div class="input-group">
+                                    <input class="form-control"
+                                        type="text"
+                                        neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                        ng-model="advancedQuery.updatedDateFrom">
+                                    <span class="input-group-addon">
+                                        <i class="icon-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 no-padding-left text-left fixed-bottom-label">
+                                <label>{{ 'view_orderlist.updatedTo' | translate }}</label>
+                            </div>
+                            <div class="col-md-12 no-padding-left">
+                                <div class="input-group">
+                                    <input class="form-control"
+                                        type="text"
+                                        neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                        ng-model="advancedQuery.updatedDateTo">
+                                    <span class="input-group-addon">
+                                        <i class="icon-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="no-margin no-padding col-xs-12" style="border-top: 1px solid #D1E0ED; margin-top: 15px !important;" />
+                        <div style="float: right; margin-top: 5px; margin-bottom: 10px">
+                            <button type="button" class="btn btn-xs btn-primary" style="width: 105px" ng-click="search()">
+                                <i class="icon-search"></i>
+                                {{ 'view_orderlist.quickSearch' | translate }}
+                            </button>
+                            <button type="button" class="btn btn-xs btn-danger" style="width: 105px" ng-click="showAdvanced=false">
+                                <i class="icon-undo"></i>
+                                {{ 'view_orderlist.close' | translate }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 no-padding-left" style="margin-top: 3px;">
+            <div class="vp-search-action" ng-show="currentQuery.orderStatus">
+                <span>{{ 'view_orderlist.orderStatus' | translate }}: {{ currentQuery.orderStatus }}</>&nbsp;</span>
+                <a href="#" ng-click="removeQueryFiled('orderStatus')"><i class="icon-remove"></i></a>
+            </div>
+            <div class="vp-search-action" ng-show="currentQuery.invoiceStatus">
+                <span>{{ 'view_orderlist.invoiceStatus' | translate }}: {{ currentQuery.invoiceStatus }}&nbsp;</span>
+                <a href="#" ng-click="removeQueryFiled('invoiceStatus')"><i class="icon-remove"></i></a>
+            </div>
+            <div class="vp-search-action" ng-show="currentQuery.shipmentStatus">
+                <span>{{ 'view_orderlist.shipmentStatus' | translate }}: {{ currentQuery.shipmentStatus }}&nbsp;</span>
+                <a href="#" ng-click="removeQueryFiled('shipmentStatus')"><i class="icon-remove"></i></a>
+            </div>
+            <div class="vp-search-action" ng-show="currentQuery.createdDateFrom">
+                <span>{{ 'view_orderlist.createdFrom' | translate }}: {{ currentQuery.createdDateFrom2 | moment:'MM/DD/YYYY' }}&nbsp;</span>
+                <a href="#" ng-click="removeQueryFiled('createdDateFrom')"><i class="icon-remove"></i></a>
+            </div>
+            <div class="vp-search-action" ng-show="currentQuery.createdDateTo">
+                <span>{{ 'view_orderlist.createdTo' | translate }}: {{ currentQuery.createdDateTo2 | moment:'MM/DD/YYYY' }}&nbsp;</span>
+                <a href="#" ng-click="removeQueryFiled('createdDateTo')"><i class="icon-remove"></i></a>
+            </div>
+            <div class="vp-search-action" ng-show="currentQuery.updatedDateFrom">
+                <span>{{ 'view_orderlist.updatedFrom' | translate }}: {{ currentQuery.updatedDateFrom2 | moment:'MM/DD/YYYY' }}&nbsp;</span>
+                <a href="#" ng-click="removeQueryFiled('updatedDateFrom')"><i class="icon-remove"></i></a>
+            </div>
+            <div class="vp-search-action" ng-show="currentQuery.updatedDateTo">
+                <span>{{ 'view_orderlist.updatedTo' | translate }}: {{ currentQuery.updatedDateTo2 | moment:'MM/DD/YYYY' }}&nbsp;</span>
+                <a href="#" ng-click="removeQueryFiled('updatedDateTo')"><i class="icon-remove"></i></a>
+            </div>
+            <div class="vp-search-action" ng-show="currentQuery.isExceptionalOrdersOnly=='Y'">
+                <span>{{ 'view_orderlist.exceptional' | translate }}: {{ currentQuery.isExceptionalOrdersOnly == 'Y' ? "Yes" : "No" }}&nbsp;</span>
+                <a href="#" ng-click="removeQueryFiled('exceptionalOrders')"><i class="icon-remove"></i></a>
+            </div>
+            <div class="vp-search-action" ng-show="currentQuery.OrderProcessUser">
+                <span>{{ 'view_orderlist.myOrdersOnly' | translate }}: Yes&nbsp;</span>
+                <a href="#" ng-click="removeQueryFiled('myOrders')"><i class="icon-remove"></i></a>
+            </div>
+            <div class="vp-search-action"
+                ng-show="currentQuery.isExceptionalOrdersOnly=='Y'||currentQuery.updatedDateFrom||currentQuery.updatedDateTo||currentQuery.createdDateFrom||currentQuery.createdDateTo||currentQuery.orderStatus||currentQuery.invoiceStatus||currentQuery.shipmentStatus||currentQuery.OrderProcessUser">
+                <span><strong>{{ 'view_orderlist.clearAll' | translate }}</strong>&nbsp;</span>
+                <a href="#" ng-click="removeQueryFiled('all')"><i class="icon-remove"></i></a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row no-margin-right" style="margin-top: 5px;">
+    <vd-grid gid="{{dataGridName}}" 
+             refresh-key="{{refreshKey}}" 
+             ng-options="orderListOptions"
+             ng-detail-options="orderDetailOptions" >
+          <script id="tpl_orderList_action" type="text/x-kendo-tmpl">
+             <div class="col-xs-12 no-padding action-buttons text-left" style="margin-top: 3px;">
+                <a href="/orderdetail/{{ dataItem.PONumber }}/{{dataItem.VendorNumber}}/edit" title="{{ 'header_orderlist.editOrderDetailTip' | translate }}" vd-auth="Change"
+                    ng-show="dataItem.OrderStatus=='New' || dataItem.OrderStatus=='Processing'">
+                    <i class="icon-pencil bigger-125 blue"></i>
+                </a>
+                <a href="\#" title="{{ 'header_orderlist.confirmOrderTip' | translate }}" ng-click="confirmOrder(dataItem)" vd-auth="Confirm" analytics-on analytics-category="orderlist" analytics-event="confirm"  analytics-label="{{common.currentUser.VendorNumber}}_orderlist_confirm"
+                    ng-show="dataItem.OrderStatus=='New' || dataItem.OrderStatus=='Processing'">
+                    <i class="icon-ok bigger-130 green"></i>
+                </a>
+                <a href="\#" title="{{ 'header_orderlist.cancelOrderTip' | translate }}" ng-click="cancelOrder(dataItem)" vd-auth="Cancel" analytics-on analytics-category="orderlist" analytics-event="cancel"  analytics-label="{{common.currentUser.VendorNumber}}_orderlist_cancel"
+                    ng-show="(dataItem.OrderStatus!='Canceled' && dataItem.OrderStatus!='Completed')
+                            && (dataItem.HasACKException == 'Y' 
+                            || dataItem.HasShipmentException == 'Y' 
+                            || dataItem.HasInvoiceException == 'Y'
+                            || dataItem.OrderStatus=='New'
+                            || dataItem.OrderStatus=='Processing')">
+                    <i class="icon-remove bigger-140 red"></i>
+                </a>
+             </div>
+          </script>
+        <script id="tpl_orderList_orderStatus" type="text/x-kendo-tmpl">
+            <vd-order-status data="dataItem"></vd-order-status>
+        </script>
+        <script id="tpl_orderList_shipmentStatus" type="text/x-kendo-tmpl">
+            <vd-shipment-status data="dataItem"></vd-shipment-status>
+        </script>
+          <script id="tpl_orderList_invoiceStatus" type="text/x-kendo-tmpl">
+            <vd-invoice-status data="dataItem"></vd-invoice-status>
+        </script>
+          <script id="tpl_orderList_poNumber" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left">
+                <a href="/orderdetail/{{dataItem.PONumber}}/{{dataItem.VendorNumber}}/view" title="{{dataItem.PONumber}}" style="text-decoration: underline;" class="blue">
+                    <span>{{dataItem.PONumber}}</span>
+                </a>
+             </div>
+        </script>
+        <script id="tpl_orderList_poDate" type="text/x-kendo-tmpl">
+            <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.PODate | moment:'MM/DD/YYYY h:mm:ss A'}}">{{dataItem.PODate | moment:'MM/DD/YYYY h:mm:ss A'}}</span></div>
+        </script>
+    </vd-grid>
+</div> 
+
+<div style="margin-top: 10px;" class="vp-fixed fixed-bottom">
+    <div style="width: 100%; margin-left: 20px; ">
+        <button class="btn btn-success btn-sm" type="button" ng-click="confirmOrderList()" title="{{ 'buttonPanel_orderlist.confirm' | translate }}" vd-auth="Confirm" analytics-on analytics-category="orderlist" analytics-event="confirm"  analytics-label="{{common.currentUser.VendorNumber}}_orderlist_confirm">
+            <div class="col-xs-12">
+                <i class="ace-icon icon-ok icon-on-right"></i><span class="hidden-xs">&nbsp;{{ 'buttonPanel_orderlist.confirm' | translate }}</span>
+            </div>
+        </button>
+        <button class="btn btn-danger btn-sm" type="button" ng-click="cancelOrderList()" title="{{ 'buttonPanel_orderlist.cancel' | translate }}" vd-auth="Cancel" analytics-on analytics-category="orderlist" analytics-event="cancel"  analytics-label="{{common.currentUser.VendorNumber}}_orderlist_cancel">
+            <div class="col-xs-12">
+                <i class="icon-remove"></i><span class="hidden-xs">&nbsp;{{ 'buttonPanel_orderlist.cancel' | translate }}</span>
+            </div>
+        </button>
+        <button class="btn btn-primary btn-sm" type="button" ng-click="print()" title="{{ 'buttonPanel_orderlist.printPackingSlip' | translate }}" vd-auth="Print" analytics-on analytics-category="orderlist" analytics-event="print"  analytics-label="{{common.currentUser.VendorNumber}}_orderlist_print">
+            <div class="col-xs-12">
+                <i class="icon-print"></i><span class="hidden-xs">&nbsp;{{ 'buttonPanel_orderlist.printPackingSlip' | translate }}</span>
+            </div>
+        </button>
+        <button class="btn btn-primary btn-sm" type="button" ng-click="refresh()" title="{{ 'buttonPanel_orderlist.refresh' | translate }}" vd-auth="Refresh" analytics-on analytics-category="orderlist" analytics-event="refresh"  analytics-label="{{common.currentUser.VendorNumber}}_orderlist_refresh">
+            <div class="col-xs-12">
+                <i class="icon-refresh"></i><span class="hidden-xs">&nbsp;{{ 'buttonPanel_orderlist.refresh' | translate }}</span>
+            </div>
+        </button>
+    </div>
+</div>
+
+

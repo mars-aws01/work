@@ -1,0 +1,464 @@
+﻿<style>
+    .grey {
+        color: #5D5D5D !important;
+    }
+
+    .alert-gray {
+        border-color: #e3e3e3;
+    }
+
+    .connection-panel .profile-info-name {
+        width: 170px;
+        padding-left: 8px;
+        text-align: left;
+    }
+
+    .alert-gray {
+        background-color: #fff;
+    }
+
+    @media (min-width: 1200px) {
+
+    }
+    @media (min-width: 992px) and (max-width: 1199px) {
+
+    }
+</style>
+<h3 class="header smaller lighter grey" style="margin-top: 19px;">{{ 'connection_sf.title' | translate }}</h3>
+
+<div class="row alert alert-gray connection-panel no-margin mb-15 mt-15">
+    <div class="col-xs-12 no-padding">
+        <div class="row">
+            <div class="col-xs-9">
+                <h4>{{ 'connection_sf.title_1' | translate }}</h4>
+            </div>
+            <div class="col-xs-3 no-padding">
+                <div class="pull-right" style="margin-right: 10px;">
+                    <a href="#"  title="{{ 'framework_button.back' | translate }}" ng-click="backToDashboard()">
+                       <i class="icon-arrow-left bigger-150"></i>
+                    </a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" title="{{ 'framework_button.refresh' | translate }}" ng-click="initData()">
+                       <i class="icon-refresh bigger-150"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <p><strong>{{ 'connection_sf.desc_1' | translate }}</strong></p>
+        <p>{{ 'connection_sf.desc_2' | translate }}</p>
+        <p>{{ 'connection_sf.desc_3' | translate }}</p>
+        <p class="blue">204.89.152.1 ~ 204.89.152.255</p>
+    </div>
+
+    <div class="hr col-xs-12"></div>
+
+    <form name="connectionForm" class="form-horizontal" role="form">
+        <div class="col-lg-12 col-md-12 col-xs-12 no-padding">
+            <div class="col-lg-7 col-md-12 col-xs-12 mt-10">
+                <div class="form-group">
+                    <label class="col-lg-3 col-md-3 no-padding">{{ 'connection_sf.lb_1' | translate }}</label>
+                    <div class="col-lg-9 col-md-9" ng-class="{'no-padding-right':isMiddleWidth == true}">
+                        <select class="col-xs-12 vp-select" ng-change="change()" ng-disabled="entity.ConnectionId" ng-model="entity.ConnectionType"
+                            ng-options="item.value as item.text for item in connectionTypeList">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 col-md-3 no-padding">{{ 'connection_sf.lb_2' | translate }}</label>
+                    <div class="col-lg-9 col-md-9" ng-class="{'no-padding-right':isMiddleWidth == true}">
+                        <select class="col-xs-12 vp-select" ng-change="change()" ng-disabled="entity.ConnectionId" ng-model="entity.ConnectionProtocol"
+                            ng-options="item.value as item.text for item in connectionProtocolList">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 col-md-3 no-padding">{{ 'connection_sf.lb_3' | translate }}</label>
+                    <div class="col-lg-9 col-md-9" ng-class="{'no-padding-right':isMiddleWidth == true}">
+                        <input type="text" ng-model="entity.ConnectionName" required placeholder="Enter Connection Name" class="col-xs-12 vp-input input-sm" maxlength="{{maxlength.connectionName}}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5 col-md-12 col-xs-12 no-padding-left no-padding-right mt-10" ng-show="showNoticeMessage">
+                <div class="col-xs-12 no-padding-right alert alert-warning">
+                    <div style="padding-right: 8px;">
+                        <strong>{{ 'view_customer_reviews.Notice' | translate }}&nbsp;</strong>
+                            {{noticeMessage}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hr col-xs-12"></div>
+
+        <!--AS2 Settings-->
+        <div class="col-xs-12 no-padding" ng-show="entity.ConnectionProtocol == 'AS2'">
+            <div class="col-xs-12 mt-10 mb-5 no-padding">
+                <table class="table table-bordered table-striped dashboard-table">
+                    <thead>
+                        <tr>
+                            <th class="profile-info-name"></th>
+                            <th class="col-sm-5 no-padding-right">{{ 'connection_sf.header_1' | translate}}</th>
+                            <th>{{ 'connection_sf.header_2' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="profile-info-name">AS2 ID
+                            </td>
+                            <td class="col-sm-5 no-padding-right">
+                                <div class="form-group clearfix">
+                                    <div class="col-sm-10">
+                                        <div class="clearfix">
+                                            <input name="as2ID"
+                                                type="text"
+                                                ng-required="entity.ConnectionProtocol == 'AS2'"
+                                                maxlength="{{maxlength.as2id}}"
+                                                ng-model="entity.VendorAS2Profile.ID"
+                                                class="col-xs-12 vp-input" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="align-middle">{{ entity.NeweggAS2Profile.ID}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="profile-info-name">AS2 URL
+                            </td>
+                            <td class="col-sm-5 no-padding-right">
+                                <div class="form-group clearfix">
+                                    <div class="col-sm-10">
+                                        <div class="clearfix">
+                                            <input name="as2Link"
+                                                type="text"
+                                                ng-required="entity.ConnectionProtocol == 'AS2'"
+                                                maxlength="{{maxlength.as2url}}"
+                                                ng-model="entity.VendorAS2Profile.Url"
+                                                ng-pattern="urlReg"
+                                                valid-pattern-tip="enter a valid AS2 link."
+                                                class="col-xs-12 vp-input"
+                                                placeholder="eg. http://as2.example.com/receive"/>
+                                        </div>
+                                        <validtip for="as2Link" class="vp-validtip"></validtip>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="align-middle">{{ entity.NeweggAS2Profile.Url }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="profile-info-name">MDN Type
+                            </td>
+                            <td class="align-middle" colspan="2">Synchronous
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="profile-info-name">Encryption
+                            </td>
+                            <td>
+                                <div class="clearfix">
+                                    <label style="margin-bottom: -5px">
+                                        <input name="radio-encryption" ng-model="entity.VendorAS2Profile.Encryption" value="DES3" type="radio" class="ace">
+                                        <span class="lbl">&nbsp;DES3</span>
+                                    </label>
+
+                                    <label class="ml-30">
+                                        <input name="radio-encryption" ng-model="entity.VendorAS2Profile.Encryption" value="RC2" type="radio" class="ace">
+                                        <span class="lbl">&nbsp;RC2</span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td class="align-middle">{{ entity.NeweggAS2Profile.Encryption}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="profile-info-name">Signing
+                            </td>
+                            <td>
+                                <div class="clearfix">
+                                    <label style="margin-bottom: -5px">
+                                        <input name="radio-signing" ng-model="entity.VendorAS2Profile.Signing" value="SHA1" type="radio" class="ace">
+                                        <span class="lbl">&nbsp;SHA1</span>
+                                    </label>
+                                    <label class="ml-30">
+                                        <input name="radio-signing" ng-model="entity.VendorAS2Profile.Signing" value="MD5" type="radio" class="ace">
+                                        <span class="lbl">&nbsp;MD5</span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td class="align-middle">{{ entity.NeweggAS2Profile.Signing}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="hr col-xs-12"></div>
+            <!--Certifate-->
+            <div class="col-lg-3 no-padding" ng-hide="true">
+                <img class="img-responsive center-block" src="/framework/img/certifate.png" alt="Certifate" />
+            </div>
+            <div class="col-lg-12 col-xs-12 no-padding">
+                <div class="col-xs-12 no-padding mb-15 mt-5">
+                    <a class="btn btn-yellow btn-sm" ng-href="{{neweggCerAddress[entity.ConnectionType]}}" target="_blank">
+                        <i class="icon-download-alt"></i>
+                        {{ 'connection_sf.btn_downloadC' | translate }}
+                    </a>
+                    <a class="btn btn-yellow btn-sm ml-10" ng-click="downloadVendorCer()">
+                        <i class="icon-download-alt"></i>
+                        {{ 'connection_sf.btn_downloadC2' | translate }}
+                    </a>
+                </div>
+
+
+                <h5>{{ 'connection_sf.lb_4' | translate}}</h5>
+
+                <div class="col-xs-12 no-padding mb-15">
+
+                    <div class="col-md-10 no-padding" id="fileInput_Cer">
+                        <input type="file"
+                            name="uploadFile"
+                            url="url"
+                            ng-file-select
+                            ng-click="setCurrentUploadItem(item)" />
+                    </div>
+                    <div class="col-md-2 text-right no-padding">
+                        <button class="btn btn-info btn-xs" ng-disabled="isUploading || uploadCertificate.Succeed == undefined" style="margin-top: 2px;" type="button" ng-click="uploadCer()">
+                            <i class="icon-upload-alt"></i>&nbsp;{{ 'connection_sf.btn_UploadC' | translate }}
+                        </button>
+                    </div>
+                </div>
+
+                <h5>{{ 'connection_sf.lb_5' | translate}}</h5>
+
+                <div class="col-md-12 no-padding">
+                    <div class="profile-user-info profile-user-info-striped no-margin" style="width: 100%">
+                        <div class="profile-info-row">
+                            <div class="profile-info-name">{{ 'connection_sf.lb_6' | translate}}</div>
+
+                            <div class="profile-info-value">
+                                <span>{{ entity.VendorCertificate.IssueBy }}</span>
+                            </div>
+                        </div>
+
+                        <div class="profile-info-row">
+                            <div class="profile-info-name">{{ 'connection_sf.lb_10' | translate}}</div>
+
+                            <div class="profile-info-value">
+                                <span>{{ entity.VendorCertificate.IssueTo }}</span>
+                            </div>
+                        </div>
+
+                        <div class="profile-info-row">
+                            <div class="profile-info-name">{{ 'connection_sf.lb_7' | translate}}</div>
+
+                            <div class="profile-info-value">
+                                <span>{{ entity.VendorCertificate.ValidFrom | moment:'MM/DD/YYYY'}} </span>
+                            </div>
+                        </div>
+
+                        <div class="profile-info-row">
+                            <div class="profile-info-name">{{ 'connection_sf.lb_12' | translate}}</div>
+
+                            <div class="profile-info-value">
+                                <span>{{ entity.VendorCertificate.ValidTo | moment:'MM/DD/YYYY'}} </span>
+                            </div>
+                        </div>
+
+                        <div class="profile-info-row">
+                            <div class="profile-info-name">{{ 'connection_sf.lb_8' | translate}}</div>
+
+                            <div class="profile-info-value">
+                                <span>{{ entity.VendorCertificate.SerialNumber }}</span>
+                            </div>
+                        </div>
+
+                        <div class="profile-info-row">
+                            <div class="profile-info-name">{{ 'connection_sf.lb_9' | translate}}</div>
+
+                            <div class="profile-info-value">
+                                <span>{{ entity.VendorCertificate.SignatureAlgorithm }}</span>
+                            </div>
+                        </div>
+
+                        <div class="profile-info-row">
+                            <div class="profile-info-name">{{ 'connection_sf.lb_11' | translate}}</div>
+
+                            <div class="profile-info-value">
+                                <span>{{ entity.VendorCertificate.Subject }}</span>
+                            </div>
+                        </div>
+
+                        <div class="profile-info-row">
+                            <div class="profile-info-name">{{ 'connection_sf.lb_13' | translate}}</div>
+
+                            <div class="profile-info-value">
+                                <span>{{ entity.VendorCertificate.ThumbPrint }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--FTP Settings-->
+        <div class="col-xs-12 no-padding" ng-show="entity.ConnectionProtocol == 'FTP'">
+            <div class="col-xs-12 mt-10 mb-5 no-padding">
+                <table class="table table-bordered table-striped dashboard-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>{{ 'connection_sf.header_3' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="align-middle">Server
+                            </td>
+                            <td>
+                                <div class="form-group clearfix">
+                                    <div class="col-sm-8">
+                                        <div class="clearfix">
+                                            <input name="server"
+                                                type="text"
+                                                ng-required="entity.ConnectionProtocol == 'FTP'"
+                                                maxlength="{{maxlength.server}}"
+                                                ng-model="entity.VendorFtpProfile.Server"
+                                                class="col-xs-12 vp-input" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">Port
+                            </td>
+                            <td>
+                                <div class="form-group clearfix">
+                                    <div class="col-sm-8">
+                                        <div class="clearfix">
+                                            <input name="port"
+                                                type="text"
+                                                ng-required="entity.ConnectionProtocol == 'FTP'"
+                                                ng-pattern="/^([1-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|[6][0-5]{2}[0-3][0-5])$/"
+                                                valid-pattern-tip="Please input correct port, the port number is between 1 and 65535."
+                                                ng-model="entity.VendorFtpProfile.Port"
+                                                class="col-xs-12 vp-input" />
+                                        </div>
+                                        <validtip for="port" class="vp-validtip"></validtip>
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">User Name
+                            </td>
+                            <td>
+                                <div class="form-group clearfix">
+                                    <div class="col-sm-8">
+                                        <div class="clearfix">
+                                            <input name="userName"
+                                                type="text"
+                                                ng-required="entity.ConnectionProtocol == 'FTP'"
+                                                maxlength="{{maxlength.userName}}"
+                                                ng-model="entity.VendorFtpProfile.UserName"
+                                                class="col-xs-12 vp-input" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">Password
+                            </td>
+                            <td>
+                                <div class="form-group clearfix" ng-switch on="showPlaintext">
+                                    <div class="col-sm-8" ng-switch-default>
+                                        <div class="clearfix">
+                                            <input name="ftpPassword"
+                                                type="password"
+                                                maxlength="{{maxlength.password}}"
+                                                ng-required="entity.ConnectionProtocol == 'FTP'"
+                                                ng-model="entity.VendorFtpProfile.Password"
+                                                class="col-xs-12 vp-input" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8" ng-switch-when="true">
+                                        <div class="clearfix">
+                                            <input name="ftpPassword_text"
+                                                type="text"
+                                                maxlength="{{maxlength.password}}"
+                                                ng-required="entity.ConnectionProtocol == 'FTP'"
+                                                ng-model="entity.VendorFtpProfile.Password"
+                                                class="col-xs-12 vp-input" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label class="ml-15 mt-5">
+                                            <input ng-model="showPlaintext" type="checkbox" class="ace" ng-click="checkBoxClick()" ng-change="checkBoxModelChanged()">
+                                            <span class="lbl">&nbsp;Show plaintext</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">Incoming File Directory
+                            </td>
+                            <td>
+                                <div class="form-group clearfix">
+                                    <div class="col-sm-10 col-xs-12">
+                                       <div class="clearfix">
+                                            <input name="inboundDir" class="vp-input vp-input-sm col-xs-12" type="text" ng-required="entity.ConnectionProtocol == 'FTP'" placeholder="eg. /xxx/Inbound" ng-model="entity.VendorFtpProfile.InboundDirectory" maxlength="{{maxlength.directory}}" ng-pattern="directoryReg" valid-pattern-tip="Please input correct directory. eg. /xxx/Inbound" />
+                                        </div>
+                                        <validtip for="inboundDir" class="vp-validtip"></validtip>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle">Outgoing File Directory
+                            </td>
+                            <td>
+                                <div class="form-group clearfix">
+                                    <div class="col-sm-10 col-xs-12">
+                                        <div class="clearfix">
+                                            <input name="outboundDir" class="vp-input vp-input-sm col-xs-12 mb-10" type="text" ng-required="entity.ConnectionProtocol == 'FTP'" placeholder="eg. /xxx/Outbound" ng-model="entity.VendorFtpProfile.OutboundDirectory" maxlength="{{maxlength.directory}}" ng-pattern="directoryReg" valid-pattern-tip="Please input correct directory. eg. /xxx/Outbound" />
+                                        </div>
+                                        <validtip for="outboundDir" class="vp-validtip"></validtip>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="hr col-xs-12"></div>
+
+        <div class="col-xs-12 no-padding text-center">
+            <button type="button" class="btn btn-primary btn-sm" ng-click="save()" ng-show="showSaveBtn">
+                <i class="icon-file"></i>
+                {{ 'connection_sf.btn_save' | translate}}
+            </button>
+            <button class="btn btn-primary ml-10 mr-10 btn-sm" ng-click="submit()">
+                <i class="icon-save"></i>
+                {{ 'connection_sf.btn_submit' | translate}}
+            </button>
+            <a class="btn btn-primary btn-sm" href="#" ng-click="backToDashboard()">
+                <i class="icon-mail-forward"></i>
+                {{ 'connection_sf.btn_dashboard' | translate}}
+            </a>
+        </div>
+
+    </form>
+
+
+</div>
+

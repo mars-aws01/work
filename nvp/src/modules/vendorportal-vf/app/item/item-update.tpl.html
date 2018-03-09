@@ -1,0 +1,127 @@
+﻿<style type="text/css">
+    .table-all-border {
+    }
+
+        .table-all-border > tbody > tr > th, .table-all-border > tbody > tr > td {
+            border: 1px solid #eee !important;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            vertical-align: middle;
+            height: 34px;
+        }
+
+    .item-update-warning-desc
+    {
+        margin: -10px 0 2px 0px !important;
+    }
+
+    .itemstyle {
+        background-color: #eeeeee !important;
+        color: #b1afaf  !important;
+    }
+    .bulletstyle {
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap;
+        white-space: -pre-wrap;
+        white-space: -o-pre-wrap;
+        word-wrap: break-word;
+        overflow: hidden;
+        background: white;
+        border: 0;
+        font-family:"Helvetica Neue", Arial, sans-serif;
+        color:#393939;
+    }
+</style>
+<div class="row vp-agent-margin">
+    <vd-agent click="changeVendor()" />
+</div>
+<vd-cover bottom="-10"></vd-cover>
+<div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 5px;">
+    <vd-panelbar is-show="isShowDetail" translatetitle="{'update_basic.search' | translate }"></vd-panelbar>
+    <div class="col-xs-12 no-padding" ng-hide="isShowDetail==false">
+        <form name="queryRoadmapForm" class="form-horizontal" role="form">
+            <div class="col-md-10 no-padding">
+                <div class="col-xs-12 no-padding">
+                    <div class="form-group col-md-6 col-lg-6">
+                        <label class="col-md-3 control-label">{{'update_basic.brand' | translate }}:</label>
+                        <div class="col-md-9 no-padding-left">
+                            <select class="col-xs-12 vp-select vp-select-sm" 
+                                name="brand" ng-model="query.BrandCode"
+                                ng-options="item.Code as item.Name for item in ManufacturerInfoList" >
+                                <option value="" selected > Please Select </option>
+                            </select>
+                           <!-- <vd-brand ></vd-brand>-->
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 col-lg-6">
+                        <label class="col-md-4 control-label">{{ 'update_basic.webDescription' | translate }}:</label>
+                        <div class="col-md-8 no-padding-left">
+                            <input type="text" class="form-control vp-input" maxlength="300" ng-model="query.WebDescription" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 no-padding">
+                    <div class="form-group col-md-6 col-lg-6">
+                        <label class="col-md-3 control-label">{{ 'update_basic.manufacturePartNumber' | translate }}:</label>
+                        <div class="col-md-9 no-padding-left">
+                            <input type="text" class="form-control vp-input" maxlength="20" ng-model="query.ManufacturePartNumber" />
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 col-lg-6">
+                        <label class="col-md-4 control-label">{{ 'update_basic.upc' | translate }}:</label>
+                        <div class="col-md-8 no-padding-left">
+                            <input type="text" class="form-control vp-input" maxlength="20" ng-model="query.UPCCode" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 no-padding">
+                    <div class="form-group col-md-6 col-lg-6">
+                        <label class="col-md-3 control-label">{{ 'update_basic.neweggItemNumber' | translate }}:</label>
+                        <div class="col-md-9 no-padding-left">
+                            <input type="text" class="form-control vp-input" maxlength="20" ng-model="query.NeweggItemNumber" />
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 col-lg-6">
+                        <label class="col-md-3 control-label">Category Name:</label>
+                        <div class="col-md-9" style="padding-left: 40px">
+                            <vd-category-item-v2 class="item-creation-well" category-id="query.CategoryID" subscribe="true" style="height:30px;" ctrl-id="query" request-type="RequestType"></vd-category-item-v2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2 no-padding">
+                <button type="button" class="btn btn-primary btn-sm" style="padding: 2px 12px 2px 10px !important;" ng-click="search()">
+                    <span class="ace-icon  icon-search icon-on-right bigger-110"></span>
+                    {{ 'view_list.search' | translate }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 15px;">
+    <vd-panelbar is-show="isShowDetail3" translatetitle=" { 'view_list.resultList' | translate }"></vd-panelbar>
+    <div class="col-xs-12 no-padding-left" ng-hide="isShowDetail3==false">
+        <vd-grid gid="{{dataGridName}}"
+            refresh-key="{{refreshKey}}"
+            ng-options="itemUpdateListOptions" auto-height="false">
+            <script id="tpl_itemupdate_brand" type="text/x-kendo-tmpl">
+                <div class="col-xs-12 no-padding text-left" ><span title="{{dataItem.BrandName}}">{{dataItem.BrandName}}</span></div>
+            </script>
+            <script id="tpl_itemupdate_newegg" type="text/x-kendo-tmpl">
+                     <div class="col-xs-12 no-padding text-left">
+                    <a href="javascript:void(0)" title="{{dataItem.NeweggItemNumber}}" 
+                       style="text-decoration: underline;"
+                       class="blue"
+                       ng-click="showDetail(dataItem)">
+                        <span>{{dataItem.NeweggItemNumber}}</span>
+                    </a>
+                 </div>
+            </script>
+            <script id="tpl_itemupdate_description" type="text/x-kendo-tmpl">
+                <div class="col-xs-12 no-padding text-left" style="text-overflow:ellipsis;overflow:hidden" ><span title="{{dataItem.WebDescription}}">{{dataItem.WebDescription}}</span></div>
+            </script>
+    </vd-grid>
+    </div>
+</div>
+<vd-item-update-request-detail></vd-item-update-request-detail>

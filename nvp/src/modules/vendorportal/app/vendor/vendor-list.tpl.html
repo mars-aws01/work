@@ -1,0 +1,142 @@
+﻿<style>
+    html .vp-vendorlist-row
+    {
+        margin-right: 0px;
+    }
+    html[data-useragent*='MSIE'] .vp-vendorlist-row
+    {
+        margin-right: 12px !important;
+    }
+</style>
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        var doc = document.documentElement;
+        doc.setAttribute('data-useragent', navigator.userAgent);
+    });
+</script>
+
+<!--Search Area-->
+<div class="vp-block-blue vp-vendorlist-row" style="margin-left: -12px; margin-top: 10px; margin-bottom: 10px">
+    <div class="row no-margin-right" style="margin-top: 10px; margin-left: 10px; margin-bottom: 10px">
+        <div class="row">
+            <div class="col-xs-10">
+                <div class="col-xs-6 no-padding-left">
+                    <label class="col-xs-3 col-lg-4 no-padding-left" style="padding-top: 5px;">
+                        {{ 'view_vendorlist.vendor' | translate }}:&nbsp;</label>
+                    <div class="col-xs-9 col-lg-8 no-padding">
+                        <input type="text"
+                            class="col-xs-12 vp-input"
+                            ng-model="searchCondition.Key"
+                            placeholder="{{ 'view_vendorlist.searchPlaceHolder' | translate }}"
+                            maxlength="128"
+                            ui-keypress="{13:'searchWithConfirm()'}"
+                            typeahead-on-select="setVendor()"
+                            typeahead="v.vendorNameDisplay for v in vendorList | filter:$viewValue | limitTo:20"
+                            typeahead-append-to-body="true"
+                            typeahead-min-length="1">
+                    </div>
+                </div>
+
+                <div class="col-xs-6">
+                    <label class="col-xs-3 col-lg-4" style="padding-top: 5px;">
+                        {{ 'view_vendorlist.vendorType' | translate }}:&nbsp;
+                    </label>
+                    <select class="col-xs-9 col-lg-8 vp-select"
+                        ng-model="searchCondition.VendorType"
+                        ng-options="item.Code as item.Name for item in VendorTypeList" />
+                </div>
+            </div>
+
+            <div class="col-xs-2">
+                <div class="col-xs-12">
+                    <button type="button" ng-click="searchWithConfirm()" class="btn btn-app vp-btn vp-btn-blue pull-right" style="width: 110px; padding-right: 10px;">
+                        <div class="col-xs-12"><span class="ace-icon icon icon-search icon-on-right"></span>&nbsp;{{ 'view_vendorlist.vendorSearch' | translate }}</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px">
+            <div class="col-xs-10">
+                <div class="col-xs-6 no-padding-left">
+                    <label class="col-xs-3 col-lg-4 no-padding-left" style="padding-top: 5px;">
+                        {{ 'view_vendorlist.role' | translate }}:&nbsp;
+                    </label>
+                    <select class="col-xs-9 col-lg-8 vp-select"
+                        ng-model="searchCondition.RoleName"
+                        ng-options="item.ID as item.RoleName for item in RoleList" />
+                </div>
+                <div class="col-xs-6">
+                    <label class="col-xs-3 col-lg-4" style="padding-top: 5px;">
+                        {{ 'view_vendorlist.vendorStatus' | translate }}:&nbsp;</label>
+                    <select class="col-xs-9 col-lg-8 vp-select"
+                        ng-model="searchCondition.VendorStatus"
+                        ng-options="item.value as item.text for item in VendorStatusList" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--List-->
+<div class="row vp-vendorlist-row" style="margin-top: 10px;">
+    <vd-grid gid="{{dataGridName}}" 
+             refresh-key="{{refreshKey}}" 
+             ng-options="vendorListOptions" auto-height="false" >
+    </vd-grid>
+</div> 
+<!--Role Permission-->
+<div class="row vp-list no-padding vp-vendorlist-row" style="margin-top: 10px">
+    <div class="col-lg-12 ">
+        <div class="col-xs-12">
+            <div class="vp-list-icon  vp-list-icon-blue" ng-class="{'vp-list-icon-green': true}">
+                <i class="ace-icon  icon-user" ng-hide="true"></i>
+                <span class="title text-left" style="margin-left: 15px">{{currentSelectedUser.VendorName}}</span>
+            </div>
+            <div class="col-xs-12 no-padding " style="margin-top: 10px;">
+                <div class="input-group" style="margin-left: 44px">
+                    <span class="input-group-addon" style="background-color: #ffffff; border-color: #ffffff; font-weight: 600;">{{ 'view_vendorlist.role' | translate }}:</span>
+                    <select class="width-100" ui-select2 multiple="multiple" ng-disabled="isAdminUser==true"
+                        ng-model="userRoles" data-placeholder="{{ 'view_vendorlist.rolePlaceHolder' | translate }}" ng-change="onRoleChange()">
+                        <option ng-repeat="item in RoleSelectList" value="{{item.RoleName}}">{{item.RoleName}}</option>
+                    </select>
+                </div>
+            </div>
+            <hr style="margin-top: 50px; margin-bottom: 0px;" />
+            <div class="vp-list-info" ng-repeat="fun in currentSelectedUser.functionList" style="width: 90%; margin-bottom: 20px;">
+                <div class="col-xs-12 no-padding" style="padding-left: 18px; margin: -6px 0;" ng-hide="fun.MenuURL=='/home'">
+                    <label style="float: left; width: 220px !important; margin-top: -2px; font-size: 15px; font-weight: 700; color: #626464">
+                        <a href="#" ng-click="fun.isShowDetail=false" ng-hide="fun.isShowDetail==false"><i class="icon-angle-down bigger-130" style="font-weight: bold;"></i></a>
+                        <a href="#" ng-click="fun.isShowDetail=true" ng-hide="fun.isShowDetail!=false"><i class="icon-angle-up bigger-130" style="font-weight: bold;"></i></a>
+                        {{ fun | menuLocalize}}
+                    </label>
+                    <label style="float: left; margin-left: 6px; margin-right: 49px; margin-bottom: 0px;" ng-repeat="item in fun.functionDisplayList">
+                        <input name="{{item.menuID}}{{item.userID}}" ng-disabled="true" type="radio" ng-model="fun.activeType" value="{{item.name}}" class="ace">
+                        <span class="lbl">&nbsp;{{ item.name}}</span>
+                    </label>
+                </div>
+                <div class="vp-list-row" ng-repeat="menu in fun.SubMenuList" ng-hide="fun.MenuURL=='/home'||fun.isShowDetail==false">
+                    <div class="name" style="text-align: left; width: 220px; padding-left: 15px;">{{ menu | menuLocalize}}</div>
+                    <div class="value">
+                        <span>
+                            <label style="margin-right: 55px; margin-bottom: 0px;" ng-repeat="item in menu.functionDisplayList">
+                                <input name="{{item.menuID}}{{item.userID}}" ng-disabled="true" type="radio" ng-model="menu.activeType" value="{{item.name}}" class="ace">
+                                <span class="lbl" style="font-size: 13px;">&nbsp;{{ item.name }}</span>
+                            </label>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 text-right no-padding" style="margin-top: 15px;">
+                <button type="button" class="btn btn-primary btn-sm" ng-click="saveRole()" vd-auth="Edit">
+                    &nbsp;<i class="icon-save"></i>&nbsp;&nbsp;{{ 'common_button.save' | translate }}&nbsp;
+                </button>
+                <button type="button" class="btn btn-danger btn-sm" ng-click="resetRole()" vd-auth="Edit">
+                    &nbsp;<i class="icon-undo"></i>&nbsp;&nbsp;{{ 'common_button.cancel' | translate }}&nbsp;
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

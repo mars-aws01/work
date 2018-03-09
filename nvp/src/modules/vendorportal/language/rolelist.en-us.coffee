@@ -1,0 +1,40 @@
+﻿NEG.namespace('resources.vendorportal.rolelist.us',
+  view_rolelist:
+    roleSearch:"Search"
+    exactMatch:"Exact Match"
+    rolesPlaceHolder:"Please input role name."
+    addNewRole:"Add New Role"
+  header_rolelist:
+    action:"Action"
+    roleName:"Role Name"
+    roleDescription:"Role Description"
+    roleType:"Role Type"
+    createUser:"Create User"
+    createDate:"Create Date"
+    editUser:"Edit User"
+    editDate:"Edit Date"
+    noMatchItems:"Not any matching records be found"
+    roleDetail:"Role Detail"
+    createRole:"Create Role"
+    save:"Save"
+    cancel:"Cancel"
+    setPermission:"Set Permission"
+    deleteTip:"Delete"
+    tableSummaryShow:"Showing"
+    tableSummaryTo:"to"
+    tableSummaryOf:"of"
+    tableSummaryOfEntries:"entries"
+  confirm_rolelist:
+    dntSave:"You have unsaved changes on this page, do you wish to continue and discard all changes?"
+    deleteRole:"Are you sure to delete the selected role?"
+  error_rolelist:
+    deleteRole:"Delete Role failed. Error: "
+    createRole:"Create Role failed. Error: "
+    updateRole:"Update Role failed. Error: "
+    roleNameInvalid:"Role Name is Required."
+    roleNameExist:"The role name already exists."
+  success_rolelist:
+    deleteRole:"Your changes(Delete Role) have been submitted successfully. Please wait for a moment and refresh the page to see the changes." 
+    createRole:"Your changes(Create Role) have been submitted successfully. Please wait for a moment and refresh the page to see the changes." 
+    updateRole:"Your changes(Update Role) have been submitted successfully. Please wait for a moment and refresh the page to see the changes."
+)  

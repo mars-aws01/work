@@ -1,0 +1,63 @@
+﻿.vp-print-package {
+	font-family: 'Microsoft YaHei' !important;
+	font-size: 12px !important;
+	color: #292828;
+   
+}
+.vp-print-package-width {
+	width: 100%;
+}
+.vp-print-package-header {
+	border-bottom: 2px solid #4E3E3E;
+	text-align: center;
+	font-weight: bold;
+}
+
+
+.vp-print-package-logo {
+	margin-top: 3px;
+	width: 220px; 
+	height: 90px
+}
+
+.vp-print-package-title {
+	margin-top: -1px;
+	color: #4E3E3E;
+}
+
+.vp-print-package-title2 {
+	margin-top: 3px;
+}
+
+.vp-print-package-line {
+	border-bottom: 24px solid #D9D9D9;
+}
+
+.vp-print-package-line-label {
+	float: left;
+	margin-bottom: -18px;
+	margin-left: 1px;
+}
+
+.vp-print-package-line-label2 {
+	float: right;
+	margin-right: 5px;
+	margin-top: -1px;
+}
+
+.vp-print-package-description-p {
+	font-size:12px;
+}
+
+.vp-print-package-description-p-margin {
+	margin-left: 24px;
+}
+
+.vp-print-package-table {
+	height: 180px;
+}
+
+.vp-print-package-footer {
+	margin-top: 150px;
+	border-top: 2px solid #4E3E3E;
+}

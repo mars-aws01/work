@@ -1,0 +1,20 @@
+﻿NEG.namespace('resources.vendorportal.common.cn',
+  control_functionlist:
+    saveSuccess:"更新用户权限列表成功。"
+    saveFailed:"更新用户权限列表失败。"
+  common_button:
+    save:"保存"
+    deleted:"删除"
+    cancel:"取消"
+  framework_button:
+    back:"返回上一页"
+    forward:"前进一页"
+    refresh:"刷新页面"
+    home:"跳转到主页"
+    favorites:"我的最爱"
+  pagging_button:
+    tableSummaryShow:"第"
+    tableSummaryTo:"至第"
+    tableSummaryOf:"条数据, 总计:"
+    tableSummaryOfEntries:"条数据"   
+)  

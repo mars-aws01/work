@@ -1,0 +1,1287 @@
+﻿<link rel="stylesheet" href="/framework/themes/ace/login.css" />
+<link rel="stylesheet" href="/framework/themes/ace/index.css" />
+<link rel="stylesheet" href="/modules/vendorportal/app.css" />
+<style>
+    .dropdown-check-list {
+      display: inline-block;
+    }
+    .dropdown-check-list .anchor {
+      position: relative;
+      cursor: pointer;
+      display: inline-block;
+      padding: 5px 50px 5px 10px;
+      border: 1px solid #ccc;
+    }
+    .dropdown-check-list .anchor:after {
+      position: absolute;
+      content: "";
+      border-left: 2px solid black;
+      border-top: 2px solid black;
+      padding: 5px;
+      right: 10px;
+      top: 20%;
+      -moz-transform: rotate(-135deg);
+      -ms-transform: rotate(-135deg);
+      -o-transform: rotate(-135deg);
+      -webkit-transform: rotate(-135deg);
+      transform: rotate(-135deg);
+    }
+    .dropdown-check-list .anchor:active:after {
+      right: 8px;
+      top: 21%;
+    }
+    .dropdown-check-list ul.items {
+      padding: 2px;
+      display: none;
+      margin: 0;
+      border: 1px solid #ccc;
+      border-top: none;
+      height: 100px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+    .dropdown-check-list ul.items li:hover {
+        background-repeat: repeat;
+        background-color: #6495ed;
+        background-position: 0 center;
+    }
+    .dropdown-check-list ul.items li {
+      list-style: none;
+    }
+    .dropdown-check-list.visible .anchor {
+      color: #0094ff;
+    }
+    .dropdown-check-list.visible .items {
+      display: block;
+    }
+</style>
+
+<style>
+    .vp-wizard-content legend {
+        color: #3B93D1;
+    }
+</style>
+<script id="territoryTemplate" type="text/x-kendo-template">
+  <span class="checkbox" style="margin:0" name="territorySpan">
+    <label name="territoryLabel" style="display:inline-block;width:100%;margin:1px" ng-click="preventBlur($event)">
+    <input name="territoryInput" type="checkbox" ng-checked="#:isChecked #" ng-click="preventBlur($event)">#:TerritoryDescription #</label>
+  </span>
+</script>
+<script id="TerrioyTemplate" type="text/x-kendo-template">
+    <label class="col-xs-12"><span class="red">*&nbsp;</span>Territory</label>
+    <div class="col-xs-12">
+    <vd-territory-v2></vd-territory-v2>
+    </div>
+    <label class="col-xs-12 light-orange">
+    Vendor hereby authorizes and appoints Newegg to market, promote and sell the Products anywhere within the geographic territory.
+    </label>
+</script>
+<div ng-controller="VendorApplicationCtrl">
+    <div ng-show="_vendorRegiste" class="container align-center vp_content ">
+        <header>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <h1>
+                        <a href="javascript:void(0)" ng-click="redirectTo('logo')">
+                            <img src="/framework/img/vendorportal_login.png" alt="Newegg Vendor Portal" />
+                        </a>
+                    </h1>
+                </div>
+                <br />
+            </div>
+        </header>
+
+        <div ng-show="showErrorMsg" style="margin-bottom: 40px;">
+            <div style="margin: 0 auto; padding-top: 20px; width: 580px; text-align: left; font-size: 13px;">
+                <p>
+                    Thank you for your interesting in participating in Vendor Portal. 
+                        The invitation has expired or no longer available, please make sure to use the link from your invitation Email, 
+                        and if you have any question about this, 
+                        please contact the Vendor Portal administrator of your organization or simply mailto <a href="mailto:vendortechsupport@newegg.com">vendortechsupport@newegg.com</a> and our helpful staff will alleviate any concerns you may have.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-xs-12 text-left" ng-show="showFront" style="margin-bottom: 100px;">
+            <h3>Hi, Welcome to Newegg Vendor Portal!</h3>
+            <h4 ng-show="basicRequestItem.Status=='New'">The Newegg Vendor Portal is a tool that helps our partner manage their business with Newegg. Please click "Continue" to finish our vendor application process. Thank you.</h4>
+            <h4 ng-show="basicRequestItem.Status=='Edit'">The Newegg Vendor Portal is a tool that helps our partner manage their business with Newegg.</h4>
+            <h4 ng-show="basicRequestItem.Status=='Edit'">Please check the message below and click "Continue" to modify your application form. Our team will process your application and provide a response to you soon. Thank you.</h4>
+            <h5 class="orange" ng-show="basicRequestItem.Status=='Edit'"><i class="icon-warning-sign">&nbsp; </i>{{ basicRequestItem.Memo }}</h5>
+            <div class="col-xs-12 " ng-show="basicRequestItem.Status=='New'">
+                <ol style="list-style-type: none; font-size: 16px;" ng-hide="registerType!='online'">
+                    <li><i class="icon-caret-right">&nbsp;&nbsp;</i>Step 1. Company Information</li>
+                    <li><i class="icon-caret-right">&nbsp;&nbsp;</i>Step 2. Business Terms</li>
+                    <li><i class="icon-caret-right">&nbsp;&nbsp;</i>Step 3. Standard Legal Terms</li>
+                    <li><i class="icon-caret-right">&nbsp;&nbsp;</i>Step 4. Support Document</li>
+                    <li><i class="icon-caret-right">&nbsp;&nbsp;</i>Step 5. Contact Information</li>
+                </ol>
+                <ol style="list-style-type: none; font-size: 16px;" ng-hide="registerType=='online'">
+                    <li><i class="icon-caret-right">&nbsp;&nbsp;</i>Step 1. Company Information</li>
+                    <li><i class="icon-caret-right">&nbsp;&nbsp;</i>Step 2. Support Document</li>
+                    <li><i class="icon-caret-right">&nbsp;&nbsp;</i>Step 3. Contact Information</li>
+                </ol>
+            </div>
+            <div class="col-xs-12 text-center">
+                <a href="#" class="btn btn-primary" ng-hide="showContiune==false" ng-click="showFront=false;showRegistration=true">
+                    <i class="icon-hand-right">&nbsp;&nbsp;</i>Continue
+                </a>
+            </div>
+        </div>
+
+        <div class="col-xs-12" ng-show="showRegistration">
+            <h3 style="color: #D15D2E; margin: 0;" class="pull-left">Vendor Registration</h3>
+            <small class="pull-right" style="padding-top: 7px; color: #D15D2E; font-size: 13px;">Asterisk (<span class="red">*</span>) indicates required fields. Please complete the form in English.</small>
+            <div class="col-xs-12 vp-wizard text-left">
+                <div id="wizard" class="vp-wizard clearfix">
+                    <ol class="vp-wizard-steps clearfix clickable" role="tablist" ng-hide="registerType!='online'">
+                        <li ng-class="{'active':currentStep==1,'vp-wizard-completed':stepInfo.step1}" ng-click="change(1)" style="">
+                            <span class="label badge">1</span>
+                            <a href="#">Company Information</a>
+                            <a href="#"><small>&nbsp;</small></a>
+                        </li>
+                        <li ng-class="{'active':currentStep==2,'vp-wizard-completed':stepInfo.step2}" ng-click="change(2)">
+                            <span class="label badge">2</span>
+                            <a href="#">Business Terms</a>
+                            <a href="#"><small>&nbsp;</small></a>
+                        </li>
+                        <li ng-class="{'active':currentStep==3,'vp-wizard-completed':stepInfo.step3}" ng-click="change(3)">
+                            <span class="label badge">3</span>
+                            <a href="#">Standard Legal Terms</a>
+                            <a href="#"><small>&nbsp;</small></a>
+                        </li>
+                        <li ng-class="{'active':currentStep==4,'vp-wizard-completed':stepInfo.step4}" ng-click="change(4)">
+                            <span class="label badge">4</span>
+                            <a href="#">Support Document</a>
+                            <a href="#"><small>&nbsp;</small></a>
+                        </li>
+                        <li ng-class="{'active':currentStep==5,'vp-wizard-completed':stepInfo.step5}" ng-click="change(5)">
+                            <span class="label badge">5</span>
+                            <a href="#">Contact Information</a>
+                            <a href="#"><small>&nbsp;</small></a>
+                        </li>
+                    </ol>
+                    <ol class="vp-wizard-steps clearfix clickable" role="tablist" ng-hide="registerType=='online'">
+                        <li ng-class="{'active':currentStep==1,'vp-wizard-completed':stepInfo.step1}" ng-click="change(1)" style="">
+                            <span class="label badge">1</span>
+                            <a href="#">Company Information</a>
+                            <a href="#"><small>&nbsp;</small></a>
+                        </li>
+                        <li ng-class="{'active':currentStep==4,'vp-wizard-completed':stepInfo.step4}" ng-click="change(4)">
+                            <span class="label badge">2</span>
+                            <a href="#">Support Document</a>
+                            <a href="#"><small>&nbsp;</small></a>
+                        </li>
+                        <li ng-class="{'active':currentStep==5,'vp-wizard-completed':stepInfo.step5}" ng-click="change(5)">
+                            <span class="label badge">3</span>
+                            <a href="#">Contact Information</a>
+                            <a href="#"><small>&nbsp;</small></a>
+                        </li>
+                    </ol>
+                    <div class="well vp-wizard-content" style="background-color: white; border-radius: 5px;">
+                        <!-- step 1 : Main Information -->
+                        <div ng-class="{'active':currentStep==1}">
+                            <form name="stepForm_1" id="stepForm_1">
+
+                                <!-- Vendor Company Information -->
+                                <fieldset>
+                                    <button id="btnStep_1" type="submit" ng-click="next()" ng-hide="true"></button>
+                                    <legend class="pull-left">Vendor Company Information</legend>
+                                    <div class="row" style="margin-bottom: 5px;">
+                                        <div class="form-group col-md-3 no-padding">
+                                            <label class="col-xs-12"><span class="red">*&nbsp;</span>Vendor Type</label>
+                                            <div class="col-xs-12">
+                                                <select ng-disabled="true"
+                                                    class="col-xs-12 vp-select vp-select-sm"
+                                                    name="vendorCompany_VendorType"
+                                                    ng-required="config.CompanyInformation.VendorType.req"
+                                                    ng-model="entity.CompanyInformation.VendorType"
+                                                    ng-options="item.NormalVendorTypeCode as item.NormalVendorTypeDescription for item in poData.vendortype">
+                                                    <option></option>
+                                                </select>
+                                                <validtip for="vendorCompany_VendorType" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-6 no-padding">
+                                            <label class="col-xs-12">
+                                                <span class="red">*&nbsp;</span>Company Name
+                                            </label>
+                                            <div class="col-xs-12">
+                                                <input ng-model="entity.CompanyInformation.CompanyName"
+                                                    type="text"
+                                                    maxlength="{{config.CompanyInformation.CompanyName.maxlength}}"
+                                                    ng-required="config.CompanyInformation.CompanyName.req"
+                                                    ng-disabled="isCompleted"
+                                                    class="col-sm-12 vp-input vp-input-sm"
+                                                    placeholder=""
+                                                    name="vendorCompany_CompanyName" />
+                                                <validtip for="vendorCompany_CompanyName" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-6 no-padding">
+                                            <label class="col-xs-12">DBA</label>
+                                            <div class="col-xs-12">
+                                                <input ng-disabled="isCompleted" ng-model="entity.CompanyInformation.DBA"
+                                                    type="text"
+                                                    maxlength="{{config.CompanyInformation.DBA.maxlength}}"
+                                                    ng-required="config.CompanyInformation.DBA.req"
+                                                    class="col-sm-12 vp-input vp-input-sm"
+                                                    placeholder=""
+                                                    name="vendorCompany_dbaName" />
+                                                <validtip for="vendorCompany_dbaName" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-6 no-padding">
+                                            <label class="col-xs-12">Website URL</label>
+                                            <div class="col-xs-12">
+                                                <input ng-disabled="isCompleted" ng-model="entity.CompanyInformation.WebsiteURL"
+                                                    type="text"
+                                                    maxlength="{{config.CompanyInformation.WebsiteURL.maxlength}}"
+                                                    ng-required="config.CompanyInformation.WebsiteURL.req"
+                                                    class="col-sm-12 vp-input vp-input-sm"
+                                                    placeholder=""
+                                                    name="vendorCompany_websiteURL" />
+                                                <validtip for="vendorCompany_websiteURL" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr class="hr-10" />
+
+                                    <div class="row">
+                                        <div class="form-group col-md-3 no-padding">
+                                            <label class="col-xs-12">Brand</label>
+                                            <div class="col-xs-12">
+                                                <input ng-model="entity.CompanyInformation.Brand"
+                                                    type="text"
+                                                    ng-disabled="true"
+                                                    class="col-sm-12 vp-input vp-input-sm"
+                                                    placeholder=""
+                                                    title="{{entity.CompanyInformation.Brand}}"
+                                                    name="vendorCompany_Brand" />
+                                                <validtip for="vendorCompany_Brand" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-3 no-padding">
+                                            <label class="col-xs-12"><span class="red">*&nbsp;</span>Tax ID</label>
+                                            <div class="col-xs-12">
+                                                <input ng-disabled="isCompleted" ng-model="entity.CompanyInformation.TaxID"
+                                                    type="text"
+                                                    maxlength="{{config.CompanyInformation.TaxID.maxlength}}"
+                                                    ng-required="config.CompanyInformation.TaxID.req"
+                                                    ng-pattern="config.CompanyInformation.TaxID.pattern"
+                                                    valid-pattern-tip="Can only enter letters, numbers, spaces and '-', Beginning or end can not be '-'"
+                                                    class="col-sm-12 vp-input vp-input-sm"
+                                                    placeholder=""
+                                                    name="vendorCompany_TaxID" />
+                                                <validtip for="vendorCompany_TaxID" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-3 no-padding">
+                                            <label class="col-xs-12"><span class="red">*&nbsp;</span>Number of Employees</label>
+                                            <div class="col-xs-12">
+                                                <input ng-disabled="isCompleted" ng-model="entity.CompanyInformation.EmployeesNumber"
+                                                    type="number"
+                                                    min="{{config.CompanyInformation.EmployeesNumber.min}}"
+                                                    max="{{config.CompanyInformation.EmployeesNumber.max}}"
+                                                    ng-required="config.CompanyInformation.EmployeesNumber.req"
+                                                    ng-pattern="config.CompanyInformation.EmployeesNumber.pattern"
+                                                    valid-pattern-tip="Please enter a valid integer (0-999999999)."
+                                                    class="col-sm-12 vp-input vp-input-sm"
+                                                    placeholder=""
+                                                    name="vendorCompany_EmployeesNumber" />
+                                                <validtip for="vendorCompany_EmployeesNumber" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-3 no-padding">
+                                            <label class="col-xs-12"><span class="red">*&nbsp;</span>Preferred Pay Method</label>
+                                            <div class="col-xs-12">
+                                                <select ng-disabled="isCompleted"
+                                                    class="col-xs-12 vp-select vp-select-sm"
+                                                    name="vendorCompany_PreferredPayMethod"
+                                                    ng-required="config.CompanyInformation.PreferredPayMethod.req"
+                                                    ng-model="entity.CompanyInformation.PreferredPayMethod"
+                                                    ng-options="item.PaymethodCode as item.PaymethodDescription for item in poData.paymethod">
+                                                    <option></option>
+                                                </select>
+                                                <validtip for="vendorCompany_PreferredPayMethod" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-3 no-padding">
+                                            <label class="col-xs-12"><span class="red">*&nbsp;</span>Preferred Currency</label>
+                                            <div class="col-xs-12">
+                                                <select ng-disabled="isCompleted"
+                                                    class="col-xs-12 vp-select vp-select-sm"
+                                                    name="MainAddress_PreferredCurrency"
+                                                    ng-required="config.CompanyInformation.PreferredCurrency.req"
+                                                    ng-model="entity.CompanyInformation.PreferredCurrency"
+                                                    ng-options="item.CurrencyCode as item.CurrencyCode for item in poData.currency">
+                                                    <option></option>
+                                                </select>
+                                                <validtip for="MainAddress_PreferredCurrency" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-3 no-padding">
+                                            <label class="col-xs-12"><span class="red " ng-show="entity.CompanyInformation.MailingAddress.Country=='USA'">*&nbsp;</span>D&amp;B Number/DUNS Number</label>
+                                            <div class="col-xs-12">
+                                                <input ng-disabled="isCompleted" ng-model="entity.CompanyInformation.DunsNumber"
+                                                    type="text"
+                                                    maxlength="{{config.CompanyInformation.DunsNumber.maxlength}}"
+                                                    ng-required="entity.CompanyInformation.MailingAddress.Country=='USA'"
+                                                    ng-pattern="config.CompanyInformation.DunsNumber.pattern"
+                                                    valid-pattern-tip="Please enter a valid number value. (eg. 22-333-4444)"
+                                                    class="col-sm-12 vp-input vp-input-sm"
+                                                    placeholder=""
+                                                    valid-pattern-tip="Please enter a valid D&amp;B No. e.g. -> 12-345-6789"
+                                                    name="vendorCompany_DunsNumber" />
+                                                <validtip for="vendorCompany_DunsNumber" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-3 no-padding">
+                                            <label class="col-xs-12">State of Incorporation</label>
+                                            <div class="col-xs-12">
+                                                <select ng-disabled="isCompleted"
+                                                    class="col-xs-12 vp-select vp-select-sm"
+                                                    name="vendorCompany_IncorporationState"
+                                                    ng-required="config.CompanyInformation.IncorporationState.req"
+                                                    ng-model="entity.CompanyInformation.IncorporationState"
+                                                    ng-options="item.StateCode as item.StateDescription for item in poData.usaState">
+                                                    <option></option>
+                                                </select>
+                                                <validtip for="vendorCompany_IncorporationState" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-3 no-padding">
+                                            <label class="col-xs-12">Type of Business Entity</label>
+                                            <div class="col-xs-12">
+                                                <select ng-disabled="isCompleted"
+                                                    class="col-xs-12 vp-select vp-select-sm"
+                                                    name="vendorCompany_BusinessType"
+                                                    ng-required="config.CompanyInformation.BusinessType.req"
+                                                    ng-model="entity.CompanyInformation.BusinessType"
+                                                    ng-options="item.BusinessCode as item.BusinessDescription for item in poData.businessentity">
+                                                    <option></option>
+                                                </select>
+
+                                                <validtip for="vendorCompany_BusinessType" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="form-group col-md-3 no-padding">
+                                            <label class="col-xs-12">Public Company Stock Symbol</label>
+                                            <div class="col-xs-12">
+                                                <input ng-disabled="isCompleted" ng-model="entity.CompanyInformation.PublicCompanyStockSymbol"
+                                                    type="text"
+                                                    maxlength="{{config.CompanyInformation.PublicCompanyStockSymbol.maxlength}}"
+                                                    ng-required="config.CompanyInformation.PublicCompanyStockSymbol.req"
+                                                    class="col-sm-12 vp-input vp-input-sm"
+                                                    placeholder=""
+                                                    name="vendorCompany_PublicCompanyStockSymbol" />
+                                                <validtip for="vendorCompany_PublicCompanyStockSymbol" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-3 no-padding">
+                                            <label class="col-xs-12">Year Established</label>
+                                            <div class="col-xs-12">
+                                                <input ng-disabled="isCompleted" ng-model="entity.CompanyInformation.EstablishedYear"
+                                                    type="{{config.CompanyInformation.EstablishedYear.type}}"
+                                                    min="{{config.CompanyInformation.EstablishedYear.min}}"
+                                                    max="{{config.CompanyInformation.EstablishedYear.max}}"
+                                                    ng-required="config.CompanyInformation.EstablishedYear.req"
+                                                    ng-pattern="config.CompanyInformation.EstablishedYear.pattern"
+                                                    valid-pattern-tip="Please enter a valid integer (0-9999)."
+                                                    class="col-sm-12 vp-input vp-input-sm"
+                                                    placeholder="eg. 2001"
+                                                    name="vendorCompany_EstablishedYear" />
+                                                <validtip for="vendorCompany_EstablishedYear" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-3 no-padding">
+                                            <label class="col-xs-12">Total Annual Revenue <span ng-show="entity.CompanyInformation.PreferredCurrency">({{entity.CompanyInformation.PreferredCurrency}})</span></label>
+                                            <div class="col-xs-12">
+                                                <input ng-disabled="isCompleted" ng-model="entity.CompanyInformation.TotalAnnualRevenue"
+                                                    type="{{config.CompanyInformation.TotalAnnualRevenue.type}}"
+                                                    min="{{config.CompanyInformation.TotalAnnualRevenue.min}}"
+                                                    max="{{config.CompanyInformation.TotalAnnualRevenue.max}}"
+                                                    ng-required="config.CompanyInformation.TotalAnnualRevenue.req"
+                                                    ng-pattern="config.CompanyInformation.TotalAnnualRevenue.pattern"
+                                                    valid-pattern-tip="Please enter a valid value."
+                                                    class="col-sm-12 vp-input vp-input-sm"
+                                                    placeholder=""
+                                                    step="any"
+                                                    name="vendorCompany_TotalAnnualRevenue" />
+                                                <validtip for="vendorCompany_TotalAnnualRevenue" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-3 no-padding">
+                                            <label class="col-xs-12">Est. 1st year Revenue w/ Newegg <span ng-show="entity.CompanyInformation.PreferredCurrency">({{entity.CompanyInformation.PreferredCurrency}})</span></label>
+                                            <div class="col-xs-12">
+                                                <input ng-disabled="isCompleted" ng-model="entity.CompanyInformation.ProjectRevenue"
+                                                    type="{{config.CompanyInformation.ProjectRevenue.type}}"
+                                                    min="{{config.CompanyInformation.ProjectRevenue.min}}"
+                                                    max="{{config.CompanyInformation.ProjectRevenue.max}}"
+                                                    ng-required="config.CompanyInformation.ProjectRevenue.req"
+                                                    ng-pattern="config.CompanyInformation.ProjectRevenue.pattern"
+                                                    valid-pattern-tip="Please enter a valid value."
+                                                    class="col-sm-12 vp-input vp-input-sm"
+                                                    placeholder=""
+                                                    step="any"
+                                                    name="vendorCompany_ProjectRevenue" />
+                                                <validtip for="vendorCompany_ProjectRevenue" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr class="hr-10" />
+
+                                    <div class="row">
+                                        <div class="form-group col-md-12 no-padding">
+                                            <label class="col-xs-12">Is your company, or any of its Principals, Owners, Officers or Directors involved in any litigation, pending, threatened or brought against it, that could materially offect its obility to meet its obligations under its Vendor Agreement with Newegg?</label>
+                                            <div class="col-xs-12">
+                                                <label>
+                                                    <input ng-disabled="isCompleted" name="vendorCompany_lawsuit"
+                                                        ng-model="entity.CompanyInformation.IsInvolved"
+                                                        ng-true-value="true"
+                                                        ng-value="true"
+                                                        type="radio" class="ace">
+                                                    <span class="lbl">&nbsp;Yes&nbsp;&nbsp;&nbsp;</span>
+                                                </label>
+                                                <label>
+                                                    <input ng-disabled="isCompleted" name="vendorCompany_lawsuit"
+                                                        ng-model="entity.CompanyInformation.IsInvolved"
+                                                        ng-true-value="false"
+                                                        ng-value="false"
+                                                        ng-click="entity.CompanyInformation.InvolvedDescription=''"
+                                                        type="radio" class="ace">
+                                                    <span class="lbl">&nbsp;No&nbsp;&nbsp;&nbsp;</span>
+                                                </label>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-12 no-padding">
+                                            <label class="col-xs-12">
+                                                If Yes, please describe: 
+                                            </label>
+                                            <div class="col-xs-12">
+                                                <input ng-disabled="entity.CompanyInformation.IsInvolved==0"
+                                                       ng-model="entity.CompanyInformation.InvolvedDescription"
+                                                       type="text"
+                                                       maxlength="{{config.CompanyInformation.InvolvedDescription.maxlength}}"
+                                                       ng-required="entity.CompanyInformation.IsInvolved==true"
+                                                       class="col-sm-12 vp-input vp-input-sm"
+                                                       placeholder=""
+                                                       name="vendorCompany_lawsuit_value" />
+                                                <validtip for="vendorCompany_lawsuit_value" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12 no-padding" id="step1Territory" ng-hide="registerType=='online'">
+                                            <!--<label class="col-xs-12"><span class="red">*&nbsp;</span>Territory</label>
+                                            <div class="col-xs-12">
+                                                <vd-territory-v2 id="manual"></vd-territory-v2>
+                                            </div>
+                                            <label class="col-xs-12 light-orange">
+                                                Vendor hereby authorizes and appoints Newegg to market, promote and sell the Products anywhere within the geographic territory.
+                                            </label>-->
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+
+                                <br />
+
+                                <!-- Mailing Address -->
+                                <fieldset>
+                                    <legend class="pull-left">Mailing Address</legend>
+                                    <vd-address module-name="MailingAddress"
+                                        binding-name="entity.CompanyInformation.MailingAddress">
+                                    </vd-address>
+                                </fieldset>
+                                <br />
+                                <!-- Company Physical Address -->
+                                <fieldset>
+                                    <legend class="pull-left">Company Physical Address&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input ng-disabled="isCompleted" name="form-field-checkbox" ng-model="sameMailingAddress_CompanyPhysicalAddress" class="ace ace-checkbox" type="checkbox">
+                                            <span class="lbl">&nbsp;Same as Mailing Address</span>
+                                        </label>
+                                    </legend>
+                                    <vd-address module-name="CompanyPhysicalAddress"
+                                        binding-name="entity.CompanyInformation.CompanyPhysicalAddress">
+                                    </vd-address>
+                                </fieldset>
+                                <br />
+
+                            </form>
+                        </div>
+
+                        <!-- step 2 : Business Terms -->
+                        <div ng-class="{'active':currentStep==2}">
+                            <form name="stepForm_2">
+                                <button id="btnStep_2" type="submit" ng-click="next()" ng-hide="true"></button>
+                                <fieldset>
+                                    <legend class="pull-left red" style="font-size: 17px">If you have any questions about these business terms, please contact our PMMO team: PMMO-Vendor@newegg.com
+                                    </legend>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-12 no-padding" ng-hide="entity.BusinessTerms.PayTermDays== undefined">
+                                            <label class="col-xs-4  control-label">Pay Term Days</label>
+                                            <div class="col-xs-6">
+                                                <input ng-disabled="isCompleted" ng-model="entity.BusinessTerms.PayTermDays"
+                                                    type="text"
+                                                    readonly
+                                                    class="col-sm-12 vp-input vp-input-sm"
+                                                    placeholder=""
+                                                    name="BusinessTerms_PayTermDays" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-12 no-padding" ng-hide="entity.BusinessTerms.ConsignmentPayTermDays== undefined || entity.CompanyInformation.VendorType=='7'  || entity.CompanyInformation.VendorType=='8'">
+                                            <label class="col-xs-4  control-label">Consignment Payment Terms</label>
+                                            <div class="col-xs-6">
+                                                <input ng-disabled="isCompleted" ng-model="entity.BusinessTerms.ConsignmentPayTermDays"
+                                                    type="text"
+                                                    readonly
+                                                    class="col-sm-12 vp-input vp-input-sm"
+                                                    placeholder=""
+                                                    name="BusinessTerms_ConsignmentPayTermDays" />
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group col-md-12 no-padding" ng-hide="entity.BusinessTerms.RMATerms == undefined || entity.CompanyInformation.VendorType=='7'">
+                                            <label class="col-xs-4  control-label">RMA Terms <small class="grey">(Based on Customer Invoice Date)</small></label>
+                                            <div class="col-xs-6">
+                                                <input ng-disabled="isCompleted" ng-model="entity.BusinessTerms.RMATerms"
+                                                       type="text"
+                                                       readonly
+                                                       ng-hide="!entity.BusinessTerms.RMATerms"
+                                                       class="col-sm-12 vp-input vp-input-sm"
+                                                       placeholder=""
+                                                       name="BusinessTerms_RMATerms" />
+                                                <validtip for="BusinessTerms_RMATerms" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-12 no-padding" ng-hide="entity.BusinessTerms.MinGuaranteedMargin == undefined || entity.CompanyInformation.VendorType=='7'  || entity.CompanyInformation.VendorType=='8'">
+                                            <label class="col-xs-4  control-label">Minimum Guaranteed Margin</label>
+                                            <div class="col-xs-6">
+                                                <input ng-disabled="isCompleted"
+                                                       type="text"
+                                                       readonly
+                                                       class="col-sm-12 vp-input vp-input-sm"
+                                                       placeholder=""
+                                                       value="{{ entity.BusinessTerms.MinGuaranteedMargin +'%' }}"
+                                                       name="BusinessTerms_MinGuaranteedMargin" />
+
+                                                <validtip for="BusinessTerms_MinGuaranteedMargin" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+
+                                    <div class="form-group col-md-12 no-padding" ng-hide="entity.BusinessTerms.SRTerms == undefined || entity.CompanyInformation.VendorType=='7'  || entity.CompanyInformation.VendorType=='8'">
+                                        <label class="col-xs-4  control-label">Preferred Stock Rotation Terms</label>
+                                        <div class="col-xs-6">
+                                            <input ng-disabled="isCompleted"
+                                                   type="text"
+                                                   readonly
+                                                   class="col-sm-12 vp-input vp-input-sm"
+                                                   placeholder=""
+                                                   value="{{ entity.BusinessTerms.SRTerms + ' Days' }}"
+                                                   name="BusinessTerms_SRTerms" />
+                                            <validtip for="BusinessTerms_SRTerms" class="vp-validtip"></validtip>
+                                        </div>
+                                    </div>
+
+                                        <div class="form-group col-md-12 no-padding" ng-hide="entity.BusinessTerms.PPTerms == undefined || entity.CompanyInformation.VendorType=='7'  || entity.CompanyInformation.VendorType=='8'">
+                                            <label class="col-xs-4  control-label">Preferred Price Protection Terms</label>
+                                            <div class="col-xs-6">
+                                                <input ng-disabled="isCompleted"
+                                                       type="text"
+                                                       readonly
+                                                       class="col-sm-12 vp-input vp-input-sm"
+                                                       placeholder=""
+                                                       value="{{ entity.BusinessTerms.PPTerms + ' Days' }}"
+                                                       name="BusinessTerms_PPTerms" />
+                                                <validtip for="BusinessTerms_PPTerms" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-12 no-padding" ng-hide="entity.BusinessTerms.FreightChartToNewegg == undefined || entity.CompanyInformation.VendorType=='7'  || entity.CompanyInformation.VendorType=='8'">
+                                            <label class="col-xs-4  control-label">Freight charges to Newegg facilities</label>
+                                            <div class="col-xs-6">
+                                                <input ng-disabled="isCompleted" ng-model="entity.BusinessTerms.FreightChartToNewegg"
+                                                    type="text"
+                                                    readonly
+                                                    class="col-sm-12 vp-input vp-input-sm"
+                                                    placeholder=""
+                                                    name="BusinessTerms_FreightChartToNewegg" />
+                                                <validtip for="BusinessTerms_FreightChartToNewegg" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-xs-8 col-xs-offset-4">
+                                            <input ng-disabled="isCompleted" name="form-field-checkbox" ng-model="haveReadTerms" class="ace ace-checkbox" type="checkbox">
+                                            <span class="lbl"><strong>&nbsp;I have read, understand, and hereby agree to the above terms</strong></span>
+                                        </label>
+                                    </div>
+                                </fieldset>
+
+
+                            </form>
+                        </div>
+
+                        <!-- step 3 : Standard Legal Terms -->
+                        <div ng-class="{'active':currentStep==3}">
+                            <form name="stepForm_3">
+                                <button id="btnStep_3" type="submit" ng-click="next()" ng-hide="true"></button>
+                                <!-- Contact Information -->
+                                <fieldset>
+                                    <legend class="pull-left">Standard Legal Terms</legend>
+                                    <div class="row">
+                                        <div class="form-group col-md-12 no-padding" id="step3Territory">
+                                            <!--<label class="col-xs-12"><span class="red">*&nbsp;</span>Territory</label>
+                                            <div class="col-xs-12">
+                                                <vd-territory-v2 id="online"></vd-territory-v2>
+                                            </div>
+                                            <label class="col-xs-12 light-orange">
+                                                Vendor hereby authorizes and appoints Newegg to market, promote and sell the Products anywhere within the geographic territory.
+                                            </label>-->
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12" style="width: 100%; height: 500px; overflow: scroll; overflow-x: hidden; border: 1px solid #C4C4C4;">
+                                            <div class="col-xs-12 no-padding" ng-bind-html="entity.StandardLegalTerms.LegalTerms"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="padding-top: 10px;">
+                                        <label class="col-xs-12 no-padding">
+                                            <input ng-disabled="isCompleted" name="form-field-checkbox" ng-model="haveReadTerms_3"
+                                                class="ace ace-checkbox" type="checkbox">
+                                            <span class="lbl"><strong>&nbsp;I hereby agree to all of the above terms and conditions, and I represent I am authorized to bind my company to these terms and conditions.</strong></span>
+                                        </label>
+                                    </div>
+                                    <hr class="hr-12" />
+
+                                    <div class="row">
+                                        <div class="form-group col-md-6 no-padding">
+                                            <label class="col-xs-12"><span class="red">*&nbsp;</span>Signature</label>
+                                            <div class="col-xs-12">
+                                                <input ng-disabled="isCompleted" ng-model="entity.StandardLegalTerms.SignBy"
+                                                    type="text"
+                                                    maxlength="{{config.StandardLegalTerms.SignBy.maxlength}}"
+                                                    ng-required="config.StandardLegalTerms.SignBy.req"
+                                                    class="col-sm-12 vp-input vp-input-sm"
+                                                    placeholder=""
+                                                    name="StandardLegalTerms_SignBy" />
+                                                <validtip for="StandardLegalTerms_SignBy" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-6 no-padding">
+                                            <label class="col-xs-12"><span class="red">*&nbsp;</span>Title</label>
+                                            <div class="col-xs-12">
+                                                <input ng-disabled="isCompleted" ng-model="entity.StandardLegalTerms.Title"
+                                                    type="text"
+                                                    maxlength="{{config.StandardLegalTerms.Title.maxlength}}"
+                                                    ng-required="config.StandardLegalTerms.Title.req"
+                                                    class="col-sm-12 vp-input vp-input-sm"
+                                                    placeholder=""
+                                                    name="StandardLegalTerms_Title" />
+                                                <validtip for="StandardLegalTerms_Title" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6 no-padding">
+                                            <label class="col-xs-12"><span class="red">*&nbsp;</span>Printed Name</label>
+                                            <div class="col-xs-12">
+                                                <input ng-disabled="isCompleted" ng-model="entity.StandardLegalTerms.PrintedName"
+                                                    type="text"
+                                                    maxlength="{{config.StandardLegalTerms.PrintedName.maxlength}}"
+                                                    ng-required="config.StandardLegalTerms.PrintedName.req"
+                                                    class="col-sm-12 vp-input vp-input-sm"
+                                                    placeholder=""
+                                                    name="StandardLegalTerms_PrintedName" />
+                                                <validtip for="StandardLegalTerms_PrintedName" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6 no-padding">
+                                            <label class="col-xs-12"><span class="red">*&nbsp;</span>Date</label>
+                                            <div class="col-xs-12">
+                                                <div class="input-group">
+                                                    <input class="form-control date-picker" ng-disabled="true"
+                                                        type="text"
+                                                        name="StandardLegalTerms_Date"
+                                                        ng-required="config.StandardLegalTerms.Date.req"
+                                                        neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd","addMonth":-6}'
+                                                        ng-model="entity.StandardLegalTerms.Date">
+                                                    <span class="input-group-addon">
+                                                        <i class="icon-calendar bigger-110"></i>
+                                                    </span>
+                                                </div>
+                                                <validtip for="StandardLegalTerms_Date" class="vp-validtip"></validtip>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+
+                        <!-- step 4 : Support Document -->
+                        <div ng-class="{'active':currentStep==4}" class="vp-wizard-content-vf">
+                            <form name="stepForm_4">
+                                <button id="btnStep_4" type="submit" ng-click="next()" ng-hide="true"></button>
+                                <fieldset ng-hide="haveBankInfo">
+                                    <legend class="pull-left red" style="font-size: 17px">For domestic vendors, please provide the following documents:
+                                    </legend>
+
+                                    <!-- W-9 Form -->
+                                    <div class="row">
+                                        <div class="form-group col-md-12 no-padding">
+                                            <label class="col-xs-12">
+                                                <span class="bigger-125"><span class="red">*&nbsp;</span>W-9 Form</span>
+                                                <vd-pop-tip ng-title="Help"
+                                                    ng-content="Please upload signed W-9 Form here, and please note that up to 5 files you can upload and filename with extension .exe, .bat and .com were not acceptable.">
+                                                </vd-pop-tip>
+                                            </label>
+                                            <vd-upload data="fileList.W9Form" same-name="yes"
+                                                type="w9form"
+                                                max-count="config.UploadFile.maxCount"
+                                                max-size="config.UploadFile.maxSize"
+                                                rejects="config.UploadFile.rejects"
+                                                filename-pattern="config.UploadFile.filenamePattern"
+                                                filename-pattern-tip="config.UploadFile.filenamePatternTip"
+                                                disabled="isCompleted"
+                                                attachment-type="config.UploadFile.attachmentType_w9"></vd-upload>
+                                        </div>
+                                    </div>
+                                    <hr class="hr-10" />
+                                    <!-- Void Check-->
+                                    <div class="row">
+                                        <div class="form-group col-md-12 no-padding">
+                                            <label class="col-xs-12">
+                                                <span class="bigger-125"><span class="red">*&nbsp;</span>Void Check</span>
+                                                <vd-pop-tip ng-title="Help"
+                                                    ng-content="Please upload Void Check here, and please note that up to 5 files you can upload and filename with extension .exe, .bat and .com were not acceptable.">
+                                                </vd-pop-tip>
+                                            </label>
+                                            <vd-upload data="fileList.Void" same-name="yes"
+                                                type="void"
+                                                max-count="config.UploadFile.maxCount"
+                                                max-size="config.UploadFile.maxSize"
+                                                rejects="config.UploadFile.rejects"
+                                                filename-pattern="config.UploadFile.filenamePattern"
+                                                filename-pattern-tip="config.UploadFile.filenamePatternTip"
+                                                disabled="isCompleted"
+                                                attachment-type="config.UploadFile.attachmentType_void"></vd-upload>
+                                        </div>
+                                    </div>
+                                    <hr class="hr-10" />
+                                    <!-- Bank Reference Letter  -->
+                                    <div class="row">
+                                        <div class="form-group col-md-12 no-padding">
+                                            <label class="col-xs-12">
+                                                <span class="bigger-125"><span class="red">*&nbsp;</span>Bank Reference Letter</span>
+                                                <vd-pop-tip ng-title="Help"
+                                                    ng-content="Please upload Bank Reference letter here, and please note that up to 5 files you can upload and filename with extension .exe, .bat and .com were not acceptable.">
+                                                </vd-pop-tip>
+                                            </label>
+                                            <vd-upload data="fileList.Bank" same-name="yes"
+                                                type="bank"
+                                                max-count="config.UploadFile.maxCount"
+                                                max-size="config.UploadFile.maxSize"
+                                                rejects="config.UploadFile.rejects"
+                                                filename-pattern="config.UploadFile.filenamePattern"
+                                                filename-pattern-tip="config.UploadFile.filenamePatternTip"
+                                                disabled="isCompleted"
+                                                attachment-type="config.UploadFile.attachmentType_bank"></vd-upload>
+                                        </div>
+                                    </div>
+                                    <hr class="hr-10" />
+                                    <!-- 2 Year Financial Statements -->
+                                    <div class="row">
+                                        <div class="form-group col-md-12 no-padding">
+                                            <label class="col-xs-12">
+                                                <span class="bigger-125">2 Year Financial Statements</span>
+                                                <vd-pop-tip ng-title="Help"
+                                                    ng-content="Please upload 2 Year Financial Statements here, and please note that up to 5 files you can upload and filename with extension .exe, .bat and .com were not acceptable.">
+                                                </vd-pop-tip>
+                                            </label>
+                                            <vd-upload data="fileList.Year" same-name="yes"
+                                                type="year"
+                                                max-count="config.UploadFile.maxCount"
+                                                max-size="config.UploadFile.maxSize"
+                                                rejects="config.UploadFile.rejects"
+                                                filename-pattern="config.UploadFile.filenamePattern"
+                                                filename-pattern-tip="config.UploadFile.filenamePatternTip"
+                                                disabled="isCompleted"
+                                                attachment-type="config.UploadFile.attachmentType_2year"></vd-upload>
+                                        </div>
+                                    </div>
+                                    <hr class="hr-10" />
+                                    <!-- D&B Report -->
+                                    <div class="row">
+                                        <div class="form-group col-md-12 no-padding">
+                                            <label class="col-xs-12">
+                                                <span class="bigger-125">D&B Report</span>
+                                                <vd-pop-tip ng-title="Help"
+                                                    ng-content="Please upload D&B Report here, and please note that up to 5 files you can upload and filename with extension .exe, .bat and .com were not acceptable.">
+                                                </vd-pop-tip>
+                                            </label>
+                                            <vd-upload data="fileList.DB" same-name="yes"
+                                                type="db"
+                                                max-count="config.UploadFile.maxCount"
+                                                max-size="config.UploadFile.maxSize"
+                                                rejects="config.UploadFile.rejects"
+                                                filename-pattern="config.UploadFile.filenamePattern"
+                                                filename-pattern-tip="config.UploadFile.filenamePatternTip"
+                                                disabled="isCompleted"
+                                                attachment-type="config.UploadFile.attachmentType_db"></vd-upload>
+                                        </div>
+                                    </div>
+
+
+                                </fieldset>
+
+                                <fieldset ng-hide="!haveBankInfo">
+                                    <legend class="pull-left red" style="font-size: 17px">For international vendors, please provide the following information:
+                                    </legend>
+
+                                    <!-- Bank Reference Letter -->
+                                    <div class="row">
+                                        <div class="form-group col-md-12 no-padding">
+                                            <label class="col-xs-12">
+                                                <span class="bigger-125"><span class="red">*&nbsp;</span>Bank Reference Letter</span>
+                                                <vd-pop-tip ng-title="Help"
+                                                    ng-content="Please upload Bank Reference Letter here, and please note that up to 5 files you can upload and filename with extension .exe, .bat and .com were not acceptable.">
+                                                </vd-pop-tip>
+                                            </label>
+                                            <vd-upload data="fileList.Bank"  same-name="yes"
+                                                type="bank2"
+                                                max-count="config.UploadFile.maxCount"
+                                                max-size="config.UploadFile.maxSize"
+                                                rejects="config.UploadFile.rejects"
+                                                filename-pattern="config.UploadFile.filenamePattern"
+                                                filename-pattern-tip="config.UploadFile.filenamePatternTip"
+                                                disabled="isCompleted"
+                                                attachment-type="config.UploadFile.attachmentType_bank"></vd-upload>
+                                        </div>
+                                    </div>
+
+                                    <hr class="hr-10" />
+
+                                    <!-- 2 Year Financial Statements -->
+                                    <div class="row">
+                                        <div class="form-group col-md-12 no-padding">
+                                            <label class="col-xs-12">
+                                                <span class="bigger-125">2 Year Financial Statements</span>
+                                                <vd-pop-tip ng-title="Help"
+                                                    ng-content="Please upload 2 Year Financial Statements here, and please note that up to 5 files you can upload and filename with extension .exe, .bat and .com were not acceptable.">
+                                                </vd-pop-tip>
+                                            </label>
+                                            <vd-upload data="fileList.Year" same-name="yes"
+                                                type="year2"
+                                                max-count="config.UploadFile.maxCount"
+                                                max-size="config.UploadFile.maxSize"
+                                                rejects="config.UploadFile.rejects"
+                                                filename-pattern="config.UploadFile.filenamePattern"
+                                                filename-pattern-tip="config.UploadFile.filenamePatternTip"
+                                                disabled="isCompleted"
+                                                attachment-type="config.UploadFile.attachmentType_2year"></vd-upload>
+                                        </div>
+                                    </div>
+
+                                    <br />
+
+                                    <!-- Bank Information -->
+                                    <fieldset>
+                                        <legend class="pull-left">Bank Information</legend>
+                                        <div class="row">
+                                            <div class="col-xs-8 no-padding">
+                                                <div class="form-group col-md-6 no-padding">
+                                                    <label class="col-xs-12"><span class="red">*&nbsp;</span>Bank Country</label>
+                                                    <div class="col-xs-12">
+                                                        <input ng-disabled="isCompleted" ng-model="entity.SupportingDocument.BankInformation.BankCountry"
+                                                            type="text"
+                                                            maxlength="{{config.SupportingDocument.BankInformation.BankCountry.maxlength}}"
+                                                            ng-required="config.SupportingDocument.BankInformation.BankCountry.req"
+                                                            class="col-sm-12 vp-input vp-input-sm"
+                                                            placeholder=""
+                                                            name="BankInformation_BankCountry" />
+                                                        <validtip for="BankInformation_BankCountry" class="vp-validtip"></validtip>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-6 no-padding">
+                                                    <label class="col-xs-12"><span class="red">*&nbsp;</span>Bank Key (Routing Number)</label>
+                                                    <div class="col-xs-12">
+                                                        <input ng-disabled="isCompleted" ng-model="entity.SupportingDocument.BankInformation.BankKey"
+                                                            type="text"
+                                                            maxlength="{{config.SupportingDocument.BankInformation.BankKey.maxlength}}"
+                                                            ng-required="config.SupportingDocument.BankInformation.BankKey.req"
+                                                            class="col-sm-12 vp-input vp-input-sm"
+                                                            placeholder=""
+                                                            name="BankInformation_BankKey" />
+                                                        <validtip for="BankInformation_BankKey" class="vp-validtip"></validtip>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-6 no-padding">
+                                                    <label class="col-xs-12"><span class="red">*&nbsp;</span>Bank Name</label>
+                                                    <div class="col-xs-12">
+                                                        <input ng-disabled="isCompleted" ng-model="entity.SupportingDocument.BankInformation.BankName"
+                                                            type="text"
+                                                            maxlength="{{config.SupportingDocument.BankInformation.BankName.maxlength}}"
+                                                            ng-required="config.SupportingDocument.BankInformation.BankName.req"
+                                                            class="col-sm-12 vp-input vp-input-sm"
+                                                            placeholder=""
+                                                            name="BankInformation_BankName" />
+                                                        <validtip for="BankInformation_BankName" class="vp-validtip"></validtip>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-6 no-padding">
+                                                    <label class="col-xs-12"><span class="red">*&nbsp;</span>Region</label>
+                                                    <div class="col-xs-12">
+                                                        <input ng-disabled="isCompleted" ng-model="entity.SupportingDocument.BankInformation.Region"
+                                                            type="text"
+                                                            maxlength="{{config.SupportingDocument.BankInformation.Region.maxlength}}"
+                                                            ng-required="config.SupportingDocument.BankInformation.Region.req"
+                                                            class="col-sm-12 vp-input vp-input-sm"
+                                                            placeholder=""
+                                                            name="BankInformation_Region" />
+                                                        <validtip for="BankInformation_Region" class="vp-validtip"></validtip>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-6 no-padding">
+                                                    <label class="col-xs-12"><span class="red">*&nbsp;</span>Street</label>
+                                                    <div class="col-xs-12">
+                                                        <input ng-disabled="isCompleted" ng-model="entity.SupportingDocument.BankInformation.Street"
+                                                            type="text"
+                                                            maxlength="{{config.SupportingDocument.BankInformation.Street.maxlength}}"
+                                                            ng-required="config.SupportingDocument.BankInformation.Street.req"
+                                                            class="col-sm-12 vp-input vp-input-sm"
+                                                            placeholder=""
+                                                            name="BankInformation_Street" />
+                                                        <validtip for="BankInformation_Street" class="vp-validtip"></validtip>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6 no-padding">
+                                                    <label class="col-xs-12"><span class="red">*&nbsp;</span>City</label>
+                                                    <div class="col-xs-12">
+                                                        <input ng-disabled="isCompleted" ng-model="entity.SupportingDocument.BankInformation.City"
+                                                            type="text"
+                                                            maxlength="{{config.SupportingDocument.BankInformation.City.maxlength}}"
+                                                            ng-required="config.SupportingDocument.BankInformation.City.req"
+                                                            class="col-sm-12 vp-input vp-input-sm"
+                                                            placeholder=""
+                                                            name="BankInformation_City" />
+                                                        <validtip for="BankInformation_City" class="vp-validtip"></validtip>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-6 no-padding">
+                                                    <label class="col-xs-12"><span class="red">*&nbsp;</span>Bank Branch</label>
+                                                    <div class="col-xs-12">
+                                                        <input ng-disabled="isCompleted" ng-model="entity.SupportingDocument.BankInformation.BankBranch"
+                                                            type="text"
+                                                            maxlength="{{config.SupportingDocument.BankInformation.BankBranch.maxlength}}"
+                                                            ng-required="config.SupportingDocument.BankInformation.BankBranch.req"
+                                                            class="col-sm-12 vp-input vp-input-sm"
+                                                            placeholder=""
+                                                            name="BankInformation_BankBranch" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-6 no-padding">
+                                                    <label class="col-xs-12"><span class="red">*&nbsp;</span>Bank Contact Phone#</label>
+                                                    <div class="col-xs-12">
+                                                        <input ng-disabled="isCompleted" ng-model="entity.SupportingDocument.BankInformation.BankContactPhoneNumber"
+                                                            type="text"
+                                                            maxlength="{{config.SupportingDocument.BankInformation.BankContactPhoneNumber.maxlength}}"
+                                                            ng-required="config.SupportingDocument.BankInformation.BankContactPhoneNumber.req"
+                                                            class="col-sm-12 vp-input vp-input-sm"
+                                                            placeholder=""
+                                                            name="BankInformation_BankContactPhoneNumber" />
+                                                        <validtip for="BankInformation_BankContactPhoneNumber" class="vp-validtip"></validtip>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-4 no-padding">
+                                                    <label class="col-xs-12"><span class="red">*&nbsp;</span>Swift Code</label>
+                                                    <div class="col-xs-12">
+                                                        <input ng-disabled="isCompleted" ng-model="entity.SupportingDocument.BankInformation.SwiftCode"
+                                                            type="text"
+                                                            maxlength="{{config.SupportingDocument.BankInformation.SwiftCode.maxlength}}"
+                                                            ng-required="config.SupportingDocument.BankInformation.SwiftCode.req"
+                                                            class="col-sm-12 vp-input vp-input-sm"
+                                                            placeholder=""
+                                                            name="BankInformation_SwiftCode" />
+                                                        <validtip for="BankInformation_SwiftCode" class="vp-validtip"></validtip>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-4 no-padding">
+                                                    <label class="col-xs-12"><span class="red">*&nbsp;</span>Name on Account</label>
+                                                    <div class="col-xs-12">
+                                                        <input ng-disabled="isCompleted" ng-model="entity.SupportingDocument.BankInformation.NameOnAccount"
+                                                            type="text"
+                                                            maxlength="{{config.SupportingDocument.BankInformation.NameOnAccount.maxlength}}"
+                                                            ng-required="config.SupportingDocument.BankInformation.NameOnAccount.req"
+                                                            class="col-sm-12 vp-input vp-input-sm"
+                                                            placeholder=""
+                                                            name="BankInformation_NameOnAccount" />
+                                                        <validtip for="BankInformation_NameOnAccount" class="vp-validtip"></validtip>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-4 no-padding">
+                                                    <label class="col-xs-12"><span class="red">*&nbsp;</span>Account Number</label>
+                                                    <div class="col-xs-12">
+                                                        <input ng-disabled="isCompleted" ng-model="entity.SupportingDocument.BankInformation.AccountNumber"
+                                                            type="text"
+                                                            maxlength="{{config.SupportingDocument.BankInformation.AccountNumber.maxlength}}"
+                                                            ng-required="config.SupportingDocument.BankInformation.AccountNumber.req"
+                                                            class="col-sm-12 vp-input vp-input-sm"
+                                                            placeholder=""
+                                                            name="BankInformation_AccountNumber" />
+                                                        <validtip for="BankInformation_AccountNumber" class="vp-validtip"></validtip>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-6 no-padding">
+                                                    <label class="col-xs-12"><span class="red">*&nbsp;</span>International Bank Account Number (IBAN)</label>
+                                                    <div class="col-xs-12">
+                                                        <input ng-disabled="isCompleted" ng-model="entity.SupportingDocument.BankInformation.IBAN"
+                                                            type="text"
+                                                            maxlength="{{config.SupportingDocument.BankInformation.IBAN.maxlength}}"
+                                                            ng-required="config.SupportingDocument.BankInformation.IBAN.req"
+                                                            class="col-sm-12 vp-input vp-input-sm"
+                                                            placeholder=""
+                                                            name="BankInformation_IBAN" />
+                                                        <validtip for="BankInformation_IBAN" class="vp-validtip"></validtip>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-6 no-padding">
+                                                    <label class="col-xs-12"><span class="red">*&nbsp;</span>Valid From</label>
+                                                    <div class="col-xs-12">
+                                                        <div class="input-group">
+                                                            <input class="form-control date-picker"
+                                                                type="text" ng-disabled="isCompleted"
+                                                                name="BankInformation_ValidFrom"
+                                                                min-date="currentDate"
+                                                                ng-required="config.SupportingDocument.BankInformation.ValidFrom.req"
+                                                                neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                                                ng-model="entity.SupportingDocument.BankInformation.ValidFrom">
+                                                            <span class="input-group-addon">
+                                                                <i class="icon-calendar bigger-110"></i>
+                                                            </span>
+                                                        </div>
+                                                        <validtip for="BankInformation_ValidFrom" class="vp-validtip"></validtip>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-4" style="padding-top: 25px;">
+                                                <img src="/modules/vendorportal/img/bankinfo.png" alt="Login" width="290px;" height="180px" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-4 no-padding">
+                                                <label class="col-xs-12">Intermediary or Correspondent Bank Routing/ABA</label>
+                                                <div class="col-xs-12">
+                                                    <input ng-disabled="isCompleted" ng-model="entity.SupportingDocument.BankInformation.IntermediaryBankRouting"
+                                                        type="text"
+                                                        maxlength="50"
+                                                        class="col-sm-12 vp-input vp-input-sm"
+                                                        placeholder=""
+                                                        name="BankInformation_IntermediaryBankRouting" />
+                                                    <validtip for="BankInformation_IntermediaryBankRouting" class="vp-validtip"></validtip>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-4 no-padding">
+                                                <label class="col-xs-12">Intermediary or Correspondent Bank</label>
+                                                <div class="col-xs-12">
+                                                    <input ng-disabled="isCompleted" ng-model="entity.SupportingDocument.BankInformation.IntermediaryBank"
+                                                        type="text"
+                                                        maxlength="50"
+                                                        class="col-sm-12 vp-input vp-input-sm"
+                                                        placeholder=""
+                                                        name="BankInformation_IntermediaryBank" />
+                                                    <validtip for="BankInformation_IntermediaryBank" class="vp-validtip"></validtip>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-4 no-padding">
+                                                <label class="col-xs-12">Intermediary Country</label>
+                                                <div class="col-xs-12">
+                                                    <select ng-disabled="isCompleted"
+                                                        class="col-xs-12 vp-select vp-select-sm"
+                                                        ng-model="entity.SupportingDocument.BankInformation.IntermediaryCountry"
+                                                        ng-options="item.CountryCode as item.CountryDescription for item in poData.country">
+                                                        <option></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                </fieldset>
+                            </form>
+                        </div>
+
+                        <!-- step 5 : Contact Information -->
+                        <div ng-class="{'active':currentStep==5}">
+                            <form name="stepForm_5">
+                                <button id="btnStep_5" type="submit" ng-click="next()" ng-hide="true"></button>
+                                <fieldset>
+                                    <legend class="pull-left red" style="font-size: 17px">Please identify a set of contact individuals with your company so that we may better communicate with your organization. This information will be treated as confidential.
+                                    </legend>
+                                </fieldset>
+                                <!-- Sales -->
+                                <fieldset>
+                                    <legend class="pull-left">Sales&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input ng-disabled="isCompleted" name="form-field-checkbox" ng-model="sameMailingAddress_Sales" class="ace ace-checkbox" type="checkbox">
+                                            <span class="lbl">&nbsp;Same as Mailing Address</span>
+                                        </label>
+                                    </legend>
+                                    <div class="row">
+                                        <vd-contact module-name="Sales"
+                                            binding-name="entity.ContactInformation[0].Contact">
+                                        </vd-contact>
+                                    </div>
+                                    <div class="row no-margin">
+                                        <vd-address module-name="Sales"
+                                            binding-name="entity.ContactInformation[0].Address">
+                                        </vd-address>
+                                    </div>
+                                </fieldset>
+
+                                <br />
+
+                                <!-- Program Manager -->
+                                <fieldset>
+                                    <legend class="pull-left">Program Manager&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input ng-disabled="isCompleted" name="form-field-checkbox" ng-model="sameMailingAddress_PM" class="ace ace-checkbox" type="checkbox">
+                                            <span class="lbl">&nbsp;Same as Mailing Address</span>
+                                        </label>
+                                    </legend>
+                                    <div class="row">
+                                        <vd-contact module-name="PM"
+                                            binding-name="entity.ContactInformation[1].Contact">
+                                        </vd-contact>
+                                    </div>
+                                    <div class="row no-margin">
+                                        <vd-address module-name="PM"
+                                            binding-name="entity.ContactInformation[1].Address">
+                                        </vd-address>
+                                    </div>
+                                </fieldset>
+
+                                <br />
+
+                                <!-- Accounting -->
+                                <fieldset>
+                                    <legend class="pull-left">Accounting&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input ng-disabled="isCompleted" name="form-field-checkbox" ng-model="sameMailingAddress_Accounting" class="ace ace-checkbox" type="checkbox">
+                                            <span class="lbl">&nbsp;Same as Mailing Address</span>
+                                        </label>
+                                    </legend>
+                                    <div class="row">
+                                        <vd-contact module-name="Accounting"
+                                            binding-name="entity.ContactInformation[2].Contact">
+                                        </vd-contact>
+                                    </div>
+                                    <div class="row no-margin">
+                                        <vd-address module-name="Accounting"
+                                            binding-name="entity.ContactInformation[2].Address">
+                                        </vd-address>
+                                    </div>
+                                </fieldset>
+
+                                <br />
+
+                                <!-- RMA -->
+                                <fieldset>
+                                    <legend class="pull-left">RMA&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input ng-disabled="isCompleted" name="form-field-checkbox" ng-model="sameMailingAddress_RMA" class="ace ace-checkbox" type="checkbox">
+                                            <span class="lbl">&nbsp;Same as Mailing Address</span>
+                                        </label>
+                                    </legend>
+                                    <div class="row">
+                                        <vd-contact module-name="RMA"
+                                            binding-name="entity.ContactInformation[3].Contact">
+                                        </vd-contact>
+                                    </div>
+                                    <div class="row no-margin">
+                                        <vd-address module-name="RMA"
+                                            binding-name="entity.ContactInformation[3].Address">
+                                        </vd-address>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+
+                    <ul class="pager vp-wizard-buttons">
+                        <li class="previous" role="button" ng-hide="currentStep>5" ng-class="{'disabled':currentStep==1}" aria-disabled="true"><a href="#" ng-click="previous()">← Previous</a></li>
+                        <li class="next" role="button" ng-hide="currentStep>5">
+                            <a href="#" ng-click="next()" ng-hide="currentStep == 5">Next →
+                            </a>
+                            <a href="#" ng-click="submit()" ng-show="currentStep == 5 && !isCompleted">
+                                <i class="icon-save"></i>
+                                Submit
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <div class="row no-margin">
+            <div class="line col-sm-10 col-sm-offset-2">
+                <img src="/framework/img/line_part.png" alt="" />
+            </div>
+            <div class="clearfix"></div>
+            <div style="text-align: center">
+                <span class="login-footer login-label-light">© 2000-2017 Newegg Inc. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+<script>
+    $('#wizard a').click(function (e) {
+        e.preventDefault();
+    });
+</script>

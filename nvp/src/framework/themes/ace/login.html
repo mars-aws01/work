@@ -1,0 +1,296 @@
+﻿<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+<link rel="stylesheet" href="/assets/login.all.css" />
+
+<div class="header-fixed promo-padding-top wrapper" ng-controller="LoginCtrl">
+    <div class="header-v1 header-border-bottom header-sticky ">
+        <!-- Navbar -->
+        <div class="navbar mega-menu" role="navigation">
+            <div class="top-container">
+                <div class="menu-container">
+                    <!-- Navbar Brand -->
+                    <div class="navbar-brand">
+                        <a class="animated fadeIn" href="#">
+                            <img class="default-logo" src="framework/img/newegg/logo/2.png" alt="Logo">
+                            <img class="shrink-logo" src="framework/img/newegg/logo/1.png" alt="Logo">
+                        </a>
+                    </div>
+                    <!-- ENd Navbar Brand -->
+                </div>
+
+                <div class="col-lg-8 pull-right top-banner animated fadeIn">
+                    <form name="loginForm" ng-submit="login()">
+                        <div class="col-lg-4 " ng-class="{'col-lg-offset-3':!showValid}">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icon icon-user"></i></span>
+                                <input type="email" placeholder="Email Address" class="form-control" maxlength="100" ng-model="user.UserName" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 ">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icon icon-lock"></i></span>
+                                <input type="password" placeholder="Password" class="form-control" maxlength="50" ng-model="user.Password" required>
+                            </div>
+                            <div class="col-sm-12 col-xs-6 text-left no-padding forget-panel">
+                                <a href="#" class="forget" ng-click="passwordRedirect()">Forgot your Password?</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-xs-7 animated fadeInUp wow" data-wow-duration="1.5s" data-wow-delay=".5s" ng-show="showValid">
+                            <div class="input-group">
+                                <input type="text" placeholder="Captcha" class="form-control valid-code-input" maxlength="10" ng-model="user.ValidCode" ng-required="showValid">
+                                <span class="input-group-addon valid-code">
+                                    <img class="no-padding-right captcha-img hand" title="Click to get a new captcha." ng-src="{{CaptchaImageUrl}}" ng-click="getResetToken()"></span>
+                            </div>
+                            <div class="col-xs-12 text-left no-padding forget-panel">
+                                <label class="failedMsg" ng-show="!login_submitting && hasError">Sign in failed, please try again.</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-xs-6 padding-top-5 no-padding-right signin-panel">
+                            <button class="signin no-padding-left" ng-show="!login_submitting">Sign in</button>
+                            <i class="icon-spinner icon-spin bigger-130 white" ng-show="login_submitting"></i>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- End Navbar -->
+    </div>
+    <!-- Full Screen Img -->
+    <div class="fullscreen-static-image fullheight bg-color-darker hidden-xs">
+        <div class="container valign__middle text-center">
+            <span class="promo-text-v1 color-light margin-bottom-10 animated fadeInUp wow" data-wow-duration="1.5s" data-wow-delay=".5s">Newegg Vendor Portal
+            </span>
+            <h2 class="promo-text-v2 color-light animated fadeInUp wow margin-bottom-20" data-wow-duration="1.5s" data-wow-delay="1s">You make it. We sell it.</h2>
+            <div class="animated fadeInUp wow" data-wow-duration="1.2s" data-wow-delay="1.5s">
+                <a id="btnLearnMore" href="#" class="btn-u btn-brd btn-brd-width-2 btn-brd-hover btn-u-light btn-u-block">Learn More</a>
+                <a id="A1" href="#" class="btn-u btn-brd btn-brd-width-2 btn-brd-hover btn-u-orange2 btn-u-block" ng-click="vendorRequestRedirect()" style="width: 114px; margin-left: 20px;">Sign up</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="visible-xs margin-bottom-140"></div>
+    <!-- End Screen Img -->
+    <!-- Main Content -->
+    <div class="content-md">
+        <div class="container">
+            <div class="row text-center margin-bottom-40">
+                <div class="col-md-4 margin-bottom-50">
+                    <img alt="" src="framework/img/newegg/icon/01.png" class="image-md margin-bottom-20">
+                    <h1 class="title-v3-md margin-bottom-10">Sell Your Tech</h1>
+                    <p>We accept products in Computer Hardware, Consumer Electronics, Software, and more.</p>
+                </div>
+                <div class="col-md-4 flat-service md-margin-bottom-50">
+                    <img alt="" src="framework/img/newegg/icon/02.png" class="image-md margin-bottom-20">
+                    <h2 class="title-v3-md margin-bottom-10">No Hidden Fees</h2>
+                    <p>Our contracts are based on the idea that a happy vendor makes for the best business partner.</p>
+                </div>
+                <div class="col-md-4 flat-service">
+                    <img alt="" src="framework/img/newegg/icon/03.png" class="image-md margin-bottom-20">
+                    <h2 class="title-v3-md margin-bottom-10">Getting Started Is Easy</h2>
+                    <p>Get started by just filling out one simple form.</p>
+                </div>
+            </div>
+        </div>
+        <!-- End Main Content -->
+        <!-- What's Newegg Vendor Portal -->
+        <div class="flat-bg-block-v1 parallaxBg margin-bottom-50">
+            <div class="container content-sm">
+                <div class="row">
+                    <div class="col-md-6 md-margin-bottom-30">
+                        <iframe class="video" id="video"
+                            frameborder="0"
+                            allowfullscreen>
+                            <p>Your browser does not support iframes.</p>
+                        </iframe>
+                        <img id="videoImg" alt="" src="framework/img/newegg/img01.jpg" class="img-responsive video-hide">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="headline-left margin-bottom-20">
+                            <h2 class="headline-brd">What's Newegg Vendor Portal</h2>
+                            <p>Newegg Vendor Portal is a sophisticated online product and order management entry for various industry manufacturers, distributors and dropship vendors who has or willing to have partnership with Newegg.com and its affiliates. Take advantage of our award-winning reputation that shoppers know and trust, and let Newegg to be your virtual storefront, reaching over 30 million customers worldwide. </p>
+                        </div>
+                        <ul class="list-unstyled lists-v2">
+                            <li><i class="icon icon-ok"></i>Partner with Newegg, a 15+ years influential industry</li>
+                            <li><i class="icon icon-ok"></i>e-Commerce leader</li>
+                            <li><i class="icon icon-ok"></i>Sell your products to millions of interested buyers worldwide</li>
+                            <li><i class="icon icon-ok"></i>Take advantage of effective promotional marketing and media</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End What's Newegg Vendor Portal -->
+        <!-- What User Are Saying -->
+        <div class="flat-testimonials  bg-image-v1  parallaxBg margin-bottom-80">
+            <div class="container">
+                <div class="headline-center headline-light margin-bottom-60">
+                    <h2>What Our Customers Are Saying</h2>
+                    <p>Customer evaluation determines the value of products, and customer feedback is always our motivation...</p>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="flat-testimonials-in md-margin-bottom-50">
+                            <img alt="" src="framework/img/newegg/user/3.jpg" class="rounded-x img-responsive">
+                            <h3>Kyle Packett</h3>
+                            <p>Newegg rocks. Have used them for years. Fast shipping. Great service. Easy RMAs. Can't go wrong here.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="flat-testimonials-in md-margin-bottom-50">
+                            <img alt="" src="framework/img/newegg/user/1.jpg" class="rounded-x img-responsive">
+                            <h3>Kyle Sundberg</h3>
+                            <!--   <span class="color-green">Joy Systems Inc.</span> -->
+                            <p>Excellent customer service, went into the back and retrieved item even though it wasn't ready at the time, nice product displays...</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="flat-testimonials-in">
+                            <img alt="" src="framework/img/newegg/user/2.jpg" class="rounded-x img-responsive">
+                            <h3>Chris Umali</h3>
+                            <p>Easy online ordering and will call pickup. Check holidays hours, closest on Saturday and Sunday... </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End What User Are Saying -->
+        <!-- What We Provide -->
+        <div class="container">
+            <div class="headline-center margin-bottom-60">
+                <h2>What We Provide</h2>
+                <p>Newegg Vendor portal are ideal for providing better service, more efficiently and for less operating cost. Most importantly, vendors have access to the portal <a href="#">24×7</a> via secure login.</p>
+            </div>
+            <div class="row margin-bottom-40">
+                <div class="col-md-4">
+                    <div class="content-boxes-v5 margin-bottom-30">
+                        <i class="rounded-x icon icon-list-ul"></i>
+                        <div class="overflow-h">
+                            <h3 class="no-top-space">Batch Process</h3>
+                            <p>List products, manage orders, shipnotices and invoices in a batch manner</p>
+                        </div>
+                    </div>
+                    <div class="content-boxes-v5 md-margin-bottom-30">
+                        <i class="rounded-x icon icon-shopping-cart"></i>
+                        <div class="overflow-h">
+                            <h3 class="no-top-space">Order Management</h3>
+                            <p>Rich and convenient user interface of order, shipnotice and invoice manipulation</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="content-boxes-v5 margin-bottom-30">
+                        <i class="rounded-x icon icon-bar-chart "></i>
+                        <div class="overflow-h">
+                            <h3 class="no-top-space">Report Center</h3>
+                            <p>Better insight of business data from various aspects, enchance operation and increase sales</p>
+                        </div>
+                    </div>
+                    <div class="content-boxes-v5 md-margin-bottom-30">
+                        <i class="rounded-x icon icon-pencil"></i>
+                        <div class="overflow-h">
+                            <h3 class="no-top-space">Contract Management</h3>
+                            <p>Centralized contract review and e-signature templates</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="content-boxes-v5 margin-bottom-30">
+                        <i class="rounded-x icon icon-file-text"></i>
+                        <div class="overflow-h">
+                            <h3 class="no-top-space">Content Management</h3>
+                            <p>Get feedback from customer directly and reply questions on the fly</p>
+                        </div>
+                    </div>
+                    <div class="content-boxes-v5 md-margin-bottom-30">
+                        <i class="rounded-x icon icon-mobile-phone"></i>
+                        <div class="overflow-h">
+                            <h3 class="no-top-space">Access Anywhere</h3>
+                            <p>Consistent user experence no matter where the entry point is, e.g. mobile, laptop, tablet and etc.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End What We Provide -->
+    <!-- Footer-->
+    <div class="footer-v1">
+        <div class="footer-child">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 md-margin-bottom-40">
+                        <div class="posts">
+                            <div class="headline">
+                                <h2>Newegg Inc.</h2>
+                            </div>
+                            <p class="no-margin-bottom">Newegg Inc. is a leading online retailer committed to becoming the most loved and trusted marketplace on the web. We tirelessly pursue these goals by offering a superior shopping experience, rapid delivery and stellar customer service.</p>
+                            <p><a href="https://www.newegg.com" target="_blank">www.newegg.com</a></p>
+                        </div>
+                    </div>
+                    <!--/col-md-3-->
+                    <!-- Link List -->
+                    <div class="col-md-4 md-margin-bottom-40">
+                        <div class="headline">
+                            <h2>Attention Vendors</h2>
+                        </div>
+                        <p>Thank you for using Newegg Vendor Portal. For any comments, suggestions or if you are experiencing any technical issues, please contact us at Newegg Vendor Portal Support team: <a href="mailto:vendortechsupport@newegg.com">vendortechsupport@newegg.com</a></p>
+                    </div>
+                    <!--/col-md-3-->
+                    <!-- End Link List -->
+                    <!-- Address -->
+                    <div class="col-md-4 map-img md-margin-bottom-40">
+                        <div class="headline">
+                            <h2>Contact Us</h2>
+                        </div>
+                        <address class="md-margin-bottom-40">
+                            17708 Rowland St, City of Industry
+                                <br />
+                            CA 91748
+                                <br />
+                            Phone: (626) 271-1420
+                                <br />
+                            Fax: (626) 810-5351
+                                <br />
+                            Email: <a href="mailto:VendorService@newegg.com">vendorservice@newegg.com</a>
+                        </address>
+                    </div>
+                    <!--/col-md-3-->
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p style="margin-bottom: 2px;">17708 Rowland St, City of Industry, CA 91748</p>
+                        <p style="margin-top: 0;">
+                            © 2000-2017 Newegg Inc. All rights reserved.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Footer-->
+</div>
+
+<!-- JS Implementing Plugins -->
+<script src="/assets/login.all.js"></script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        App.init();
+        new WOW().init();
+        $('#btnLearnMore').on('click', function (event) {
+            var innerHeight = window.innerHeight;
+            if (window.innerWidth < 1200) {
+                innerHeight -= 150;
+            }
+            $('html, body').animate({
+                scrollTop: innerHeight
+            }, 'slow');
+        });
+        $('html, body').animate({
+            scrollTop: 0
+        }, 'slow');
+    });
+</script>

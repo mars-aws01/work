@@ -1,0 +1,222 @@
+﻿<style>
+   
+    html .vp-userlist-row
+    {
+        margin-right: 0px;
+    }
+
+    html[data-useragent*='MSIE'] .vp-userlist-row
+    {
+        margin-right: 12px !important;
+    }
+</style>
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        var doc = document.documentElement;
+        doc.setAttribute('data-useragent', navigator.userAgent);
+        //$("#roleDetailDiv").css("height","1024px")
+    });
+</script>
+
+
+<!--Search Area-->
+<div class="vp-block-blue vp-userlist-row" style="margin-left: -12px; margin-top: 10px; margin-bottom: 10px; padding-right: 10px;">
+     <div class="row no-margin-right" style="margin-top: 10px; margin-left: 10px; margin-bottom: 10px">
+        <div class="col-xs-10">
+            <div class="row">
+                <div class="col-xs-6 no-padding-left">
+                    <label class="col-xs-2 no-padding-left" style="padding-top: 5px;">
+                        {{ 'header_userlist.email' | translate }}:&nbsp;</label>
+                    <input type="text" class="vp-input col-xs-10 no-padding-left" style="margin-left: -2px" ng-model="searchCondition.LoginName" maxlength="128" ui-keypress="{13:'searchWithConfirm()'}">
+                </div>
+
+                <div class="input-group-btn">
+                    <label class="pull-left" style="margin-top: 5px;">
+                        <input name="form-field-checkbox" ng-model="searchCondition.IsExact" class="ace ace-checkbox" type="checkbox">
+                        <span class="lbl " style="color: #7E7E7E">&nbsp;{{ &apos;view_orderlist.exactMatch&apos; | translate }}</span>
+                    </label>
+
+                    <div class="pull-left">
+                        <label style="width: 1px; height: 18px; background: #BFBFBF; vertical-align: middle; margin: 5px 15px 9px 14px;"></label>
+                        <button type="button" ng-click="searchWithConfirm()" class="btn btn-app vp-btn vp-btn-blue" style="width: 110px;">
+                            <div class="col-xs-12"><span class="ace-icon icon icon-search icon-on-right"></span>&nbsp;{{ &apos;view_orderlist.search&apos; | translate }}</div>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-xs-6 col-md-3 no-padding-left">
+                    <label class="col-xs-4 no-padding-left" style="padding-top: 5px;">
+                        {{ 'view_userlist.vendor' | translate }}:&nbsp;</label>
+                    <select class="col-xs-8 vp-select" ng-model="searchCondition.VendorNumber"
+                        ng-options="item.value as item.text for item in vendorList"
+                        title="{{searchCondition.VendorNumber}}" />
+                </div>
+                <div class="col-xs-6 col-md-3 no-padding-left">
+                    <label class="col-xs-4 no-padding-left no-padding-right " style="padding-top: 5px;">
+                        {{ 'view_userlist.userType' | translate }}:&nbsp;</label>
+                    <select class="col-xs-8 vp-select"
+                        ng-model="searchCondition.Type"
+                        ng-options="item.value as item.text for item in userTypeList" />
+                </div>
+                <div class="col-xs-6 col-md-3 no-padding-left">
+                    <label class="col-xs-4 col-lg-5 no-padding-left no-padding-right" style="padding-top: 5px;">
+                        {{ 'view_userlist.userStatus' | translate }}:&nbsp;</label>
+                    <select class="col-xs-8 col-lg-7 vp-select"
+                        ng-model="searchCondition.Status"
+                        ng-options="item.value as item.text for item  in userStatusList" />
+                </div>
+                <div class="col-xs-6 col-md-3 no-padding-left">
+                    <label class="col-xs-4" style="padding-top: 5px;">
+                        {{ 'view_userlist.role' | translate }}:&nbsp;</label>
+                    <select class="col-xs-8 vp-select"
+                        ng-model="searchCondition.RoleList[0].ID"
+                        ng-options="item.value as item.text for item in searchRoleList" />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-2 no-padding pull-right">
+                <button type="button" class="btn btn-success btn-sm pull-right"
+                    style="width: 150px;"
+                    ng-click="openAddInternalUserModel()"
+                    vd-auth="Edit">
+                    <div class="col-xs-12"><span class="ace-icon icon icon-plus icon-on-right"></span>&nbsp;{{ 'view_userlist.addInternalUser' | translate }}</div>
+                </button>
+            </div>
+    </div>
+</div>
+
+<div class="row vp-userlist-row" style="margin-top: 10px;border-color:red">
+    <vd-grid gid="{{dataGridName}}" 
+             refresh-key="{{refreshKey}}" 
+             ng-options="userListOptions" auto-height="false">
+          <script id="tpl_userList_action" type="text/x-kendo-tmpl">
+             <div ng-show="dataItem.LoginName!=currentUserLoginName&&(dataItem.Status=='Enabled'||dataItem.Status=='Disabled')" style="width: 60px">
+                            <a href="\#" ng-click="enableOrDisableUser(dataItem)" vd-auth="Edit">
+                                <u ng-if="dataItem.Status=='Enabled'">{{ 'header_userlist.disable' | translate }}</u>
+                                <u ng-if="dataItem.Status!='Enabled'">{{ 'header_userlist.enable' | translate }}</u>
+                            </a>
+                        </div>
+          </script>
+    </vd-grid>
+</div> 
+
+<!--Role Permission-->
+<div class="row vp-list no-padding vp-userlist-row" id="roleDetailDiv" style="margin-top: 10px;" ng-style="roleHeight">
+    <div class="col-lg-12 ">
+        <div class="col-xs-12">
+            <div class="vp-list-icon  vp-list-icon-blue" ng-class="{'vp-list-icon-green': true}">
+                <i class="ace-icon  icon-user" ng-hide="true"></i>
+                <span class="title text-left" style="margin-left: 15px">{{currentSelectedUser.LoginName}}</span>
+                <span class="title2 pull-right">
+                    <label title="{{ &apos;view_accountsetting.adminTip&apos; | translate }}">
+                        <input name="form-field-checkbox" ng-model="currentSelectedUser.IsAdmin" class="ace" type="checkbox" ng-disabled="currentSelectedUser.Type!='Internal'">
+                        <span class="lbl" style="font-size: 12px;">&nbsp;{{ &apos;view_accountsetting.admin&apos; | translate }}</span>
+                    </label>
+                </span>
+            </div>
+            <div class="col-xs-12 no-padding " style="margin-top: 10px;">
+                <div class="input-group" style="margin-left: 45px">
+                    <span class="input-group-addon" style="background-color: #ffffff; border-color: #ffffff; font-weight: 600">{{ 'view_userlist.role' | translate }}:</span>
+                    <select class="width-100" style="margin-right: -58px" ui-select2 multiple="multiple" ng-disabled="currentSelectedUser.Type!='Internal'||currentSelectedUser.IsAdmin"
+                        ng-model="currentSelectedUser.RoleIDArray" data-placeholder="{{ 'view_userlist.rolePlaceHolder' | translate }}" ng-change="onRoleChange()">
+                        <option ng-repeat="item in roleList" value="{{item.value}}">{{item.text}}</option>
+                    </select>
+                </div>
+            </div>
+            <hr style="margin-top: 50px; margin-bottom: -10px;" />
+            <div class="vp-list-info" ng-repeat="fun in currentFunctionList" style="width: 90%; margin-top: 10px; margin-bottom: 20px;">
+                <div class="col-xs-12 no-padding" style="padding-left: 18px; margin: -6px 0;" ng-hide="fun.MenuURL=='/home'">
+                    <label style="float: left; width: 220px !important; margin-top: -2px; font-size: 15px; font-weight: 700; color: #626464">
+                        <a href="#" ng-click="fun.isShowDetail=false" ng-hide="fun.isShowDetail==false"><i class="icon-angle-down bigger-130" style="font-weight: bold;"></i></a>
+                        <a href="#" ng-click="fun.isShowDetail=true" ng-hide="fun.isShowDetail!=false"><i class="icon-angle-up bigger-130" style="font-weight: bold;"></i></a>
+                        {{ fun | menuLocalize}}
+                    </label>
+                    <label style="float: left; margin-left: 6px; margin-right: 49px; margin-bottom: 0px;" ng-repeat="item in fun.functionDisplayList">
+                        <input name="{{item.menuID}}{{item.userID}}" ng-disabled="true" type="radio" ng-model="fun.activeType" value="{{item.name}}" class="ace">
+                        <span class="lbl">&nbsp;{{ item.name}}</span>
+                    </label>
+                </div>
+                <div class="vp-list-row" ng-repeat="menu in fun.SubMenuList" ng-hide="fun.MenuURL=='/home'||menu.MenuURL=='/product-reviews'||fun.isShowDetail==false">
+                    <div class="name" style="text-align: left; width: 220px; padding-left: 15px;">{{ menu | menuLocalize}}</div>
+                    <div class="value">
+                        <span>
+                            <label style="margin-right: 55px; margin-bottom: 0px;" ng-repeat="item in menu.functionDisplayList">
+                                <input name="{{item.menuID}}{{item.userID}}" ng-disabled="true" type="radio" ng-model="menu.activeType" value="{{item.name}}" class="ace">
+                                <span class="lbl" style="font-size: 13px;">&nbsp;{{ item.name }}</span>
+                            </label>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 text-right no-padding" style="margin-top: 15px;">
+                <button type="button" class="btn btn-primary btn-sm" ng-click="saveUserPermission()" ng-show="currentSelectedUser.Type=='Internal'" vd-auth="Edit">
+                    &nbsp;<i class="icon-save"></i>&nbsp;&nbsp;{{ 'common_button.save' | translate }}&nbsp;
+                </button>
+                <button type="button" class="btn btn-danger btn-sm" ng-click="resetUserPermission()" ng-show="currentSelectedUser.Type=='Internal'" vd-auth="Edit">
+                    &nbsp;<i class="icon-undo"></i>&nbsp;&nbsp;{{ 'common_button.cancel' | translate }}&nbsp;
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div modal="addInternalUserModel" close="closeAddInternalUserModel()" options="{backdrop: true,dialogFade:true}">
+    <div class="modal-dialog" style="width: 640px">
+        <form name="inviteUserForm" class="modal-content" ng-submit="inviteClick()">
+            <div class="widget-header widget-header-small">
+                <h4>{{ 'view_userlist.addInternalUser' | translate }}</h4>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    <div class="form-group clearfix " ng-repeat="internalUser in InvitationList">
+                        <div class="well" style="margin-bottom: 0px; padding-top: 25px;">
+                            <div class="row">
+                                <div class="col-xs-12 input-group">
+                                    <label class="col-xs-2 text-right">{{ 'header_userlist.email' | translate }}:</label>
+                                    <input class="col-xs-6 vp-input" style="margin-top: -6px;" type="email" id="txtInternalUserEmail" ng-model="internalUser.Email" ng-required="internalUser.IsRequired" maxlength="100" />
+<!--                                    <label class="col-xs-1 red text-left" style="margin-left: -3px;">
+                                        <label ng-show="$index == 0">*</label></label>-->
+                                    <label class="col-xs-3">
+                                        <input type="checkbox" ng-model="internalUser.IsAdmin" class="ace ace-checkbox">
+                                        <span class="lbl">&nbsp;{{ 'view_accountsetting.admin' | translate }}</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 5px;" ng-show="internalUser.IsAdmin==false">
+                                <div class="col-xs-12 input-group">
+                                    <label class="col-xs-2 text-right" style="margin-top: 10px;">{{ 'header_userlist.roles' | translate }}:</label>
+                                    <div class="col-xs-9 no-padding-left">
+                                        <select class="width-95" ng-model="internalUser.RoleID" data-placeholder="{{ 'view_userlist.rolePlaceHolder' | translate }}">
+                                            <option ng-repeat="item in roleList" value="{{item.value}}">{{item.text}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 pull-right">
+                            <button type="button" class="btn btn-link btn-xs pull-right" ng-click="addMoreClick()" ng-show="InvitationList.length<=1">{{ 'view_userlist.addMore' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="margin-top: 0px">
+                    <button class="btn btn-primary btn-sm" type="submit" ng-disabled="saveInternalDisabled==true">
+                        <i class="icon-save"></i>
+                        {{ 'view_userlist.save' | translate }}
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm" ng-click="closeAddInternalUserModel()">
+                        <i class="icon-undo"></i>
+                        {{ 'view_userlist.cancel' | translate }}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

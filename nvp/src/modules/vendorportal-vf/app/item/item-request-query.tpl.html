@@ -1,0 +1,459 @@
+﻿<style>
+html[data-useragent*='MSIE'] .vp-home-row {
+    margin-right: 0px;
+}
+
+html[data-useragent*='MSIE'] .vp-agent-row {
+    margin-right: 12px;
+}
+
+.control-label-right {
+    text-align: right;
+}
+
+.rowledge{
+    margin-bottom: 3px;
+    margin-top: 3px;
+}
+
+.upload-no-padding .ng-scope > div:first-child
+{
+    padding-left:0;
+    padding-right:0;
+}
+.margin-left-12
+{
+    margin-left:12px;
+}
+
+.ace-file-input .remove {
+  right: -5px;
+}
+
+.vd-upload-padding-right-40{
+    padding-right:40px;
+}
+
+@media (min-width:992px){
+    .form-input-margin-left-20{
+        margin-left:22px;
+    }
+
+    .vd-upload-padding-right-40{
+        padding-right:10px;
+    }
+}
+
+.bulletstyle {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    overflow: hidden;
+    background: white;
+    border: 0;
+    font-family:"Helvetica Neue", Arial, sans-serif;
+    color:#393939;
+}
+
+.table-all-border > tbody > tr > th, .table-all-border > tbody > tr > td {
+        border: 1px solid #eee !important;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        vertical-align: middle;
+        height: 34px;
+    }
+
+.item-update-warning-desc {
+    margin: -10px 0 2px 0px !important;
+}
+
+</style>
+
+<div class="row vp-agent-margin">
+    <vd-agent click="changeVendor()" />
+</div>
+
+<vd-cover bottom="-10"></vd-cover>
+<div class="col-sm-12">
+<div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 5px;">
+    <vd-panelbar is-show="isShowDetail1" translatetitle="Search"></vd-panelbar>
+    <div class="col-md-12 no-padding" style="margin-top: 5px;margin-left:  4px;"  ng-hide="isShowDetail1==false">
+        <form class="form-horizontal" role="form">
+            <div class="col-lg-10 col-xs-12 no-padding">
+                <div class="form-group col-lg-6 col-xs-6 no-padding rowledge">
+                    <label class="col-lg-3 col-sm-12 col-xs-12 control-label">{{ 'view_query.requestType' | translate }}:</label>
+                    <div class="col-lg-8 col-sm-11 col-xs-11" style="padding-left: 8px">
+                        <select class="form-control col-md-12 vp-select vp-select-sm" ng-model="query.RequestType" name="requesttype" ng-options="item.value as item.text for item in requestTypeDatas" >
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-lg-6 col-xs-6 no-padding rowledge">
+                    <label class="col-lg-3 col-sm-12 col-xs-12 control-label">{{ 'view_query.brand' | translate }}:</label>
+                    <div class="col-lg-8 col-sm-11 col-xs-11"  style="padding-left: 8px">
+                        <select class="col-xs-12 vp-select vp-select-sm" name="brand" ng-model="query.ManufacturerCode" ng-required="config.basic.Brand.req" ng-options="item.Code as item.Name for item in ManufacturerInfoList">
+                        <option value="" selected > Please Select </option>
+                    </select>
+                    </div>
+                </div>
+                <div class="form-group col-lg-6 col-xs-6 no-padding rowledge">
+                    <label class="col-lg-3 col-sm-12 col-xs-12 control-label">{{ 'view_query.requestStatus' | translate }}:</label>
+                    <div class="col-lg-8 col-sm-11 col-xs-11" style="padding-left: 8px">
+                        <select class="form-control col-xs-12 vp-select vp-select-sm" ng-model="query.RequestStatus" name="requestStatus" ng-options="item.value as item.text for item in requestStatusDatas">
+                                <option value="" selected > Please Select </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-lg-6 col-xs-6 no-padding rowledge">
+                    <label class="col-lg-3 col-sm-12 col-xs-12 control-label">{{ 'view_query.mfrPartNumber' | translate }}:</label>
+                    <div class="col-lg-8 col-sm-11 col-xs-11"  style="padding-left: 8px">
+                        <input type="text" class="form-control vp-input" maxlength="{{keyLength}}" ng-model="query.ManufacturerPartNumber"/>
+                    </div>
+                </div>
+                <!--<div class="form-group col-lg-6 col-xs-6 no-padding rowledge">
+                    <label class="col-lg-3 col-sm-12 col-xs-12 control-label">{{ 'view_query.requestId' | translate }}:</label>
+                    <div class="col-lg-8 col-sm-11 col-xs-11"  style="padding-left: 8px">
+                        <input type="text" class="form-control vp-input" maxlength="{{keyLength}}" ng-model="query.RequestID"/>
+                    </div>
+                </div>-->
+                <div class="form-group col-lg-6 col-xs-6 no-padding rowledge">
+                    <label class="col-lg-3 col-sm-12 col-xs-12 control-label">{{ 'view_query.upc' | translate }}:</label>
+                    <div class="col-lg-8 col-sm-11 col-xs-11"  style="padding-left: 8px">
+                        <input type="text" class="form-control vp-input" maxlength="{{keyLength}}" ng-model="query.UPCCode"/>
+                    </div>
+                </div>
+                <div class="form-group col-lg-6 col-xs-6 no-padding rowledge">
+                    <label class="col-lg-3 col-sm-12 col-xs-12 control-label" style="height:24px;">
+                        <input type="checkbox" class="ace" ng-model="dateIsSelected" ng-init="dateIsSelected = false">
+                        <span class="lbl"><span class="hidden-md">&nbsp;</span>{{ 'view_query.requestDate' | translate }}:</span>
+                    </label>
+                    <div class="col-lg-8 col-sm-11 col-xs-11"  style="padding-left: 8px">
+                        <div class="col-sm-12 no-padding-left input-group">
+                            <div class="input-group">
+                                <input class="form-control date-picker" type="text" neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}' ng-model="query.RequestDateFrom" ng-disabled="dateIsSelected == false">
+                                <span class="input-group-addon">
+                                                    <i class="icon-calendar bigger-110"></i>
+                                                </span>
+                            </div>
+                            <span class="input-group-addon no-border-bottom no-border-top no-border-left no-border-right" style="background-color: #ffffff;">
+                                                <i class="icon-minus smaller-90"></i>
+                                            </span>
+                            <div class="input-group">
+                                <input class="form-control date-picker" type="text" neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}' ng-model="query.RequestDateTo" ng-disabled="dateIsSelected == false">
+                                <span class="input-group-addon">
+                                                    <i class="icon-calendar bigger-110"></i>
+                                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-lg-6 col-xs-6 no-padding rowledge">
+                    <label class="col-lg-3 col-sm-12 col-xs-12 control-label">{{ 'view_query.neweggItemNumebr' | translate }}:</label>
+                    <div class="col-lg-8 col-sm-11 col-xs-11"  style="padding-left: 8px">
+                        <input type="text" class="form-control vp-input" maxlength="{{keyLength}}" ng-model="query.NeweggItemNumber"/>
+                    </div>
+                </div>
+                <div class="form-group col-lg-6 col-xs-6 no-padding rowledge">
+                    <label class="col-lg-3 col-sm-12 col-xs-12 control-label">{{ 'view_basic.category' | translate }}:</label>
+                    <div class="col-lg-8 col-sm-11 col-xs-11"  style="padding-left: 8px">
+                        <vd-category-item-v2 class="item-creation-well" category-id="query.CategoryID" subscribe="true" style="height:30px;" ctrl-id="query" request-type="query.RequestType"></vd-category-item-v2>
+                    </div>
+                </div>
+<!--                <div class="form-group col-lg-6 col-xs-6 no-padding rowledge">
+                    <label class="col-lg-3 col-sm-12 col-xs-12 control-label">{{ 'view_query.requestID' | translate }}:</label>
+                    <div class="col-lg-8 col-sm-11 col-xs-11" style="padding-left: 8px">
+                        <input class="form-control vp-input" ng-model="query.RequestID" />
+                    </div>
+                </div>-->
+                <div class="form-group col-lg-6 col-xs-6 no-padding rowledge">
+                    <label class="col-lg-3 col-sm-12 col-xs-12 control-label">{{ 'view_query.attachmentOption' | translate }}:</label>
+                    <div class="col-lg-8 col-sm-11 col-xs-11" style="padding-left: 8px">
+                        <select class="form-control col-xs-12 vp-select vp-select-sm" ng-model="query.HasAttachment" name="hasAttachment" 
+                                ng-options="item.value as item.text for item in hasAttachments"
+                               ng-disabled="query.RequestType==2">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-xs-12 no-padding"  >
+                <button type="button" ng-click="search()" class="btn btn-primary btn-sm " >
+                    <span class="ace-icon  icon-search icon-on-right bigger-110"></span> {{ 'view_query.search' | translate }}
+                </button>
+            <!--    <button type="button" ng-click="reset()" class="btn btn-primary btn-sm" style="padding: 2px 12px 2px 10px !important;">
+                    <span class="ace-icon  icon-repeat icon-on-right bigger-110"></span> Reset
+                </button>-->
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 15px;">
+    <vd-panelbar is-show="isShowDetail2" translatetitle="Result List"></vd-panelbar>
+    <div class="col-xs-12 no-padding-left" style="margin: 5px 0;" ng-hide="isShowDetail2==false">
+        <vd-grid gid="{{dataGridName}}" refresh-key="{{refreshKey}}" ng-options="itemRequestListOptions" auto-height="false">
+            <script id="tpl_itemRequestList_requestId" type="text/x-kendo-tmpl">
+                <div class="col-xs-12 no-padding text-left"><a href="\#" ng-click="showItemRequest(dataItem)"><u>{{dataItem.RequestID}}</u></a></div>
+            </script>
+            <script id="tpl_itemRequestList_requestType" type="text/x-kendo-tmpl">
+                <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.RequestType}}">{{dataItem.RequestType==1?'Create Item':'Update Item'}}</span></div>
+            </script>
+            <script id="tpl_itemRequestList_requestStatus" type="text/x-kendo-tmpl">
+                <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.RequestStatus}}">{{dataItem.RequestStatus}}</span></div>
+            </script>
+            <script id="tpl_itemRequestList_requestDate" type="text/x-kendo-tmpl">
+                <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.RequestDate}}">{{dataItem.RequestDate}}</span></div>
+            </script>
+            <script id="tpl_itemRequestList_pm" type="text/x-kendo-tmpl">
+                <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.CategoryName}}">{{dataItem.CategoryName}}</span></div>
+            </script>
+            <script id="tpl_itemRequestList_brand" type="text/x-kendo-tmpl">
+                <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.ManufacturerName}}">{{dataItem.ManufacturerName}}</span></div>
+            </script>
+            <script id="tpl_itemRequestList_manufacturerpartnumber" type="text/x-kendo-tmpl">
+                <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.ManufacturerPartNumber}}">{{dataItem.ManufacturerPartNumber}}</span></div>
+            </script>
+            <script id="tpl_itemRequestList_upc" type="text/x-kendo-tmpl">
+                <div class="col-xs-12 no-padding text-left"><span title="{{dataItem.UPCCode}}">{{dataItem.UPCCode}}</span></div>
+            </script>
+            <script id="tpl_itemRequestList_neweggItemNumber" type="text/x-kendo-tmpl">
+                <div class="col-xs-12 no-padding text-right"><span title="{{dataItem.NeweggItemNumber}}">{{dataItem.NeweggItemNumber}}</span></div>
+            </script>
+        </vd-grid>
+    </div>
+</div>
+<div id="itemRequestDetail" class="col-md-12 no-padding" ng-show="showDetails">
+    <form class="form-horizontal" role="form" name="itemForm">
+        <div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 15px;">
+            <vd-panelbar is-show="isShowDetail3" translatetitle="Item Request Information">
+            </vd-panelbar>
+            <div class="col-md-12 no-padding" style="margin-top: 5px;" ng-hide="isShowDetail3==false">
+                <div class="form-group col-md-6 no-padding">
+                    <label class="col-lg-4 col-xs-11">{{ 'view_query.requestType' | translate }}:</label>
+                    <div class="col-lg-7 col-xs-11">
+                        <div class="col-lg-10 col-xs-10  no-padding-left">
+                            <input type="text" class="form-control vp-input vp-input-sm" ng-model="entity.RequestType" disabled />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 no-padding">
+                    <label class="col-lg-4 col-xs-11">{{ 'view_query.requestStatus' | translate }}:</label>
+                    <div class="col-lg-7 col-xs-11">
+                    <div class="col-lg-10 col-xs-10  no-padding-left">
+                        <input type="text" ng-model="entity.RequestStatus" class="form-control vp-input vp-input-sm" disabled />
+                    </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 no-padding">
+                    <label class="col-lg-4 col-xs-11">{{ 'view_query.neweggItemNumebr' | translate }}:</label>
+                    <div class="col-lg-7 col-xs-11">
+                    <div class="col-lg-10 col-xs-10  no-padding-left">
+                        <input type="text" ng-model="entity.NeweggItemNumber" class="form-control vp-input vp-input-sm" disabled />
+                    </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 no-padding">
+                    <label class="col-lg-4 col-xs-11">{{ 'view_query.requestId' | translate }}:</label>
+                    <div class="col-lg-7 col-xs-11">
+                    <div class="col-lg-10 col-xs-10  no-padding-left">
+                        <input type="text" ng-model="entity.RequestID" class="form-control vp-input vp-input-sm" disabled />
+                    </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 no-padding">
+                    <label class="col-lg-4 col-xs-11">{{ 'view_query.requestDate' | translate }}:</label>
+                    <div class="col-lg-7 col-xs-11">
+                    <div class="col-lg-10 col-xs-10  no-padding-left">
+                        <input type="text" ng-model="entity.RequestDate" class="form-control vp-input vp-input-sm" disabled />
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div  class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 15px;">
+            <vd-panelbar is-show="isShowDetail4" translatetitle="Basic Information">
+            </vd-panelbar>
+            <div class="col-md-12 no-padding" style="margin: 5px 0;"  ng-hide="isShowDetail4==false">
+                <vd-im-basic-info class="col-md-12 no-padding"></vd-im-basic-info>
+            </div>
+        </div>
+<!--        <div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 15px;">
+            <vd-panelbar is-show="isShowDetail5" translatetitle="Specification Information">
+            </vd-panelbar>
+            <div class="col-md-12 no-padding" style="margin: 5px 0;" ng-hide="isShowDetail5==false">
+                <vd-im-specification-info class="col-md-12 no-padding" ng-model="SpecificationInformation"></vd-im-specification-info>
+            </div>
+        </div>-->
+        <div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 15px;">
+            <vd-panelbar is-show="isShowDetail6" translatetitle="Dimension & Weight">
+            </vd-panelbar>
+            <div class="col-md-12 no-padding" style="margin: 5px 0;" ng-hide="isShowDetail6==false">
+                <vd-im-dimension-weight class="col-md-12 no-padding"></vd-im-dimension-weight>
+            </div>
+        </div>
+<!--        <div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 15px;">
+            <vd-panelbar is-show="isShowDetail7" translatetitle="End Customer Warranty Information">
+            </vd-panelbar>
+            <div class="col-md-12 no-padding" style="margin: 5px 0;" ng-hide="isShowDetail7==false">
+                <vd-im-warranty-info class="col-md-12 no-padding" style="margin-left: 12px;"></vd-im-warranty-info>
+            </div>
+        </div>-->
+        <div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 15px;">
+            <vd-panelbar is-show="isShowDetail8" translatetitle="Other Information">
+            </vd-panelbar>
+            <div class="col-md-12 no-padding" style="margin: 5px 0;" ng-hide="isShowDetail8==false">
+                <vd-im-other-info class="col-md-12 no-padding"></vd-im-other-info>
+            </div>
+        </div>
+<!--        <div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 15px;">
+            <vd-panelbar is-show="isShowDetail9" translatetitle="Change Memo">
+            </vd-panelbar>
+            <div class="col-md-12 no-padding" style="margin: 5px 0;" ng-hide="isShowDetail9==false">
+                <textarea required style="width: 100%; height: 100px; resize: vertical;" ng-model="item.replyItem.Content" title="{{ item.replyItem.Content }}" maxlength="2000" ng-change="item.isChanged=true"></textarea>
+            </div>
+        </div>-->
+        <div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 15px;">
+            <vd-panelbar is-show="isShowDetail10" translatetitle="Newegg PM Memo">
+            </vd-panelbar>
+            <div class="col-md-12 no-padding" style="margin: 5px 0;" ng-hide="isShowDetail10==false">
+                <div class="col-md-12 no-padding">
+                    <label class="col-md-2" style="padding-left: 2px;">{{ 'view_query.vendorMemo' | translate }}:</label>
+                    <div class="col-md-10 no-padding">
+                        <textarea required style="width: 100%; height: 100px; resize: vertical;" ng-model="entity.VendorMemo" disabled maxlength="2000" ng-change="item.isChanged=true"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12 no-padding">
+                    <label class="col-md-2" style="padding-left: 2px;">{{ 'view_query.pmMemo' | translate }}:</label>
+                    <div class="col-md-10 no-padding">
+                        <textarea required style="width: 100%; height: 100px; resize: vertical;" ng-model="entity.PMMemo" disabled maxlength="2000" ng-change="item.isChanged=true"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12 no-padding">
+                    <label class="col-md-2" style="padding-left: 2px;">{{ 'view_query.auditMemo' | translate }}:</label>
+                    <div class="col-md-10 no-padding">
+                        <textarea required style="width: 100%; height: 100px; resize: vertical;" ng-model="entity.AuditMemo" disabled maxlength="2000" ng-change="item.isChanged=true"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+    <vd-item-update-request-detail></vd-item-update-request-detail>
+    <!--upload attachments-->
+<div modal="uploadAttachmentModal" close="closeUploadAttachmentModal()" options="{backdrop: true,dialogFade:true}" >
+    <div class="modal-dialog" style="width:750px;" id="uploadAttachmentId" >
+        <ng-form name="uploadAttachmentForm" class="form-horizontal" role="form">
+            <div name="uploadAttachmentDiv" class="modal-content">
+                <div class="widget-header">
+                    <h4>{{ 'view_basic.uploadHeader' | translate }}</h4>
+                </div>
+                <div class="modal-body" style="min-height:300px;max-height:600px;overflow:hidden">
+                    <div class="form-group col-md-12 no-padding" style="margin-left: 20px;">
+                        <label class="col-lg-2 col-md-2 col-xs-11 no-padding-left">{{ 'view_basic.mfrPartNumber' | translate }}:</label>
+                        <div class="col-lg-9 col-md-9 col-xs-12 no-padding form-input-margin-left-20" >
+                            <div class="col-md-12 col-xs-11 no-padding">
+                                <input type="text" class="col-xs-12 vp-input vp-input-sm"
+                                    name="mfrPartNumber"
+                                    ng-model="requestEntity.ManufacturerPartNumber"
+                                    disabled/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12 no-padding" style="margin-left: 20px;">
+                        <label class="col-lg-2 col-md-2 col-xs-11 no-padding-left">{{ 'view_basic.upc' | translate }}:</label>
+                        <div class="col-lg-9 col-md-9 col-xs-12 no-padding form-input-margin-left-20">
+                            <div class="col-md-12 col-xs-11 no-padding">
+                                <input type="text" class="col-xs-12 vp-input vp-input-sm"
+                                    name="upc"
+                                    ng-model="requestEntity.UPCCode"
+                                    disabled/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 no-padding" style="margin-left: 20px;">
+                        <h5>{{ 'view_basic.attachment' | translate }} 
+                            <i class="icon-info-circle grey" title="To make sure file name is unique in our system, several characters will be added to the file name after it get uploaded and submitted to our system.You may see the file name is different from the one you've uploaded."></i>
+                        </h5>
+                        <div class="vp-panel-bar">
+                            <ul class="nav nav-tabs" style="margin-right: 20px;" id="myTab">
+                                <li class="active"><a href="#" id="spec_a" ng-click="specTabSelected()" data-toggle="tab">&nbsp;{{ 'view_basic.specSheet' | translate }}&nbsp;</a></li>
+                                <li><a href="#" ng-click="manualTabSelected()" data-toggle="tab">&nbsp;{{ 'view_basic.userManual' | translate }}&nbsp;</a></li>
+                            </ul>
+                            <div class="tab-content no-border" style="padding-right: 0px;">
+                                <div class="tab-pane active" id="spec" active="specTabActive" ng-class="{active:specTabActive}">
+                                       
+                                    <div class="col-xs-12 form-group upload-no-padding vd-upload-padding-right-40" style="padding-left:4px;margin-left:-12px;">
+                                        <vd-upload-v2 data="SpecList"
+                                            type="spec"
+                                            max-count="config.SpecFile.MaxCount"
+                                            max-size="config.SpecFile.MaxSize"
+                                            rejects="config.SpecFile.Rejects"
+                                            filename-pattern="config.SpecFile.FileNamePattern"
+                                            filename-pattern-tip="config.SpecFile.FileNamePatternTip"
+                                            disabled="isPending"
+                                            attachment-type="config.SpecFile.Type"
+                                            file-type="config.SpecFile.Type"
+                                            group="config.SpecFile.Group" 
+                                            changed="SIsChanged" same-name-file-allow></vd-upload-v2>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="manual" active="manualTabActive" ng-class="{active:manualTabActive}">
+                                     
+                                    <div class="col-xs-12 form-group upload-no-padding vd-upload-padding-right-40" style="padding-left:4px;margin-left:-12px;">
+                                        <vd-upload-v2 data="ManualList"
+                                            type="manual"
+                                            max-count="config.ManualFile.MaxCount"
+                                            max-size="config.ManualFile.MaxSize"
+                                            rejects="config.ManualFile.Rejects"
+                                            filename-pattern="config.ManualFile.FileNamePattern"
+                                            filename-pattern-tip="config.ManualFile.FileNamePatternTip"
+                                            disabled="isPending"
+                                            attachment-type="config.ManualFile.Type"
+                                            file-type="config.ManualFile.Type"
+                                            group="config.ManualFile.Group"
+                                            class="col-xs-12 no-padding"
+                                            changed="MIsChanged" same-name-file-allow></vd-upload-v2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!--<small style="display: inline-block;float: left;margin-right: 5px;width: 75%;">
+                    To make sure file name is unique in our system, several characters will be added to the file name after it get uploaded and submitted to our system.You may see the file name is different from the one you've uploaded.
+                    </small>-->
+                    <i class="icon-warning icon-blink orange" title='This request has been processed, you can not upload or remove the attachment.' style="font-size:large;display: inline-block;vertical-align: middle;" ng-show="showAttention"></i>
+                    <button class="btn btn-primary btn-sm" style="width: 76px;" ng-click="saveAttachments()" ng-disabled="!SIsChanged && !MIsChanged" vd-auth="Submit">
+                        <i class="icon-save"></i> {{ 'view_basic.save' | translate }}
+                    </button>
+                    <button type="button" id="modalCancle" class="btn btn-danger btn-sm" ng-click="closeUploadAttachmentModal()" style="width: 76px;" id="uploadAttachmentCancelBtn">
+                        <i class="icon-undo"></i> {{ 'view_basic.cancel' | translate }}
+                    </button>
+                </div>
+            </div>
+        </ng-form>
+    </div>
+</div>
+</div>
+<!--<div style="margin-top: 10px;" class="vp-fixed fixed-bottom">
+    <div style="width: 100%; margin-left: 20px;">
+        <button type="button" class="btn btn-primary btn-sm" ng-click="submitChange();" >
+            <span class="col-xs-12">
+                {{ 'view_query.submitChange' | translate }}
+            </span>
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" ng-click="cancelChange();">
+            <span class="col-xs-12">
+                {{ 'view_query.cancel' | translate }}
+            </span>
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" ng-click="deleteRequest();">
+            <span class="col-xs-12">
+                {{ 'view_query.deleteRequest' | translate }}
+            </span>
+        </button>
+    </div>
+</div>-->

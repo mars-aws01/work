@@ -1,0 +1,601 @@
+﻿<style>
+    .review {
+    }
+
+        .review .pagination {
+            margin: 0;
+        }
+
+        .review .total-number {
+            color: #999;
+            display: block;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        .review hr {
+            border: 0;
+            border-top: 1px solid #E0E0E0;
+            margin: 20px 0;
+        }
+
+        .review .orange-light {
+            color: #FCAA50 !important;
+        }
+
+        .review .grey-light {
+            color: #999 !important;
+        }
+
+        .review .inner-content {
+            clear: both;
+            margin: 5px 0 0px 0;
+        }
+
+            .review .inner-content:hover {
+                /*background: #EAF5FA;*/
+            }
+
+            .review .inner-content h3 {
+                margin-top: 6px;
+                font-size: 18px;
+                margin-bottom: 0px;
+                text-transform: capitalize;
+            }
+
+                .review .inner-content h3 a {
+                    color: #555;
+                    text-decoration: none;
+                }
+
+                    .review .inner-content h3 a:hover {
+                        cursor: default;
+                        text-decoration: none;
+                    }
+
+            .review .inner-content img {
+                width: 160px;
+                padding: 6px;
+                overflow: hidden;
+                vertical-align: middle;
+            }
+
+            .review .inner-content p {
+                color: #555;
+                margin: 0 0 0px 0;
+            }
+
+            .review .inner-content .list-inline {
+                padding-left: 0;
+                margin-left: -5px;
+                list-style: none;
+                margin-bottom: 0;
+            }
+
+                .review .inner-content .list-inline li {
+                    color: #999;
+                    display: inline-block;
+                    padding-right: 5px;
+                    padding-left: 5px;
+                }
+
+            .review .inner-content .star {
+                margin-left: 0px;
+            }
+
+                .review .inner-content .star li {
+                    padding: 0;
+                }
+
+            .review .inner-content a:hover {
+                text-decoration: underline;
+            }
+
+    .doc-guidelines {
+        font-size: 14px;
+        color: #555;
+    }
+
+        .doc-guidelines p {
+        }
+
+    .file-list {
+        margin: 5px 0;
+        /*border: 1px #E5F0F7 solid;*/
+        list-style: none;
+        border-radius: 2px;
+        padding: 0;
+    }
+
+        .file-list li {
+            margin: 3px 0;
+        }
+
+            .file-list li:hover {
+                background: #E5F0F7;
+            }
+
+            .file-list li > label {
+                margin-top: 5px;
+                margin-right: 10px;
+            }
+
+    .egg-color {
+        color: #FCAA50;
+    }
+
+    .edi-noData {
+        margin-left: -62px!important;
+        margin-top: 100px!important;
+        color: #c4c1c1;
+        font-size: 26pt;
+        opacity: .7;
+        top: 50%;
+        left: 30%;
+        position: absolute;
+    }
+</style>
+
+<div class="row vp-agent-margin">
+    <vd-agent click="search()" />
+</div>
+
+<vd-cover bottom="-340"></vd-cover>
+
+<div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 5px;">
+    <vd-panelbar is-show="isShowDetail" translatetitle="{ 'view_customer_reviews.Search' | translate }"></vd-panelbar>
+    <div class="col-xs-12 no-padding" ng-hide="isShowDetail==false">
+        <form class="form-horizontal" role="form" ng-init="keyLength=25">
+            <div class="col-lg-8 col-md-9 no-padding">
+                <div class="form-group col-md-7 col-lg-8">
+                    <label class="col-lg-2 col-md-3 control-label">{{ 'view_customer_reviews.KeyWords' | translate }}</label>
+                    <div class="col-lg-10 col-md-9 no-padding-left">
+                        <input type="text" class="form-control vp-input" placeholder="{{ 'view_customer_reviews.KeyWordsPlaceholder' | translate }}" maxlength="{{keyLength}}" ng-model="query.KeyWord" />
+                    </div>
+                </div>
+                <div class="form-group col-md-5 col-lg-4 no-padding">
+                    <label class="radio-inline">
+                        <input name="form-field-radio" ng-model="query.KeyWordType" value="ItemNumber" ng-click="keyLength=25" type="radio" class="ace">
+                        <span class="lbl">&nbsp;{{ 'view_customer_reviews.NeweggItemNumber' | translate }}</span>
+                    </label>
+                    <label class="radio-inline no-margin-left">
+                        <input name="form-field-radio" ng-model="query.KeyWordType" value="ItemDescription" ng-click="keyLength=100" type="radio" class="ace">
+                        <span class="lbl">&nbsp;{{ 'view_customer_reviews.ItemDescription' | translate }}</span>
+                    </label>
+                </div>
+                <div class="form-group col-md-7 col-lg-8">
+                    <label class="col-lg-2 col-md-3 control-label">{{ 'view_customer_reviews.Category' | translate }}</label>
+                    <div class="col-lg-10 col-md-9 no-padding-left">
+                        <vd-sub-category value="query.SubCategory"></vd-sub-category>
+                    </div>
+                </div>
+                <div class="form-group col-md-7 col-lg-8">
+                    <label class="col-lg-2 col-md-3 control-label">{{ 'view_customer_reviews.Status' | translate }}</label>
+                    <div class="col-lg-10 col-md-9 no-padding-left">
+                        <select class="form-control" ng-model="query.ReplyStatus"
+                            ng-options="item.value as item.text | translate for item in cbx_statusList">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-7 col-lg-8">
+                    <label class="col-lg-2 col-md-3 control-label">{{ 'view_customer_reviews.Date' | translate }}</label>
+                    <div class="col-lg-10 col-md-9 no-padding-left">
+                        <div class="col-sm-12 no-padding-left input-group">
+                            <div class="input-group">
+                                <input class="form-control date-picker"
+                                    type="text"
+                                    neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                    ng-model="query.FromDate">
+                                <span class="input-group-addon">
+                                    <i class="icon-calendar bigger-110"></i>
+                                </span>
+                            </div>
+                            <span class="input-group-addon no-border-bottom no-border-top no-border-left no-border-right"
+                                style="background-color: #ffffff;">
+                                <i class="icon-minus smaller-90"></i>
+                            </span>
+                            <div class="input-group">
+                                <input class="form-control date-picker"
+                                    type="text"
+                                    neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                    ng-model="query.ToDate">
+                                <span class="input-group-addon">
+                                    <i class="icon-calendar bigger-110"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-lg-4 visible-lg">
+                    <vd-pop-tip class="middle" style="margin-top: 5px; float: left;"
+                        ng-title="{{ 'buttonPanel_customer_reviews.TimeRange' | translate }}"
+                        ng-content="{{ 'msg_customer_reviews.msg_timeRange' | translate }}">
+                    </vd-pop-tip>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 no-padding">
+                <button type="button" ng-click="search()" class="btn btn-primary btn-sm" style="padding: 2px 12px 2px 10px !important;" analytics-on analytics-category="customerReviews" analytics-event="search"  analytics-label="{{common.currentUser.VendorNumber}}_customerReviews_search">
+                    <span class="ace-icon  icon-search icon-on-right bigger-110"></span>{{ 'view_customer_reviews.Search' | translate }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="row vp-panel-bar" style="font-size: 13px !important; margin-top: 15px;">
+    <vd-panelbar is-show="isShowDetail2" translatetitle="{ 'view_customer_reviews.Result' | translate }"></vd-panelbar>
+    <div class="col-xs-12 no-padding-left review" ng-hide="isShowDetail2==false">
+
+        <div class="col-xs-12 no-padding-left">
+            <div class="pull-left no-padding">
+                <span class="pull-left control-label" style="font-size: 14px; color: #555">{{ 'view_customer_reviews.SortBy' | translate }}</span>
+                <select class="pull-left no-padding-right"
+                    ng-model="sortValue"
+                    ng-change="sortChange()"
+                    ng-options="item.value as item.text | translate for item in cbx_sortList"
+                    style="width: 116px; margin: 0px 16px 0 0px;">
+                </select>
+            </div>
+
+            <div class="pull-left" style="padding-top: 5px;">
+                <a href="#" ng-click="showAdvanced = !showAdvanced"
+                    ng-class="{'egg-color':currentSelectRating && currentSelectRating.length>0,'blue':!currentSelectRating || currentSelectRating.length == 0}">
+                    <span style="text-decoration: underline; font-size: 14px;">{{ 'view_customer_reviews.RatingFilter' | translate }}</span>
+                    <i class="icon-filter bigger-120"></i>
+                </a>
+                <div class="vp-search-popover  fade bottom in" style="display: block; left: 200px; width: 410px;" ng-show="showAdvanced">
+                    <div class="popover-content" style="padding-left: 6px; padding-top: 3px;">
+                        <div style="width: 100%">
+                            <a style="float: right; cursor: pointer; margin-right: -7px;"
+                                ng-click="showAdvanced=false" ng-show="showAdvanced">
+                                <i class="icon-remove bigger-170 red2"></i>
+                            </a>
+                            <div class="col-xs-12" style="padding-left: 15px; margin-top: -12px; margin-bottom: 3px;">
+                                <span class="grey">
+                                    <i class="icon-info-sign"></i>
+                                    {{ 'msg_customer_reviews.msg_filter' | translate }}
+                                </span>
+                            </div>
+                            <div class="col-xs-12" style="padding: 0px 15px 10px 15px;">
+                                <div class="col-md-12 no-padding-left text-left no-padding-right" ng-repeat="star in ratingSummaryList">
+                                    <label class="pull-left">
+                                        <input name="form-field-checkbox " ng-model="star.isChecked" ng-change="setQueryRating()" class="ace ace-checkbox" type="checkbox">
+                                        <span class="lbl">&nbsp;</span>
+                                    </label>
+                                    <vd-star class="pull-left" number="star.Rating" style="padding: 3px 2px 0 10px;"></vd-star>
+                                    <div class="progress progress-small progress-striped  pull-left" style="margin: 4px 17px 0 10px; width: 130px;">
+                                        <div class="progress-bar progress-bar-warning" ng-style="getPercentage(star)"></div>
+                                    </div>
+                                    <label class="pull-left no-padding-left" style="padding-top: 1px; width: 36px; margin-left: -4px">{{star.Percentage}}%</label>
+                                    <label class="pull-left" style="padding-top: 1px;">&nbsp;({{star.ReviewCount}})</label>
+                                </div>
+                                <hr class="no-margin no-padding col-xs-12" style="border-top: 1px solid #D1E0ED; margin-top: 6px !important;" />
+                                <div style="float: right; margin-top: 6px;">
+                                    <button type="button" class="btn btn-xs btn-primary" style="width: 105px" ng-click="search()">
+                                        <i class="icon-search"></i>
+                                        {{ 'view_customer_reviews.ApplyFilter' | translate }}
+                                    </button>
+                                    <button type="button" class="btn btn-xs btn-danger" style="width: 105px" ng-click="showAdvanced=false">
+                                        <i class="icon-undo"></i>
+                                        {{ 'view_customer_reviews.Close' | translate }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pull-right">
+                <span class="total-number pull-left" style="margin-right: 25px; margin-top: 7px;"><span style="font-weight: bold">{{ query.PagingInfo.totalCount }}</span> {{ 'view_customer_reviews.Results' | translate }}</span>
+                <div class="pull-left no-padding">
+                    <span class="pull-left control-label">{{ 'view_customer_reviews.PageSize' | translate }}</span>
+                    <select class="pull-left no-padding-right"
+                        ng-model="query.PagingInfo.pageSize"
+                        ng-change="pageSizeChanged()"
+                        ng-options="item.value as item.text for item in cbx_pageSizeList"
+                        style="width: 50px; margin: 0px 16px 0 0px;">
+                    </select>
+                </div>
+                <pagination total-items="query.PagingInfo.totalCount" max-size="5"
+                    page="query.PagingInfo.currentPage"
+                    class="pagination-sm"
+                    rotate="false"
+                    items-per-page="query.PagingInfo.pageSize"
+                    on-select-page="pageChanged(page)"
+                    direction-links="true"
+                    boundary-links="true"
+                    ng-show="showPagination()"></pagination>
+            </div>
+        </div>
+
+        <br />
+        <br />
+        <div class="inner-content col-xs-12 no-padding" ng-show="!reviewList || reviewList.length == 0">
+            <h2 class="edi-noData">No data matched your criteria.</h2>
+        </div>
+        <div class="inner-content col-xs-12 no-padding" ng-repeat="item in reviewList" ng-init="showReplay_$index=false">
+            <div class="col-lg-2 col-md-3 col-sm-4 no-padding">
+                <div class="col-xs-12 text-center no-padding">
+                    <img ng-src="{{ item.ImageUrl }}" vd-on-error-src="/framework/img/no_image.jpg" alt="" title="{{item.ItemDescription}}">
+                </div>
+                <div class="col-xs-12 text-center no-padding" style="margin-bottom: 15px; font-size: 12px;">
+                    <a class="vp-trim-2 grey underline" style="max-width: 130px;" target="_blank"
+                        href="http://www.newegg.com/Product/Product.asp?Item={{item.ItemNumber}}"
+                        title="{{item.ManufacturerPartNumber}}">{{item.ManufacturerPartNumber}}
+                    </a>
+                </div>
+                <div class="col-xs-12 text-center no-padding">
+                    <vd-star number="item.Rating"></vd-star>
+                </div>
+                <div class="col-xs-12 text-center no-padding">
+                    <a href="#" ng-click="goProductReview(item.ItemNumber)" class="green underline">{{ 'view_customer_reviews.ReadAllReviews' | translate }}
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-10 col-md-9 col-sm-8 no-padding">
+                <h3>
+                    <a href="#" class="vp-trim-2" style="max-width: 500px;" title="{{item.Title}}">{{item.Title}}</a>
+                    <span class="label label-lg arrowed pull-right"
+                        ng-class="{
+                            'label-warning':item.ReplyStatus=='N',
+                            'label-primary':item.ReplyStatus=='P' || item.ReplyStatus=='R',
+                            'label-success':item.ReplyStatus=='A',
+                            'label-danger':item.ReplyStatus=='D'}"
+                        style="margin-right: 20px;">{{ getStatusDesc(item.ReplyStatus) }}
+                    </span>
+                </h3>
+                <br />
+                <p style="font-size: 13px;"><span style="font-weight: bold;">{{ 'view_customer_reviews.Pros' | translate }}</span> {{item.Pros}}</p>
+                <br />
+                <p style="font-size: 13px;"><span style="font-weight: bold">{{ 'view_customer_reviews.Cons' | translate }}</span> {{item.Cons}}</p>
+                <br />
+                <p style="font-size: 13px;"><span style="font-weight: bold">{{ 'view_customer_reviews.OtherThoughts' | translate }}</span> {{item.Comments}}</p>
+                <p class="grey-light" style="margin: 12px 0;">
+                    <i class="icon-info-sign bigger-110" ng-show="item.SystemComments"></i>&nbsp;
+                    {{ item.SystemComments }}&nbsp;
+                </p>
+                <ul class="list-inline">
+                    <li>{{ item.PostDate | moment:'MM/DD/YYYY h:mm A' }}&nbsp;&nbsp;&nbsp;&nbsp;{{ 'view_customer_reviews.By' | translate }}&nbsp;{{ item.DisplayName}}</li>
+                    <li ng-show="item.IsVerifiedOwner">&nbsp;&nbsp;<i class="icon-ok green bigger-110">&nbsp;</i>Verified Owner&nbsp;&nbsp;</li>
+                    <li>&nbsp;&nbsp;
+                        <a href="#" class="green underline" ng-hide="item.isDeleted"
+                            ng-click="showReplay_$index=!showReplay_$index;showReply(item)">{{ getOperationLabel(item.ReplyStatus) }}
+                        </a>
+                    </li>
+                </ul>
+                <div class="col-xs-12 no-padding-left" ng-show="showReplay_$index==true&&!item.isDeleted">
+                    <form name="replyForm{{$index}}" ng-submit="reply(item)">
+                        <div class="col-xs-12 no-padding" style="margin: 5px 0;">
+                            <div class="alert alert-info" style="margin-bottom: 0;">
+                                <p>
+                                    <strong>{{ 'view_customer_reviews.Notice' | translate }}&nbsp;
+                                    </strong>
+                                    {{ 'msg_customer_reviews.msg_notice1' | translate }}
+                                    <br />
+                                    <span class="red">{{ 'msg_customer_reviews.msg_notice2' | translate }}</span>
+                                    <br />
+                                    <button type="button"
+                                        class="btn btn-minier btn-info"
+                                        style="margin-top: 5px;"
+                                        ng-click="showUploadGuide()">
+                                        {{ 'buttonPanel_customer_reviews.UploadGuidelines' | translate }}
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+                        <label class="col-md-12 no-padding orange-light" ng-show="item.ReplyStatus =='D' && item.replyItem.AuditMemo">
+                            <i class="icon-warning-sign"></i>&nbsp;{{ item.replyItem.AuditMemo }}
+                        </label>
+                        <div class="col-xs-12 no-padding" style="margin: 5px 0;">
+                            <textarea required style="width: 100%; height: 100px; resize: vertical;"
+                                ng-model="item.replyItem.Content" 
+                                placeholder="{{ 'view_customer_reviews.Comment' | translate }}"
+                                ng-disabled="checkReadonly(item)"
+                                maxlength="2000" ng-change="item.isChanged=true"></textarea>
+                        </div>
+                        <div class="col-xs-12 no-padding" style="margin: 5px 0;">
+                            <ul class="col-md-12 file-list">
+                                <li class="col-md-12 no-padding" ng-repeat="f in item.replyItem.AttachmentList">
+                                    <div class="col-md-4 form-group no-padding-left">
+                                        <input type="text"
+                                            style="margin-top: 5px;"
+                                            maxlength="50"
+                                            required
+                                            ng-model="f.Title"
+                                            ng-disabled="checkReadonly(item)"
+                                            class="form-control"
+                                            placeholder="{{ 'view_customer_reviews.AttachmentTitle' | translate }}">
+                                    </div>
+                                    <div class="col-md-7 form-group no-padding-left">
+                                        <div class="col-xs-1 text-center no-padding" style="padding-top: 12px !important;">
+                                            <i class="icon-file blue bigger-120"></i>
+                                        </div>
+                                        <div class="col-xs-11 " style="padding-top: 10px !important;">
+                                            <a href="{{f.TargetUrl}}" class="underline text-center" target="_blank" style="padding-left: 8px">
+                                                <span style="font-size: 14px;" class="grey">{{f.SourceFileName}}</span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-1 text-center no-padding">
+                                        <a href="#" class="pull-right" ng-hide="checkReadonly(item)"
+                                            ng-click="removeUploadFile(item,$index)"
+                                            style="margin: 8px 20px 0 20px">
+                                            <i class="icon-remove red bigger-150 "></i>
+                                        </a>
+                                    </div>
+
+                                </li>
+                            </ul>
+
+                            <label class="col-md-12 no-padding" id="fileInput_{{item.ReviewID}}">
+                                <input type="file"
+                                    name="uploadFile"
+                                    url="url"
+                                    ng-file-select
+                                    ng-disabled="checkReadonly(item) || (item.replyItem.AttachmentList && item.replyItem.AttachmentList.length > 4)"
+                                    ng-click="setCurrentUploadItem(item)" />
+                            </label>
+                            <label class="col-md-12 no-padding grey" style="margin-top: 15px">
+                                <i class="icon-warning-sign"></i>&nbsp;{{ 'msg_customer_reviews.msg_upload' | translate }}
+                                <a href="#" style="cursor: default"
+                                    tooltip="{{ 'msg_customer_reviews.msg_upload_tooltip' | translate }}">{{ 'msg_customer_reviews.msg_upload_filetype' | translate }}</a>.
+                            </label>
+
+                        </div>
+
+                        <div class="col-xs-12 no-padding" style="margin: 5px 0;">
+                            <div class="col-xs-12" ng-show="item.replyItem.LinkList && item.replyItem.LinkList.length > 0" style="border-top: 1px solid #E0E0E0; margin: 0px 0px 10px 0;"></div>
+                            <ul class="col-md-12 file-list">
+                                <li class="col-md-12  no-padding-left no-padding-bottom" ng-repeat="link in item.replyItem.LinkList" style="padding-top: 7px;">
+                                    <div class="col-md-4 form-group no-padding-left">
+                                        <input type="text" maxlength="30"
+                                            required
+                                            ng-disabled="checkReadonly(item)"
+                                            ng-model="link.Title"
+                                            class="form-control"
+                                            placeholder="{{ 'view_customer_reviews.LinkTitle' | translate }}"
+                                            ng-change="item.isChanged=true">
+                                    </div>
+                                    <div class="col-md-7 form-group no-padding-left">
+                                        <div class="col-xs-1 text-center no-padding" style="padding-top: 8px !important;">
+                                            <i class="icon-link blue bigger-120 " style="margin-left: 6px"></i>
+                                        </div>
+                                        <div class="col-xs-11 no-padding-left">
+                                            <ng-form class="col-xs-12" name="urlForm">
+                                                <div class="form-group" ng-class="{'has-error':urlForm.link.$error.pattern}">
+                                                    <input type="text" name="link"
+                                                            required
+                                                            ng-disabled="checkReadonly(item)"
+                                                            maxlength="200"
+                                                            ng-model="link.HyperLink"
+                                                            ng-pattern="/^((ht|f)tp(s?)\:\/\/)?(([a-zA-Z0-9\-_]+(\.[a-zA-Z0-9\-\._]+)+)|localhost)(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?([\d\w\.\/\%\+\-\=\&amp;\?\:\\\&quot;\'\,\|\~\;]*)$/"
+                                                            class="form-control search-query"
+                                                            placeholder="{{ 'view_customer_reviews.LinkDes' | translate }}" 
+                                                            ng-change="link.isValid = urlForm.link.$valid; item.isChanged=true"/>
+                                                    <span class="vp-validtip" style="margin-top: 5px" ng-show="urlForm.link.$error.pattern">Be sure link url is correct.</span>
+                                                </div>
+                                            </ng-form>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-1 text-center no-padding">
+                                        <a href="#" ng-hide="checkReadonly(item)" class="pull-right" ng-click="removeLink(item,$index)" style="margin: 6px 20px 0 20px">
+                                            <i class="icon-remove red bigger-150 "></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="input-group col-md-12 pull-right" style="margin: 5px 0 10px 0;">
+                            <label class="pull-left grey" ng-show="item.replyItem.LinkList && item.replyItem.LinkList.length > 0" style="margin-top: -10px">
+                                <i class="icon-warning-sign"></i>&nbsp;{{ 'msg_customer_reviews.msg_link' | translate }}
+                            </label>
+                            <a href="#" class="pull-right green underline" ng-hide="checkReadonly(item)" ng-click="addLink(item)">
+                                <i class="ace-icon icon-plus bigger-120 "></i>
+                                <span class="bigger-110 ">{{ 'view_customer_reviews.AddLink' | translate }}</span>
+                            </a>
+                        </div>
+
+                        <div class="col-xs-12 no-padding text-right" style="margin: 5px 0;">
+                            <button type="button" ng-click="item.canEdit=true" vd-auth="Edit" ng-show="item.ReplyStatus=='A'" class="btn btn-success btn-sm pull-left">
+                                <span class="ace-icon  icon-edit icon-on-right bigger-110"></span>
+                                Edit Reply
+                            </button>
+                            <button type="button" ng-click="deleteReply(item,$index)" vd-auth="Edit" ng-show="item.ReplyStatus=='P'||item.ReplyStatus=='A'" class="btn btn-danger btn-sm pull-left ml-10">
+                                <span class="ace-icon  icon-remove icon-on-right bigger-110"></span>
+                                Delete Reply
+                            </button>
+                            <button type="button" ng-click="clear(item.replyItem)" vd-auth="Edit" ng-hide="checkReadonly(item)" class="btn btn-yellow btn-sm">
+                                <span class="ace-icon  icon-undo icon-on-right bigger-110"></span>
+                                {{ 'view_customer_reviews.Clear' | translate }} 
+                            </button>
+                            <button type="submit" ng-click="saveReply()" vd-auth="Edit" ng-hide="checkReadonly(item)" class="btn btn-info btn-sm">
+                                <span class="ace-icon  icon-file icon-on-right bigger-110"></span>
+                                {{ 'view_customer_reviews.SaveDraft' | translate }} 
+                            </button>
+                            <button type="submit" ng-click="submitReply()" vd-auth="Edit" ng-hide="checkReadonly(item)" class="btn btn-primary btn-sm">
+                                <span class="ace-icon  icon-save icon-on-right bigger-110"></span>
+                                {{ 'view_customer_reviews.Submit' | translate }} 
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="col-xs-11" />
+        </div>
+
+
+        <div class="col-xs-12 no-padding-left">
+            <div class="pull-right">
+                <span class="total-number pull-left" ng-show="showPagination()" style="margin-right: 25px; margin-top: 7px;"><span style="font-weight: bold">{{ query.PagingInfo.totalCount }}</span> {{ 'view_customer_reviews.Results' | translate }}</span>
+                <div class="pull-left no-padding" ng-show="showPagination()">
+                    <span class="pull-left control-label">{{ 'view_customer_reviews.PageSize' | translate }}</span>
+                    <select class="pull-left no-padding-right"
+                        ng-model="query.PagingInfo.pageSize"
+                        ng-change="pageSizeChanged()"
+                        ng-options="item.value as item.text for item in cbx_pageSizeList"
+                        style="width: 50px; margin: 0px 16px 0 0px;">
+                    </select>
+                </div>
+
+                <pagination total-items="query.PagingInfo.totalCount" max-size="5"
+                    page="query.PagingInfo.currentPage"
+                    class="pagination-sm"
+                    rotate="false"
+                    items-per-page="query.PagingInfo.pageSize"
+                    on-select-page="pageChanged(page)"
+                    direction-links="true"
+                    boundary-links="true"
+                    ng-show="showPagination()"></pagination>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<br />
+
+<div modal="uploadGuideModal" close="closeUploadGuide()" options="{backdrop: true,dialogFade:true}">
+    <div class="modal-dialog modal-lg">
+        <form name="guideModalForm" class="modal-content">
+            <div class="widget-header">
+                <h4>{{ 'buttonPanel_customer_reviews.UploadGuidelines' | translate }}
+                </h4>
+            </div>
+            <div class="modal-body doc-guidelines">
+                <p>
+                    {{ 'msg_customer_reviews.msg_upload_1' | translate }}
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&middot; {{ 'msg_customer_reviews.msg_upload_1_1' | translate }}
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&middot; {{ 'msg_customer_reviews.msg_upload_1_2' | translate }}
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&middot; {{ 'msg_customer_reviews.msg_upload_1_3' | translate }}
+                </p>
+                <p>{{ 'msg_customer_reviews.msg_upload_2' | translate }}</p>
+                <p>{{ 'msg_customer_reviews.msg_upload_3' | translate }}</p>
+                <p>{{ 'msg_customer_reviews.msg_upload_4' | translate }}</p>
+                <p>{{ 'msg_customer_reviews.msg_upload_5' | translate }}</p>
+                <p>{{ 'msg_customer_reviews.msg_upload_6' | translate }}.</p>
+                <p>{{ 'msg_customer_reviews.msg_upload_7' | translate }}</p>
+                <p style="font-weight: bold">{{ 'msg_customer_reviews.msg_upload_8' | translate }}</p>
+                <p>{{ 'msg_customer_reviews.msg_upload_9' | translate }}</p>
+                <p>{{ 'msg_customer_reviews.msg_upload_10' | translate }}</p>
+                <p>{{ 'msg_customer_reviews.msg_upload_11' | translate }}</p>
+                <p>{{ 'msg_customer_reviews.msg_upload_12' | translate }}</p>
+            </div>
+            <div class="modal-footer no-margin-top">
+                <button type="button" class="btn btn-danger btn-sm" ng-click="closeUploadGuide()">
+                    <i class="icon-remove"></i>
+                    {{ 'view_customer_reviews.Close' | translate }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

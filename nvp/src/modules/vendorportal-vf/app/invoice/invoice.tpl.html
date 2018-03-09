@@ -1,0 +1,361 @@
+﻿<form name="InvoiceForm" ng-submit="SubmitInvoice()" style="padding-bottom: 60px;">
+    <div class="row" style="margin: 10px -12px 0 0;">
+        <div class="col-sm-12 no-padding-left">
+            <vd-order data="currentOrder"></vd-order>
+        </div>
+    </div>
+    <div class="row no-margin">
+        <div class="col-sm-12 vp-page ">
+            <div class="col-xs-12 vp-page-info">
+                <h3 class="no-margin">{{ 'view_invoice.invoice' | translate }}</h3>
+                <div class="col-xs-12 vp-page-header2"
+                    ng-show="option=='view' && currentInvoice.InvoiceDate"
+                    style="padding: 10px 0 0px 0;">
+                    <div class="col-md-4 no-padding-left">
+                        <label style="font-weight: 600;">{{ 'view_invoice.invoiceNumber' | translate }}: </label>
+                        <label>&nbsp; {{ currentInvoice.InvoiceNumber }}</label>
+                    </div>
+                    <div class="col-md-4">
+                        <label style="font-weight: 600;">{{ 'view_invoice.invoiceDate' | translate }}: </label>
+                        <label>&nbsp; {{ currentInvoice.InvoiceDate | moment:'YYYY-MM-DD, dddd' }}</label>
+                    </div>
+                </div>
+
+                <div class="col-xs-12" style="padding: 10px 0 3px 0;" ng-show="option!='view'">
+                    <div class="col-md-4 no-padding-left">
+                        <label class="vp-page-label col-lg-3 col-md-4" style="font-weight: 600;">{{ 'view_invoice.invoiceNumber' | translate }}:</label>
+                        <input ng-disabled="option=='view'" class="vp-input col-lg-8 col-md-8"
+                            type="text" placeholder="{{ 'view_invoice.invoiceNumberTip' | translate }}"
+                            ng-model="currentInvoice.InvoiceNumber">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="vp-page-label col-lg-4 col-md-4" style="font-weight: 600;">{{ 'view_invoice.invoiceDate' | translate }}:</label>
+                        <div class="input-group col-lg-8 col-md-8">
+                            <input class="form-control"
+                                type="text"
+                                required
+                                neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                ng-model="currentInvoice.InvoiceDate">
+                            <span class="input-group-addon">
+                                <i class="icon-calendar bigger-110"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-xs-12 vp-page-address" ng-show="currentOrder.ShipTo">
+                <div class="col-lg-2 visible-lg" style="padding: 45px 45px;">
+                    <em class="icon-money" style="color: #909FA7; font-size: 55px;"></em>
+                </div>
+                <div class="col-lg-5 col-xs-12 vp-page-br ">
+                    <div class="col-md-12">
+                        <h4 style="font-weight: bold;">{{ 'view_invoice.billTo' | translate }}</h4>
+                        <address class="col-md-12 vp-page-info-address">
+                            <div class="vp-page-row2" ng-show="!currentOrder.BillTo.Address">
+                                <div>
+                                    <span>{{ 'view_invoice.noAddress' | translate }}</span>
+                                    <br>
+                                    <br>
+                                    <br>
+                                </div>
+                            </div>
+
+                            <div class="vp-page-row2" ng-show="currentOrder.BillTo.Address">
+                                <div class="name">{{ 'view_invoice.companyName' | translate }}:</div>
+                                <div class="value">
+                                    <span>{{ currentOrder.BillTo.CompanyName }} </span>
+                                </div>
+                            </div>
+                            <div class="vp-page-row2" ng-show="currentOrder.BillTo.Address">
+                                <div class="name">{{ 'view_invoice.address' | translate }}:</div>
+                                <div class="value">
+                                    <span>{{ currentOrder.BillTo.Address }} </span>
+                                </div>
+                            </div>
+                            <div class="vp-page-row2" ng-show="option=='view' && currentOrder.BillTo.Address">
+                                <div class="name"></div>
+                                <div class="value">
+                                    <span>{{ currentOrder.BillTo.City }}, {{ currentOrder.BillTo.State }} {{ currentOrder.BillTo.ZipCode }}, {{ currentOrder.BillTo.Country }} </span>
+                                </div>
+                            </div>
+                        </address>
+
+                    </div>
+                </div>
+                <div class="col-lg-5 col-xs-12 vp-page-br ">
+                    <div class="col-md-12 no-padding">
+                        <h4 style="font-weight: bold;">{{ 'view_invoice.shipTo' | translate }}</h4>
+                    </div>
+                    <address class="col-md-12 vp-page-info-address">
+                        <div class="vp-page-row2">
+                            <div class="name">{{ 'view_invoice.customerName' | translate }}:</div>
+                            <div class="value">
+                                <span>{{ currentOrder.ShipTo.Name }} ({{ currentOrder.ShipTo.CompanyName }} Inc.)</span>
+                            </div>
+                        </div>
+
+                        <div class="vp-page-row2">
+                            <div class="name">{{ 'view_invoice.address' | translate }}:</div>
+                            <div class="value">
+                                <span>{{ currentOrder.ShipTo.Address }}</span>
+                            </div>
+                        </div>
+                        <div class="vp-page-row2">
+                            <div class="name"></div>
+                            <div class="value">
+                                <span>{{ currentOrder.ShipTo.City }}, {{ currentOrder.ShipTo.State }} {{ currentOrder.ShipTo.ZipCode }}, {{ currentOrder.ShipTo.Country }} </span>
+                            </div>
+                        </div>
+                        <div class="vp-page-row2">
+                            <div class="value">
+                                <i class="icon-phone bigger-110"></i>&nbsp;<span>{{ currentOrder.ShipTo.Phone }}</span>
+                            </div>
+                            <div class="value">
+                                <i class="icon-envelope bigger-110"></i>&nbsp;<span>{{ currentOrder.ShipTo.Email }}</span>
+                            </div>
+
+                        </div>
+                    </address>
+                </div>
+            </div>
+
+            <div class="col-xs-12 vp-page-footer no-padding-left no-padding-right">
+                <div class="col-xs-12 no-padding">
+                    <h4 class="col-xs-6 no-padding">{{ 'view_invoice.itemsOrdered' | translate }}</h4>
+                </div>
+                <div class="vp-widget-content col-xs-12 no-padding">
+                    <div class="col-xs-12 no-padding" style="margin-top: 2px; overflow-x: auto; width: 100%;">
+                        <table class="table table-detail" style="margin-bottom: 2px; min-width: 1100px;">
+                            <thead>
+                                <tr>
+                                    <td class="vp-table-Header">{{ 'header_invoice.verdorNumber' | translate }}</td>
+                                    <td class="vp-table-Header hidden-xs" style="width: 135px;">{{ 'header_invoice.nePartNumber' | translate }}</td>
+                                    <td class="vp-table-Header hidden-xs">{{ 'header_invoice.manufacturer' | translate }}</td>
+                                    <td class="vp-table-Header hidden-xs" style="width: 110px;">{{ 'header_invoice.mrfPartNumber' | translate }}</td>
+                                    <td class="vp-table-Header hidden-xs">{{ 'header_invoice.UPC' | translate }}</td>
+                                    <td class="vp-table-Header hidden-xs" style="width: 70px;">{{ 'header_invoice.description' | translate }}</td>
+                                    <td class="vp-table-Header" style="width: 66px;">{{ 'header_invoice.price' | translate }}<vd-profile-label type="{{ 'CurrencyCode' }}"></vd-profile-label></td>
+                                    <td class="vp-table-Header" style="width: 85px;">{{ 'header_invoice.qtyOrdered' | translate }}</td>
+                                    <td class="vp-table-Header" style="width: 120px;">{{ 'header_invoice.priceToInvoice' | translate }}<vd-profile-label type="{{ 'CurrencyCode' }}"></vd-profile-label></td>
+                                    <td class="vp-table-Header" style="width: 100px;">{{ 'header_invoice.qtyToInvoiced' | translate }}</td>
+                                    <td class="vp-table-Header" style="width: 80px;">{{ 'header_invoice.ackStatus' | translate }}</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in currentInvoice.ItemList">
+                                    <td><span class="vp-trim" style="width: 130px" title="{{ item.VendorPartNumber }}">{{ item.VendorPartNumber }}</span></td>
+                                    <td class="hidden-xs"><span title="{{ item.NeweggItemNumber}}">{{ item.NeweggItemNumber}}</span></td>
+                                    <td class="hidden-xs"><span class="vp-trim" style="width: 78px;" title="{{ item.Manufacturer }}">{{ item.Manufacturer }}</span></td>
+                                    <td class="hidden-xs"><span class="vp-trim" style="width: 110px;" title="{{ item.ManufacturerPartNumber }}">{{ item.ManufacturerPartNumber }}</span></td>
+                                    <td class="hidden-xs"><span class="vp-trim" style="width: 90px;" title="{{ item.UPC }}">{{ item.UPC }}</span></td>
+                                    <td class="hidden-xs"><span class="vp-trim" style="width: 70px;" title="{{item.Description}}">{{ item.Description }}</span></td>
+                                    <td class="text-right">{{ item.UnitPrice | currency:'' }}</td>
+                                    <td class="text-right">{{ item.Quantity }}</td>
+                                    <td class="text-right">
+                                        <input class="col-md-12  vp-edit-input-central"
+                                            ng-change="sumSubTotal()"
+                                            type="number"
+                                            max="99999999"
+                                            min="0.01"
+                                            step="0.01"
+                                            ng-required="item.QtytoInvoice"
+                                            ng-model="item.PricetoInvoice"
+                                            ng-disabled="!itemPriceAndQty"
+                                            ng-class="{'vp-invoicedetail-wrongValue':  item.PricetoInvoice > item.UnitPrice|| item.PricetoInvoice<0 || item.PricetoInvoice >99999999.99 || item.wrongPriceAlert, 'vp-invoicedetail-Value': item.PricetoInvoice <= item.UnitPrice}" style="text-align: right; height: 24px" ng-show="option!='view'">
+                                        <span ng-show="option=='view'">{{ item.PricetoInvoice | currency:'' }}</span>
+                                    </td>
+                                    <td class="text-right">
+                                        <input class="col-md-12  vp-edit-input-central"
+                                            ng-change="sumSubTotal()"
+                                            type="number"
+                                            min="1"
+                                            step="1"
+                                            ng-required="item.PricetoInvoice"
+                                            ng-model="item.QtytoInvoice"
+                                            ng-disabled="!itemPriceAndQty"
+                                            ng-class="{'vp-invoicedetail-wrongValue':  item.QtytoInvoice > item.Quantity ||item.QtytoInvoice<0 || item.wrongQtyAlert, 'vp-invoicedetail-Value':item.QtytoInvoice <= item.Quantity}" style="text-align: right; height: 24px" ng-show="option!='view'">
+                                        <span ng-show="option=='view'">{{ item.QtytoInvoice}}</span>
+                                    </td>
+                                    <td class="align-middle">{{ item.ItemACKStatus=="None"?'':item.ItemACKStatus }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="vp-widget-footer col-xs-12" style="padding: 2px 0px 0px 0px;">
+                    <div class="col-xs-12 no-padding">
+                        <div class="col-md-3 form-group  no-padding">
+                            <label class="col-md-5  vp-page-footer-label">{{ 'view_invoice.subTotal' | translate }}<vd-profile-label type="{{ 'CurrencyCode' }}"></vd-profile-label>: </label>
+                            <div class="col-md-6 no-padding" style="margin-top: 4px; font-weight: bold">
+                                <span ng-class="{
+                                                'vp-invoicedetail-wrongValue':  overMaxAmount == true,
+                                                'vp-invoicedetail-Value' : overMaxAmount == false
+                                        }">{{currentInvoice.subTotal  | vfCurrency:''}}</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 form-group  no-padding">
+                            <label class="col-md-5  vp-page-footer-label" for="Shipping">{{ 'view_invoice.shipping' | translate }}<vd-profile-label type="{{ 'CurrencyCode' }}"></vd-profile-label>: </label>
+                            <div class="col-md-6 no-padding" style="margin-top: 4px">
+                                <input class="col-md-10 vp-edit-input-central" name="Shipping"
+                                       type="number"
+                                       ng-change="sumSubTotal()"
+                                       max="99999999"
+                                       min="-99999999"
+                                       step="0.01"
+                                       style="text-align: right"
+                                       ng-disabled="!shippingAndTax"
+                                       ng-model="currentInvoice.Freight"
+                                       ng-show="option!='view'"
+                                       ng-class="{
+                                    'vp-invoicedetail-wrongValue':  overMaxAmount == true,
+                                    'vp-invoicedetail-Value' : overMaxAmount == false
+                                }">
+                                <span ng-show="option=='view'" style="margin-top: 4px; font-weight: bold">{{ currentInvoice.Freight | vfCurrency:''}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 form-group  no-padding" ng-hide="countryCode == 'CAN'">
+                            <label class="col-md-5  vp-page-footer-label">{{ 'view_invoice.tax' | translate }}<vd-profile-label type="{{ 'CurrencyCode' }}"></vd-profile-label>: </label>
+                            <div class="col-md-6  no-padding" style="margin-top: 4px">
+                                <input class="col-md-10 vp-edit-input-central"
+                                       ng-change="sumSubTotal()"
+                                       type="number"
+                                       max="99999999"
+                                       min="-99999999"
+                                       step="0.01"
+                                       style="text-align: right"
+                                       ng-disabled="!shippingAndTax"
+                                       ng-model="currentInvoice.Tax"
+                                       ng-show="option!='view'"
+                                       ng-class="{
+                                            'vp-invoicedetail-wrongValue':  overMaxAmount == true,
+                                            'vp-invoicedetail-Value' : overMaxAmount == false
+                                                }">
+                                <span ng-show="option=='view'" style="font-weight: bold">{{ currentInvoice.Tax  | vfCurrency:''}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 form-group  no-padding">
+                            <label class="col-md-5  vp-page-footer-label">{{ 'view_invoice.invoiceTotal' | translate }}<vd-profile-label type="{{ 'CurrencyCode' }}"></vd-profile-label>: </label>
+                            <div class="col-md-6 no-padding">
+                                <div ng-class="{
+                'vp-invoicedetail-wrongValue':  overMaxAmount == true,
+                'vp-invoicedetail-Value' : overMaxAmount == false
+                    }"
+                                     style="margin-top: 4px; text-align: left; font-weight: bold">
+                                    {{currentInvoice.TotalAmount  | vfCurrency:''}}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- CAN Tax Info-->
+                    <div class="col-xs-12 no-padding" ng-show="countryCode == 'CAN'">
+                        <div class="col-md-3 form-group  no-padding">
+                            <label class="col-md-5  vp-page-footer-label">{{ 'view_invoice.tax' | translate }}<vd-profile-label type="{{ 'CurrencyCode' }}"></vd-profile-label>: </label>
+                            <div class="col-md-6  no-padding" style="margin-top: 4px">
+                                <span style="font-weight: bold" >{{ currentInvoice.Tax  | vfCurrency:''}}</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 form-group  no-padding">
+                            <label class="col-md-5  vp-page-footer-label">GST<vd-profile-label type="{{ 'CurrencyCode' }}"></vd-profile-label>: </label>
+                            <div class="col-md-6  no-padding" style="margin-top: 4px">
+                                <div style="text-align: left; font-weight: bold">
+                                     <span style="font-weight: bold" ng-show="option=='view'">{{ currentInvoice.TaxInfo.TaxGoodsAndServices  | vfCurrency:'' }}</span>
+                                     <input class="col-md-10 vp-edit-input-central"
+                                       ng-change="sumTaxTotal()"
+                                       type="number"
+                                       max="99999999"
+                                       min="-99999999"
+                                       step="0.01"
+                                       style="text-align: right;font-weight: normal"
+                                       ng-disabled="!shippingAndTax"
+                                       ng-model="currentInvoice.TaxInfo.TaxGoodsAndServices"
+                                       ng-show="option!='view'"
+                                       ng-class="{
+                                            'vp-invoicedetail-wrongValue':  overMaxAmount == true,
+                                            'vp-invoicedetail-Value' : overMaxAmount == false
+                                                }">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 form-group  no-padding">
+                            <label class="col-md-5  vp-page-footer-label">HST<vd-profile-label type="{{ 'CurrencyCode' }}"></vd-profile-label>: </label>
+                            <div class="col-md-6  no-padding" style="margin-top: 4px">
+                                <div style="text-align: left; font-weight: bold">
+                                     <span style="font-weight: bold" ng-show="option=='view'">{{ currentInvoice.TaxInfo.TaxHarmonized  | vfCurrency:'' }}</span>
+                                     <input class="col-md-10 vp-edit-input-central"
+                                       ng-change="sumTaxTotal()"
+                                       type="number"
+                                       max="99999999"
+                                       min="-99999999"
+                                       step="0.01"
+                                       style="text-align: right;font-weight: normal"
+                                       ng-disabled="!shippingAndTax"
+                                       ng-model="currentInvoice.TaxInfo.TaxHarmonized"
+                                       ng-show="option!='view'"
+                                       ng-class="{
+                                            'vp-invoicedetail-wrongValue':  overMaxAmount == true,
+                                            'vp-invoicedetail-Value' : overMaxAmount == false
+                                                }">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 form-group  no-padding">
+                            <label class="col-md-5  vp-page-footer-label">PST<vd-profile-label type="{{ 'CurrencyCode' }}"></vd-profile-label>: </label>
+                            <div class="col-md-6  no-padding" style="margin-top: 4px">
+                                <div style="text-align: left; font-weight: bold">
+                                     <span style="font-weight: bold" ng-show="option=='view'">{{ currentInvoice.TaxInfo.TaxProvincial  | vfCurrency:'' }}</span>
+                                     <input class="col-md-10 vp-edit-input-central"
+                                       ng-change="sumTaxTotal()"
+                                       type="number"
+                                       max="99999999"
+                                       min="-99999999"
+                                       step="0.01"
+                                       style="text-align: right;font-weight: normal"
+                                       ng-disabled="!shippingAndTax"
+                                       ng-model="currentInvoice.TaxInfo.TaxProvincial"
+                                       ng-show="option!='view'"
+                                       ng-class="{
+                                            'vp-invoicedetail-wrongValue':  overMaxAmount == true,
+                                            'vp-invoicedetail-Value' : overMaxAmount == false
+                                                }">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--Bottom Button-->
+    <div class="vp-fixed fixed-bottom" style="margin-top: 10px;" ng-hide="option == 'view'">
+        <div style="width: 100%; margin-left: 20px;">
+            <button type="submit" class="btn btn-primary btn-sm" ng-hide="submit==false" vd-auth="Submit" analytics-on analytics-category="invoice" analytics-event="submit"  analytics-label="{{common.currentUser.VendorNumber}}_invoice_submit">
+                <div class="col-xs-12">
+                    <i class="icon-save"></i>
+                    &nbsp;{{ 'view_invoice.submitInvoice' | translate }}
+                </div>
+
+            </button>
+            <button type="button" class="btn btn-danger btn-sm" ng-click="DeleteInvoice()" ng-hide="!delete" vd-auth="Delete" analytics-on analytics-category="invoice" analytics-event="delete"  analytics-label="{{common.currentUser.VendorNumber}}_invoice_delete">
+                <div class="col-xs-12">
+                    <i class="icon-remove"></i>
+                    &nbsp;{{ 'view_invoice.deleteInvoice' | translate }}
+                </div>
+
+            </button>
+        </div>
+    </div>
+</form>
+
+<script>
+    $("[data-toggle=tooltip]").tooltip();
+</script>

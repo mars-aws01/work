@@ -1,0 +1,43 @@
+{
+  "name": "neweggplatform",
+  "version": "0.2.0",
+  "repository": {
+    "type": "git",
+    "url": "http://trgit2/backend_framework/newkitjs.git"
+  },
+  "devDependencies": {
+    "browser-sync": "^1.9.1",
+    "coffee-script": "^1.8.0",
+    "compression": "^1.5.0",
+    "connect-history-api-fallback": "0.0.5",
+    "del": "^1.1.1",
+    "gulp": "^3.8.10",
+    "gulp-chmod": "^1.2.0",
+    "gulp-coffee": "^2.2.0",
+    "gulp-concat": "^2.4.3",
+    "gulp-cssmin": "^0.1.6",
+    "gulp-htmlmin": "^2.0.0",
+    "gulp-less": "^2.0.1",
+    "gulp-linker": "^0.1.7",
+    "gulp-merge": "^0.1.0",
+    "gulp-order": "^1.1.1",
+    "gulp-replace": "^0.5.0",
+    "gulp-uglify": "^1.1.0",
+    "gulp-util": "^3.0.1",
+    "run-sequence": "^1.0.2",
+    "webpack": "^1.5.3",
+    "yargs": "^1.3.3"
+  },
+  "description": "Newkit.js (Newegg Web develop Kit in Javascript) 是一个纯HTML + JS的web framework。",
+  "main": "index.html",
+  "dependencies": {},
+  "scripts": {
+    "build": "gulp"
+  },
+  "keywords": [
+    "angular",
+    "ace"
+  ],
+  "author": "BTS Team",
+  "license": "ISC"
+}

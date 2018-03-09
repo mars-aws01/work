@@ -1,0 +1,323 @@
+﻿<div class="row vp-agent-margin">
+    <vd-agent click="search()" />
+</div>
+
+<vd-cover bottom="-18"></vd-cover>
+
+<div class="row" style="margin-top: 10px">
+    <ul class="nav nav-tabs" id="myTab">
+        <li class="active"><a href="#download" id="download_a" data-toggle="tab" ng-click="selectedbusinessTab=true;">&nbsp;{{ 'view_batch.downloadTemplate' | translate }}&nbsp;</a></li>
+        <li><a href="#upload" id="upload_a" data-toggle="tab" ng-click="selectedbusinessTab=false;">&nbsp;{{ 'view_batch.uploadFile' | translate }}&nbsp;</a></li>
+
+    </ul>
+
+    <div class="tab-content no-border">
+        <div class="tab-pane active" id="download">
+            <div class="row no-margin-right" style="margin-bottom: 15px;">
+                <div class="vp-block vp-block-blue">
+                    <div class="row">
+                        <div class="col-sm-10 col-xs-12">
+                            <label class="no-padding-left" style="width: 94px; margin-top: 3px; margin-bottom: 3px;" for="dsTemplateType">{{ 'view_batch.templateType' | translate }}:</label>
+                            <select class="vp-select" id="Select2"
+                                ng-model="downloadTemplateQuery.TemplateType"
+                                ng-options="item.value as item.text for item in templateTypeList" />
+
+                            <label class="no-padding-left" style="width: 75px; margin-top: 3px; margin-bottom: 3px; margin-left: 10px;" for="dsFileFormat">{{ 'view_batch.fileFormat' | translate }}:</label>
+                            <select class="vp-select" id="Select3"
+                                ng-model="downloadTemplateQuery.TemplateFormat"
+                                ng-options="item.value as item.text for item in fileFormatList" />
+                        </div>
+                        <div class="col-sm-2 col-xs-12">
+                            <button id="Button1" class="btn btn-app vp-btn vp-btn-blue pull-right" ng-click="downloadTemplate()" vd-auth="Download" style="width: 160px">
+                                <div class="col-xs-12">
+                                    <span class="ace-icon icon icon-download-alt icon-on-right"></span>&nbsp;
+                                {{ 'view_batch.downloadBtn' | translate }}
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 5px">
+                        <div class="col-lg-6 col-md-12" style="padding-top: 12px">
+                            <input type="checkbox" class="ace" id="Checkbox1" ng-model="downloadTemplateQuery.FillWithData" />
+                            <label class="lbl" for="dckFillData">&nbsp;{{ 'view_batch.fillWithDataTip' | translate }}</label>
+                        </div>
+                        <div class="col-lg-6 col-md-12" ng-show="downloadTemplateQuery.FillWithData && downloadTemplateQuery.TemplateType=='SC'" style="padding-top: 5px">
+                            <div class="pull-right">
+                                <label class="lbl"><strong>{{ 'view_batch.downloadFilter_1' | translate }}&nbsp;</strong></label>
+                                <select class="vp-select"  style="height: 25px;"
+                                    ng-model="downloadTemplateQuery.DataRange"
+                                    ng-options="item.value as item.text for item in itemDownloadFilterList" />
+                                <label class="lbl"><strong>&nbsp;{{ 'view_batch.downloadFilter_2' | translate }}</strong></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row no-margin-right" style="margin-bottom: 10px;">
+                <div class="vp-block " style="margin-bottom: 0px;">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <label class="col-md-6 vp-label-padding-5">{{ 'view_batch.reqDateFrom' | translate }}:</label>
+                            <div class="col-md-6 no-padding">
+                                <div class="input-group col-md-12">
+                                    <input class="form-control vp-input"
+                                        type="text"
+                                        neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                        ng-model="download.RequestDateFrom"
+                                        maxlength="10"
+                                        required>
+                                    <span class="input-group-addon">
+                                        <i class="icon-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6">
+                            <label class="col-md-6 vp-label-padding-5">{{ 'view_batch.reqDateTo' | translate }}:</label>
+                            <div class="col-md-6 no-padding">
+                                <div class="input-group col-md-12">
+                                    <input class="form-control vp-input"
+                                        type="text"
+                                        neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                        ng-model="download.RequestDateTo"
+                                        maxlength="10"
+                                        required>
+                                    <span class="input-group-addon">
+                                        <i class="icon-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6">
+                            <label class="col-md-4 vp-label-padding-5">{{ 'view_batch.status' | translate }}:</label>
+                            <div class="col-md-8 no-padding">
+                                <select class="col-xs-12 vp-select"
+                                    ng-model="download.Status"
+                                    ng-options="item.value as item.text for item in statusList" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6">
+                            <label class="col-md-5 vp-label-padding-5">{{ 'view_batch.templateType' | translate }}:</label>
+                            <div class="col-md-7 no-padding">
+                                <select class="col-xs-12 vp-select"
+                                    ng-model="download.TemplateType"
+                                    ng-options="item.value as item.text for item in templateTypeForSearchList" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row" style="margin-top: 4px">
+                        <div class="col-md-12">
+                            <div class="pull-right">
+                                <div class="col-md-4 vp-label-padding-5" style="width: 90px">
+                                    <input type="checkbox" class="ace" id="dckMyRequest" ng-model="download.MyRequestOnly" />
+                                    <label class="lbl" for="dckMyRequest">&nbsp;{{ 'view_batch.myRequest' | translate }}</label>
+                                </div>
+                                <button class="btn btn-app vp-btn vp-btn-blue" ng-click="searchDownloadDataGrid()" vd-auth="Download Search" style="width: 120px">
+                                    <div class="col-xs-12">
+                                        <span class="ace-icon icon icon-search icon-on-right"></span>&nbsp;
+                                        {{ 'view_batch.refreshList' | translate }}
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row no-margin-right" style="margin-top: 5px;">
+                <vd-grid gid="{{dataGridName_download}}"
+                    refresh-key="{{refreshKey_download}}"
+                    ng-options="batchOptions_download">
+                    <script id="tpl_batch_download_TemplateLink" type="text/x-kendo-tmpl">
+                             <div class="col-xs-12 no-padding text-left" ng-hide="dataItem.IsDownloadable==false&&dataItem.Status=='RD'">
+                                        <a href="{{dataItem.DownloadUrl}}" style="text-decoration: underline;" target="_blank" ng-show="dataItem.IsDownloadable&&(dataItem.Status=='RD'||dataItem.Status=='FA')">{{ 'header_batch.download' | translate }}</a>
+                                        <span ng-show="dataItem.Status=='PR'">{{ 'view_batch.processing' | translate }}</span>
+                                        <span ng-show="dataItem.IsDownloadable==false&&dataItem.Status=='FA'">Failed</span>
+                             </div>
+                      </script>
+                </vd-grid>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="upload">
+            <div class="row no-margin-right" style="margin-bottom: 15px;">
+                <div class="vp-block vp-block-blue" style="margin-bottom: 0px;">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <label class="no-padding-left" style="width: 94px; margin-top: 3px; margin-bottom: 3px;" for="Select4">{{ 'view_batch.templateType' | translate }}:</label>
+                            <select class="vp-select" id="Select4"
+                                ng-model="uploadTemplateType"
+                                ng-options="item.value as item.text for item in templateTypeList" />
+
+                            <label class="no-padding-left" style="width: 74px; margin-top: 4px; margin-bottom: 3px; margin-left: 10px;" for="upFileArea">{{ 'view_batch.uploadFileLabel' | translate }}:</label>
+
+                            <div class="width-40 inline middle" id="upFileArea">
+                                <div class="col-xs-12 no-padding" id="fileInput_upload">
+                                    <input ng-controller="UploadCtrl" type="file" name="uploadFile" url="url" ng-file-select />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 no-padding-right" style="padding-top:8px;font-size: 17px;">
+                            <i class="icon-warning-sign orange pull-right"
+                                title="If you have difficulty on uploading your data feed, we also provide an alternative way for your to upload it to Newegg Vendor Portal, currently FTP is supported, please contact support to retrieve your FTP account information.">
+                            </i>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-app vp-btn vp-btn-blue pull-left" ng-click="uploadClick()" vd-auth="Upload" style="width: 150px" ng-show="!uploader.isUploading">
+                                <div class="col-xs-12">
+                                    <span class="ace-icon icon icon-upload-alt icon-on-right"></span>&nbsp;
+                                    {{ 'view_batch.uploadTemplate' | translate }}
+                                </div>
+                            </button>
+                            <button class="btn btn-app vp-btn vp-btn-blue pull-right disabled" vd-auth="Upload" style="width: 150px" ng-show="uploader.isUploading">
+                                <div class="col-xs-12">
+                                    <i class="icon-spinner icon-spin white bigger-125"></i>&nbsp;
+                                    {{ 'view_batch.uploading' | translate }}
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row no-margin-right" style="margin-bottom: 10px;">
+                <div class="vp-block" style="margin-bottom: 0px;">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <label class="col-md-6 vp-label-padding-5">{{ 'view_batch.uploadedDateFrom' | translate }}:</label>
+                            <div class="col-md-6 no-padding">
+                                <div class="input-group col-md-12">
+                                    <input class="form-control vp-input"
+                                        type="text"
+                                        neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                        ng-model="upload.UploadDateFrom"
+                                        maxlength="10"
+                                        required>
+                                    <span class="input-group-addon">
+                                        <i class="icon-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6">
+                            <label class="col-md-6 vp-label-padding-5">{{ 'view_batch.uploadedDateTo' | translate }}:</label>
+                            <div class="col-md-6 no-padding">
+                                <div class="input-group col-md-12">
+                                    <input class="form-control vp-input"
+                                        type="text"
+                                        neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                        ng-model="upload.UploadDateTo"
+                                        maxlength="10"
+                                        required>
+                                    <span class="input-group-addon">
+                                        <i class="icon-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <label class="col-md-6 vp-label-padding-5">{{ 'view_batch.completedDateFrom' | translate }}:</label>
+                            <div class="col-md-6 no-padding">
+                                <div class="input-group col-md-12">
+                                    <input class="form-control vp-input"
+                                        type="text"
+                                        neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                        ng-model="upload.ProcessDateFrom"
+                                        maxlength="10"
+                                        required>
+                                    <span class="input-group-addon">
+                                        <i class="icon-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6">
+                            <label class="col-md-6 vp-label-padding-5">{{ 'view_batch.completedDateTo' | translate }}:</label>
+                            <div class="col-md-6 no-padding">
+                                <div class="input-group col-md-12">
+                                    <input class="form-control vp-input"
+                                        type="text"
+                                        neg-date-picker='{"changeMonth":true,"changeYear":true,"dateFormat":"yy-mm-dd"}'
+                                        ng-model="upload.ProcessDateTo"
+                                        maxlength="10"
+                                        required>
+                                    <span class="input-group-addon">
+                                        <i class="icon-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 4px">
+                        <div class="col-md-3">
+                            <label class="col-md-6 vp-label-padding-5">{{ 'view_batch.status' | translate }}:</label>
+                            <div class="col-md-6 no-padding">
+                                <select class="col-xs-12 vp-select"
+                                    ng-model="upload.Status"
+                                    ng-options="item.value as item.text for item in uploadStatusList" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="col-md-6 vp-label-padding-5">{{ 'view_batch.templateType' | translate }}:</label>
+                            <div class="col-md-6 no-padding">
+                                <select class="col-xs-12 vp-select"
+                                    ng-model="upload.TemplateType"
+                                    ng-options="item.value as item.text for item in templateTypeForUploadList" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="pull-right">
+                                <div class="col-md-4 vp-label-padding-5" style="width: 90px">
+                                    <input type="checkbox" class="ace" id="Checkbox2" ng-model="upload.MyUploadOnly" />
+                                    <label class="lbl" for="dckMyUploads">&nbsp;{{ 'view_batch.myUploads' | translate }}</label>
+
+                                </div>
+                                <button class="btn btn-app vp-btn vp-btn-blue" ng-click="searchUploadDataGrid()" vd-auth="Upload Search" style="width: 120px">
+                                    <div class="col-xs-12">
+                                        <span class="ace-icon icon icon-search icon-on-right"></span>&nbsp;
+                                        {{ 'view_batch.refreshList' | translate }}
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row no-margin-right" style="margin-top: 5px;">
+                <vd-grid gid="{{dataGridName_upload}}"
+                    refresh-key="{{refreshKey_upload}}"
+                    ng-options="batchOptions_upload">
+                    <script id="tpl_batch_upload_status" type="text/x-kendo-tmpl">
+                            <div class="col-xs-12 no-padding text-left">
+                               <span ng-class="{'red':dataItem.StatusDescription=='Completed With Error'||dataItem.StatusDescription=='Failed'}">
+                                 {{dataItem.StatusDescription}}
+                               </span>
+                            </div>
+                      </script>
+                    <script id="tpl_batch_upload_viewEndResult" type="text/x-kendo-tmpl">
+                            <div class="col-xs-12 no-padding text-left" ng-hide="dataItem.IsDownloadable==false&&(dataItem.Status=='CD'||dataItem.Status=='CE')">
+                                        <a href="{{dataItem.DownloadUrl}}" style="text-decoration: underline;" target="_blank" ng-show="dataItem.IsDownloadable&&(dataItem.Status=='CD'||dataItem.Status=='CE'||dataItem.Status=='FA')">{{ 'header_batch.download' | translate }}</a>
+                                        <span ng-show="dataItem.Status=='WT'||dataItem.Status=='PR'">{{ 'view_batch.processing' | translate }}</span>
+                                        <span ng-show="dataItem.IsDownloadable==false&&dataItem.Status=='FA'">{{ 'view_batch.upfailed' | translate }}</span>
+                            </div>
+                      </script>
+                </vd-grid>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#myTab a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+</script>

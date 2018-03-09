@@ -1,0 +1,14 @@
+<a data-toggle="dropdown" class="col-xs-11 no-padding-left no-padding-right dropdown-toggle vp-header-icon-width" href="#" title="{{ 'system.header.translate' | translate }}" >
+    <i class="icon-globe bigger-150 vp-header-icon"></i>
+</a>
+<span class="col-xs-1 no-padding-left no-padding-right vp-header-icon-border" ></span>
+
+
+<ul ng-controller="ToolbarSystemTranslateCtrl" class="user-menu pull-right dropdown-menu-right dropdown-menu dropdown-light-blue dropdown-caret dropdown-close">
+    <li ng-class="{active:currentLanguage==key}" ng-repeat="(key,value) in languages">
+        <a href="#" ng-click="changeLanguage(key)">
+            <i class="icon-ok pull-right" ng-show="currentLanguage==key"></i>
+            {{value}}
+        </a>
+    </li>
+</ul>

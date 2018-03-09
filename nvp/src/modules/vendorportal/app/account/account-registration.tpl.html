@@ -1,0 +1,397 @@
+﻿<link rel="stylesheet" href="/framework/themes/ace/login.css" />
+<link rel="stylesheet" href="/framework/themes/ace/index.css" />
+<link rel="stylesheet" href="/modules/vendorportal/app/account/account-registration.css" />
+<style>
+    .pl-10 {
+        padding-left: 10px;
+    }
+
+    .mt-10 {
+        margin-top: 10px;
+    }
+</style>
+<div ng-controller="AccountRegistrationCtrl">
+    <div ng-show="_userRegiste" class="container align-center vp_content" style="padding-top: 2%; width: 99%">
+        <header>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <h1>
+                        <a href="javascript:void(0)" ng-click="redirectTo('logo')">
+                            <img src="/framework/img/vendorportal_login.png" alt="Newegg Vendor Portal" />
+                        </a>
+                    </h1>
+                </div>
+                <div class="line" style="position: relative; top: -10px">
+                    <img src="/framework/img/line_body.png" alt="" />
+                </div>
+            </div>
+        </header>
+
+        <div>
+            <div class="termsConditions" ng-show="aggrementAreaShow">
+                <h2 class="acct-h2" style="vertical-align: baseline; text-align: left;">Terms &amp; Conditions</h2>
+                <div class="content">
+
+                    <title>VENDOR PORTAL PARTICIPATION TERMS</title>
+
+                    <div style="text-align: center;">
+                        <h2 class="acct-h2" style="text-align: center"><u style="text-decoration: underline;">VENDOR PORTAL PARTICIPATION TERMS</u></h2>
+                    </div>
+                    <br>
+                    <div class="acct-body">
+                        <ol>
+                            <!--1-->
+                            <li class="acct-section">
+                                <span class="acct-header">1)&nbsp;&nbsp;Definitions.
+                                </span>
+                                <br>
+                                <ol class="acct-text">
+                                    <li class="pl-10">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="vertical-align: top;">a)</td>
+                                                    <td style="padding-left: 8px;">“Portal” means a webpage, form, or other means by which Vendor can input information that will be displayed on a Newegg website
+                                            in relation to comments and reviews that are provided by third parties (such as the customers of Newegg); input, upload or download
+                                            information related to product returns, orders and shipment information; and generate reports.</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </li>
+                                    <li class="pl-10">
+                                         <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="vertical-align: top;">b)</td>
+                                                    <td style="padding-left: 8px;">“Access Rights” means any access that Newegg gives Vendor to use the Portal, including but not limited to any rights, passwords or
+                                            permissions.</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </li>
+                                    <li class="pl-10">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="vertical-align: top;">c)</td>
+                                                    <td style="padding-left: 8px;">“Posting” or “Post” means Vendor’s use of the Portal to place or upload information on a Newegg website, database or other internal
+system.</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </li>
+                                    <li class="pl-10">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="vertical-align: top;">d)</td>
+                                                    <td style="padding-left: 8px;">“Confidential Information” means any information disclosed by the disclosing party or its agents to the receiving party that is
+                                            designated as “confidential” or that should reasonably be considered as confidential, given the nature of the information or the
+                                            circumstances surrounding its disclosure. Confidential Information includes any business information relating to the disclosing
+                                            party's technology, customers, business plans, promotional and marketing activities, finances and other business affairs, including
+                                            without limitation, that which relates to research, products, software, services, development, processes, specifications, designs,
+                                            drawings, diagrams, marketing techniques, documentation, customer information, pricing information, procedures, data, concepts,
+                                            business policies or practices, financial statements and third- party information that the receiving party is obligated to keep
+                                            confidential. Confidential Information does not include information which (a) is publicly known at the time of its disclosure, (b) is
+                                            lawfully received from a third party not under a similar restriction of confidentiality, (c) is published or otherwise made known to the
+                                            public by the disclosing party, or (d) was generated independently by the receiving party.</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </li>
+                                </ol>
+                            </li>
+
+                            <!--2-->
+                            <li class="acct-section mt-10">2)&nbsp;&nbsp; 
+                               During the Term of this Agreement, Vendor is permitted to make Posts using the Portal, provided such is made in compliance with the
+terms of this Agreement. Newegg shall grant Vendor Access Rights as Newegg, in its sole discretion, determines is desirable. Newegg
+may, in its sole discretion at any time for any reason or for no reason, rescind Vendor’s Access Rights, Vendor’s right to make Posts on the
+Portal or any other Vendor access to functionalities on the Portal.
+                            </li>
+                            <!--3-->
+                            <li class="acct-section mt-10">3)&nbsp;&nbsp; 
+                               Vendor shall not allow any third party to make use of the Access Rights. Such action would constitute a material breach of this Agreement
+and entitle Newegg to immediately terminate this Agreement. Vendor agrees to use the Portal exclusively for Posting, limited to
+responding to comments and reviews of customers and other third parties or providing information about Vendor’s products to customers
+and third parties. Vendor represents and warrants that it will ensure that it and its employees, agents or affiliates accessing or using the
+Portal will not do anything that negatively affects or impacts the operations of the Portal or other computer, database, or network systems of
+Newegg (such actions would include but are not limited to hacking; reverse engineering; transmitting viruses, Trojan horses or other
+disruptive programs whether intentionally or unintentionally; or using tracking software).
+                            </li>
+                            <!--4-->
+                           <li class="acct-section mt-10">4)&nbsp;&nbsp; 
+                               Vendor represents and warrants that all Posts and information contained in the Posts a) are true, accurate, complete and not misleading in
+any way, b) are either owned, licensed by Vendor or to which Vendor otherwise has rights, and c) do not and will not violate any applicable
+law, regulation, or the rights of any third party (including but not limited to infringing any patents, copyrights, trademarks, trade secrets,
+rights of privacy, moral rights, confidentiality rights or contractual rights). Vendor represents and warrants that in making any Posts, it will
+not commit a tort upon any third party.
+                            </li>
+                            <!--5-->
+                           <li class="acct-section mt-10">5)&nbsp;&nbsp; 
+                               Vendor acknowledges and agrees that the accuracy of all RMA approvals and RMA number assignments made by Vendor on the Portal is
+its sole responsibility. Vendor is strictly prohibited from applying fees or making charges to Newegg for Newegg’s shipment of RMA
+products to Vendor with incorrect RMA numbers due to errors or inaccuracies on the Portal made by Vendor, its employees or designated
+agents.
+                            </li>
+                            <!--6-->
+                           <li class="acct-section mt-10">6)&nbsp;&nbsp; 
+                               Vendor hereby agrees to follow Newegg’s policies as posted on the Portal, including but not limited to Newegg’s Privacy Policy. Newegg
+may update policies on the Portal from time to time in its sole discretion. In the event of any conflict between the terms of Newegg’s
+policies and Vendor’s policies, Newegg’s policies shall prevail, provided that the terms and conditions of any written agreement signed by
+and on behalf of both parties shall control.
+                            </li>
+                            <!--7-->
+                           <li class="acct-section mt-10">7)&nbsp;&nbsp; 
+                               When Posting, Vendor agrees to abide by any and all guidelines provided to Vendor (including guidelines provided by Newegg on the
+website with which a Posting is to be associated) by Newegg with regard to Posting. In the event that Newegg increases or changes the
+functionality of the Portal, Vendor shall be bound by any additional terms and conditions provided in writing with regard to its use of the
+additional or changed functionality. Such additional terms and conditions shall be considered integrated into and a part of these terms.
+                            </li>
+                            <!--8-->
+                           <li class="acct-section mt-10">8)&nbsp;&nbsp; 
+                               With regard to any material Posted by Vendor, Vendor grants to Newegg a non-exclusive, royalty-free, fully paid-up license to display,
+distribute, copy, transmit or otherwise use such material.
+                            </li>
+                            <!--9-->
+                          <li class="acct-section mt-10">9)&nbsp;&nbsp; 
+                               Vendor acknowledges that Newegg maintains the absolute right, though not the obligation, to remove any posting that does not meet
+Newegg’s guidelines or that is, at Newegg’s sole discretion, otherwise objectionable. Further, Vendor acknowledges that Newegg may
+make reasonable editorial corrections to any Posting made, provided that such corrections do not make such Posting inaccurate or
+misleading. However, Newegg is under no obligation to review the material Vendor seeks to Post or to determine if such would be a
+                              violation of any provision of this Agreement.
+                              <br/>
+                              <span>As such, EXCEPT FOR WILLFUL OR GROSSLY NEGLIGENT BREACHES OF ITS OBLIGATIONS UNDER THIS AGREEMENT,
+IN NO EVENT SHALL NEWEGG BE LIABLE TO VENDOR, OR TO ANY THIRD PARTY CLAIMING THROUGH OR UNDER
+VENDOR, FOR ANY LOSS OF DATA, EQUIPMENT DOWNTIME OR INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES,
+EVEN IF NEWEGG HAS BEEN ADVISED OF THE POSSIBILITY THEREOF. NEWEGG DOES NOT GUARANTEE THE
+AVAILABILITY OF THE PORTAL NOR VENDOR’S ABILITY TO ACCESS THE PORTAL AT ANY GIVEN TIME.</span>
+                            </li>
+                            <!--10-->
+                            <li class="acct-section mt-10">10)&nbsp;&nbsp;<strong>Indemnity.</strong>&nbsp;&nbsp; 
+                               Vendor shall indemnify, defend and hold Newegg and Newegg’s parent, affiliates, subsidiaries, related entities, officers,
+directors, employees, and contractors (“Indemnified Parties”) harmless from and against any and all liabilities, damages, costs and
+expenses, including attorneys’ fees (collectively, “Losses”), incurred by the Indemnified Parties as a result of or arising from (a) Postings or
+other information submitted or made available by Vendor on, in, or through the Newegg website and/or databases, or (b) any breach or
+alleged breach of a Vendor representation or warranty or any other provision of these terms by Vendor. This Section 10 (Indemnity) will
+not be construed to limit or exclude any other claims or remedies that Newegg or its respective affiliates, successors and assigns (and its and
+their respective directors, employees and agents) may assert.
+                            </li>
+                            <!--11-->
+                            <li class="acct-section mt-10">11)&nbsp;&nbsp; 
+                               Upon termination of the Agreement, Vendor shall cease a) making Posts, b) using the Portal in any way, and /or c) using its Access Rights
+in any manner.
+                            </li>
+                        </ol>
+                    </div>
+                    <br>
+                </div>
+                <div class="buttonBar">
+                    <button ng-click="termsDisagree()" class="btn btn-warning">
+                        <span><em>Disagree</em></span></button>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-primary" ng-click="termsConditionsClick()">
+                        <span><em>Agree
+                        </em></span>
+                    </button>
+                </div>
+            </div>
+
+            <div ng-show="illicitAreaShow">
+                <div style="margin: 0 auto; padding-top: 20px; width: 580px; text-align: left">
+
+                    <p>
+                        Thank you for your interesting in participating in Vendor Portal. 
+                        The invitation has expired or no longer available, please make sure to use the link from your invitation Email, 
+                        and if you have any question about this, 
+                        please contact the Vendor Portal administrator of your organization or simply mailto <a href="mailto:vendortechsupport@newegg.com">vendortechsupport@newegg.com</a> and our helpful staff will alleviate any concerns you may have.
+                    </p>
+
+                </div>
+            </div>
+
+            <div ng-show="registrationAreaShow">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <div class="page-header no-padding-left align-center">
+                        <h1>Account Creation</h1>
+                    </div>
+                </div>
+                <div style="padding: 0 0 30px 0;">
+                    <!--                    <h2 style="height: 35px; color: #CB6000; font-size: 1.4em; margin-top: 0px;">
+                        <span class="col-sm-7" style="color: black; font-size: 12px; vertical-align: central; text-align: right"><i class="icon-question-sign blue"></i>&nbsp;Asterisk (<span class="red">*</span>) indicates required fields.
+                        </span>
+                    </h2>-->
+
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <!--                        <tabset>
+                            <tab ng-binding="tab1" heading="Create a new Vendor Portal account" active="tab1.active"`>-->
+                        <div class="row">
+                            <form name="creationForm" ng-submit="creationFormSubmit()">
+                                <div class="form-horizontal col-sm-7">
+                                    <div class="form-group" style="margin-bottom: 20px;">
+                                        <label class="col-lg-5 control-label"><span class="red">*</span> <b>Email Address</b></label>
+                                        <div class="col-lg-7">
+                                            <input type="email" class="form-control" value="" name="LoginName"
+                                                required
+                                                maxlength="128"
+                                                ng-model="creationEntity.create_email1"
+                                                disabled
+                                                style="height: 32px; font-size: 14px;" />
+                                        </div>
+                                    </div>
+
+                                    <!--                                    <div class="form-group" style="margin-bottom:10px;">
+                                        <label class="col-lg-5 control-label"><span class="red">*</span> <b>Confirm Email Address</b></label>
+                                        <div class="col-lg-7">
+                                            <input type="email" class="form-control" value="" name="LoginName1" required maxlength="128" ng-model="creationEntity.create_email2" style="height:32px;font-size:14px;"/>
+                                        </div>
+                                    </div>-->
+
+                                    <div class="form-group" style="margin-bottom: 20px;">
+                                        <label class="col-lg-5 control-label"><span class="red">*</span> <b>Password</b></label>
+                                        <div class="col-lg-7">
+                                            <vd-strong-password></vd-strong-password>
+                                            <!--<input type="password" class="form-control" value="" name="Password" required maxlength="30" ng-model="creationEntity.create_pwd1" style="height:32px;font-size:14px;"/>-->
+                                        </div>
+                                        <!--<div class="col-lg-2 no-padding-left text-left" style="margin-left:0px; margin-top:4px;margin-bottom:4px;">
+                                                <vd-pop-tip class="align-middle ng-isolate-scope"  ng-title="Help" 
+                                                            ng-content="<b>In an effort to keep your sensitive information secure, We have some minimum password requirements.</b><br/> 1. 8-30 characters long.<br/> 2. Meet three of these four rules.<br/> <div style='margin-left:15px;'>a. Use uppercase letters.<br/>  b. Use lowercase letters.<br/>  c. Use at least one number.<br/>  d. Use specila characters(!,@,#,$,%,^,&,*,?...)</div>">
+                                                </vd-pop-tip>
+                                            </div>-->
+                                        <!--<span class="help-button col-lg-2" style="margin-top:2px;margin-bottom:2px;" tooltip="In an effort to keep your sensitive information secure, We have some minimum password requirements. 1. Eight to thirty characters long. 2. Meet three of these four rules: a.Use uppercase letters.  b.Use lowercase letters.  c.Use at least one number.  d.Use specila characters(!,@,#,$,%,^,&,*,?...)">?</span>-->
+                                    </div>
+
+                                    <div class="form-group" style="margin-bottom: 30px;">
+                                        <label class="col-lg-5 control-label"><span class="red">*</span> <b>Confirm Password</b></label>
+                                        <div class="col-lg-7">
+                                            <input type="password" class="form-control" value="" name="Password1" required maxlength="30" ng-model="creationEntity.create_pwd2" style="height: 32px; font-size: 14px;" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="text-align: center;">
+                                        <span style="color: red">{{creationErrorMsg}}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="align-right" style="margin-right: 13px">
+                                            <div class="no-padding-right">
+                                                <button type="button" class="btn btn-primary" ng-click="accountCreationBackClick()" style="width: 100px"><span><em class="icon iconPrevious"><i class="icon-arrow-left white"></i>&nbsp;Back</em></span></button>
+                                                <button type="submit" class="btn btn-warning" style="width: 100px"><span><em class="icon iconContinue"><i class="icon-arrow-right white"></i>&nbsp;Continue</em></span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-5">
+                                    <div class="well text-left no-padding-top">
+                                        <div style="margin-top: 6px">
+                                            <p>
+                                                <label>
+                                                    <span class="icon-info-sign blue bigger-130"></span>
+                                                    <b>In an effort to keep your sensitive information secure, we have some minimum password requirements.</b></label>
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <div style="margin-left: 20px">
+                                                <ol>
+                                                    1. Eight (8) to thirty (30) characters long<br />
+                                                </ol>
+                                                <ol>
+                                                    2. Meet three of these four rules:
+                                                </ol>
+                                            </div>
+                                            <div style="margin-left: 40px">
+                                                <li>Use uppercase letters
+                                                </li>
+
+                                                <li>Use lowercase letters
+                                                </li>
+
+                                                <li>Use at least one number
+                                                </li>
+
+                                                <li>Use special characters (!,@,#,$,%,^,&,*,?)
+                                                </li>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                        <!--                                </tab>-->
+                        <!--                            <tab ng-binding="tab2" heading="Use existing Newegg customer account" active="tab2.active"> 
+                                                            <form name="loginForm" ng-submit="loginFormSubmit()">
+                                                                <div class="form-horizontal" style="padding:20px 0 0 0;">
+                                                                    <div class="form-group" style="margin-bottom:10px;">
+                                                                        <label class="col-lg-5 control-label"><span class="red">*</span> <b>Email Address</b></label>
+                                                                        <div class="col-lg-4">
+                                                                            <input type="email" class="form-control" value="" name="LoginName" ng-model="loginEntity.login_email1" required maxlength="128" style="height:32px;font-size:14px;"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group" style="margin-bottom:10px;">
+                                                                        <label class="col-lg-5 control-label"><span class="red">*</span> <b>Password</b></label>
+                                                                        <div class="col-lg-4">
+                                                                            <input type="password" class="form-control" value="" name="Password" ng-model="loginEntity.login_pwd1" required maxlength="30" style="height:32px;font-size:14px;"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group" ng-show="CaptchaImageUrl">
+                                                                        <label class="col-lg-5 control-label"><span class="red">*</span> <b>Validation Code</b></label>
+                                                                        <div class="col-lg-2">
+                                                                            <input type="text" class="form-control" ng-model="loginEntity.validCode" style="padding-left: 5px !important; height:32px;font-size:14px;" maxlength="4" required />
+                                                                        </div>
+                                                                        <div class="col-lg-2">
+                                                                            <img src="{{CaptchaImageUrl}}" ng-click="getLoginToken()" style="cursor: pointer" title="Click to get a new captcha.">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="col-lg-4 col-lg-offset-5" style="text-align:right;">
+                                                                            <a href="https://secure.newegg.com/NewMyAccount/LoginAssistance.aspx" style="font-size:0.9em; text-decoration:underline" >Forgot your password?</a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group" style="text-align: center;">
+                                                                        <span style="color:red">{{loginErrorMsg}}</span>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="col-lg-4 col-lg-offset-5" style="text-align:left">
+                                                                            <button type="button" class="btn btn-primary" ng-click="accountCreationBackClick()"><span><em class="icon iconPrevious"><i class="icon-arrow-left white"></i>&nbsp;Back</em></span></button>
+                                                                            <button type="submit" class="btn btn-warning"><span><em class="icon iconContinue"><i class="icon-arrow-right white"></i>&nbsp;Continue</em></span></button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </tab>-->
+                        <!--</tabset>-->
+                    </div>
+                </div>
+            </div>
+
+            <div ng-show="transferAreaShow">
+                <div class="well">
+                    <h1 class="grey lighter smaller">
+                        <i class="icon-ok-sign green icon-bigger-130"></i><span style="color: green;">&nbsp;Register Successfully.</span>
+                    </h1>
+                    <hr>
+                    <h3 class="lighter smaller eaas-font-light2">Automatically navigate to login page in {{ seconds }} seconds…</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+        <footer>
+            <div class="row">
+                <div class="line col-sm-10 col-sm-offset-1" style="text-align: center">
+                    <img src="/framework/img/line_part.png" alt="" />
+                </div>
+                <div class="clearfix"></div>
+                <div style="text-align: center">
+                    <span class="login-footer login-label-light">© 2000-{{nowYear}} Newegg Inc. All rights reserved.</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script>
+    $('body').on('change', 'form input[type=email]', function () {
+        return $(this).val($.trim($(this).val()));
+    });
+</script>

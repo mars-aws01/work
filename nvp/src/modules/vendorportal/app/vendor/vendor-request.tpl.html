@@ -1,0 +1,297 @@
+﻿<!--<link rel="stylesheet" href="/assets/framework.all.css" />-->
+<link rel="stylesheet" href="/modules/vendorportal/app.css" />
+<link rel="stylesheet" href="/assets/login.all.css" />
+<script src="/modules/vendorportal/app.js"></script>
+<style>
+    .ace-file-input .ace-file-container.selected {
+        right: 20px;
+    }
+
+    .ace-file-input .remove {
+        right: -1px;
+    }
+</style>
+<div class="row no-margin bgLogo">
+    <a href="/login">
+        <img src="framework/img/newegg/vendor/us_logo.png"></a>
+</div>
+
+<div id="bgHeader" class="row no-margin">
+    <div id="inner-bg" class="inner-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <h1 class="animated fadeInUp" style="line-height: 60px;">Become a Newegg Vendor!</h1>
+                    <p class="description animated fadeInUp">
+                        There's no better way to showcase your products to a massive, tech-savy audience.
+                    </p>
+                    <div class="top-button animated fadeInDown">
+                        <a id="btnStart" href="javascript:void()" class="btn-u btn-brd btn-brd-width-2 btn-brd-hover btn-u-orange2 btn-u-block">Start selling to Newegg today!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="benefits hidden-xs hidden-sm">
+            <div class="block block-1 animated zoomIn">
+                <div class="has-icons has-icons-users"></div>
+                <div class="block-desc">Reach over a million customers that are hungry for the latest and greatest tech.</div>
+            </div>
+            <div class="block block-2 animated zoomIn">
+                <div class="has-icons has-icons-growth"></div>
+                <div class="block-desc">Watch your products sell on Newegg and grow your business with every sale.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- How do I become a vendor -->
+<div class="container request-feature">
+    <div class="row">
+        <div class="col-md-7  step-list">
+            <div class="headline">
+                <h1>How do I become a vendor?</h1>
+            </div>
+            <ul class="list-unstyled">
+                <li>
+                    <div class="col-md-12 step-row">
+                        <i class="icon icon-list-alt hidden-xs"></i>
+                        <label class="step-desc">1. Fill out a simple form</label>
+                    </div>
+                </li>
+                <li>
+                    <div class="col-md-12">
+                        <i class="icon icon-envelope hidden-xs"></i>
+                        <label class="step-desc">2. We'll review your information</label>
+                    </div>
+                </li>
+                <li>
+                    <div class="col-md-12">
+                        <i class="icon icon-check hidden-xs"></i>
+                        <label class="step-desc">3. Receive our reply</label>
+                    </div>
+                </li>
+            </ul>
+            <p>That's it! It's never been more simple to become a Newegg vendor, so apply today and watch your business grow with Newegg.</p>
+        </div>
+        <div class="col-md-4 col-md-offset-1  feature-list">
+            <ul class="list-unstyled">
+                <li>
+                    <div class="col-md-12">
+                        <h3>Sell Your Tech</h3>
+                        <p>We accept products in Computer Hardware, Consumer Electronics, Software, and more.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="col-md-12 mt-20 mb-20">
+                        <h3>No Hidden Fees</h3>
+                        <p>Our contracts are based on the idea that a happy vendor makes for the best business partner.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="col-md-12">
+                        <h3>Getting Started Is Easy</h3>
+                        <p>Get started by just filling out one simple form.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Sell to Newegg -->
+<div class="col-md-12  sell-bar">
+    <div class="container">
+        <h1>Sell To Newegg</h1>
+        <p>Just one easy form to get started</p>
+    </div>
+</div>
+
+<div ng-controller="VendorRequestCtrl" >
+<!-- Form -->
+<form class="container requet-form" ng-submit="submit()">
+    <!-- Basic Information -->
+    <div class="row">
+        <div class="col-sm-12">
+            <h2 class="title-border mb-15">Basic Information</h2>
+            <div class="col-xs-12 no-padding">
+                <div class="row">
+                    <div class="col-sm-6 ">
+                        <div class="form-group">
+                            <label for="name" class="input-desc">Company Name</label>
+                            <input type="text" class="form-control" ng-model="entity.CompanyName" maxlength="160" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 ">
+                        <div class="form-group">
+                            <label class="input-desc">Company Type</label>
+                            <select class="form-control"
+                                ng-model="entity.CompanyType"
+                                required
+                                ng-options="e.code as e.desc for e in companyTypes">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 ">
+                        <div class="form-group">
+                            <label class="input-desc">Company Website <small>(Optional)</small></label>
+                            <input type="text" class="form-control" ng-model="entity.CompanyWebsite" maxlength="50" placeholder="http(s)://your-web-site-path.com">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 ">
+                        <div class="form-group">
+                            <label for="txtCompanyRevenue" class="input-desc">Company Revenue <small>(estimate)</small></label>
+                            <input class="form-control"
+                                    name="txtCompanyRevenue"
+                                    placeholder="$"
+                                    vd-number="long"
+                                    type="text"
+                                    ng-model="entity.CompanyRevenue"
+                                    />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 ">
+                        <div class="form-group">
+                            <label for="txtFirstYearSales" class="input-desc">1st Year Sales Revenue With Newegg <small>(estimate)</small></label>
+                            <input class="form-control"
+                                    name="txtFirstYearSales"
+                                    placeholder="$"
+                                    vd-number="long"
+                                    type="text"
+                                    ng-model="entity.FirstYearSales"
+                                    required
+                                    />
+                        </div>
+                    </div>
+                    <div class="col-sm-6 ">
+                        <div class="form-group">
+                            <label for="website" class="input-desc">Your Name</label>
+                            <input type="text" class="form-control" ng-model="entity.ContactName" maxlength="20" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 ">
+                        <div class="form-group">
+                            <label for="website" class="input-desc">Headquarters Country</label>
+                            <select class="form-control"
+                                ng-model="entity.Country"
+                                required
+                                ng-options="e.CountryCode as e.CountryDescription for e in countryList">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 ">
+                        <div class="form-group">
+                            <label for="email" class="input-desc">Contact Email</label>
+                            <input type="email" class="form-control" ng-model="entity.ContactEmail" maxlength="120" required>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Product Information -->
+    <div class="row">
+        <div class="col-sm-12">
+            <h2 class="title-border mb-15">Product Information</h2>
+            <div class="col-xs-12 checkbox-list">
+                <div class="row">
+
+                    <div class="col-sm-3" ng-repeat="item in productDomains">
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <span>
+                                        <input type="checkbox" value="item.ProductDomainCode" ng-click="item.isChecked=!item.isChecked">
+                                        <span class="custom-checkbox-icon"></span>
+                                    </span>
+                                    <b>{{ item.ProductDomainDescription }}</b>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Information -->
+    <div class="row mt-30">
+        <div class="col-sm-12">
+            <h2 class="title-border mb-15">Additional Information&nbsp;<small>(Optional)</small>&nbsp;&nbsp;<small style="font-size:11px;">e.g. Product Catalog</small></h2>
+            <div class="col-xs-12  no-padding add-info">
+                <div class="row">
+                    <div class="col-sm-7">
+                        <div class="form-group">
+                            <label for="name" class="input-desc">Attachment</label>
+                            <vd-upload data="AttachmentData" same-name="yes"
+                                type="request"
+                                max-count="config.UploadFile.maxCount"
+                                max-size="config.UploadFile.maxSize"
+                                rejects="config.UploadFile.rejects"
+                                filename-pattern="config.UploadFile.filenamePattern"
+                                filename-pattern-tip="config.UploadFile.filenamePatternTip"
+                                attachment-type="config.UploadFile.attachmentType"></vd-upload>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label class="input-desc">Comment</label>
+                            <textarea class="form-control" style="resize: none; height: 150px" ng-model="entity.Comment" maxlength="1000"> </textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <hr class="hr mb-20" />
+
+    <div class="col-xs-12 no-padding mb-30">
+        <button  href="#features-section" ng-disabled="isSending" ng-hide="isSubmit"  class="btn-u btn-brd btn-brd-width-2  btn-u-orange2 btn-u-block pull-right">
+            <i class="ace-icon icon-spinner icon-spin" ng-show="isSending"></i>Send Request
+        </button>
+    </div>
+</form>
+
+<!-- Footer-->
+<div class="col-xs-12 no-padding footer-v1">
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p style="margin-bottom: 2px;">17708 Rowland St, City of Industry, CA 91748</p>
+                    <p style="margin-top: 0;">
+                        © 2000-2017 Newegg Inc. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        $('#btnStart').on('click', function (event) {
+            $('html, body').animate({
+                scrollTop: 1130
+            }, 'slow');
+        });
+    });
+</script>
+
+
+
+

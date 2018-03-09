@@ -1,0 +1,11 @@
+﻿angular.module('vendorportal',[
+  'pascalprecht.translate' 
+  'ngRoute'
+  'vendorportal-system'
+  'vendorportal-vf'
+  'vendorportal-nvf'
+  'vendorportal-service'
+  'vendorportal-directive'
+  'vendorportal-filter'
+  'vp-reporting-dashboard'
+])
